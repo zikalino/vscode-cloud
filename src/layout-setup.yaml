@@ -2,7 +2,7 @@ type: layout-form
 id: root
 header:
   - type: header
-    title: ESP Installer
+    title: Azure Prerequisites
     logo: espressif.svg
 form:
   - type: fieldset

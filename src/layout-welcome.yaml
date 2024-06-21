@@ -1,7 +1,7 @@
 type: layout-welcome
 header:
   - type: header
-    title: ESP Installer Extension
+    title: Azure Prerequisites Extension
     logo: espressif.svg
 footer:
   - type: checkbox
