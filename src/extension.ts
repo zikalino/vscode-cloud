@@ -17,16 +17,16 @@ export function activate (context: vscode.ExtensionContext) {
 
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
-  console.log('Congratulations, your extension "vscode-esp-installer" is now active!');
+  console.log('Congratulations, your extension "vscode-azure" is now active!');
 
-  // let disposable = vscode.commands.registerCommand('vscode-esp-installer.displayInstallerWelcome', () => {
+  // let disposable = vscode.commands.registerCommand('vscode-azure.displayInstallerWelcome', () => {
   //  displayInstallerWelcome();
   //});
 
   let disposable = vscode.commands.registerCommand(
-    'vscode-esp-installer.displayInstallerView',
+    'vscode-azure.displayPrerequisitesView',
     () => {
-      displayInstallerView();
+      displayPrerequisitesView();
     }
   );
 
@@ -50,7 +50,7 @@ async function displayInstallerWelcome() {
 
 var layoutSetup: any = require('./layout-setup.yaml');
 
-async function displayInstallerView() {
+async function displayPrerequisitesView() {
   let view = new helpers.GenericWebView(extensionContext, "Installer");
   view.createPanel(layoutSetup);
 

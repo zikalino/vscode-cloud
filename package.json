@@ -1,9 +1,9 @@
 {
-  "name": "vscode-esp-installer",
+  "name": "vscode-azure",
   "displayName": "ESP Installer",
   "description": "ESP Toolchain Installer",
   "version": "0.0.31",
-  "repository": "https://github.com/zikalino/vscode-esp-installer",
+  "repository": "https://github.com/zikalino/vscode-azure",
   "publisher": "zikalinox",
   "engines": {
     "vscode": "^1.85.0"
@@ -16,8 +16,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscode-esp-installer.displayInstallerView",
-        "title": "espressif: Installer"
+        "command": "vscode-azure.displayPrerequisitesView",
+        "title": "smarter> azure: Prerequisites"
       }
     ]
   },
