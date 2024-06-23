@@ -30,6 +30,14 @@ export function activate (context: vscode.ExtensionContext) {
     }
   );
 
+  disposable = vscode.commands.registerCommand(
+    'vscode-azure.displayCreateResource',
+    () => {
+      displayResourceCreateView();
+    }
+  );
+
+
   context.subscriptions.push(disposable);
 }
 
@@ -103,5 +111,21 @@ async function displayPrerequisitesView() {
       }
     }
   };
+
+}
+
+var layoutCreateResourceGroup: any = require('./layout-create-resource-group.yaml');
+
+async function displayResourceCreateView() {
+  let i = 0;
+  const result = await vscode.window.showQuickPick(['resource-group', 'static-website', 'virtual-machine'], {
+    placeHolder: 'one, two or three',
+    onDidSelectItem: item => vscode.window.showInformationMessage(`Focus ${++i}: ${item}`)
+  });
+
+  if (result === "resource-group") {
+    let view = new helpers.GenericWebView(extensionContext, "New Resource");
+    view.createPanel(layoutCreateResourceGroup);   
+  }
 
 }

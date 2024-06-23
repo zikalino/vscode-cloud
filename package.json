@@ -18,7 +18,12 @@
       {
         "command": "vscode-azure.displayPrerequisitesView",
         "title": "smarter> azure: Prerequisites"
+      },
+      {
+        "command": "vscode-azure.displayCreateResource",
+        "title": "smarter> azure: Create Resource"
       }
+
     ]
   },
   "scripts": {

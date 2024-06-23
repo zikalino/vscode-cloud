@@ -1,0 +1,30 @@
+type: layout-form
+id: root
+header:
+  - type: header
+    title: Resource Group
+    logo: espressif.svg
+form:
+  #
+  # Azure CLI
+  #
+  - type: fieldset
+    id: fieldset_esp_idf
+    platform: win32
+    subitems:
+      - type: 'action-row'
+        id: create-resource-group
+        name: Create Resource Group
+        verify: |
+            $out = az group exists --name myrg
+            if ($out -like '*true*') { exit 0 } else { exit 1 }
+        install: az group create --name myrg --location eastus
+        uninstall: az group delete --name myrg
+
+footer:
+  - type: footer
+    id: footer
+    subitems:
+      - type: button
+        id: install_button
+        text: Install
