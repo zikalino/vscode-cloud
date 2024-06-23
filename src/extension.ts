@@ -123,9 +123,21 @@ async function displayResourceCreateView() {
     onDidSelectItem: item => vscode.window.showInformationMessage(`Focus ${++i}: ${item}`)
   });
 
+  let view = new helpers.GenericWebView(extensionContext, "New Resource");
   if (result === "resource-group") {
-    let view = new helpers.GenericWebView(extensionContext, "New Resource");
     view.createPanel(layoutCreateResourceGroup);   
   }
 
+  view.MsgHandler = function (msg: any) {
+    if (msg.command === 'ready') {
+      view.runStepsVerification();
+    } else if (msg.command === 'button-clicked') {
+      //vscode.window.showInformationMessage('Button ' + msg.id + ' Clicked!');
+      if (msg.id === 'close') {
+        view.close();
+      } else if (msg.id === 'install_button') {
+        view.runStepsInstallation();
+      }
+    }
+  };
 }
