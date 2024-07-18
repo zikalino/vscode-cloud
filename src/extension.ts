@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import YAML from 'yaml';
 import { marked } from 'marked';
 import * as helpers from '@zim.kalinowski/vscode-helper-toolkit';
-
+//import SwaggerParser from "@apidevtools/swagger-parser";
 var extensionUri: vscode.Uri;
 var mediaFolder: vscode.Uri;
 var extensionContext: vscode.ExtensionContext;
@@ -34,6 +34,13 @@ export function activate (context: vscode.ExtensionContext) {
     'vscode-azure.displayCreateResource',
     () => {
       displayResourceCreateView();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-azure.displayAzureApiBrowser',
+    () => {
+      parseApi();
     }
   );
 
@@ -115,6 +122,7 @@ async function displayPrerequisitesView() {
 }
 
 var layoutCreateResourceGroup: any = require('./layout-create-resource-group.yaml');
+var layoutCreateStaticWebsite: any = require('./layout-create-static-website.yaml');
 
 async function displayResourceCreateView() {
   let i = 0;
@@ -126,6 +134,8 @@ async function displayResourceCreateView() {
   let view = new helpers.GenericWebView(extensionContext, "New Resource");
   if (result === "resource-group") {
     view.createPanel(layoutCreateResourceGroup);   
+  } else if (result === "static-website") {
+    view.createPanel(layoutCreateStaticWebsite);   
   }
 
   view.MsgHandler = function (msg: any) {
@@ -140,4 +150,9 @@ async function displayResourceCreateView() {
       }
     }
   };
+}
+
+async function parseApi() {
+  let api = await SwaggerParser.parse("c:\\Users\\Lenovo\\azure-rest-api-specs\\specification\\resources\\resource-manager\\Microsoft.Resources\\stable\\2024-03-01\\resources.json");
+  console.log("API name: %s, Version: %s", api.info.title, api.info.version);
 }

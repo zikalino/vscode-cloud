@@ -22,6 +22,10 @@
       {
         "command": "vscode-azure.displayCreateResource",
         "title": "smarter> azure: Create Resource"
+      },
+      {
+        "command": "vscode-azure.displayAzureApiBrowser",
+        "title": "smarter> azure: Azure API"
       }
     ]
   },
