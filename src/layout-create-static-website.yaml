@@ -27,7 +27,7 @@ form:
     
   - type: fieldset
     id: fieldset_esp_idf
-    show_if:
+    show-if:
       variable: resource-group-creation
       value: create
     platform: win32
