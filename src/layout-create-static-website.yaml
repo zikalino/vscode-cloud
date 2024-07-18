@@ -81,7 +81,8 @@ form:
             source:
               cmd: |
                 az group list
-              query: $[*].name
+              path-id: $[*].id
+              path-name: $[*].name
             variable: resource-group
 
 footer:
