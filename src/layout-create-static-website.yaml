@@ -23,7 +23,7 @@ form:
             variable: resource-group-creation
     
   - type: fieldset
-    id: fieldset_esp_idf
+    id: fieldset-resource-group-creation
     show-if:
       variable: resource-group-creation
       value: create
@@ -61,6 +61,24 @@ form:
             if ($out -like '*true*') { exit 0 } else { exit 1 }
         install: az group create --name ${name} --location ${region}
         uninstall: az group delete --name ${name}
+
+  - type: fieldset
+    id: fieldset-resource-group-selection
+    show-if:
+      variable: resource-group-creation
+      value: select
+    subitems:
+      - type: row
+        id: resource-group-selection-row
+        subitems:
+          - type: combo
+            id: resource-group-selection-combo
+            name: Select Resource Group
+            items:
+              - MyResourceGroup1
+              - MyResourceGroup2
+              - MyResourceGroup3
+            variable: resource-group
 
 footer:
   - type: footer
