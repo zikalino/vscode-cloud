@@ -5,9 +5,6 @@ header:
     title: Static Website
     logo: espressif.svg
 form:
-  #
-  # Azure CLI
-  #
   - type: fieldset
     id: fieldset-resource-group-select-or-create
     subitems:
@@ -30,7 +27,6 @@ form:
     show-if:
       variable: resource-group-creation
       value: create
-    platform: win32
     subitems:
       - type: row
         id: region-row
