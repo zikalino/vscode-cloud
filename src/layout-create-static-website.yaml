@@ -81,7 +81,7 @@ form:
             source:
               cmd: |
                 az group list
-              query: XXX - json query
+              query: $[*].name
             variable: resource-group
 
 footer:
