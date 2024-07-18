@@ -78,6 +78,10 @@ form:
               - MyResourceGroup1
               - MyResourceGroup2
               - MyResourceGroup3
+            source:
+              cmd: |
+                az group list
+              query: XXX - json query
             variable: resource-group
 
 footer:
