@@ -16,11 +16,13 @@ form:
             value: select
             text: Existing Resource Group
             variable: resource-group-creation
+            default: true
           - type: radio
             id: radio-resource-group-create
             value: create
             text: New Resource Group
             variable: resource-group-creation
+            default: false
     
   - type: fieldset
     id: fieldset-resource-group-creation
