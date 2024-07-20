@@ -42,18 +42,18 @@
         - type: textfield
           id: moo-combo
           name: Name
-          variable: name
+          variable: resource_group_name
     - type: 'action-row'
       id: create-resource-group
       name: Create Resource Group
       variables:
         - region
-        - name
+        - resource_group_name
       verify: |
-          $out = az group exists --name ${name}
+          $out = az group exists --name ${resource_group_name}
           if ($out -like '*true*') { exit 0 } else { exit 1 }
-      install: az group create --name ${name} --location ${region}
-      uninstall: az group delete --name ${name}
+      install: az group create --name ${resource_group_name} --location ${region}
+      uninstall: az group delete --name ${resource_group_name}
 
 - type: fieldset
   id: fieldset-resource-group-selection
@@ -73,4 +73,4 @@
               az group list
             path-id: $[*].id
             path-name: $[*].name
-          variable: resource-group
+          variable: resource_group_name
