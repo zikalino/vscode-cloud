@@ -123,9 +123,6 @@ async function displayPrerequisitesView() {
 
 }
 
-var layoutCreateResourceGroup: any = require('./layout-create-resource-group.yaml');
-var layoutCreateStaticWebsite: any = require('./layout-create-static-website.yaml');
-
 async function displayResourceCreateView() {
 
   // XXX - load all the files here
