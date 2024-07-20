@@ -141,13 +141,9 @@ async function displayResourceCreateView() {
   });
 
   // XXX - load yaml
-  let y = fs.readFileSync(extensionContext.extensionPath + "/defs/" + result + ".yaml", "utf8");
-  y = YAML.parse(y);
-
-  let view = new helpers.GenericWebView(extensionContext, "New Resource");
- 
- 
-  view.createPanel(y);
+  let yml = loadYaml(extensionContext.extensionPath + "/defs/" + result + ".yaml");
+  let view = new helpers.GenericWebView(extensionContext, "New Resource"); 
+  view.createPanel(yml);
 
   view.MsgHandler = function (msg: any) {
     if (msg.command === 'ready') {
@@ -166,4 +162,54 @@ async function displayResourceCreateView() {
 async function parseApi() {
   let api = await SwaggerParser.parse("c:\\Users\\Lenovo\\azure-rest-api-specs\\specification\\resources\\resource-manager\\Microsoft.Resources\\stable\\2024-03-01\\resources.json");
   console.log("API name: %s, Version: %s", api.info.title, api.info.version);
+}
+
+// XXX - perhaps this should be moved to helpers
+function loadYaml(location: string) : any {
+  // extensionContext.extensionPath + "/defs/" + result + ".yaml"
+  let y = fs.readFileSync(location, "utf8");
+  y = YAML.parse(y);
+  loadIncludes(y);
+  return y;
+}
+
+function loadIncludes(data: any) {
+
+  if (typeof data === 'object') {
+    if (Array.isArray(data)) {
+      for (let i = data.length - 1; i >= 0; i--) {
+
+        if ((typeof data[i] === 'object') && ('$include' in data[i])) {
+          var included = loadYaml(extensionContext.extensionPath + "/defs/" + data[i]['$include']);
+          if (typeof included === 'object') {
+            if (Array.isArray(included)) {
+              // insert several elements
+              data.splice(i, 1, ...included);
+            } else {
+              // just replace this entry with new dictionary
+              data[i] = included;
+            }
+          }
+        } else {
+          loadIncludes(data[i]);
+        }
+      }
+    }
+    else {
+      if ('@include' in data) {
+        // XXX - load this include
+        var included = loadYaml(extensionContext.extensionPath + "/defs/" + data['location']);
+        data.clear();
+        for (var k in included) {
+          data[k] = included[k];
+        }
+      }
+
+      for (let key in data) {
+        if (typeof data[key] === 'object') {
+          loadIncludes(data[key]);
+        }
+      }
+    }
+  }
 }
