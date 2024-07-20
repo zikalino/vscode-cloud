@@ -71,6 +71,6 @@
           source:
             cmd: |
               az group list
-            path-id: $[*].id
+            path-id: $[*].name
             path-name: $[*].name
           variable: resource_group_name
