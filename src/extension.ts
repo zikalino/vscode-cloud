@@ -7,6 +7,8 @@ var extensionUri: vscode.Uri;
 var mediaFolder: vscode.Uri;
 var extensionContext: vscode.ExtensionContext;
 
+const fs = require("fs");
+
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate (context: vscode.ExtensionContext) {
@@ -125,18 +127,30 @@ var layoutCreateResourceGroup: any = require('./layout-create-resource-group.yam
 var layoutCreateStaticWebsite: any = require('./layout-create-static-website.yaml');
 
 async function displayResourceCreateView() {
+
+  // XXX - load all the files here
+  const dirContents = fs.readdirSync(extensionContext.extensionPath + "/defs");
+  var selected: string[] = [];
+  for (var item in dirContents) {
+    if (dirContents[item].endsWith(".yaml") && !dirContents[item].startsWith("_")) {
+      selected.push(dirContents[item].split(".")[0]);
+    }
+  }
+
   let i = 0;
-  const result = await vscode.window.showQuickPick(['resource-group', 'static-website', 'virtual-machine'], {
+  const result = await vscode.window.showQuickPick(selected, {
     placeHolder: 'one, two or three',
     onDidSelectItem: item => vscode.window.showInformationMessage(`Focus ${++i}: ${item}`)
   });
 
+  // XXX - load yaml
+  let y = fs.readFileSync(extensionContext.extensionPath + "/defs/" + result + ".yaml", "utf8");
+  y = YAML.parse(y);
+
   let view = new helpers.GenericWebView(extensionContext, "New Resource");
-  if (result === "resource-group") {
-    view.createPanel(layoutCreateResourceGroup);   
-  } else if (result === "static-website") {
-    view.createPanel(layoutCreateStaticWebsite);   
-  }
+ 
+ 
+  view.createPanel(y);
 
   view.MsgHandler = function (msg: any) {
     if (msg.command === 'ready') {

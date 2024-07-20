@@ -1,0 +1,55 @@
+type: layout-form
+id: root
+header:
+  - type: header
+    title: Resource Group
+    logo: espressif.svg
+form:
+  #
+  # Azure CLI
+  #
+  - type: fieldset
+    id: fieldset_esp_idf
+    platform: win32
+    subitems:
+      - type: row
+        id: region-row
+        subitems:
+          - type: combo
+            id: region-combo
+            name: Select Region
+            items:
+              - eastus
+              - eastus2
+              - westus
+            variable: region
+      - type: row
+        id: name-row
+        subitems:
+          - type: textfield
+            id: moo-combo
+            name: Name
+            items:
+              - eastus
+              - eastus2
+              - westus
+            variable: name
+      - type: 'action-row'
+        id: create-resource-group
+        name: Create Resource Group
+        variables:
+          - region
+          - name
+        verify: |
+            $out = az group exists --name ${name}
+            if ($out -like '*true*') { exit 0 } else { exit 1 }
+        install: az group create --name ${name} --location ${region}
+        uninstall: az group delete --name ${name}
+
+footer:
+  - type: footer
+    id: footer
+    subitems:
+      - type: button
+        id: install_button
+        text: Install
