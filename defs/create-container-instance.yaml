@@ -1,0 +1,16 @@
+type: layout-form
+id: root
+header:
+  - type: header
+    title: Container Instance
+    logo: espressif.svg
+form:
+  - $include: __resource_group_select_or_create.yaml
+
+footer:
+  - type: footer
+    id: footer
+    subitems:
+      - type: button
+        id: install_button
+        text: Install
