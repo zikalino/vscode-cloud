@@ -36,10 +36,12 @@ form:
           - type: combo
             id: region-combo
             name: Select Region
-            items:
-              - eastus
-              - eastus2
-              - westus
+            items: []
+            source:
+              cmd: |
+                az account list-locations
+              path-id: $[*].name
+              path-name: $[*].displayName
             variable: region
       - type: row
         id: name-row
@@ -47,10 +49,6 @@ form:
           - type: textfield
             id: moo-combo
             name: Name
-            items:
-              - eastus
-              - eastus2
-              - westus
             variable: name
       - type: 'action-row'
         id: create-resource-group
@@ -76,10 +74,7 @@ form:
           - type: combo
             id: resource-group-selection-combo
             name: Select Resource Group
-            items:
-              - MyResourceGroup1
-              - MyResourceGroup2
-              - MyResourceGroup3
+            items: []
             source:
               cmd: |
                 az group list
