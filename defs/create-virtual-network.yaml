@@ -8,33 +8,35 @@ form:
   - $include: __resource_group_select_or_create.yaml
 
   - type: fieldset
-    id: fieldset-container-instance-creation
     subitems:
       - type: row
-        id: container-instance-name-row
         subitems:
           - type: textfield
-            id: container-instance-name-field
-            name: Container Name
-            variable: container_name
+            name: Name
+            variable: vnet_name
+            id: vnet-name-field
       - type: row
-        id: container-instance-image-row
         subitems:
-          - type: textfield
-            id: container-instance-image-field
-            name: Container Name
-            variable: image
+          - type: combo
+            name: Select Region
+            id: vnet_region_combo
+            items: []
+            source:
+              cmd: |
+                az account list-locations
+              path-id: $[*].name
+              path-name: $[*].displayName
+            variable: vnet_region
       - type: 'action-row'
-        id: create-container-instance
-        name: Create Container Instance
+        name: Create Virtual Network
         variables:
           - resource_group_name
-          - container_name
-          - image
+          - vnet_name
+          - vnet_region
         verify: |
-            az container show --resource-group ${resource_group_name} --name ${container_name}
-        install: az container create --resource-group ${resource_group_name} --name ${container_name} --image ${image}
-        uninstall: az container delete --resource-group ${resource_group_name} --name ${container_name}
+            az network vnet show --resource-group ${resource_group_name} --name ${vnet_name}
+        install: az network vnet create --resource-group ${resource_group_name} --name ${vnet_name} --location ${vnet_region}
+        uninstall: az network vnet delete --resource-group ${resource_group_name} --name ${vnet_name} --yes
 
 footer:
   - type: footer
