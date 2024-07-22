@@ -2,39 +2,35 @@ type: layout-form
 id: root
 header:
   - type: header
-    title: Function
+    title: Function App
     logo: espressif.svg
 form:
   - $include: __resource_group_select_or_create.yaml
+  - $include: __storage_account_selector.yaml
+  - $include: __app_service_plan_selector.yaml
 
+  #
+  # FUNCTION APP ITSELF
+  #
   - type: fieldset
-    id: fieldset-container-instance-creation
     subitems:
       - type: row
-        id: container-instance-name-row
         subitems:
           - type: textfield
-            id: container-instance-name-field
-            name: Container Name
-            variable: container_name
-      - type: row
-        id: container-instance-image-row
-        subitems:
-          - type: textfield
-            id: container-instance-image-field
-            name: Container Name
-            variable: image
+            name: Name
+            variable: function_app_name
+            id: function-app-name-field
       - type: 'action-row'
-        id: create-container-instance
-        name: Create Container Instance
+        name: Create Function App
         variables:
           - resource_group_name
-          - container_name
-          - image
+          - function_app_name
+          - storage_account_name
+          - appservice_plan_name
         verify: |
-            az container show --resource-group ${resource_group_name} --name ${container_name}
-        install: az container create --resource-group ${resource_group_name} --name ${container_name} --image ${image}
-        uninstall: az container delete --resource-group ${resource_group_name} --name ${container_name}
+            az functionapp show --resource-group ${resource_group_name} --name ${function_app_name}
+        install: az functionapp create --resource-group ${resource_group_name} --name ${function_app_name} --storage-account ${storage_account_name} --plan ${appservice_plan_name}
+        uninstall: az functionapp delete --resource-group ${resource_group_name} --name ${function_app_name} --yes
 
 footer:
   - type: footer

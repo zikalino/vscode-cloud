@@ -8,33 +8,22 @@ form:
   - $include: __resource_group_select_or_create.yaml
 
   - type: fieldset
-    id: fieldset-container-instance-creation
     subitems:
       - type: row
-        id: container-instance-name-row
         subitems:
           - type: textfield
-            id: container-instance-name-field
-            name: Container Name
-            variable: container_name
-      - type: row
-        id: container-instance-image-row
-        subitems:
-          - type: textfield
-            id: container-instance-image-field
-            name: Container Name
-            variable: image
+            name: Name
+            variable: app_service_plan_name
+            id: appservice plan-name-field
       - type: 'action-row'
-        id: create-container-instance
-        name: Create Container Instance
+        name: Create App Service
         variables:
           - resource_group_name
-          - container_name
-          - image
+          - app_service_plan_name
         verify: |
-            az container show --resource-group ${resource_group_name} --name ${container_name}
-        install: az container create --resource-group ${resource_group_name} --name ${container_name} --image ${image}
-        uninstall: az container delete --resource-group ${resource_group_name} --name ${container_name}
+            az appservice plan show --resource-group ${resource_group_name} --name ${app_service_plan_name}
+        install: az appservice plan create --resource-group ${resource_group_name} --name ${app_service_plan_name}
+        uninstall: az appservice plan delete --resource-group ${resource_group_name} --name ${app_service_plan_name} --yes
 
 footer:
   - type: footer

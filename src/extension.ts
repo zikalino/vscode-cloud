@@ -136,8 +136,7 @@ async function displayResourceCreateView() {
 
   let i = 0;
   const result = await vscode.window.showQuickPick(selected, {
-    placeHolder: 'one, two or three',
-    onDidSelectItem: item => vscode.window.showInformationMessage(`Focus ${++i}: ${item}`)
+    placeHolder: 'one, two or three'
   });
 
   // XXX - load yaml
