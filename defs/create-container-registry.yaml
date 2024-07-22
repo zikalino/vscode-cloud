@@ -8,33 +8,35 @@ form:
   - $include: __resource_group_select_or_create.yaml
 
   - type: fieldset
-    id: fieldset-container-instance-creation
     subitems:
       - type: row
-        id: container-instance-name-row
         subitems:
           - type: textfield
-            id: container-instance-name-field
-            name: Container Name
-            variable: container_name
+            name: Name
+            variable: acr_name
+            id: acr-name-field
       - type: row
-        id: container-instance-image-row
+        id: sku-row
         subitems:
-          - type: textfield
-            id: container-instance-image-field
-            name: Container Name
-            variable: image
+          - type: combo
+            id: sku-combo
+            name: Select SKU
+            items:
+              - Basic
+              - Standard
+              - Premium
+            variable: sku
+
       - type: 'action-row'
-        id: create-container-instance
-        name: Create Container Instance
+        name: Create ACR
         variables:
           - resource_group_name
-          - container_name
-          - image
+          - acr_name
+          - sku
         verify: |
-            az container show --resource-group ${resource_group_name} --name ${container_name}
-        install: az container create --resource-group ${resource_group_name} --name ${container_name} --image ${image}
-        uninstall: az container delete --resource-group ${resource_group_name} --name ${container_name}
+            az acr show --resource-group ${resource_group_name} --name ${acr_name}
+        install: az acr create --resource-group ${resource_group_name} --name ${acr_name} --sku ${sku}
+        uninstall: az acr delete --resource-group ${resource_group_name} --name ${acr_name} --yes
 
 footer:
   - type: footer
