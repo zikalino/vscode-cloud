@@ -33,7 +33,7 @@
           $out = az group exists --name ${resource_group_name}
           if ($out -like '*true*') { exit 0 } else { exit 1 }
       install: az group create --name ${resource_group_name} --location ${region}
-      uninstall: az group delete --name ${resource_group_name}
+      uninstall: az group delete --name ${resource_group_name} --yes
 
 - type: fieldset
   show-if:

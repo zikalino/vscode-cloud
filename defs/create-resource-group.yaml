@@ -31,7 +31,7 @@ form:
             $out = az group exists --name ${name}
             if ($out -like '*true*') { exit 0 } else { exit 1 }
         install: az group create --name ${name} --location ${region}
-        uninstall: az group delete --name ${name}
+        uninstall: az group delete --name ${name} --yes
 
 footer:
   - type: footer

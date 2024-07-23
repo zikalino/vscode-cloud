@@ -36,7 +36,7 @@ form:
         verify: |
             az network vnet show --resource-group ${resource_group_name} --name ${vnet_name}
         install: az network vnet create --resource-group ${resource_group_name} --name ${vnet_name} --location ${vnet_region}
-        uninstall: az network vnet delete --resource-group ${resource_group_name} --name ${vnet_name} --yes
+        uninstall: az network vnet delete --resource-group ${resource_group_name} --name ${vnet_name}
 
 footer:
   - type: footer
