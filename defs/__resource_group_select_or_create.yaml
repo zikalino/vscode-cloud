@@ -23,19 +23,7 @@
     variable: resource-group-creation
     value: create
   subitems:
-    - type: row
-      id: region-row
-      subitems:
-        - type: combo
-          id: region-combo
-          name: Select Region
-          items: []
-          source:
-            cmd: |
-              az account list-locations
-            path-id: $[*].name
-            path-name: $[*].displayName
-          variable: region
+    - $include: __region_selector.yaml
     - type: row
       id: name-row
       subitems:

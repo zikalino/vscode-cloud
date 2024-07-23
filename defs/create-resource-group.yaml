@@ -12,27 +12,14 @@ form:
     id: fieldset_esp_idf
     platform: win32
     subitems:
-      - type: row
-        id: region-row
-        subitems:
-          - type: combo
-            id: region-combo
-            name: Select Region
-            items:
-              - eastus
-              - eastus2
-              - westus
-            variable: region
+      - $include: __region_selector.yaml
+        variable-prefix: resource_group_
       - type: row
         id: name-row
         subitems:
           - type: textfield
-            id: moo-combo
+            id: resource-group-name
             name: Name
-            items:
-              - eastus
-              - eastus2
-              - westus
             variable: name
       - type: 'action-row'
         id: create-resource-group

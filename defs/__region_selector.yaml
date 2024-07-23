@@ -1,0 +1,13 @@
+- type: row
+  id: region-row
+  subitems:
+    - type: combo
+      id: region-combo
+      name: Select Region
+      items: []
+      source:
+        cmd: |
+          az account list-locations
+        path-id: $[*].name
+        path-name: $[*].displayName
+      variable: region
