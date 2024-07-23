@@ -14,7 +14,7 @@
       items: []
       source:
         cmd: |
-          az network vnet subnet list --resource-group
+          az network vnet subnet list --resource-group ${resource_group_name} --vnet-name ${vnet_name}
         path-id: $[*].id
         path-name: $[*].name
       variable: subnet_name
