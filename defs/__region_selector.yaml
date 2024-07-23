@@ -1,8 +1,6 @@
 - type: row
-  id: region-row
   subitems:
     - type: combo
-      id: region-combo
       name: Select Region
       items: []
       source:

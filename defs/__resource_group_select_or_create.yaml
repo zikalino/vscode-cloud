@@ -1,38 +1,30 @@
 - type: fieldset
-  id: fieldset-resource-group-select-or-create
   subitems:
     - type: radio-group
-      id: radio-group-resource-group-select-or-create
       subitems:
         - type: radio
-          id: radio-resource-group-select
           value: select
           text: Existing Resource Group
           variable: resource-group-creation
           default: true
         - type: radio
-          id: radio-resource-group-create
           value: create
           text: New Resource Group
           variable: resource-group-creation
           default: false
   
 - type: fieldset
-  id: fieldset-resource-group-creation
   show-if:
     variable: resource-group-creation
     value: create
   subitems:
     - $include: __region_selector.yaml
     - type: row
-      id: name-row
       subitems:
         - type: textfield
-          id: moo-combo
           name: Name
           variable: resource_group_name
     - type: 'action-row'
-      id: create-resource-group
       name: Create Resource Group
       variables:
         - region
@@ -44,16 +36,13 @@
       uninstall: az group delete --name ${resource_group_name}
 
 - type: fieldset
-  id: fieldset-resource-group-selection
   show-if:
     variable: resource-group-creation
     value: select
   subitems:
     - type: row
-      id: resource-group-selection-row
       subitems:
         - type: combo
-          id: resource-group-selection-combo
           name: Select Resource Group
           items: []
           source:
