@@ -19,24 +19,25 @@ form:
         subitems:
           - type: combo
             name: Select Region
-            id: virtural_machine_region_combo
+            id: virtual_machine_region_combo
             items: []
             source:
               cmd: |
                 az account list-locations
               path-id: $[*].name
               path-name: $[*].displayName
-            variable: virtural_machine_region
+            variable: virtual_machine_region
+      - $include: __vm_size_selector.yaml
       - $include: __subnet_selector.yaml
       - type: 'action-row'
         name: Create Virtual Machine
         variables:
           - resource_group_name
           - virtural_machine_name
-          - virtural_machine_region
+          - virtual_machine_region
         verify: |
             az vm show --resource-group ${resource_group_name} --name ${virtural_machine_name}
-        install: az vm create --resource-group ${resource_group_name} --name ${virtural_machine_name} --location ${virtural_machine_region} --admin-password XXyaaaasdsa3312!
+        install: az vm create --resource-group ${resource_group_name} --name ${virtural_machine_name} --location ${virtual_machine_region} --admin-password XXyaaaasdsa3312!
         uninstall: az vm delete --resource-group ${resource_group_name} --name ${virtural_machine_name} --yes
 
 footer:
