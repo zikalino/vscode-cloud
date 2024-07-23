@@ -27,6 +27,7 @@ form:
               path-id: $[*].name
               path-name: $[*].displayName
             variable: virtural_machine_region
+      - $include: __subnet_selector.yaml
       - type: 'action-row'
         name: Create Virtual Machine
         variables:
