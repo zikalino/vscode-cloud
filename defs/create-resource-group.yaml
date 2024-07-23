@@ -3,7 +3,7 @@ id: root
 header:
   - type: header
     title: Resource Group
-    logo: espressif.svg
+    logo: icon.webp
 form:
   #
   # Azure CLI

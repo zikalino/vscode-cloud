@@ -2,7 +2,7 @@ type: layout-welcome
 header:
   - type: header
     title: Azure Prerequisites Extension
-    logo: espressif.svg
+    logo: icon.webp
 footer:
   - type: checkbox
     id: show_on_startup

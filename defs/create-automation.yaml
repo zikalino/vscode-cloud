@@ -3,7 +3,7 @@ id: root
 header:
   - type: header
     title: Automation
-    logo: espressif.svg
+    logo: icon.webp
 form:
   - $include: __resource_group_select_or_create.yaml
 
