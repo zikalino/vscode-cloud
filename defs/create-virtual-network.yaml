@@ -38,6 +38,33 @@ form:
         install: az network vnet create --resource-group ${resource_group_name} --name ${vnet_name} --location ${vnet_region}
         uninstall: az network vnet delete --resource-group ${resource_group_name} --name ${vnet_name}
 
+  #
+  # SUBNET
+  #
+  - type: fieldset
+    subitems:
+      - type: row
+        subitems:
+          - type: textfield
+            name: Name
+            variable: subnet_name
+      - type: row
+        subitems:
+          - type: textfield
+            name: Address Prefixes
+            variable: address_prefixes
+      - type: 'action-row'
+        name: Create Virtual Network
+        variables:
+          - resource_group_name
+          - vnet_name
+          - subnet_name
+          - address_prefixes
+        verify: |
+             az network vnet subnet show --name ${subnet_name} --vnet-name ${vnet_name} --resource-group ${resource_group_name}
+        install: az network vnet subnet create --name ${subnet_name} --vnet-name ${vnet_name} --resource-group ${resource_group_name} --address-prefixes ${address_prefixes}
+        uninstall: az network vnet subnet delete --name ${subnet_name} --vnet-name ${vnet_name} --resource-group ${resource_group_name}
+
 footer:
   - type: footer
     id: footer
