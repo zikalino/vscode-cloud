@@ -6,15 +6,21 @@
       source:
         cmd: |
           az network vnet list
-        path-id: $[*].id
+        path-id: $[*].name
         path-name: $[*].name
       variable: vnet_name
+      selection:
+        - variable: vnet_resource_group
+          path: $.resourceGroup
     - type: combo
       name: Select Subnet
       items: []
+      variables:
+        - vnet_resource_group
+        - vnet_name
       source:
         cmd: |
-          az network vnet subnet list --resource-group ${resource_group_name} --vnet-name ${vnet_name}
+          az network vnet subnet list --resource-group ${vnet_resource_group} --vnet-name ${vnet_name}
         path-id: $[*].id
         path-name: $[*].name
       variable: subnet_name
