@@ -4,6 +4,8 @@
       location: create-virtual-machine.yaml
     - name: Create Managed Disk
       location: create-managed-disk.yaml
+    - name: Create Blob from Managed Disk
+      location: create-blob-from-managed-disk.yaml
 - name: Containers
   submenu:
     - name: Create Container Instance
