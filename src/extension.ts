@@ -17,10 +17,6 @@ export function activate (context: vscode.ExtensionContext) {
 
   mediaFolder = vscode.Uri.joinPath(extensionUri, 'media');
 
-  // Use the console to output diagnostic information (console.log) and errors (console.error)
-  // This line of code will only be executed once when your extension is activated
-  console.log('Congratulations, your extension "vscode-azure" is now active!');
-
   // let disposable = vscode.commands.registerCommand('vscode-azure.displayInstallerWelcome', () => {
   //  displayInstallerWelcome();
   //});
@@ -124,39 +120,48 @@ async function displayPrerequisitesView() {
 }
 
 async function displayResourceCreateView() {
+  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___menu.yaml");
+  displayMenu(menu);
+}
 
-  // XXX - load all the files here
-  const dirContents = fs.readdirSync(extensionContext.extensionPath + "/defs");
+async function displayMenu(submenu: any) {
   var selected: string[] = [];
-  for (var item in dirContents) {
-    if (dirContents[item].endsWith(".yaml") && !dirContents[item].startsWith("_")) {
-      selected.push(dirContents[item].split(".")[0]);
+  for (var i in submenu) {
+    selected.push(submenu[i].name);
+  }
+
+  const result = await vscode.window.showQuickPick(selected, {
+    placeHolder: 'Select...'
+  });
+
+  for (var i in submenu) {
+    if (submenu[i].name === result) {
+      if ('submenu' in submenu[i]) {
+        displayMenu(submenu[i].submenu);
+      } else {
+        // XXX - load yaml
+        let yml = loadYaml(extensionContext.extensionPath + "/defs/" + submenu[i].location);
+        let view = new helpers.GenericWebView(extensionContext, "New Resource"); 
+        view.createPanel(yml);
+
+        view.MsgHandler = function (msg: any) {
+          if (msg.command === 'ready') {
+            view.runStepsVerification();
+          } else if (msg.command === 'button-clicked') {
+            //vscode.window.showInformationMessage('Button ' + msg.id + ' Clicked!');
+            if (msg.id === 'close') {
+              view.close();
+            } else if (msg.id === 'install_button') {
+              view.runStepsInstallation();
+            }
+          }
+        };
+      }
     }
   }
 
-  let i = 0;
-  const result = await vscode.window.showQuickPick(selected, {
-    placeHolder: 'one, two or three'
-  });
-
-  // XXX - load yaml
-  let yml = loadYaml(extensionContext.extensionPath + "/defs/" + result + ".yaml");
-  let view = new helpers.GenericWebView(extensionContext, "New Resource"); 
-  view.createPanel(yml);
-
-  view.MsgHandler = function (msg: any) {
-    if (msg.command === 'ready') {
-      view.runStepsVerification();
-    } else if (msg.command === 'button-clicked') {
-      //vscode.window.showInformationMessage('Button ' + msg.id + ' Clicked!');
-      if (msg.id === 'close') {
-        view.close();
-      } else if (msg.id === 'install_button') {
-        view.runStepsInstallation();
-      }
-    }
-  };
 }
+
 
 async function parseApi() {
   let api = await SwaggerParser.parse("c:\\Users\\Lenovo\\azure-rest-api-specs\\specification\\resources\\resource-manager\\Microsoft.Resources\\stable\\2024-03-01\\resources.json");
