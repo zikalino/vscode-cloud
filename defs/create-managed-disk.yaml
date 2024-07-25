@@ -11,21 +11,26 @@ form:
     id: fieldset-disk-instance-creation
     subitems:
       - type: row
-        id: disk-instance-name-row
         subitems:
           - type: textfield
             id: disk-instance-name-field
             name: Disk Name
             variable: disk_name
+      - type: row
+        subitems:
+          - type: textfield
+            name: Disk Size
+            variable: disk_size
       - type: 'action-row'
         id: create-disk-instance
         name: Create Managed Disk
-        variables:
+        consumes:
           - resource_group_name
           - disk_name
+          - disk_size
         verify: |
             az disk show --resource-group ${resource_group_name} --name ${disk_name}
-        install: az disk create --resource-group ${resource_group_name} --name ${disk_name}
+        install: az disk create --resource-group ${resource_group_name} --name ${disk_name} --size ${disk_size}
         uninstall: az disk delete --resource-group ${resource_group_name} --name ${disk_name}
 
 footer:
