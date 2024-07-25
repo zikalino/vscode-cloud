@@ -1,0 +1,48 @@
+type: layout-form
+id: root
+header:
+  - type: header
+    title: Export Managed Disk as Blob
+    logo: icon.webp
+form:
+  - $include: __disk_selector.yaml
+  - $include: __storage_account_selector.yaml
+
+  - type: fieldset
+    id: fieldset-disk-instance-creation
+    subitems:
+      - type: row
+        subitems:
+          - type: textfield
+            name: Blob Container Name
+            variable: blob_container_name
+          - type: textfield
+            name: Blob Name
+            variable: blob_name
+      - type: action-row
+        name: Grant Access to Disk
+        consumes:
+          - disk_resource_group
+          - disk_name
+        install:
+          az disk grant-access --resource-group ${disk_resource_group} --name ${disk_name} --duration-in-seconds 3600 --query [accessSas] -o tsv
+      - type: action-row
+        name: Create Blob
+        consumes:
+          - disk_resource_group
+          - disk_name
+          - blob_container_name
+          - blob_name
+        verify: |
+            az blob show --resource-group ${resource_group_name} --name ${disk_name}
+        install: |
+            az storage blob copy start --destination-blob ${blob_name} --destination-container ${contaner_name} --account-name ${storage_account} --account-key ${storage_account_key} --source-uri $sas
+        uninstall: az disk delete --resource-group ${resource_group_name} --name ${disk_name}
+
+footer:
+  - type: footer
+    id: footer
+    subitems:
+      - type: button
+        id: install_button
+        text: Install
