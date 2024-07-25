@@ -24,7 +24,7 @@ form:
       - type: 'action-row'
         id: create-resource-group
         name: Create Resource Group
-        variables:
+        consumes:
           - region
           - name
         verify: |

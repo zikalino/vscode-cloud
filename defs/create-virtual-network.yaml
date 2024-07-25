@@ -29,7 +29,7 @@ form:
             variable: vnet_region
       - type: 'action-row'
         name: Create Virtual Network
-        variables:
+        consumes:
           - resource_group_name
           - vnet_name
           - vnet_region
@@ -55,7 +55,7 @@ form:
             variable: address_prefixes
       - type: 'action-row'
         name: Create Virtual Network
-        variables:
+        consumes:
           - resource_group_name
           - vnet_name
           - subnet_name

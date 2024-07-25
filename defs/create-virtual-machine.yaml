@@ -31,7 +31,7 @@ form:
       - $include: __subnet_selector.yaml
       - type: 'action-row'
         name: Create Virtual Machine
-        variables:
+        consumes:
           - resource_group_name
           - virtural_machine_name
           - virtual_machine_region

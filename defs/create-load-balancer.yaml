@@ -27,7 +27,7 @@ form:
       - type: 'action-row'
         id: create-container-instance
         name: Create Container Instance
-        variables:
+        consumes:
           - resource_group_name
           - container_name
           - image

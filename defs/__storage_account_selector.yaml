@@ -45,7 +45,7 @@
     - type: 'action-row'
       id: create-storage-account
       name: Create Storage Account
-      variables:
+      consumes:
         - storage_account_region
         - storage_account_name
       verify: |

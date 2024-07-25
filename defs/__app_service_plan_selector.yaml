@@ -44,7 +44,7 @@
     - type: 'action-row'
       id: create-service-plan
       name: Create App Service Plan
-      variables:
+      consumes:
         - resource_group_name
         - service_plan_name
         - service_plan_region

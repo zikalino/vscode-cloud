@@ -28,7 +28,7 @@ form:
             variable: mysql_server_password
       - type: 'action-row'
         name: Create MySQL Server
-        variables:
+        consumes:
           - resource_group_name
           - mysql_server_name
           - mysql_server_username

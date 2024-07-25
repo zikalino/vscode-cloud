@@ -3,7 +3,7 @@
     - type: combo
       name: Select Virtual Machine Size
       items: []
-      variables:
+      consumes:
         - virtual_machine_region
       source:
         cmd: |

@@ -31,7 +31,7 @@ form:
       - type: 'action-row'
         id: clone-azure-res-api
         name: Clone Azure REST API
-        variables:
+        consumes:
           - version
         verify: if (Test-path ~/azure-rest-api-specs -PathType container) { exit 0 } else { exit 1}
         install: |

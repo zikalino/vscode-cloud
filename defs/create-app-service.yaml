@@ -17,7 +17,7 @@ form:
             id: appservice plan-name-field
       - type: 'action-row'
         name: Create App Service
-        variables:
+        consumes:
           - resource_group_name
           - app_service_plan_name
         verify: |

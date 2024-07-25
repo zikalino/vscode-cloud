@@ -15,7 +15,7 @@
     - type: combo
       name: Select Subnet
       items: []
-      variables:
+      consumes:
         - vnet_resource_group
         - vnet_name
       source:

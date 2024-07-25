@@ -22,7 +22,7 @@ form:
             id: logic-app-name-field
       - type: 'action-row'
         name: Create Logic App
-        variables:
+        consumes:
           - resource_group_name
           - logic_app_name
           - storage_account_name

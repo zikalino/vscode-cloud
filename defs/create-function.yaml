@@ -22,7 +22,7 @@ form:
             id: function-app-name-field
       - type: 'action-row'
         name: Create Function App
-        variables:
+        consumes:
           - resource_group_name
           - function_app_name
           - storage_account_name

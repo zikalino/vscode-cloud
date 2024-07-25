@@ -29,7 +29,7 @@ form:
 
       - type: 'action-row'
         name: Create ACR
-        variables:
+        consumes:
           - resource_group_name
           - acr_name
           - sku

@@ -29,7 +29,7 @@ form:
             variable: app_configuration_region
       - type: 'action-row'
         name: Create App Configuration
-        variables:
+        consumes:
           - resource_group_name
           - app_configuration_name
           - app_configuration_region

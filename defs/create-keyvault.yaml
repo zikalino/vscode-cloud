@@ -29,7 +29,7 @@ form:
             variable: keyvault_region
       - type: 'action-row'
         name: Create Key Vault
-        variables:
+        consumes:
           - resource_group_name
           - keyvault_name
           - keyvault_region
