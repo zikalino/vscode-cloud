@@ -20,6 +20,7 @@ form:
           - type: textfield
             id: resource-group-name
             name: Name
+            regex: ^[-\w\._\(\)]+$
             variable: name
       - type: 'action-row'
         id: create-resource-group

@@ -14,7 +14,7 @@ form:
           - type: textfield
             name: Name
             variable: acr_name
-            id: acr-name-field
+            regex: ^[a-zA-Z0-9]*$
       - type: row
         id: sku-row
         subitems:
