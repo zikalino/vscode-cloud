@@ -1,0 +1,43 @@
+type: layout-form
+header:
+  - type: header
+    title: Storage Account
+    logo: icon.webp
+form:
+  - $include: __resource_group_select_or_create.yaml
+
+  - type: fieldset
+    subitems:
+      - type: row
+        subitems:
+          - type: combo
+            name: Select Region
+            items: []
+            source:
+              cmd: |
+                az account list-locations
+              path-name: $[*].displayName
+              path-id: $[*].name
+            variable: storage_account_region
+      - type: row
+        subitems:
+          - type: textfield
+            name: Name
+            variable: storage_account_name
+      - type: 'action-row'
+        name: Create Storage Account
+        consumes:
+          - resource_group_name
+          - storage_account_region
+          - storage_account_name
+        verify: |
+            $out = az group exists --name ${storage_account_name} --resource-group ${resource_group_name}
+            if ($out -like '*true*') { exit 0 } else { exit 1 }
+        install: az storage account create  --resource-group ${resource_group_name} --name ${storage_account_name} --location ${storage_account_region}
+        uninstall: az storage account delete --resource-group ${resource_group_name} --name ${storage_account_name}
+
+footer:
+  - type: footer
+    subitems:
+      - type: button
+        text: Install

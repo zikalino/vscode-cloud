@@ -22,6 +22,12 @@
       location: create-sql-database.yaml
     - name: Create Cosmos DB
       location: create-cosmos-db.yaml
+- name: Storage
+  submenu:
+    - name: Create Storage Account
+      location: create-storage-account.yaml
+    - name: Create Blob Storage Container
+      location: create-storage-container.yaml
 - name: Other
   submenu:
     - name: Create AKS
@@ -38,8 +44,6 @@
       location: create-azure-files.yaml
     - name: Create Batch
       location: create-batch.yaml
-    - name: Create Blob Storage
-      location: create-blob-storage.yaml
     - name: Create Event Grid
       location: create-event-grid.yaml
     - name: Create Function

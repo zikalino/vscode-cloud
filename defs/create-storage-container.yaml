@@ -1,0 +1,29 @@
+type: layout-form
+header:
+  - type: header
+    title: Storage Container
+    logo: icon.webp
+form:
+  - $include: __storage_account_selector.yaml
+  - type: fieldset
+    subitems:
+      - type: row
+        subitems:
+          - type: textfield
+            name: Container Name
+            variable: container_name
+      - type: 'action-row'
+        name: Create Container
+        consumes:
+          - storage_account_name
+          - container_name
+        verify: |
+            az storage container show --account-name ${storage_account_name} --name ${container_name}
+        install: az storage container create --account-name ${storage_account_name} --name ${container_name}
+        uninstall: az storage container delete --account-name ${storage_account_name} --name ${container_name}
+
+footer:
+  - type: footer
+    subitems:
+      - type: button
+        text: Install
