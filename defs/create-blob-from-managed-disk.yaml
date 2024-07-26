@@ -1,15 +1,13 @@
 type: layout-form
-id: root
 header:
   - type: header
     title: Export Managed Disk as Blob
     logo: icon.webp
 form:
   - $include: __disk_selector.yaml
-  - $include: __storage_account_selector.yaml
+  - $include: __storage_container_selector.yaml
 
   - type: fieldset
-    id: fieldset-disk-instance-creation
     subitems:
       - type: row
         subitems:
@@ -36,13 +34,11 @@ form:
         verify: |
             az blob show --resource-group ${resource_group_name} --name ${disk_name}
         install: |
-            az storage blob copy start --destination-blob ${blob_name} --destination-container ${contaner_name} --account-name ${storage_account} --account-key ${storage_account_key} --source-uri $sas
+            az storage blob copy start --destination-blob ${blob_name} --destination-container ${storage_container_name} --account-name ${storage_account_name} --source-uri ${sas}
         uninstall: az disk delete --resource-group ${resource_group_name} --name ${disk_name}
 
 footer:
   - type: footer
-    id: footer
     subitems:
       - type: button
-        id: install_button
         text: Install
