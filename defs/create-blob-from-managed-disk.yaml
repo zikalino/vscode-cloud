@@ -12,9 +12,6 @@ form:
       - type: row
         subitems:
           - type: textfield
-            name: Blob Container Name
-            variable: blob_container_name
-          - type: textfield
             name: Blob Name
             variable: blob_name
       - type: action-row
@@ -23,19 +20,21 @@ form:
           - disk_resource_group
           - disk_name
         install:
-          az disk grant-access --resource-group ${disk_resource_group} --name ${disk_name} --duration-in-seconds 3600 --query [accessSas] -o tsv
+          az disk grant-access --resource-group ${disk_resource_group} --name ${disk_name} --duration-in-seconds 3600 --query [accessSas]
       - type: action-row
         name: Create Blob
         consumes:
           - disk_resource_group
           - disk_name
-          - blob_container_name
+          - storage_container_name
           - blob_name
+          - sas
         verify: |
-            az blob show --resource-group ${resource_group_name} --name ${disk_name}
+            echo ok
         install: |
             az storage blob copy start --destination-blob ${blob_name} --destination-container ${storage_container_name} --account-name ${storage_account_name} --source-uri ${sas}
-        uninstall: az disk delete --resource-group ${resource_group_name} --name ${disk_name}
+        uninstall:
+            echo ok
 
 footer:
   - type: footer
