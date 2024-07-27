@@ -9,6 +9,6 @@
         path-id: $[*].name
         path-name: $[*].name
       variable: disk_name
-      selection:
+      produces:
         - variable: disk_resource_group
           path: $.resourceGroup

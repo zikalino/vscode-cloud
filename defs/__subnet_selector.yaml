@@ -9,7 +9,7 @@
         path-id: $[*].name
         path-name: $[*].name
       variable: vnet_name
-      selection:
+      produces:
         - variable: vnet_resource_group
           path: $.resourceGroup
     - type: combo
