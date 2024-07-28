@@ -13,7 +13,8 @@ form:
         subitems:
           - type: textfield
             name: Blob Name
-            variable: blob_name
+            produces:
+              - variable: blob_name
       - type: action-row
         name: Grant Access to Disk
         consumes:

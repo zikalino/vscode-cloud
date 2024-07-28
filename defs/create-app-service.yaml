@@ -13,8 +13,8 @@ form:
         subitems:
           - type: textfield
             name: Name
-            variable: app_service_plan_name
-            id: appservice plan-name-field
+            produces:
+              - variable: app_service_plan_name
       - type: 'action-row'
         name: Create App Service
         consumes:

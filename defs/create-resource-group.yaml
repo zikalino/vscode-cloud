@@ -21,7 +21,8 @@ form:
             id: resource-group-name
             name: Name
             regex: ^[-\w\._\(\)]+$
-            variable: name
+            produces:
+              - variable: name
       - type: 'action-row'
         id: create-resource-group
         name: Create Resource Group

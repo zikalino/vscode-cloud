@@ -11,7 +11,8 @@ form:
         subitems:
           - type: textfield
             name: Container Name
-            variable: container_name
+            produces:
+              - variable: container_name
       - type: 'action-row'
         name: Create Container
         consumes:

@@ -16,14 +16,15 @@ form:
           - type: textfield
             id: container-instance-name-field
             name: Container Name
-            variable: container_name
+            produces:
+              - variable: container_name
       - type: row
         id: container-instance-image-row
         subitems:
           - type: textfield
-            id: container-instance-image-field
             name: Container Name
-            variable: image
+            produces:
+              - variable: image
       - type: 'action-row'
         id: create-container-instance
         name: Create Container Instance

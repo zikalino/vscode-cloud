@@ -15,12 +15,14 @@ form:
           - type: textfield
             id: disk-instance-name-field
             name: Disk Name
-            variable: disk_name
+            produces:
+              - variable: disk_name
       - type: row
         subitems:
           - type: textfield
             name: Disk Size
-            variable: disk_size
+            produces:
+              - variable: disk_size
       - type: 'action-row'
         id: create-disk-instance
         name: Create Managed Disk

@@ -40,9 +40,9 @@
       id: storage-account-name-row
       subitems:
         - type: textfield
-          id: moo-combo
           name: Name
-          variable: storage_account_name
+          produces:
+            - variable: storage_account_name
     - type: 'action-row'
       id: create-storage-account
       name: Create Storage Account

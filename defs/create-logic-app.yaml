@@ -18,8 +18,8 @@ form:
         subitems:
           - type: textfield
             name: Name
-            variable: logic_app_name
-            id: logic-app-name-field
+            produces:
+              - variable: logic_app_name
       - type: 'action-row'
         name: Create Logic App
         consumes:

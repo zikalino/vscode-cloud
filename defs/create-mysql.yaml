@@ -15,17 +15,20 @@ form:
           - type: textfield
             id: container-instance-name-field
             name: Server Name
-            variable: mysql_server_name
+            produces:
+              - variable: mysql_server_name
       - type: row
         subitems:
           - type: textfield
             name: User Name
-            variable: mysql_server_username
+            produces:
+              - variable: mysql_server_username
       - type: row
         subitems:
           - type: textfield
             name: Password
-            variable: mysql_server_password
+            produces:
+              - variable: mysql_server_password
       - type: 'action-row'
         name: Create MySQL Server
         consumes:

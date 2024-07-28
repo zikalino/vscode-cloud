@@ -13,8 +13,8 @@ form:
         subitems:
           - type: textfield
             name: Name
-            variable: virtural_machine_name
-            id: virtural-machine-name-field
+            produces:
+              - variable: virtural_machine_name
       - type: row
         subitems:
           - type: combo

@@ -13,8 +13,9 @@ form:
         subitems:
           - type: textfield
             name: Name
-            variable: acr_name
-            regex: ^[a-zA-Z0-9]*$
+            produces:
+              - variable: acr_name
+                regex: ^[a-zA-Z0-9]*$
       - type: row
         id: sku-row
         subitems:

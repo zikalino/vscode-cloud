@@ -23,7 +23,8 @@
       subitems:
         - type: textfield
           name: Name
-          variable: resource_group_name
+          produces:
+            - variable: resource_group_name
     - type: 'action-row'
       name: Create Resource Group
       consumes:

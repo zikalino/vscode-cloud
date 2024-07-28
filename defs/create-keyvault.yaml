@@ -13,8 +13,8 @@ form:
         subitems:
           - type: textfield
             name: Name
-            variable: keyvault_name
-            id: keyvault-name-field
+            produces:
+              - variable: keyvault_name
       - type: row
         subitems:
           - type: combo

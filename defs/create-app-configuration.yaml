@@ -13,13 +13,12 @@ form:
         subitems:
           - type: textfield
             name: Name
-            variable: app_configuration_name
-            id: appconfig-name-field
+            produces:
+              - variable: app_configuration_name
       - type: row
         subitems:
           - type: combo
             name: Select Region
-            id: app_configuration_region_combo
             items: []
             source:
               cmd: |

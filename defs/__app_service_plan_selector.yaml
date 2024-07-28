@@ -41,7 +41,8 @@
         - type: textfield
           id: moo-combo
           name: Name
-          variable: service_plan_name
+          produces:
+            - variable: service_plan_name
     - type: 'action-row'
       id: create-service-plan
       name: Create App Service Plan

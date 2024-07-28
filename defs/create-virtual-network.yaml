@@ -13,8 +13,8 @@ form:
         subitems:
           - type: textfield
             name: Name
-            variable: vnet_name
-            id: vnet-name-field
+            produces:
+              - variable: vnet_name
       - type: row
         subitems:
           - type: combo
@@ -48,12 +48,14 @@ form:
         subitems:
           - type: textfield
             name: Name
-            variable: subnet_name
+            produces:
+              - variable: subnet_name
       - type: row
         subitems:
           - type: textfield
             name: Address Prefixes
-            variable: address_prefixes
+            produces:
+              - variable: address_prefixes
       - type: 'action-row'
         name: Create Virtual Network
         consumes:

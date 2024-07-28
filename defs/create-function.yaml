@@ -18,8 +18,8 @@ form:
         subitems:
           - type: textfield
             name: Name
-            variable: function_app_name
-            id: function-app-name-field
+            produces:
+              - variable: function_app_name
       - type: 'action-row'
         name: Create Function App
         consumes:

@@ -8,8 +8,8 @@
           az network vnet list
         path-id: $[*].name
         path-name: $[*].name
-      variable: vnet_name
       produces:
+        - variable: vnet_name
         - variable: vnet_resource_group
           path: $.resourceGroup
     - type: combo

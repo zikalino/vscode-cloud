@@ -24,7 +24,8 @@ form:
         subitems:
           - type: textfield
             name: Name
-            variable: storage_account_name
+            produces:
+              - variable: storage_account_name
       - type: 'action-row'
         name: Create Storage Account
         consumes:
