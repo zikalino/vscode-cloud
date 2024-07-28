@@ -26,7 +26,8 @@ form:
                 az account list-locations
               path-id: $[*].name
               path-name: $[*].displayName
-            variable: keyvault_region
+            produces:
+              - variable: keyvault_region
       - type: 'action-row'
         name: Create Key Vault
         consumes:

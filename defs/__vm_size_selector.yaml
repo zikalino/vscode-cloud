@@ -10,4 +10,5 @@
           az vm list-sizes --location ${virtual_machine_region}
         path-id: $[*].name
         path-name: $[*].name
-      variable: vm_size
+      produces:
+        - variable: vm_size

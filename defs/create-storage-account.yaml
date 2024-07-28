@@ -18,7 +18,8 @@ form:
                 az account list-locations
               path-name: $[*].displayName
               path-id: $[*].name
-            variable: storage_account_region
+            produces:
+              - variable: storage_account_region
       - type: row
         subitems:
           - type: textfield

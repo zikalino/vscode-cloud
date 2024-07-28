@@ -33,7 +33,8 @@
               az account list-locations
             path-id: $[*].name
             path-name: $[*].displayName
-          variable: service_plan_region
+          produces:
+            - variable: service_plan_region
     - type: row
       id: service-plan-name-row
       subitems:
@@ -71,7 +72,8 @@
               az appservice plan list
             path-id: $[*].name
             path-name: $[*].name
-          variable: appservice_plan_name
+          produces:
+            - variable: appservice_plan_name
 
 
 

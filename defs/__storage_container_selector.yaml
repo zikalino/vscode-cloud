@@ -8,7 +8,8 @@
           az storage account list
         path-id: $[*].name
         path-name: $[*].name
-      variable: storage_account_name
+      produces:
+        - variable: storage_account_name
     - type: combo
       name: Select Container
       items: []
@@ -17,6 +18,7 @@
           az storage container list --account-name ${storage_account_name}
         path-id: $[*].name
         path-name: $[*].name
-      variable: storage_container_name
+      produces:
+        - variable: storage_container_name
       consumes:
         - storage_account_name

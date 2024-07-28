@@ -26,7 +26,8 @@ form:
                 az account list-locations
               path-id: $[*].name
               path-name: $[*].displayName
-            variable: virtual_machine_region
+            produces:
+              - variable: virtual_machine_region
       - $include: __vm_size_selector.yaml
       - $include: __subnet_selector.yaml
       - type: 'action-row'

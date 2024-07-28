@@ -26,7 +26,8 @@ form:
                 az account list-locations
               path-id: $[*].name
               path-name: $[*].displayName
-            variable: vnet_region
+            produces:
+              - variable: vnet_region
       - type: 'action-row'
         name: Create Virtual Network
         consumes:

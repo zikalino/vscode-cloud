@@ -34,7 +34,8 @@
               az account list-locations
             path-id: $[*].name
             path-name: $[*].displayName
-          variable: storage_account_region
+          produces:
+            - variable: storage_account_region
     - type: row
       id: storage-account-name-row
       subitems:
@@ -72,4 +73,5 @@
               az storage account list
             path-id: $[*].name
             path-name: $[*].name
-          variable: storage_account_name
+          produces:
+            - variable: storage_account_name

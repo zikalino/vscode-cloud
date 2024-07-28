@@ -8,4 +8,5 @@
           az account list-locations
         path-id: $[*].name
         path-name: $[*].displayName
-      variable: region
+      produces:
+        - variable: region

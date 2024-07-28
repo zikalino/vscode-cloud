@@ -25,7 +25,8 @@ form:
               - Basic
               - Standard
               - Premium
-            variable: sku
+            produces:
+              - variable: sku
 
       - type: 'action-row'
         name: Create ACR

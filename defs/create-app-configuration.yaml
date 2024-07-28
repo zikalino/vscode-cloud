@@ -26,7 +26,8 @@ form:
                 az account list-locations
               path-id: $[*].name
               path-name: $[*].displayName
-            variable: app_configuration_region
+            produces:
+              - variable: app_configuration_region
       - type: 'action-row'
         name: Create App Configuration
         consumes:

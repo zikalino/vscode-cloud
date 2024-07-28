@@ -50,4 +50,5 @@
               az group list
             path-id: $[*].name
             path-name: $[*].name
-          variable: resource_group_name
+          produces:
+            - variable: resource_group_name
