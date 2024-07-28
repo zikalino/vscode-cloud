@@ -21,18 +21,22 @@ form:
           - disk_name
         install:
           az disk grant-access --resource-group ${disk_resource_group} --name ${disk_name} --duration-in-seconds 3600 --query [accessSas]
+        produces:
+          - variable: sas
+            path: $.0
       - type: action-row
         name: Create Blob
         consumes:
           - disk_resource_group
           - disk_name
+          - storage_account_name
           - storage_container_name
           - blob_name
           - sas
         verify: |
             echo ok
         install: |
-            az storage blob copy start --destination-blob ${blob_name} --destination-container ${storage_container_name} --account-name ${storage_account_name} --source-uri ${sas}
+            az storage blob copy start --destination-blob ${blob_name} --destination-container ${storage_container_name} --account-name ${storage_account_name} --source-uri '"'${sas}'"'
         uninstall:
             echo ok
 

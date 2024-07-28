@@ -8,7 +8,7 @@
           az disk list
         path-id: $[*].name
         path-name: $[*].name
-      variable: disk_name
       produces:
+        - variable: disk_name
         - variable: disk_resource_group
           path: $.resourceGroup
