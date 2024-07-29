@@ -184,7 +184,17 @@ function loadIncludes(data: any) {
       for (let i = data.length - 1; i >= 0; i--) {
 
         if ((typeof data[i] === 'object') && ('$include' in data[i])) {
+          var prefix = undefined;
+          if ('prefix' in data[i]) {
+            prefix = data[i]['prefix'];
+          }
           var included = loadYaml(extensionContext.extensionPath + "/defs/" + data[i]['$include']);
+
+          // apply prefix
+          if (prefix !== undefined) {
+            applyPrefix(included, prefix);
+          }
+
           if (typeof included === 'object') {
             if (Array.isArray(included)) {
               // insert several elements
@@ -212,6 +222,32 @@ function loadIncludes(data: any) {
       for (let key in data) {
         if (typeof data[key] === 'object') {
           loadIncludes(data[key]);
+        }
+      }
+    }
+  }
+}
+
+function applyPrefix(data: any, prefix: string) {
+  if (typeof data === 'object') {
+    if (Array.isArray(data)) {
+      for (let i = data.length - 1; i >= 0; i--) {
+        applyPrefix(data[i], prefix);
+      }
+    }
+    else {
+      for (let key in data) {
+        if (typeof data[key] === 'object') {
+          if (key === 'produces') {
+            var produces = data['produces'];
+            for (let i = 0; i < produces.length; i++) {
+              if ('variable' in produces[i]) {
+                produces[i]['variable'] = prefix + produces[i]['variable'];
+              }
+            }
+          } else {
+            applyPrefix(data[key], prefix);
+          }
         }
       }
     }
