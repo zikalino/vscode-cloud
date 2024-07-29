@@ -14,7 +14,7 @@ form:
           - type: textfield
             name: Name
             produces:
-              - variable: virtural_machine_name
+              - variable: virtual_machine_name
       - type: row
         subitems:
           - type: combo
@@ -34,12 +34,12 @@ form:
         name: Create Virtual Machine
         consumes:
           - resource_group_name
-          - virtural_machine_name
+          - virtual_machine_name
           - virtual_machine_region
         verify: |
-            az vm show --resource-group ${resource_group_name} --name ${virtural_machine_name}
-        install: az vm create --resource-group ${resource_group_name} --name ${virtural_machine_name} --location ${virtual_machine_region} --admin-password XXyaaaasdsa3312!
-        uninstall: az vm delete --resource-group ${resource_group_name} --name ${virtural_machine_name} --yes
+            az vm show --resource-group ${resource_group_name} --name ${virtual_machine_name}
+        install: az vm create --resource-group ${resource_group_name} --name ${virtual_machine_name} --location ${virtual_machine_region} --admin-password XXyaaaasdsa3312!
+        uninstall: az vm delete --resource-group ${resource_group_name} --name ${virtual_machine_name} --yes
 
 footer:
   - type: footer
