@@ -6,6 +6,41 @@ header:
     logo: icon.webp
 form:
   - $include: __resource_group_select_or_create.yaml
+  - type: fieldset
+    subitems:
+      - type: row
+        subitems:
+          - type: combo
+            name: SKU
+            items:
+              - Free
+              - Standard
+            produces:
+              - variable: staticwebapp_sku
+      - type: row
+        subitems:
+          - type: textfield
+            name: Source
+            produces:
+              - variable: staticwebapp_source
+      - type: row
+        subitems:
+          - type: textfield
+            name: Name
+            produces:
+              - variable: staticwebapp_name
+      - type: 'action-row'
+        id: create-disk-instance
+        name: Create Static Web Application
+        consumes:
+          - resource_group_name
+          - staticwebapp_name
+          - staticwebapp_sku
+          - staticwebapp_source
+        verify: |
+            az staticwebapp show --resource-group ${resource_group_name} --name ${staticwebapp_name}
+        install: az staticwebapp create --resource-group ${resource_group_name} --name ${staticwebapp_name} --sku ${staticwebapp_sku} --source ${staticwebapp_source}
+        uninstall: az staticwebapp delete --resource-group ${resource_group_name} --name ${staticwebapp_name}
 
 footer:
   - type: footer
