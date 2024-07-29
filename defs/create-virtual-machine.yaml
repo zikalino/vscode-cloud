@@ -63,4 +63,4 @@ footer:
     subitems:
       - type: button
         id: install_button
-        text: Install
+        text: Create

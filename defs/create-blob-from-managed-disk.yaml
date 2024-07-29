@@ -49,4 +49,4 @@ footer:
   - type: footer
     subitems:
       - type: button
-        text: Install
+        text: Create
