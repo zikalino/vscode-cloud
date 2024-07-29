@@ -9,6 +9,20 @@ form:
 
   - type: fieldset
     subitems:
+      - type: text-block
+        font: header-1
+        content: OS Disk
+      - $include: __disk_selector.yaml
+
+  - type: fieldset
+    subitems:
+      - type: text-block
+        font: header-1
+        content: Data Disks
+      - $include: __disk_selector.yaml
+
+  - type: fieldset
+    subitems:
       - type: row
         subitems:
           - type: textfield

@@ -8,6 +8,9 @@ form:
   - $include: __resource_group_select_or_create.yaml
   - type: fieldset
     subitems:
+      - type: text-block
+        font: header-1
+        content: Static WebApp Details
       - type: row
         subitems:
           - type: combo
