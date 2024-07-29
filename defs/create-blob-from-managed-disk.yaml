@@ -4,8 +4,12 @@ header:
     title: Export Managed Disk as Blob
     logo: icon.webp
 form:
-  - $include: __disk_selector.yaml
-  - $include: __storage_container_selector.yaml
+  - type: fieldset
+    subitems:
+    - $include: __disk_selector.yaml
+  - type: fieldset
+    subitems:
+    - $include: __storage_container_selector.yaml
 
   - type: fieldset
     subitems:
