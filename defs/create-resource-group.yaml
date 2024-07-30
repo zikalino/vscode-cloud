@@ -20,9 +20,9 @@ form:
           - type: textfield
             id: resource-group-name
             name: Name
-            regex: ^[-\w\._\(\)]+$
             produces:
               - variable: name
+                regex: ^[-\w\._\(\)]+$
       - type: 'action-row'
         id: create-resource-group
         name: Create Resource Group
