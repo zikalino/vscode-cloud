@@ -32,10 +32,10 @@ form:
       - type: 'action-row'
         name: Create MySQL Server
         consumes:
-          - resource_group_name
-          - mysql_server_name
-          - mysql_server_username
-          - mysql_server_password
+          - variable: resource_group_name
+          - variable: mysql_server_name
+          - variable: mysql_server_username
+          - variable: mysql_server_password
         verify: |
             az mysql flexible-server show --resource-group ${resource_group_name} --name ${mysql_server_name}
         install: az mysql flexible-server create --resource-group ${resource_group_name} --name ${mysql_server_name} --admin-user ${mysql_server_username} --admin-password ${mysql_server_password} --sku-name Basic

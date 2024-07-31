@@ -27,9 +27,9 @@ form:
         id: create-disk-instance
         name: Create Managed Disk
         consumes:
-          - resource_group_name
-          - disk_name
-          - disk_size
+          - variable: resource_group_name
+          - variable: disk_name
+          - variable: disk_size
         verify: |
             az disk show --resource-group ${resource_group_name} --name ${disk_name}
         install: az disk create --resource-group ${resource_group_name} --name ${disk_name} --size ${disk_size}

@@ -23,10 +23,10 @@ form:
       - type: 'action-row'
         name: Create Logic App
         consumes:
-          - resource_group_name
-          - logic_app_name
-          - storage_account_name
-          - appservice_plan_name
+          - variable: resource_group_name
+          - variable: logic_app_name
+          - variable: storage_account_name
+          - variable: appservice_plan_name
         verify: |
             az logicapp show --resource-group ${resource_group_name} --name ${logic_app_name}
         install: az logicapp create --resource-group ${resource_group_name} --name ${logic_app_name} --storage-account ${storage_account_name} --plan ${appservice_plan_name}

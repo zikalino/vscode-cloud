@@ -31,9 +31,9 @@ form:
       - type: 'action-row'
         name: Create Key Vault
         consumes:
-          - resource_group_name
-          - keyvault_name
-          - keyvault_region
+          - variable: resource_group_name
+          - variable: keyvault_name
+          - variable: keyvault_region
         verify: |
             az keyvault show --resource-group ${resource_group_name} --name ${keyvault_name}
         install: az keyvault create --resource-group ${resource_group_name} --name ${keyvault_name} --location ${keyvault_region}

@@ -12,3 +12,5 @@
         - variable: disk_name
         - variable: disk_resource_group
           path: $.resourceGroup
+        - variable: disk_id
+          path: $.id

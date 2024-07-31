@@ -30,9 +30,9 @@ form:
         id: create-container-instance
         name: Create Container Instance
         consumes:
-          - resource_group_name
-          - container_name
-          - image
+          - variable: resource_group_name
+          - variable: container_name
+          - variable: image
         verify: |
             az container show --resource-group ${resource_group_name} --name ${container_name}
         install: az container create --resource-group ${resource_group_name} --name ${container_name} --image ${image}

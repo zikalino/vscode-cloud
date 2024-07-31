@@ -30,9 +30,9 @@ form:
       - type: 'action-row'
         name: Create App Configuration
         consumes:
-          - resource_group_name
-          - app_configuration_name
-          - app_configuration_region
+          - variable: resource_group_name
+          - variable: app_configuration_name
+          - variable: app_configuration_region
         verify: |
             az appconfig show --resource-group ${resource_group_name} --name ${app_configuration_name}
         install: az appconfig create --resource-group ${resource_group_name} --name ${app_configuration_name} --location ${app_configuration_region}

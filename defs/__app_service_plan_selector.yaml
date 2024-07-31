@@ -47,9 +47,9 @@
       id: create-service-plan
       name: Create App Service Plan
       consumes:
-        - resource_group_name
-        - service_plan_name
-        - service_plan_region
+        - variable: resource_group_name
+        - variable: service_plan_name
+        - variable: service_plan_region
       verify: |
           $out = az appservice plan show --name ${service_plan_name} --resource-group ${resource_group_name}
       install: az appservice plan create --resource-group ${resource_group_name} --name ${service_plan_name} --location ${service_plan_region}

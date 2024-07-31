@@ -16,8 +16,8 @@ form:
       - type: 'action-row'
         name: Create Container
         consumes:
-          - storage_account_name
-          - container_name
+          - variable: storage_account_name
+          - variable: container_name
         verify: |
             az storage container show --account-name ${storage_account_name} --name ${container_name}
         install: az storage container create --account-name ${storage_account_name} --name ${container_name}

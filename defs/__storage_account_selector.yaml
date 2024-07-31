@@ -47,8 +47,8 @@
       id: create-storage-account
       name: Create Storage Account
       consumes:
-        - storage_account_region
-        - storage_account_name
+        - variable: storage_account_region
+        - variable: storage_account_name
       verify: |
           $out = az group exists --name ${storage_account_name} --resource-group ${resource_group_name}
           if ($out -like '*true*') { exit 0 } else { exit 1 }

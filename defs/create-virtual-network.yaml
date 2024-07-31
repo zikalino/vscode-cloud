@@ -31,9 +31,9 @@ form:
       - type: 'action-row'
         name: Create Virtual Network
         consumes:
-          - resource_group_name
-          - vnet_name
-          - vnet_region
+          - variable: resource_group_name
+          - variable: vnet_name
+          - variable: vnet_region
         verify: |
             az network vnet show --resource-group ${resource_group_name} --name ${vnet_name}
         install: az network vnet create --resource-group ${resource_group_name} --name ${vnet_name} --location ${vnet_region}
@@ -59,10 +59,10 @@ form:
       - type: 'action-row'
         name: Create Virtual Network
         consumes:
-          - resource_group_name
-          - vnet_name
-          - subnet_name
-          - address_prefixes
+          - variable: resource_group_name
+          - variable: vnet_name
+          - variable: subnet_name
+          - variable: address_prefixes
         verify: |
              az network vnet subnet show --name ${subnet_name} --vnet-name ${vnet_name} --resource-group ${resource_group_name}
         install: az network vnet subnet create --name ${subnet_name} --vnet-name ${vnet_name} --resource-group ${resource_group_name} --address-prefixes ${address_prefixes}

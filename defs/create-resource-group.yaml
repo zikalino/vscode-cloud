@@ -27,8 +27,8 @@ form:
         id: create-resource-group
         name: Create Resource Group
         consumes:
-          - region
-          - name
+          - variable: region
+          - variable: name
         verify: |
             $out = az group exists --name ${name}
             if ($out -like '*true*') { exit 0 } else { exit 1 }

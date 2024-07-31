@@ -32,7 +32,7 @@ form:
         id: clone-azure-res-api
         name: Clone Azure REST API
         consumes:
-          - version
+          - variable: version
         verify: if (Test-path ~/azure-rest-api-specs -PathType container) { exit 0 } else { exit 1}
         install: |
             cd ~

@@ -19,8 +19,8 @@ form:
       - type: 'action-row'
         name: Shared Image Gallery
         consumes:
-          - resource_group_name
-          - sig_name
+          - variable: resource_group_name
+          - variable: sig_name
         verify: |
             az sig show --resource-group ${resource_group_name} --gallery-name ${sig_name}
         install: az sig create --resource-group ${resource_group_name} --gallery-name ${sig_name}

@@ -16,8 +16,8 @@
       name: Select Subnet
       items: []
       consumes:
-        - vnet_resource_group
-        - vnet_name
+        - variable: vnet_resource_group
+        - variable: vnet_name
       source:
         cmd: |
           az network vnet subnet list --resource-group ${vnet_resource_group} --vnet-name ${vnet_name}

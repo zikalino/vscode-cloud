@@ -21,4 +21,4 @@
       produces:
         - variable: storage_container_name
       consumes:
-        - storage_account_name
+        - variable: storage_account_name

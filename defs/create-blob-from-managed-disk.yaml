@@ -22,8 +22,8 @@ form:
       - type: action-row
         name: Grant Access to Disk
         consumes:
-          - disk_resource_group
-          - disk_name
+          - variable: disk_resource_group
+          - variable: disk_name
         install:
           az disk grant-access --resource-group ${disk_resource_group} --name ${disk_name} --duration-in-seconds 3600 --query [accessSas]
         produces:
@@ -32,12 +32,12 @@ form:
       - type: action-row
         name: Create Blob
         consumes:
-          - disk_resource_group
-          - disk_name
-          - storage_account_name
-          - storage_container_name
-          - blob_name
-          - sas
+          - variable: disk_resource_group
+          - variable: disk_name
+          - variable: storage_account_name
+          - variable: storage_container_name
+          - variable: blob_name
+          - variable: sas
         verify: |
             echo ok
         install: |

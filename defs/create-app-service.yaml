@@ -18,8 +18,8 @@ form:
       - type: 'action-row'
         name: Create App Service
         consumes:
-          - resource_group_name
-          - app_service_plan_name
+          - variable: resource_group_name
+          - variable: app_service_plan_name
         verify: |
             az appservice plan show --resource-group ${resource_group_name} --name ${app_service_plan_name}
         install: az appservice plan create --resource-group ${resource_group_name} --name ${app_service_plan_name}

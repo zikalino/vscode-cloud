@@ -32,9 +32,9 @@ form:
       - type: 'action-row'
         name: Create ACR
         consumes:
-          - resource_group_name
-          - acr_name
-          - sku
+          - variable: resource_group_name
+          - variable: acr_name
+          - variable: sku
         verify: |
             az acr show --resource-group ${resource_group_name} --name ${acr_name}
         install: az acr create --resource-group ${resource_group_name} --name ${acr_name} --sku ${sku}

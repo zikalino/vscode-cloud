@@ -28,8 +28,8 @@
     - type: 'action-row'
       name: Create Resource Group
       consumes:
-        - region
-        - resource_group_name
+        - variable: region
+        - variable: resource_group_name
       verify: |
           $out = az group exists --name ${resource_group_name}
           if ($out -like '*true*') { exit 0 } else { exit 1 }

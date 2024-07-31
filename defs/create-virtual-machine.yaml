@@ -81,9 +81,15 @@ form:
       - type: 'action-row'
         name: Create Virtual Machine
         consumes:
-          - resource_group_name
-          - virtual_machine_name
-          - virtual_machine_region
+          - variable: resource_group_name
+          - variable: virtual_machine_name
+          - variable: virtual_machine_region
+          - variable: os_disk_id
+            required: false
+            parameter: --attach-os-disk ${os_disk_id}
+          - variable: data_disk_id
+            required: false
+            parameter: --attach-data-disks ${data_disk_id}
         verify: |
             az vm show --resource-group ${resource_group_name} --name ${virtual_machine_name}
         install: az vm create --resource-group ${resource_group_name} --name ${virtual_machine_name} --location ${virtual_machine_region} --admin-password XXyaaaasdsa3312!
