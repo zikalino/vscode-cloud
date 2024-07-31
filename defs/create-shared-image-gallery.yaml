@@ -1,0 +1,35 @@
+type: layout-form
+id: root
+header:
+  - type: header
+    title: Shared Image Gallery
+    logo: icon.webp
+form:
+  - $include: __resource_group_select_or_create.yaml
+
+  - type: fieldset
+    subitems:
+      - type: row
+        subitems:
+          - type: textfield
+            name: Name
+            produces:
+              - variable: sig_name
+
+      - type: 'action-row'
+        name: Shared Image Gallery
+        consumes:
+          - resource_group_name
+          - sig_name
+        verify: |
+            az sig show --resource-group ${resource_group_name} --gallery-name ${sig_name}
+        install: az sig create --resource-group ${resource_group_name} --gallery-name ${sig_name}
+        uninstall: az sig delete --resource-group ${resource_group_name} --gallery-name ${sig_name}
+
+footer:
+  - type: footer
+    id: footer
+    subitems:
+      - type: button
+        id: install_button
+        text: Create

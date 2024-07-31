@@ -28,6 +28,10 @@
       location: create-storage-account.yaml
     - name: Create Blob Storage Container
       location: create-storage-container.yaml
+- name: Shared Image Gallery
+  submenu:
+    - name: Create Shared Image Gallery
+      location: create-shared-image-gallery.yaml
 - name: Other
   submenu:
     - name: Create AKS
