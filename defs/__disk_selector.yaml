@@ -9,8 +9,8 @@
         path-id: $[*].name
         path-name: $[*].name
       produces:
+        - variable: disk_id
+          path: $.id
         - variable: disk_name
         - variable: disk_resource_group
           path: $.resourceGroup
-        - variable: disk_id
-          path: $.id
