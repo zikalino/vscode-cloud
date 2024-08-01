@@ -188,6 +188,11 @@ function loadIncludes(data: any) {
           if ('prefix' in data[i]) {
             prefix = data[i]['prefix'];
           }
+          var showif = undefined;
+          if ('show-if' in data[i]) {
+            showif = data[i]['show-if'];
+          }
+
           var included = loadYaml(extensionContext.extensionPath + "/defs/" + data[i]['$include']);
 
           // apply prefix
@@ -197,9 +202,19 @@ function loadIncludes(data: any) {
 
           if (typeof included === 'object') {
             if (Array.isArray(included)) {
+
+              if (showif !== undefined) {
+                for (var j = 0; j < included.length; j++) {
+                  included[j]['show-if'] = showif;
+                }
+              }
+
               // insert several elements
               data.splice(i, 1, ...included);
             } else {
+              if (showif !== undefined) {
+                included['show-if'] = showif;
+              }
               // just replace this entry with new dictionary
               data[i] = included;
             }

@@ -54,6 +54,10 @@ form:
             variable: data_disk_creation
       - $include: __disk_selector.yaml
         prefix: data_
+        show-if:
+          variable: data_disk_creation
+          value: attach
+
 
   - type: fieldset
     subitems:
