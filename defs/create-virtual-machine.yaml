@@ -93,13 +93,11 @@ form:
           - variable: virtual_machine_region
           - variable: os_disk_id
             parameter: --attach-os-disk ${os_disk_id}
-            required: false
             required-if:
               variable: os_disk_creation
               value: attach
           - variable: data_disk_id
             parameter: --attach-data-disks ${data_disk_id}
-            required: false
             required-if:
               variable: data_disk_creation
               value: attach
