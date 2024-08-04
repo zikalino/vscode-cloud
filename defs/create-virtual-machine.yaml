@@ -31,6 +31,9 @@ form:
 
       - $include: __disk_selector.yaml
         prefix: os_
+        show-if:
+          variable: os_disk_creation
+          value: attach
 
   - type: fieldset
     subitems:
@@ -89,14 +92,20 @@ form:
           - variable: virtual_machine_name
           - variable: virtual_machine_region
           - variable: os_disk_id
-            required: false
             parameter: --attach-os-disk ${os_disk_id}
-          - variable: data_disk_id
             required: false
+            required-if:
+              variable: os_disk_creation
+              value: attach
+          - variable: data_disk_id
             parameter: --attach-data-disks ${data_disk_id}
+            required: false
+            required-if:
+              variable: data_disk_creation
+              value: attach
         verify: |
             az vm show --resource-group ${resource_group_name} --name ${virtual_machine_name}
-        install: az vm create --resource-group ${resource_group_name} --name ${virtual_machine_name} --location ${virtual_machine_region} --admin-password XXyaaaasdsa3312!
+        install: az vm create --resource-group ${resource_group_name} --name ${virtual_machine_name} --location ${virtual_machine_region}
         uninstall: az vm delete --resource-group ${resource_group_name} --name ${virtual_machine_name} --yes
 
 footer:
