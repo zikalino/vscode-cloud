@@ -17,6 +17,7 @@ form:
             name: Server Name
             produces:
               - variable: mysql_server_name
+                regex: ^[a-z0-9][-a-z0-9]*(?<!-)$
       - type: row
         subitems:
           - type: textfield

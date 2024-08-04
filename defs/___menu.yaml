@@ -18,6 +18,8 @@
       location: create-mysql.yaml
     - name: Create PostgreSQL
       location: create-postgresql.yaml
+    - name: Create MariaDB
+      location: create-mariadb.yaml
     - name: Create SQL Database
       location: create-sql-database.yaml
     - name: Create Cosmos DB
