@@ -19,6 +19,31 @@ form:
               - variable: disk_name
       - type: row
         subitems:
+          - type: combo
+            name: SKU
+            items:
+              - Premium_LRS
+              - Premium_ZRS
+              - PremiumV2_LRS
+              - StandardSSD_LRS
+              - StandardSSD_ZRS
+              - Standard_LRS
+              - UltraSSD_LRS
+            produces:
+              - variable: disk_sku
+          # Tier can be only set for premium SKUs - make sure it's not displayed for others
+          # should have show-if / matches
+          - type: textfield
+            name: Tier
+            default: P6
+            show-if:
+              variable: disk_sku
+              value: Premium_LRS
+            produces:
+              - variable: disk_tier
+
+      - type: row
+        subitems:
           - type: textfield
             name: Disk Size
             produces:
@@ -29,10 +54,16 @@ form:
         consumes:
           - variable: resource_group_name
           - variable: disk_name
+          - variable: disk_sku
+          - variable: disk_tier
+            # should be value -> matches!!!
+            required-if:
+              variable: disk_sku
+              value: Premium_LRS
           - variable: disk_size
         verify: |
             az disk show --resource-group ${resource_group_name} --name ${disk_name}
-        install: az disk create --resource-group ${resource_group_name} --name ${disk_name} --size ${disk_size}
+        install: az disk create --resource-group ${resource_group_name} --name ${disk_name} --sku ${disk_sku} --tier ${disk_tier} --size ${disk_size}
         uninstall: az disk delete --resource-group ${resource_group_name} --name ${disk_name}
 
 footer:
