@@ -70,19 +70,8 @@ form:
             name: Name
             produces:
               - variable: virtual_machine_name
-      - type: row
-        subitems:
-          - type: combo
-            name: Select Region
-            id: virtual_machine_region_combo
-            items: []
-            source:
-              cmd: |
-                az account list-locations
-              path-id: $[*].name
-              path-name: $[*].displayName
-            produces:
-              - variable: virtual_machine_region
+      - $include: __region_selector.yaml
+        prefix: virtual_machine_
       - $include: __vm_size_selector.yaml
       - $include: __subnet_selector.yaml
       - type: 'action-row'

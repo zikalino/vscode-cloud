@@ -15,19 +15,8 @@ form:
             name: Name
             produces:
               - variable: vnet_name
-      - type: row
-        subitems:
-          - type: combo
-            name: Select Region
-            id: vnet_region_combo
-            items: []
-            source:
-              cmd: |
-                az account list-locations
-              path-id: $[*].name
-              path-name: $[*].displayName
-            produces:
-              - variable: vnet_region
+      - $include: __region_selector.yaml
+        prefix: vnet_
       - type: 'action-row'
         name: Create Virtual Network
         consumes:

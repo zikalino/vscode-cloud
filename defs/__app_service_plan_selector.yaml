@@ -21,20 +21,8 @@
     variable: service-plan-creation
     value: create
   subitems:
-    - type: row
-      id: service-plan-region-row
-      subitems:
-        - type: combo
-          id: service-plan-region-combo
-          name: Select Region
-          items: []
-          source:
-            cmd: |
-              az account list-locations
-            path-id: $[*].name
-            path-name: $[*].displayName
-          produces:
-            - variable: service_plan_region
+    - $include: __region_selector.yaml
+      prefix: service_plan_
     - type: row
       id: service-plan-name-row
       subitems:

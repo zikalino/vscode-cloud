@@ -8,18 +8,8 @@ form:
 
   - type: fieldset
     subitems:
-      - type: row
-        subitems:
-          - type: combo
-            name: Select Region
-            items: []
-            source:
-              cmd: |
-                az account list-locations
-              path-name: $[*].displayName
-              path-id: $[*].name
-            produces:
-              - variable: storage_account_region
+      - $include: __region_selector.yaml
+        prefix: storage_account_
       - type: row
         subitems:
           - type: textfield

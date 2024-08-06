@@ -22,20 +22,8 @@
     variable: storage-account-creation
     value: create
   subitems:
-    - type: row
-      id: storage-account-region-row
-      subitems:
-        - type: combo
-          id: storage-account-region-combo
-          name: Select Region
-          items: []
-          source:
-            cmd: |
-              az account list-locations
-            path-id: $[*].name
-            path-name: $[*].displayName
-          produces:
-            - variable: storage_account_region
+    - $include: __region_selector.yaml
+      prefix: storage_account_
     - type: row
       id: storage-account-name-row
       subitems:
