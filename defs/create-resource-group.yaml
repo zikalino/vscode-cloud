@@ -42,3 +42,13 @@ footer:
       - type: button
         id: install_button
         text: Create
+
+# Arguments
+#    --location -l                 [Required] : Location. Values from: `az account list-locations`.
+#                                               You can configure the default location using `az
+#                                               configure --defaults location=<location>`.
+#    --name --resource-group -g -n [Required] : Name of the new resource group.
+#    --managed-by                             : The ID of the resource that manages this resource
+#                                               group.
+#    --tags                                   : Space-separated tags: key[=value] [key[=value] ...].
+#                                               Use "" to clear existing tags.
