@@ -29,6 +29,18 @@ form:
       - type: row
         subitems:
           - type: textfield
+            name: Branch
+            produces:
+              - variable: staticwebapp_branch
+      - type: row
+        subitems:
+          - type: textfield
+            name: Token
+            produces:
+              - variable: token
+      - type: row
+        subitems:
+          - type: textfield
             name: Name
             produces:
               - variable: staticwebapp_name
@@ -40,9 +52,11 @@ form:
           - variable: staticwebapp_name
           - variable: staticwebapp_sku
           - variable: staticwebapp_source
+          - variable: staticwebapp_branch
+          - variable: token
         verify: |
             az staticwebapp show --resource-group ${resource_group_name} --name ${staticwebapp_name}
-        install: az staticwebapp create --resource-group ${resource_group_name} --name ${staticwebapp_name} --sku ${staticwebapp_sku} --source ${staticwebapp_source}
+        install: az staticwebapp create --resource-group ${resource_group_name} --name ${staticwebapp_name} --sku ${staticwebapp_sku} --source ${staticwebapp_source} --branch ${staticwebapp_branch} --token ${token}
         uninstall: az staticwebapp delete --resource-group ${resource_group_name} --name ${staticwebapp_name}
 
 footer:
