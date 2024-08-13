@@ -34,16 +34,24 @@
   submenu:
     - name: Create Shared Image Gallery
       location: create-shared-image-gallery.yaml
+- name: Web Applications
+  submenu:
+    - name: Create Static Website
+      location: create-static-website.yaml
+    - name: Create App Configuration
+      location: create-app-configuration.yaml
+    - name: Create App Service
+      location: create-app-service.yaml
+    - name: Create Function
+      location: create-function.yaml
+    - name: Create Logic App
+      location: create-logic-app.yaml
 - name: Other
   submenu:
     - name: Create AKS
       location: create-aks.yaml
     - name: Create API Management
       location: create-api-managemenent.yaml
-    - name: Create App Configuration
-      location: create-app-configuration.yaml
-    - name: Create App Service
-      location: create-app-service.yaml
     - name: Create Automation
       location: create-automation.yaml
     - name: Create Azure Files
@@ -52,17 +60,11 @@
       location: create-batch.yaml
     - name: Create Event Grid
       location: create-event-grid.yaml
-    - name: Create Function
-      location: create-function.yaml
     - name: Create Keyvault
       location: create-keyvault.yaml
     - name: Create Load Balancer
       location: create-load-balancer.yaml
-    - name: Create Logic App
-      location: create-logic-app.yaml
     - name: Create Resource Group
       location: create-resource-group.yaml
-    - name: Create Static Website
-      location: create-static-website.yaml
     - name: Create Virtual Network
       location: create-virtual-network.yaml
