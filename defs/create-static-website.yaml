@@ -44,6 +44,20 @@ form:
             name: Name
             produces:
               - variable: staticwebapp_name
+      - type: row
+        subitems:
+          - type: textfield
+            name: App Location
+            produces:
+              - variable: app_location
+          - type: textfield
+            name: API Location
+            produces:
+              - variable: api_location
+          - type: textfield
+            name: Output Location
+            produces:
+              - variable: output_location
       - type: 'action-row'
         id: create-disk-instance
         name: Create Static Web Application
@@ -54,6 +68,9 @@ form:
           - variable: staticwebapp_source
           - variable: staticwebapp_branch
           - variable: token
+          - variable: app_location
+          - variable: api_location
+          - variable: build_location
         verify: |
             az staticwebapp show --resource-group ${resource_group_name} --name ${staticwebapp_name}
         install: az staticwebapp create --resource-group ${resource_group_name} --name ${staticwebapp_name} --sku ${staticwebapp_sku} --source ${staticwebapp_source} --branch ${staticwebapp_branch} --token ${token}
