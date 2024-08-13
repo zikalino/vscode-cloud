@@ -15,14 +15,91 @@ form:
             name: Name
             produces:
               - variable: app_service_plan_name
+          - type: combo
+            name: SKU
+            items:
+              - id: F1
+                label: F1 - Free
+              - id: D1
+                label: D1 - Shared
+              - id: B1
+                label: B1 - Basic Small
+              - id: B2
+                label: B2 - Basic Medium
+              - id: B3
+                label: B3 - Basic Large
+              - id: S1
+                label: S1 - Standard Small
+              - id: P1V2
+                label: P1V2 - Premium V2 Small
+              - id: P2V2
+                label: P2V2 - Premium V2 Medium
+              - id: P3V2
+                label: P3V2 - Premium V2 Large
+              - id: P0V3
+                label: P0V3 - Premium V3 Extra Small
+              - id: P1V3
+                label: P1V3 - Premium V3 Small
+              - id: P2V3
+                label: P2V3 - Premium V3 Medium
+              - id: P3V3
+                label: P3V3 - Premium V3 Large
+              - id: P1MV3
+                label: P1MV3 - Premium Memory Optimized V3 Small
+              - id: P2MV3
+                label: P2MV3 - Premium Memory Optimized V3 Medium
+              - id: P3MV3
+                label: P3MV3 - Premium Memory Optimized V3 Large
+              - id: P4MV3
+                label: P4MV3 - Premium Memory Optimized V3 Extra Large
+              - id: P5MV3
+                label: P5MV3 - Premium Memory Optimized V3 Extra Extra Large
+              - id: I1
+                label: I1 - Isolated Small
+              - id: I2
+                label: I2 - Isolated Medium
+              - id: I3
+                label: I3 - Isolated Large
+              - id: I1V2
+                label: I1V2 - Isolated V2 I1V2
+              - id: I2V2
+                label: I2V2 - Isolated V2 I2V2
+              - id: I3V2
+                label: I3V2 - Isolated V2 I3V2
+              - id: I4V2
+                label: I4V2 - Isolated V2 I4V2
+              - id: I5V2
+                label: I5V2 - Isolated V2 I5V2
+              - id: I6V2
+                label: I6V2 - Isolated V2 I6V2
+              - id: I1MV2
+                label: I1MV2 - Isolated Memory Optimized V2 I1MV2
+              - id: I2MV2
+                label: I2MV2 - Isolated Memory Optimized V2 I2MV2
+              - id: I3MV2
+                label: I3MV2 - Isolated Memory Optimized V2 I3MV2
+              - id: I4MV2
+                label: I4MV2 - Isolated Memory Optimized V2 I4MV2
+              - id: I5MV2
+                label: I5MV2 - Isolated Memory Optimized V2 I5MV2
+              - id: WS1
+                label: WS1 - Logic Apps Workflow Standard 1
+              - id: WS2
+                label: WS2 - Logic Apps Workflow Standard 2
+              - id: WS3
+                label: WS3 - Logic Apps Workflow Standard 3
+            produces:
+              - variable: appservice_sku
+
       - type: 'action-row'
         name: Create App Service
         consumes:
           - variable: resource_group_name
           - variable: app_service_plan_name
+          - variable: appservice_sku
         verify: |
             az appservice plan show --resource-group ${resource_group_name} --name ${app_service_plan_name}
-        install: az appservice plan create --resource-group ${resource_group_name} --name ${app_service_plan_name}
+        install: az appservice plan create --resource-group ${resource_group_name} --name ${app_service_plan_name} --sku ${appservice_sku}
         uninstall: az appservice plan delete --resource-group ${resource_group_name} --name ${app_service_plan_name} --yes
 
 footer:
