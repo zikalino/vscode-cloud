@@ -2,10 +2,28 @@ type: layout-form
 id: root
 header:
   - type: header
-    title: Function App
+    title: Web App
     logo: icon.webp
 form:
   - $include: __resource_group_select_or_create.yaml
+
+  - type: fieldset
+    subitems:
+      - type: row
+        subitems:
+          - type: combo
+            name: Runtime
+            items: []
+            source:
+              cmd: |
+                az webapp list-runtimes
+              path-id: $.linux[*]
+              path-name: $.linux[*]
+            produces:
+              - variable: runtime
+
+
+
   - $include: __storage_account_selector.yaml
   - $include: __app_service_plan_selector.yaml
 
@@ -20,16 +38,19 @@ form:
             name: Name
             produces:
               - variable: function_app_name
+
+
       - type: 'action-row'
-        name: Create Function App
+        name: Create Web Application
         consumes:
           - variable: resource_group_name
           - variable: function_app_name
           - variable: storage_account_name
           - variable: appservice_plan_name
+          - variable: runtime
         verify: |
             az functionapp show --resource-group ${resource_group_name} --name ${function_app_name}
-        install: az functionapp create --resource-group ${resource_group_name} --name ${function_app_name} --storage-account ${storage_account_name} --plan ${appservice_plan_name}
+        install: az functionapp create --resource-group ${resource_group_name} --name ${function_app_name} --storage-account ${storage_account_name} --plan ${appservice_plan_name} --runtime ${runtime}
         uninstall: az functionapp delete --resource-group ${resource_group_name} --name ${function_app_name} --yes
 
 footer:

@@ -46,6 +46,8 @@
       location: create-function.yaml
     - name: Create Logic App
       location: create-logic-app.yaml
+    - name: Create Web App
+      location: create-webapp.yaml
 - name: Other
   submenu:
     - name: Create AKS
