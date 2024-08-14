@@ -90,6 +90,13 @@ form:
                 label: WS3 - Logic Apps Workflow Standard 3
             produces:
               - variable: appservice_sku
+          - type: combo
+            name: OS Type
+            items:
+              - Linux
+              - Windows
+            produces:
+              - variable: os_type
 
       - type: 'action-row'
         name: Create App Service
@@ -97,6 +104,11 @@ form:
           - variable: resource_group_name
           - variable: app_service_plan_name
           - variable: appservice_sku
+          - variable: os_type
+            parameter: --is-linux
+            include-if:
+              variable: os_type
+              value: Linux
         verify: |
             az appservice plan show --resource-group ${resource_group_name} --name ${app_service_plan_name}
         install: az appservice plan create --resource-group ${resource_group_name} --name ${app_service_plan_name} --sku ${appservice_sku}

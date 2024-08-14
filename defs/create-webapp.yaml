@@ -45,13 +45,12 @@ form:
         consumes:
           - variable: resource_group_name
           - variable: function_app_name
-          - variable: storage_account_name
           - variable: appservice_plan_name
           - variable: runtime
         verify: |
-            az functionapp show --resource-group ${resource_group_name} --name ${function_app_name}
-        install: az functionapp create --resource-group ${resource_group_name} --name ${function_app_name} --storage-account ${storage_account_name} --plan ${appservice_plan_name} --runtime ${runtime}
-        uninstall: az functionapp delete --resource-group ${resource_group_name} --name ${function_app_name} --yes
+            az webapp show --resource-group ${resource_group_name} --name ${function_app_name}
+        install: az webapp create --resource-group ${resource_group_name} --name ${function_app_name} --plan ${appservice_plan_name} --runtime ${runtime}
+        uninstall: az webapp delete --resource-group ${resource_group_name} --name ${function_app_name} --yes
 
 footer:
   - type: footer
