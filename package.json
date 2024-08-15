@@ -17,15 +17,19 @@
     "commands": [
       {
         "command": "vscode-azure.displayPrerequisitesView",
-        "title": "smarter> azure: Prerequisites"
+        "title": "SC Azure: Prerequisites"
       },
       {
         "command": "vscode-azure.displayCreateResource",
-        "title": "smarter> azure: Create Resource"
+        "title": "SC Azure: Create Resource"
       },
       {
         "command": "vscode-azure.displayAzureApiBrowser",
-        "title": "smarter> azure: Azure API"
+        "title": "SC Azure: Azure API"
+      },
+      {
+        "command": "vscode-azure.displayCmdHelpParser",
+        "title": "SC Azure: Command Help Browser"
       }
     ]
   },

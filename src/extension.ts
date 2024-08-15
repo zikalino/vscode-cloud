@@ -42,6 +42,13 @@ export function activate (context: vscode.ExtensionContext) {
     }
   );
 
+  disposable = vscode.commands.registerCommand(
+    'vscode-azure.displayCmdHelpParser',
+    () => {
+      parseCmdHelp();
+    }
+  );
+
 
   context.subscriptions.push(disposable);
 }
@@ -166,6 +173,29 @@ async function displayMenu(submenu: any) {
 async function parseApi() {
   let api = await SwaggerParser.parse("c:\\Users\\Lenovo\\azure-rest-api-specs\\specification\\resources\\resource-manager\\Microsoft.Resources\\stable\\2024-03-01\\resources.json");
   console.log("API name: %s, Version: %s", api.info.title, api.info.version);
+}
+
+async function parseCmdHelp() {
+
+  console.log("Parse Cmd Help");
+  var cmd = await vscode.window.showInputBox({
+    placeHolder: "Search query",
+    prompt: "Command (without --help)"
+  });
+
+  cmd += " --help";
+  const cp = require('child_process');
+  var r = "";
+  // execute the command and parse help
+  if (process.platform === "win32") {
+    r = cp.execSync(cmd, { shell: 'powershell' }).toString();
+  } else {
+    r = cp.execSync(cmd, { shell: '/bin/bash' }).toString();
+  }
+
+  vscode.window.activeTextEditor?.edit((editBuilder) => {
+    editBuilder.insert(new vscode.Position(0, 0), r);
+  });
 }
 
 // XXX - perhaps this should be moved to helpers
