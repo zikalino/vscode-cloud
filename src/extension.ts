@@ -193,6 +193,12 @@ async function parseCmdHelp() {
     r = cp.execSync(cmd, { shell: '/bin/bash' }).toString();
   }
 
+  var lines = r.split(/\r?\n/);
+  for (var i = 0; i < lines.length; i++) {
+    lines[i] = "# " + lines[i];
+  }
+  r = lines.join("\r\n");
+
   vscode.window.activeTextEditor?.edit((editBuilder) => {
     editBuilder.insert(new vscode.Position(0, 0), r);
   });
