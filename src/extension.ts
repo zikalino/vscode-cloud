@@ -255,24 +255,39 @@ async function parseCmdHelp() {
           j++;
         }
 
-        while (i < j) {
-          // insert indented comment
-          lines[i] = "      " + lines[i];
-          i++;
-        }
-        // insert argument information
-        lines.splice(j, 0, "      - type: row",
-                          "        subitems: ",
-                          "          - type: textfield",
-                          "            name: " + name,
-                          "            produces: ",
-                          "              - variable: " + name.replaceAll("-", "_"));
+        var inserted: string[] = [];
+
+        if (name === 'location') {
+          while (i < j) {
+            // insert indented comment
+            lines[i] = "      " + lines[i];
+            i++;
+          }
+
+          inserted = [ "      - $include: __region_selector.yaml"
+                     ];
+          lines.splice(j, 0, ...inserted);
+          i += inserted.length;
+
+        } else {
+
+          while (i < j) {
+            // insert indented comment
+            lines[i] = "      " + lines[i];
+            i++;
+          }
+          // insert argument information
+          lines.splice(j, 0, "      - type: row",
+                            "        subitems: ",
+                            "          - type: textfield",
+                            "            name: " + name,
+                            "            produces: ",
+                            "              - variable: " + name.replaceAll("-", "_"));
           i += 6;
-        
+        }        
         if (!lines[i].startsWith("#     --")) {
           break;
         }
-
       }
     } else {
       // unknown section just skip
