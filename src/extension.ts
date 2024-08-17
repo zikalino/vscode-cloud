@@ -268,7 +268,17 @@ async function parseCmdHelp() {
                      ];
           lines.splice(j, 0, ...inserted);
           i += inserted.length;
+        } else if (name === 'tags') {
+          while (i < j) {
+            // insert indented comment
+            lines[i] = "      " + lines[i];
+            i++;
+          }
 
+          inserted = [ "      - $include: __tags_list.yaml"
+                     ];
+          lines.splice(j, 0, ...inserted);
+          i += inserted.length;
         } else {
 
           while (i < j) {
