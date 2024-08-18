@@ -5,9 +5,10 @@ import * as vscode from 'vscode';
 // TODO: Parse allowed values and create combos
 // TODO: How to parse other resource references
 // TODO: compare "create", "update", "delete", "get" and "list"
-// TODO: Map REST API to command arguments (how?)
 // TODO: Properly display separator in quickpick
 // TODO: Cache command --help responses
+// TODO: Map REST API file to command
+// TODO: Map REST API to command arguments (how?)
 
 export async function parseCmdGroup(cmd: string) {
 
@@ -199,9 +200,15 @@ export async function parseCmdHelp(cmd: string) {
   }
 
   r = lines.join("\r\n");
-  vscode.window.activeTextEditor?.edit((editBuilder) => {
-    editBuilder.insert(new vscode.Position(0, 0), r);
-  });
+
+  if (vscode.workspace.workspaceFolders) {
+    var uri = vscode.workspace.workspaceFolders[0].uri;
+    var filename = uri.fsPath + "/" + cmd.replaceAll(" ", "_") + ".yaml";
+    require('fs').writeFileSync(filename, r);
+    const doc = await vscode.workspace.openTextDocument(filename);
+    vscode.window.showTextDocument(doc);
+    };
+
 }
 
 function parseCmdHelp_FindNextSection(lines: string[], idx: number) {
