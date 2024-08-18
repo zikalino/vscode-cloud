@@ -3,7 +3,7 @@ import YAML from 'yaml';
 import { marked } from 'marked';
 import * as helpers from '@zim.kalinowski/vscode-helper-toolkit';
 
-import { parseCmdHelp } from './help-parser';
+import { parseCmdGroup } from './help-parser';
 
 //import SwaggerParser from "@apidevtools/swagger-parser";
 var extensionUri: vscode.Uri;
@@ -48,7 +48,7 @@ export function activate (context: vscode.ExtensionContext) {
   disposable = vscode.commands.registerCommand(
     'vscode-azure.displayCmdHelpParser',
     () => {
-      parseCmdHelp();
+      parseCmdGroup("az");
     }
   );
 

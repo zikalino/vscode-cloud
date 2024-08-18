@@ -8,13 +8,59 @@ import * as vscode from 'vscode';
 // TODO: Multilevel selection of command
 // TODO: compare "create", "update", "delete", "get" and "list"
 // TODO: Map REST API to command arguments (how?)
-export async function parseCmdHelp() {
+
+export async function parseCmdGroup(cmd: string) {
+
+  console.log("Parse Group");
+
+  cmd += " --help";
+  const cp = require('child_process');
+  var r = "";
+  // execute the command and parse help
+  if (process.platform === "win32") {
+    r = cp.execSync(cmd, { shell: 'powershell' }).toString();
+  } else {
+    r = cp.execSync(cmd, { shell: '/bin/bash' }).toString();
+  }
+
+  var lines = r.split(/\r?\n/);
+  var i = 0;
+  var subgroups: string[] = [];
+  var commands: string[] = [];
+
+  i = 0;
+  while (true) {
+    i = parseCmdGroup_FindNextSection(lines, i);
+    if (i < 0) {
+      break;
+    }
+
+    if (lines[i].endsWith("Subgroups:")) {
+      subgroups = parseCmdGroup_GetSubgroupsOrCommands(lines, ++i);
+    } else if (lines[i].endsWith("Commands:")) {
+      commands = parseCmdGroup_GetSubgroupsOrCommands(lines, ++i);
+    } else {
+      // we are not interested in this one -- skip
+      i++;
+    }
+  }
+
+  var selected = await vscode.window.showQuickPick(commands);
+
+  if (selected) {
+    if (commands.includes(selected)) {
+      parseCmdHelp(cmd + " " + selected);
+    } else if (subgroups.includes(selected)) {
+      parseCmdGroup(cmd + " " + selected);
+    }
+  }
+}
+
+
+
+export async function parseCmdHelp(cmd: string) {
 
   console.log("Parse Cmd Help");
-  var cmd = await vscode.window.showInputBox({
-    placeHolder: "Search query",
-    prompt: "Command (without --help)"
-  });
 
   cmd += " --help";
   const cp = require('child_process');
@@ -153,4 +199,27 @@ function parseCmdHelp_FindNextSection(lines: string[], idx: number) {
     idx++;
   }
   return -1;
+}
+
+function parseCmdGroup_FindNextSection(lines: string[], idx: number) {
+  while (idx < lines.length) {
+    if (lines[idx].length > 3 &&  !lines[idx].startsWith(" ")) {
+      return idx;
+    }
+    idx++;
+  }
+  return -1;
+}
+
+function parseCmdGroup_GetSubgroupsOrCommands(lines: string[], idx: number) {
+  var items: string[] = [];
+  while (idx < lines.length && lines[idx].startsWith("    ")) {
+    var s = lines[idx].split(":");
+    if (s.length >= 2) {
+      items.push(s[0].trim());
+    }
+    idx++;
+  }
+  
+  return items;
 }
