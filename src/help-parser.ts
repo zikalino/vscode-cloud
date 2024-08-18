@@ -5,9 +5,10 @@ import * as vscode from 'vscode';
 // TODO: Parse allowed values and create combos
 // TODO: When allowed values are "false" / "true" --> create checkbox
 // TODO: How to parse other resource references
-// TODO: Multilevel selection of command
 // TODO: compare "create", "update", "delete", "get" and "list"
 // TODO: Map REST API to command arguments (how?)
+// TODO: Properly display separator in quickpick
+// TODO: Cache command --help responses
 
 export async function parseCmdGroup(cmd: string) {
 
