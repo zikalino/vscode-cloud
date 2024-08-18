@@ -127,9 +127,11 @@ export async function parseCmdHelp(cmd: string) {
       while (true) {
         var j = i;
         // XXX - get argument name & other things
+        var description = lines[j].split(":")[1].trim();
         var name = lines[j].split("--")[1].split(" ")[0];
         j++;
         while (lines[j].startsWith("#       ")) {
+          description += " " + lines[j].slice(1).trim();
           j++;
         }
 
@@ -164,14 +166,27 @@ export async function parseCmdHelp(cmd: string) {
             lines[i] = "      " + lines[i];
             i++;
           }
-          // insert argument information
-          lines.splice(j, 0, "      - type: row",
-                            "        subitems: ",
-                            "          - type: textfield",
-                            "            name: " + name,
-                            "            produces: ",
-                            "              - variable: " + name.replaceAll("-", "_"));
-          i += 6;
+
+          if (description.includes("Allowed values: false, true")) {
+            lines.splice(j, 0, "      - type: row",
+              "        subitems: ",
+              "          - type: checkbox",
+              "            name: " + name,
+              "            description: " + description,
+              "            produces: ",
+              "              - variable: " + name.replaceAll("-", "_"));
+            i += 7;
+          } else {
+            // insert argument information
+            lines.splice(j, 0, "      - type: row",
+                              "        subitems: ",
+                              "          - type: textfield",
+                              "            name: " + name,
+                              "            description: " + description,
+                              "            produces: ",
+                              "              - variable: " + name.replaceAll("-", "_"));
+            i += 7;
+          }
         }        
         if (!lines[i].startsWith("#     --")) {
           break;
