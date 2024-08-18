@@ -3,7 +3,6 @@ import * as vscode from 'vscode';
 // TODO: Automatically create a file with name based on command
 // TODO: Create action
 // TODO: Parse allowed values and create combos
-// TODO: When allowed values are "false" / "true" --> create checkbox
 // TODO: How to parse other resource references
 // TODO: compare "create", "update", "delete", "get" and "list"
 // TODO: Map REST API to command arguments (how?)
@@ -119,18 +118,18 @@ export async function parseCmdHelp(cmd: string) {
       i += 8;
 
       // XXX - search for first argument
-      while (!lines[i].startsWith("#     --")) {
+      while (i < lines.length && !lines[i].startsWith("#     --")) {
         i++;
       }
 
       // XXX - go through all arguments
-      while (true) {
+      while (i < lines.length) {
         var j = i;
         // XXX - get argument name & other things
         var description = lines[j].split(":")[1].trim();
         var name = lines[j].split("--")[1].split(" ")[0];
         j++;
-        while (lines[j].startsWith("#       ")) {
+        while (j < lines.length && lines[j].startsWith("#       ")) {
           description += " " + lines[j].slice(1).trim();
           j++;
         }
@@ -188,7 +187,7 @@ export async function parseCmdHelp(cmd: string) {
             i += 7;
           }
         }        
-        if (!lines[i].startsWith("#     --")) {
+        if (i >= lines.length || !lines[i].startsWith("#     --")) {
           break;
         }
       }
