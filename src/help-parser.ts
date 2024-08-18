@@ -13,14 +13,13 @@ export async function parseCmdGroup(cmd: string) {
 
   console.log("Parse Group");
 
-  cmd += " --help";
   const cp = require('child_process');
   var r = "";
   // execute the command and parse help
   if (process.platform === "win32") {
-    r = cp.execSync(cmd, { shell: 'powershell' }).toString();
+    r = cp.execSync(cmd + " --help", { shell: 'powershell' }).toString();
   } else {
-    r = cp.execSync(cmd, { shell: '/bin/bash' }).toString();
+    r = cp.execSync(cmd + " --help", { shell: '/bin/bash' }).toString();
   }
 
   var lines = r.split(/\r?\n/);
@@ -45,7 +44,7 @@ export async function parseCmdGroup(cmd: string) {
     }
   }
 
-  var selected = await vscode.window.showQuickPick(commands);
+  var selected = await vscode.window.showQuickPick(subgroups.concat(["-"], commands));
 
   if (selected) {
     if (commands.includes(selected)) {
@@ -62,14 +61,13 @@ export async function parseCmdHelp(cmd: string) {
 
   console.log("Parse Cmd Help");
 
-  cmd += " --help";
   const cp = require('child_process');
   var r = "";
   // execute the command and parse help
   if (process.platform === "win32") {
-    r = cp.execSync(cmd, { shell: 'powershell' }).toString();
+    r = cp.execSync(cmd + " --help", { shell: 'powershell' }).toString();
   } else {
-    r = cp.execSync(cmd, { shell: '/bin/bash' }).toString();
+    r = cp.execSync(cmd + " --help", { shell: '/bin/bash' }).toString();
   }
 
   var lines = r.split(/\r?\n/);
