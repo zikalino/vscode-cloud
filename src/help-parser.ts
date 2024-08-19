@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
 
-// TODO: Automatically create a file with name based on command
 // TODO: Create action
 // TODO: Parse allowed values and create combos
 // TODO: How to parse other resource references
@@ -14,16 +13,8 @@ export async function parseCmdGroup(cmd: string) {
 
   console.log("Parse Group");
 
-  const cp = require('child_process');
-  var r = "";
-  // execute the command and parse help
-  if (process.platform === "win32") {
-    r = cp.execSync(cmd + " --help", { shell: 'powershell' }).toString();
-  } else {
-    r = cp.execSync(cmd + " --help", { shell: '/bin/bash' }).toString();
-  }
+  var lines = getHelp(cmd);
 
-  var lines = r.split(/\r?\n/);
   var i = 0;
   var subgroups: string[] = [];
   var commands: string[] = [];
@@ -62,16 +53,7 @@ export async function parseCmdHelp(cmd: string) {
 
   console.log("Parse Cmd Help");
 
-  const cp = require('child_process');
-  var r = "";
-  // execute the command and parse help
-  if (process.platform === "win32") {
-    r = cp.execSync(cmd + " --help", { shell: 'powershell' }).toString();
-  } else {
-    r = cp.execSync(cmd + " --help", { shell: '/bin/bash' }).toString();
-  }
-
-  var lines = r.split(/\r?\n/);
+  var lines = getHelp(cmd);
   var i = 0;
   for (i = 0; i < lines.length; i++) {
     lines[i] = "# " + lines[i];
@@ -242,4 +224,24 @@ function parseCmdGroup_GetSubgroupsOrCommands(lines: string[], idx: number) {
   }
   
   return items;
+}
+
+function getHelp(cmd: string) {
+  var r: string = "";
+  var fs = require('fs');
+  var filename = cmd.replaceAll(" ", "_");
+  try {
+    r = fs.readFileSync(filename, 'utf8');
+  } catch (err) {
+    const cp = require('child_process');
+    // execute the command and parse help
+    if (process.platform === "win32") {
+      r = cp.execSync(cmd + " --help", { shell: 'powershell' }).toString();
+    } else {
+      r = cp.execSync(cmd + " --help", { shell: '/bin/bash' }).toString();
+    }
+    fs.writeFileSync(filename, r);
+  }
+
+  return r.split(/\r?\n/);
 }
