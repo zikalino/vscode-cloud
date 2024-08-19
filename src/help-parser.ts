@@ -8,7 +8,6 @@ import * as vscode from 'vscode';
 // TODO: Properly display separator in quickpick
 // TODO: Map REST API file to command
 // TODO: Map REST API to command arguments (how?)
-// TODO: Add proper "title:" from command description
 
 export async function parseCmdGroup(cmd: string) {
 
@@ -56,6 +55,7 @@ export async function parseCmdHelp(cmd: string) {
 
   var lines = getHelp(cmd);
   var i = 0;
+  var cmd_title = "";
   for (i = 0; i < lines.length; i++) {
     lines[i] = "# " + lines[i];
   }
@@ -72,6 +72,7 @@ export async function parseCmdHelp(cmd: string) {
     if (lines[i].endsWith("Command")) {
       // XXX - for now do nothing, but extract command description and name
       i++;
+      cmd_title = lines[i].split(":")[1].trim();
       continue;
     } else if (lines[i].endsWith("Global Arguments")) {
       // remove global arguments
@@ -94,7 +95,7 @@ export async function parseCmdHelp(cmd: string) {
       lines.splice(i - 1, 0, "type: layout-form",
                             "header: ",
                             "  - type: header",
-                            "    title: Virtual Machine",
+                            "    title: " + cmd_title,
                             "    logo: icon.webp",
                             "form:",
                             "  - type: fieldset",
