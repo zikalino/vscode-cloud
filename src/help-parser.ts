@@ -180,7 +180,7 @@ export async function parseCmdHelp(cmd: string) {
     }
   }
 
-  r = lines.join("\r\n");
+  var r = lines.join("\r\n");
 
   if (vscode.workspace.workspaceFolders) {
     var uri = vscode.workspace.workspaceFolders[0].uri;
@@ -228,6 +228,7 @@ function parseCmdGroup_GetSubgroupsOrCommands(lines: string[], idx: number) {
 function getHelp(cmd: string) {
   var r: string = "";
   var fs = require('fs');
+  var dir = process.cwd();
 
   var filename = cmd.replaceAll(" ", "_");
   try {
