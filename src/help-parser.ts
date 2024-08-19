@@ -1,12 +1,14 @@
 import * as vscode from 'vscode';
 
 // TODO: Create action
+// TODO: Recognise resource-group argument
 // TODO: Parse allowed values and create combos
 // TODO: How to parse other resource references
 // TODO: compare "create", "update", "delete", "get" and "list"
 // TODO: Properly display separator in quickpick
 // TODO: Map REST API file to command
 // TODO: Map REST API to command arguments (how?)
+// TODO: Add proper "title:" from command description
 
 export async function parseCmdGroup(cmd: string) {
 
@@ -216,7 +218,12 @@ function parseCmdGroup_GetSubgroupsOrCommands(lines: string[], idx: number) {
   var items: string[] = [];
   while (idx < lines.length && lines[idx].startsWith("    ")) {
     var s = lines[idx].split(":");
+
     if (s.length >= 2) {
+      // XXX - simplify it
+      if (s[0].includes("[")) {
+        s[0] = s[0].split("[")[0];
+      } 
       items.push(s[0].trim());
     }
     idx++;
