@@ -5,7 +5,6 @@ import * as vscode from 'vscode';
 // TODO: How to parse other resource references
 // TODO: compare "create", "update", "delete", "get" and "list"
 // TODO: Properly display separator in quickpick
-// TODO: Cache command --help responses
 // TODO: Map REST API file to command
 // TODO: Map REST API to command arguments (how?)
 
@@ -229,6 +228,7 @@ function parseCmdGroup_GetSubgroupsOrCommands(lines: string[], idx: number) {
 function getHelp(cmd: string) {
   var r: string = "";
   var fs = require('fs');
+
   var filename = cmd.replaceAll(" ", "_");
   try {
     r = fs.readFileSync(filename, 'utf8');
