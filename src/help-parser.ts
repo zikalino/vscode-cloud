@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
 
-// TODO: Create action
 // TODO: Recognise resource-group argument
 // TODO: Parse allowed values and create combos
 // TODO: How to parse other resource references
@@ -9,8 +8,9 @@ import * as vscode from 'vscode';
 // TODO: Map REST API file to command
 // TODO: Map REST API to command arguments (how?)
 // TODO: Display form immediately after created
-// TODO: Global Arguments not removed
-
+// TODO: Colons in description cause yaml syntax errors
+// TODO: Properly add arguments to action
+// TODO: Include command in action
 export async function parseCmdGroup(cmd: string) {
 
   console.log("Parse Group");
@@ -176,6 +176,31 @@ export async function parseCmdHelp(cmd: string) {
       continue;
     }
   }
+
+  // include action
+  var action = [ "      - type: 'action-row'",
+                 "        name: Create Virtual Machine",
+                 "        consumes:",
+                 "          - variable: resource_group_name",
+                 "          - variable: virtual_machine_name",
+                 "          - variable: virtual_machine_region",
+                 "          - variable: os_disk_id",
+                 "            parameter: --attach-os-disk ${os_disk_id}",
+                 "            required-if:",
+                 "              variable: os_disk_creation",
+                 "              value: attach",
+                 "          - variable: data_disk_id",
+                 "            parameter: --attach-data-disks ${data_disk_id}",
+                 "            required-if:",
+                 "              variable: data_disk_creation",
+                 "              value: attach",
+                 "        verify: |",
+                 "            az vm show --resource-group ${resource_group_name} --name ${virtual_machine_name}",
+                 "        install: az vm create --resource-group ${resource_group_name} --name ${virtual_machine_name} --location ${virtual_machine_region}",
+                 "        uninstall: az vm delete --resource-group ${resource_group_name} --name ${virtual_machine_name} --yes"
+              ];
+
+  lines.splice(lines.length, 0, ...action);
 
   var r = lines.join("\r\n");
 
