@@ -8,6 +8,8 @@ import * as vscode from 'vscode';
 // TODO: Properly display separator in quickpick
 // TODO: Map REST API file to command
 // TODO: Map REST API to command arguments (how?)
+// TODO: Display form immediately after created
+// TODO: Global Arguments not removed
 
 export async function parseCmdGroup(cmd: string) {
 
@@ -84,28 +86,20 @@ export async function parseCmdHelp(cmd: string) {
       i++;
       continue;
     } else if (lines[i].endsWith("Arguments")) {
-      while (i < lines.length) {
-        if (lines[i] === "# Arguments") {
-          i++;
-          break;
-        }
-        i++;
+
+      if (lines[i] === "# Arguments") {
+        lines.splice(i, 0, "type: layout-form",
+                              "header: ",
+                              "  - type: header",
+                              "    title: " + cmd_title,
+                              "    logo: icon.webp",
+                              "form:",
+                              "  - type: fieldset",
+                              "    subitems:");
+        i += 8;
       }
 
-      lines.splice(i - 1, 0, "type: layout-form",
-                            "header: ",
-                            "  - type: header",
-                            "    title: " + cmd_title,
-                            "    logo: icon.webp",
-                            "form:",
-                            "  - type: fieldset",
-                            "    subitems:");
-      i += 8;
-
-      // XXX - search for first argument
-      while (i < lines.length && !lines[i].startsWith("#     --")) {
-        i++;
-      }
+      i++;
 
       // XXX - go through all arguments
       while (i < lines.length) {
