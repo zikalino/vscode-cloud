@@ -49,8 +49,6 @@ export async function parseCmdGroup(cmd: string) {
   }
 }
 
-
-
 export async function parseCmdHelp(cmd: string) {
 
   console.log("Parse Cmd Help");
@@ -58,6 +56,7 @@ export async function parseCmdHelp(cmd: string) {
   var lines = getHelp(cmd);
   var i = 0;
   var cmd_title = "";
+  var variables: any[] = [];
   for (i = 0; i < lines.length; i++) {
     lines[i] = "# " + lines[i];
   }
@@ -112,6 +111,12 @@ export async function parseCmdHelp(cmd: string) {
           description += " " + lines[j].slice(1).trim();
           j++;
         }
+
+        // store variable
+        variables.push({
+          name: name.replaceAll("-", "_"),
+          argument: "--" + name
+        });
 
         var inserted: string[] = [];
 
@@ -179,26 +184,23 @@ export async function parseCmdHelp(cmd: string) {
 
   // include action
   var action = [ "      - type: 'action-row'",
-                 "        name: Create Virtual Machine",
-                 "        consumes:",
-                 "          - variable: resource_group_name",
-                 "          - variable: virtual_machine_name",
-                 "          - variable: virtual_machine_region",
-                 "          - variable: os_disk_id",
-                 "            parameter: --attach-os-disk ${os_disk_id}",
-                 "            required-if:",
-                 "              variable: os_disk_creation",
-                 "              value: attach",
-                 "          - variable: data_disk_id",
-                 "            parameter: --attach-data-disks ${data_disk_id}",
-                 "            required-if:",
-                 "              variable: data_disk_creation",
-                 "              value: attach",
+                 "        name: " + cmd_title,
+                 "        consumes:" ];
+
+  for (var vi = 0; vi < variables.length; vi++ ) {
+    action.push("          - variable: " + variables[vi].name,
+                "            parameter: " + variables[vi].argument
+    );
+    // XXX - here we need to add all required, required-if, etc.
+  }
+
+  // push the rest of stuff
+  action.push(
                  "        verify: |",
                  "            az vm show --resource-group ${resource_group_name} --name ${virtual_machine_name}",
-                 "        install: az vm create --resource-group ${resource_group_name} --name ${virtual_machine_name} --location ${virtual_machine_region}",
+                 "        install: " + cmd + " --resource-group ${resource_group_name} --name ${virtual_machine_name} --location ${virtual_machine_region}",
                  "        uninstall: az vm delete --resource-group ${resource_group_name} --name ${virtual_machine_name} --yes"
-              ];
+  );
 
   lines.splice(lines.length, 0, ...action);
 
