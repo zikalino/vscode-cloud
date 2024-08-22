@@ -48,7 +48,7 @@ export function activate (context: vscode.ExtensionContext) {
   disposable = vscode.commands.registerCommand(
     'vscode-azure.displayCmdHelpParser',
     () => {
-      parseCmdGroup("az");
+      parseCommands();
     }
   );
 
@@ -129,6 +129,11 @@ async function displayPrerequisitesView() {
 
 }
 
+async function parseCommands() {
+  let response = await parseCmdGroup("az");
+  loadYamlView(response);
+}
+
 async function displayResourceCreateView() {
   let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___menu.yaml");
   displayMenu(menu);
@@ -151,25 +156,29 @@ async function displayMenu(submenu: any) {
       } else {
         // XXX - load yaml
         let yml = loadYaml(extensionContext.extensionPath + "/defs/" + submenu[i].location);
-        let view = new helpers.GenericWebView(extensionContext, "New Resource"); 
-        view.createPanel(yml);
-
-        view.MsgHandler = function (msg: any) {
-          if (msg.command === 'ready') {
-            view.runStepsVerification();
-          } else if (msg.command === 'button-clicked') {
-            //vscode.window.showInformationMessage('Button ' + msg.id + ' Clicked!');
-            if (msg.id === 'close') {
-              view.close();
-            } else if (msg.id === 'install_button') {
-              view.runStepsInstallation();
-            }
-          }
-        };
+        loadYamlView(yml);
       }
     }
   }
 
+}
+
+async function loadYamlView(yml: string) {
+  let view = new helpers.GenericWebView(extensionContext, "New Resource"); 
+  view.createPanel(yml);
+
+  view.MsgHandler = function (msg: any) {
+    if (msg.command === 'ready') {
+      view.runStepsVerification();
+    } else if (msg.command === 'button-clicked') {
+      //vscode.window.showInformationMessage('Button ' + msg.id + ' Clicked!');
+      if (msg.id === 'close') {
+        view.close();
+      } else if (msg.id === 'install_button') {
+        view.runStepsInstallation();
+      }
+    }
+  };
 }
 
 

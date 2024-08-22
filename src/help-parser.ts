@@ -7,11 +7,11 @@ import * as vscode from 'vscode';
 // TODO: Properly display separator in quickpick
 // TODO: Map REST API file to command
 // TODO: Map REST API to command arguments (how?)
-// TODO: Display form immediately after created
 // TODO: Colons in description cause yaml syntax errors
 // TODO: Properly add arguments to action
 // TODO: Include command in action
-export async function parseCmdGroup(cmd: string) {
+
+export async function parseCmdGroup(cmd: string): Promise<string> {
 
   console.log("Parse Group");
 
@@ -20,6 +20,7 @@ export async function parseCmdGroup(cmd: string) {
   var i = 0;
   var subgroups: string[] = [];
   var commands: string[] = [];
+  var response: string = "";
 
   i = 0;
   while (true) {
@@ -42,14 +43,15 @@ export async function parseCmdGroup(cmd: string) {
 
   if (selected) {
     if (commands.includes(selected)) {
-      parseCmdHelp(cmd + " " + selected);
+      response = await parseCmdHelp(cmd + " " + selected);
     } else if (subgroups.includes(selected)) {
-      parseCmdGroup(cmd + " " + selected);
+      await parseCmdGroup(cmd + " " + selected);
     }
   }
+  return response;
 }
 
-export async function parseCmdHelp(cmd: string) {
+export async function parseCmdHelp(cmd: string): Promise<string> {
 
   console.log("Parse Cmd Help");
 
@@ -212,8 +214,9 @@ export async function parseCmdHelp(cmd: string) {
     require('fs').writeFileSync(filename, r);
     const doc = await vscode.workspace.openTextDocument(filename);
     vscode.window.showTextDocument(doc);
-    };
+  };
 
+  return r;
 }
 
 function parseCmdHelp_FindNextSection(lines: string[], idx: number) {
