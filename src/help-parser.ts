@@ -1,12 +1,15 @@
 import * as vscode from 'vscode';
 
 // TODO: Recognise resource-group argument
-// TODO: Parse allowed values and create combos
 // TODO: How to parse other resource references
 // TODO: compare "create", "update", "delete", "get" and "list"
 // TODO: Properly display separator in quickpick
 // TODO: Map REST API file to command
 // TODO: Map REST API to command arguments (how?)
+// TODO: Convert parameter names to user readable labels
+// TODO: Display tooltips for arguments
+// TODO: Move resource group to the top
+// TODO: Tooltips for checkboxes are wrong
 
 export async function parseCmdGroup(cmd: string): Promise<string> {
 
@@ -149,29 +152,57 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
             i++;
           }
 
+          var descriptionEscaped = description;
           if (description.includes(":")) {
             if (description.includes('"')) {
-              description = description.replaceAll('"', '\\"');
+              descriptionEscaped = description.replaceAll('"', '\\"');
             }
-            description = '"' + description + '"'
+            descriptionEscaped = '"' + descriptionEscaped + '"';
           }
 
-          if (description.includes("Allowed values: false, true")) {
-            lines.splice(j, 0, "      - type: row",
-              "        subitems: ",
-              "          - type: checkbox",
-              "            name: " + name,
-              "            description: " + description,
-              "            produces: ",
-              "              - variable: " + name.replaceAll("-", "_"));
-            i += 7;
+          var insert: string[] = [];
+          if (description.includes("Allowed values: ")) {
+            let tmp = description.split("Allowed values: ")[1] + " ";
+            tmp = tmp.split(". ")[0];
+            let values = tmp.split(", ");
+            if (values.includes("true") && values.includes("false") && values.length === 2) {
+
+              insert.push("      - type: row",
+                          "        subitems: ",
+                          "          - type: checkbox",
+                          "            name: " + name,
+                          "            description: " + descriptionEscaped,
+                          "            produces: ",
+                          "              - variable: " + name.replaceAll("-", "_")
+              );
+
+              lines.splice(j, 0, ...insert);
+              i += insert.length;
+            } else {
+              insert.push("      - type: row",
+                          "        subitems: ",
+                          "          - type: combo",
+                          "            name: " + name,
+                          "            description: " + descriptionEscaped,
+                          "            items:");
+
+              for (var vi = 0; vi < values.length; vi++) {
+                insert.push("              - " + values[vi]);
+              }
+
+              insert.push("            produces: ",
+                          "              - variable: " + name.replaceAll("-", "_"));
+
+              lines.splice(j, 0, ...insert);
+              i += insert.length;
+            }
           } else {
             // insert argument information
             lines.splice(j, 0, "      - type: row",
                               "        subitems: ",
                               "          - type: textfield",
                               "            name: " + name,
-                              "            description: " + description,
+                              "            description: " + descriptionEscaped,
                               "            produces: ",
                               "              - variable: " + name.replaceAll("-", "_"));
             i += 7;
