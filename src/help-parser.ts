@@ -7,9 +7,6 @@ import * as vscode from 'vscode';
 // TODO: Properly display separator in quickpick
 // TODO: Map REST API file to command
 // TODO: Map REST API to command arguments (how?)
-// TODO: Colons in description cause yaml syntax errors
-// TODO: Properly add arguments to action
-// TODO: Include command in action
 
 export async function parseCmdGroup(cmd: string): Promise<string> {
 
@@ -150,6 +147,13 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
             // insert indented comment
             lines[i] = "      " + lines[i];
             i++;
+          }
+
+          if (description.includes(":")) {
+            if (description.includes('"')) {
+              description = description.replaceAll('"', '\\"');
+            }
+            description = '"' + description + '"'
           }
 
           if (description.includes("Allowed values: false, true")) {
