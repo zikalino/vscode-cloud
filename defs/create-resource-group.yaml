@@ -1,54 +1,61 @@
+# 
+# Command
+#     az group create : Create a new resource group.
+# 
 type: layout-form
-id: root
-header:
+header: 
   - type: header
-    title: Resource Group
+    title: Create a new resource group.
     logo: icon.webp
 form:
-  #
-  # Azure CLI
-  #
   - type: fieldset
-    id: fieldset_esp_idf
-    platform: win32
     subitems:
-      - $include: __region_selector.yaml
-        variable-prefix: resource_group_
-      - type: row
-        id: name-row
-        subitems:
-          - type: textfield
-            id: resource-group-name
-            name: Name
-            produces:
-              - variable: name
-                regex: ^[-\w\._\(\)]+$
-      - type: 'action-row'
-        id: create-resource-group
-        name: Create Resource Group
-        consumes:
-          - variable: region
-          - variable: name
-        verify: |
-            $out = az group exists --name ${name}
-            if ($out -like '*true*') { exit 0 } else { exit 1 }
-        install: az group create --name ${name} --location ${region}
-        uninstall: az group delete --name ${name} --yes
-
-footer:
-  - type: footer
-    id: footer
-    subitems:
-      - type: button
-        id: install_button
-        text: Create
-
 # Arguments
-#    --location -l                 [Required] : Location. Values from: `az account list-locations`.
-#                                               You can configure the default location using `az
-#                                               configure --defaults location=<location>`.
-#    --name --resource-group -g -n [Required] : Name of the new resource group.
-#    --managed-by                             : The ID of the resource that manages this resource
-#                                               group.
-#    --tags                                   : Space-separated tags: key[=value] [key[=value] ...].
-#                                               Use "" to clear existing tags.
+      #     --location -l                 [Required] : Location. Values from: `az account list-locations`.
+      #                                                You can configure the default location using `az
+      #                                                configure --defaults location=<location>`.
+      - $include: __region_selector.yaml
+      #     --name --resource-group -g -n [Required] : Name of the new resource group.
+      - type: row
+        subitems: 
+          - type: textfield
+            name: name
+            description: Name of the new resource group.
+            produces: 
+              - variable: name
+      #     --managed-by                             : The ID of the resource that manages this resource
+      #                                                group.
+      - type: row
+        subitems: 
+          - type: textfield
+            name: managed-by
+            description: The ID of the resource that manages this resource group.
+            produces: 
+              - variable: managed_by
+      #     --tags                                   : Space-separated tags: key[=value] [key[=value] ...].
+      #                                                Use "" to clear existing tags.
+      - $include: __tags_list.yaml
+# 
+# Examples
+#     Create a new resource group in the West US region.
+#         az group create -l westus -n MyResourceGroup
+# 
+# 
+# To search AI knowledge base for examples, use: az find "az group create"
+# 
+# 
+      - type: 'action-row'
+        name: Create a new resource group.
+        consumes:
+          - variable: location
+            parameter: --location
+          - variable: name
+            parameter: --name
+          - variable: managed_by
+            parameter: --managed-by
+          - variable: tags
+            parameter: --tags
+        verify: |
+            az vm show --resource-group ${resource_group_name} --name ${virtual_machine_name}
+        install: az group create --resource-group ${resource_group_name} --name ${virtual_machine_name} --location ${virtual_machine_region}
+        uninstall: az vm delete --resource-group ${resource_group_name} --name ${virtual_machine_name} --yes

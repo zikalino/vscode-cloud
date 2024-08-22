@@ -131,7 +131,7 @@ async function displayPrerequisitesView() {
 
 async function parseCommands() {
   let response = await parseCmdGroup("az");
-  loadYamlView(response);
+  loadYamlView(loadYaml(response));
 }
 
 async function displayResourceCreateView() {

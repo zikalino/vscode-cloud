@@ -45,7 +45,7 @@ export async function parseCmdGroup(cmd: string): Promise<string> {
     if (commands.includes(selected)) {
       response = await parseCmdHelp(cmd + " " + selected);
     } else if (subgroups.includes(selected)) {
-      await parseCmdGroup(cmd + " " + selected);
+      response = await parseCmdGroup(cmd + " " + selected);
     }
   }
   return response;
@@ -207,16 +207,16 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
   lines.splice(lines.length, 0, ...action);
 
   var r = lines.join("\r\n");
-
+  var filename = "";
   if (vscode.workspace.workspaceFolders) {
     var uri = vscode.workspace.workspaceFolders[0].uri;
-    var filename = uri.fsPath + "/" + cmd.replaceAll(" ", "_") + ".yaml";
+    filename = uri.fsPath + "/" + cmd.replaceAll(" ", "_") + ".yaml";
     require('fs').writeFileSync(filename, r);
     const doc = await vscode.workspace.openTextDocument(filename);
     vscode.window.showTextDocument(doc);
   };
 
-  return r;
+  return filename;
 }
 
 function parseCmdHelp_FindNextSection(lines: string[], idx: number) {
