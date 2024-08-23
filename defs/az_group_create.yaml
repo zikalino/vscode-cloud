@@ -47,15 +47,17 @@ form:
       - type: 'action-row'
         name: Create a new resource group.
         consumes:
-          - variable: location
+          - variable: region
             parameter: --location
           - variable: name
             parameter: --name
           - variable: managed_by
             parameter: --managed-by
+            required: false
           - variable: tags
+            required: false
             parameter: --tags
         verify: |
-            az vm show --resource-group ${resource_group_name} --name ${virtual_machine_name}
-        install: az group create --resource-group ${resource_group_name} --name ${virtual_machine_name} --location ${virtual_machine_region}
-        uninstall: az vm delete --resource-group ${resource_group_name} --name ${virtual_machine_name} --yes
+            az group show
+        install: az group create
+        uninstall: az group delete
