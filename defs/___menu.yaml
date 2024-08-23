@@ -67,6 +67,6 @@
     - name: Create Load Balancer
       location: create-load-balancer.yaml
     - name: Create Resource Group
-      location: create-resource-group.yaml
+      location: az_group_create.yaml
     - name: Create Virtual Network
       location: create-virtual-network.yaml
