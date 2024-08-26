@@ -10,6 +10,7 @@ import * as vscode from 'vscode';
 // TODO: Display tooltips for arguments
 // TODO: Move resource group to the top
 // TODO: Tooltips for checkboxes are wrong
+// TODO: No footer
 
 export async function parseCmdGroup(cmd: string): Promise<string> {
 
