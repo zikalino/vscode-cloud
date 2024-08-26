@@ -11,6 +11,7 @@ import * as vscode from 'vscode';
 // TODO: Move resource group to the top
 // TODO: Tooltips for checkboxes are wrong
 // TODO: No footer
+// TODO: Split it from extension?
 
 export async function parseCmdGroup(cmd: string): Promise<string> {
 
