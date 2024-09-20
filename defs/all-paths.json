@@ -53256,12 +53256,12 @@
   },
   "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}": {
     "provider": "...",
-    "cli": "az ...",
+    "cli": "az group create",
     "file": "resources/resource-manager/Microsoft.Resources/stable/2024-03-01/resources.json"
   },
   "/subscriptions/{subscriptionId}/resourcegroups": {
     "provider": "...",
-    "cli": "az ...",
+    "cli": "az groups list",
     "file": "resources/resource-manager/Microsoft.Resources/stable/2024-03-01/resources.json"
   },
   "/subscriptions/{subscriptionId}/resourceGroups/{sourceResourceGroupName}/moveResources": {
