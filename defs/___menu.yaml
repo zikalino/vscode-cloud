@@ -19,11 +19,11 @@
 - name: Databases
   submenu:
     - name: Create MySQL
-      location: create-mysql.yaml
+      location: az_mysql_flexible_server_create.yaml
     - name: Create PostgreSQL
-      location: create-postgresql.yaml
+      location: az_postgres_flexible_server_create.yaml
     - name: Create MariaDB
-      location: create-mariadb.yaml
+      location: az_mariadb_server_create.yaml
     - name: Create SQL Database
       location: create-sql-database.yaml
     - name: Create Cosmos DB
@@ -65,10 +65,10 @@
     - name: Create Batch
       location: az_batch_account_create.yaml
     - name: Create Event Grid
-      location: create-event-grid.yaml
+      location: az_eventgrid_namespace_create.yaml
     - name: Create Keyvault
-      location: create-keyvault.yaml
+      location: az_keyvault_create.yaml
     - name: Create Load Balancer
-      location: create-load-balancer.yaml
+      location: az_network_lb_create.yaml
     - name: Create Virtual Network
-      location: create-virtual-network.yaml
+      location: az_network_vnet_create.yaml
