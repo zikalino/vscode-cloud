@@ -25,23 +25,23 @@
     - name: Create MariaDB
       location: az_mariadb_server_create.yaml
     - name: Create SQL Database
-      location: create-sql-database.yaml
+      location: az_sql_server_create.yaml
     - name: Create Cosmos DB
-      location: create-cosmos-db.yaml
+      location: az_cosmosdb_create.yaml
 - name: Storage
   submenu:
     - name: Create Storage Account
       location: az_storage_account_create.yaml
     - name: Create Blob Storage Container
-      location: create-storage-container.yaml
+      location: az_storage_container_create.yaml
 - name: Shared Image Gallery
   submenu:
     - name: Create Shared Image Gallery
-      location: create-shared-image-gallery.yaml
+      location: az_sig_create.yaml
 - name: Web Applications
   submenu:
     - name: Create Static Website
-      location: create-static-website.yaml
+      location: az_staticwebapp_create.yaml
     - name: Create App Configuration
       location: az_appconfig_create.yaml
     - name: Create App Service
@@ -49,9 +49,9 @@
     - name: Create Function
       location: az_functionapp_create.yaml
     - name: Create Logic App
-      location: create-logic-app.yaml
+      location: az_logicapp_create.yaml
     - name: Create Web App
-      location: create-webapp.yaml
+      location: az_webapp_create.yaml
 - name: Other
   submenu:
     - name: Create AKS
