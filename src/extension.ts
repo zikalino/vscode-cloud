@@ -32,9 +32,30 @@ export function activate (context: vscode.ExtensionContext) {
   );
 
   disposable = vscode.commands.registerCommand(
-    'vscode-azure.displayCreateResource',
+    'vscode-azure.displayAzureMenu',
     () => {
-      displayResourceCreateView();
+      displayAzureMenu();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-azure.displayOciMenu',
+    () => {
+      displayOciMenu();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-azure.displayDoCtlMenu',
+    () => {
+      displayDoCtlMenu();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-azure.displayUpCtlMenu',
+    () => {
+      displayUpCtlMenu();
     }
   );
 
@@ -134,8 +155,23 @@ async function parseCommands() {
   loadYamlView(loadYaml(response));
 }
 
-async function displayResourceCreateView() {
-  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___menu.yaml");
+async function displayAzureMenu() {
+  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___az_menu.yaml");
+  displayMenu(menu);
+}
+
+async function displayOciMenu() {
+  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___oci_menu.yaml");
+  displayMenu(menu);
+}
+
+async function displayUpCtlMenu() {
+  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___upctl_menu.yaml");
+  displayMenu(menu);
+}
+
+async function displayDoCtlMenu() {
+  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___doctl_menu.yaml");
   displayMenu(menu);
 }
 

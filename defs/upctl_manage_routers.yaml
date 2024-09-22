@@ -1,0 +1,30 @@
+type: layout-form
+header:
+  - type: header
+    title: Create Router
+    logo: icon.webp
+form:
+  - type: fieldset
+    subitems:
+      - type: row
+        subitems:
+          - type: textfield
+            name: Router Name
+            produces:
+              - variable: router_name
+      - type: 'action-row'
+        name: Create Router
+        consumes:
+          - variable: router_name
+        verify: |
+            upctl router show ${router_name}
+        install: upctl router create --name ${router_name}
+        uninstall: upctl router delete ${router_name}
+
+footer:
+  - type: footer
+    id: footer
+    subitems:
+      - type: button
+        id: install_button
+        text: Create

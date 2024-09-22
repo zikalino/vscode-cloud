@@ -20,8 +20,20 @@
         "title": "SC Azure: Prerequisites"
       },
       {
-        "command": "vscode-azure.displayCreateResource",
-        "title": "SC Azure: Create Resource"
+        "command": "vscode-azure.displayAzureMenu",
+        "title": "Azure: Create Resources"
+      },
+      {
+        "command": "vscode-azure.displayOciMenu",
+        "title": "OCI: Create Resources"
+      },
+      {
+        "command": "vscode-azure.displayDoCtlMenu",
+        "title": "DigitalOcean: Create Resources"
+      },
+      {
+        "command": "vscode-azure.displayUpCtlMenu",
+        "title": "UpCloud: Create Resources"
       },
       {
         "command": "vscode-azure.displayAzureApiBrowser",
