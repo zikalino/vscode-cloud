@@ -25,9 +25,30 @@ export function activate (context: vscode.ExtensionContext) {
   //});
 
   let disposable = vscode.commands.registerCommand(
-    'vscode-azure.displayPrerequisitesView',
+    'vscode-azure.displayAzPrerequisitesView',
     () => {
-      displayPrerequisitesView();
+      displayAzPrerequisitesView();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-azure.displayDoCtlPrerequisitesView',
+    () => {
+      displayDoCtlPrerequisitesView();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-azure.displayOciPrerequisitesView',
+    () => {
+      displayOciPrerequisitesView();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-azure.displayUpCtlPrerequisitesView',
+    () => {
+      displayUpCtlPrerequisitesView();
     }
   );
 
@@ -92,11 +113,30 @@ async function displayInstallerWelcome() {
   }
 }
 
-var layoutSetup: any = require('./layout-setup.yaml');
+var layoutSetupAz: any = require('./az__prerequisites.yaml');
+var layoutSetupDoCtl: any = require('./doctl__prerequisites.yaml');
+var layoutSetupOci: any = require('./oci__prerequisites.yaml');
+var layoutSetupUpCtl: any = require('./upctl__prerequisites.yaml');
 
-async function displayPrerequisitesView() {
+async function displayAzPrerequisitesView() {
+  displayPrerequisitesView(layoutSetupAz);
+}
+
+async function displayDoCtlPrerequisitesView() {
+  displayPrerequisitesView(layoutSetupDoCtl);
+}
+
+async function displayOciPrerequisitesView() {
+  displayPrerequisitesView(layoutSetupOci);
+}
+
+async function displayUpCtlPrerequisitesView() {
+  displayPrerequisitesView(layoutSetupUpCtl);
+}
+
+async function displayPrerequisitesView(layout: string) {
   let view = new helpers.GenericWebView(extensionContext, "Installer");
-  view.createPanel(layoutSetup);
+  view.createPanel(layoutSetupAz);
 
   view.MsgHandler = function (msg: any) {
     if (msg.command === 'ready') {

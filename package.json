@@ -16,8 +16,20 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscode-azure.displayPrerequisitesView",
-        "title": "SC Azure: Prerequisites"
+        "command": "vscode-azure.displayAzPrerequisitesView",
+        "title": "Azure: Prerequisites"
+      },
+      {
+        "command": "vscode-azure.displayDoCtlPrerequisitesView",
+        "title": "DigitalOcean: Prerequisites"
+      },
+      {
+        "command": "vscode-azure.displayOciPrerequisitesView",
+        "title": "OCI: Prerequisites"
+      },
+      {
+        "command": "vscode-azure.displayUpCtlPrerequisitesView",
+        "title": "UpCloud: Prerequisites"
       },
       {
         "command": "vscode-azure.displayAzureMenu",

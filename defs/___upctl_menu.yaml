@@ -1,24 +1,24 @@
-# account        Manage accounts
-# database       Manage databases
-# gateway        Manage gateways
-# host           Manage private cloud hosts
-# ip-address     Manage IP addresses
-# kubernetes     Manage Kubernetes clusters
-# loadbalancer   Manage load balancers
-# network        Manage networks
-# networkpeering Manage network peerings
-# objectstorage  Manage managed object storage services
-# router         Manage routers
-# server         Manage servers
-# servergroup    Manage server groups
-# storage        Manage storages
+# account        Manage accounts            - no create
+# database       Manage databases           - no create
+# gateway        Manage gateways            - no create
+# host           Manage private cloud hosts - just list
+# ip-address     Manage IP addresses        - ASSIGN / CREATE
+# kubernetes     Manage Kubernetes clusters - CREATE
+# loadbalancer   Manage load balancers      - no create
+# network        Manage networks            - CREATE
+# networkpeering Manage network peerings    - no create
+# objectstorage  Manage managed object storage services - no create
+# router         Manage routers             - CREATE
+# server         Manage servers             - CREATE
+# servergroup    Manage server groups       - CREATE
+# storage        Manage storages            - CREATE
 
 # version        Display software information
 # zone           Display zone information
 
 
-- name: Manage Accounts
-  location: upctl_manage_accounts.yaml
+- name: Create Subaccount
+  location: upctl_account_create.yaml
 - name: Manage Databases
   location: upctl_manage_databases.yaml
 - name: Manage Gateways
