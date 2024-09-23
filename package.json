@@ -1,9 +1,9 @@
 {
-  "name": "vscode-azure",
+  "name": "vscode-cloud",
   "displayName": "Azure Prerequisites",
   "description": "ESP Toolchain Installer",
   "version": "0.0.1",
-  "repository": "https://github.com/zikalino/vscode-azure",
+  "repository": "https://github.com/zikalino/vscode-cloud",
   "publisher": "zikalinox",
   "engines": {
     "vscode": "^1.85.0"
@@ -16,43 +16,47 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscode-azure.displayAzPrerequisitesView",
+        "command": "vscode-cloud.displayInstallerWelcome",
+        "title": "Cloud: Welcome"
+      },
+      {
+        "command": "vscode-cloud.displayAzPrerequisitesView",
         "title": "Azure: Prerequisites"
       },
       {
-        "command": "vscode-azure.displayDoCtlPrerequisitesView",
+        "command": "vscode-cloud.displayDoCtlPrerequisitesView",
         "title": "DigitalOcean: Prerequisites"
       },
       {
-        "command": "vscode-azure.displayOciPrerequisitesView",
+        "command": "vscode-cloud.displayOciPrerequisitesView",
         "title": "OCI: Prerequisites"
       },
       {
-        "command": "vscode-azure.displayUpCtlPrerequisitesView",
+        "command": "vscode-cloud.displayUpCtlPrerequisitesView",
         "title": "UpCloud: Prerequisites"
       },
       {
-        "command": "vscode-azure.displayAzureMenu",
+        "command": "vscode-cloud.displayAzureMenu",
         "title": "Azure: Create Resources"
       },
       {
-        "command": "vscode-azure.displayOciMenu",
+        "command": "vscode-cloud.displayOciMenu",
         "title": "OCI: Create Resources"
       },
       {
-        "command": "vscode-azure.displayDoCtlMenu",
+        "command": "vscode-cloud.displayDoCtlMenu",
         "title": "DigitalOcean: Create Resources"
       },
       {
-        "command": "vscode-azure.displayUpCtlMenu",
+        "command": "vscode-cloud.displayUpCtlMenu",
         "title": "UpCloud: Create Resources"
       },
       {
-        "command": "vscode-azure.displayAzureApiBrowser",
+        "command": "vscode-cloud.displayAzureApiBrowser",
         "title": "SC Azure: Azure API"
       },
       {
-        "command": "vscode-azure.displayCmdHelpParser",
+        "command": "vscode-cloud.displayCmdHelpParser",
         "title": "SC Azure: Command Help Browser"
       }
     ]

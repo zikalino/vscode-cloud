@@ -20,75 +20,75 @@ export function activate (context: vscode.ExtensionContext) {
 
   mediaFolder = vscode.Uri.joinPath(extensionUri, 'media');
 
-  // let disposable = vscode.commands.registerCommand('vscode-azure.displayInstallerWelcome', () => {
-  //  displayInstallerWelcome();
-  //});
+  let disposable = vscode.commands.registerCommand('vscode-cloud.displayInstallerWelcome', () => {
+    displayInstallerWelcome();
+  });
 
-  let disposable = vscode.commands.registerCommand(
-    'vscode-azure.displayAzPrerequisitesView',
+  disposable = vscode.commands.registerCommand(
+    'vscode-cloud.displayAzPrerequisitesView',
     () => {
       displayAzPrerequisitesView();
     }
   );
 
   disposable = vscode.commands.registerCommand(
-    'vscode-azure.displayDoCtlPrerequisitesView',
+    'vscode-cloud.displayDoCtlPrerequisitesView',
     () => {
       displayDoCtlPrerequisitesView();
     }
   );
 
   disposable = vscode.commands.registerCommand(
-    'vscode-azure.displayOciPrerequisitesView',
+    'vscode-cloud.displayOciPrerequisitesView',
     () => {
       displayOciPrerequisitesView();
     }
   );
 
   disposable = vscode.commands.registerCommand(
-    'vscode-azure.displayUpCtlPrerequisitesView',
+    'vscode-cloud.displayUpCtlPrerequisitesView',
     () => {
       displayUpCtlPrerequisitesView();
     }
   );
 
   disposable = vscode.commands.registerCommand(
-    'vscode-azure.displayAzureMenu',
+    'vscode-cloud.displayAzureMenu',
     () => {
       displayAzureMenu();
     }
   );
 
   disposable = vscode.commands.registerCommand(
-    'vscode-azure.displayOciMenu',
+    'vscode-cloud.displayOciMenu',
     () => {
       displayOciMenu();
     }
   );
 
   disposable = vscode.commands.registerCommand(
-    'vscode-azure.displayDoCtlMenu',
+    'vscode-cloud.displayDoCtlMenu',
     () => {
       displayDoCtlMenu();
     }
   );
 
   disposable = vscode.commands.registerCommand(
-    'vscode-azure.displayUpCtlMenu',
+    'vscode-cloud.displayUpCtlMenu',
     () => {
       displayUpCtlMenu();
     }
   );
 
   disposable = vscode.commands.registerCommand(
-    'vscode-azure.displayAzureApiBrowser',
+    'vscode-cloud.displayAzureApiBrowser',
     () => {
       parseApi();
     }
   );
 
   disposable = vscode.commands.registerCommand(
-    'vscode-azure.displayCmdHelpParser',
+    'vscode-cloud.displayCmdHelpParser',
     () => {
       parseCommands();
     }
