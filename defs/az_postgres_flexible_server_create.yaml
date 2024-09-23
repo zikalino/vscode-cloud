@@ -2,41 +2,48 @@ type: layout-form
 id: root
 header:
   - type: header
-    title: PostgreSQL
+    title: Azure - Create PostgreSQL Server
     logo: icon.webp
 form:
   - $include: __resource_group_select_or_create.yaml
 
   - type: fieldset
-    id: fieldset-container-instance-creation
     subitems:
+      - $include: __region_selector.yaml
+        prefix: postgresql_server_
       - type: row
-        id: container-instance-name-row
         subitems:
           - type: textfield
             id: container-instance-name-field
-            name: Container Name
+            name: Server Name
             produces:
-              - variable: container_name
+              - variable: postgresql_server_name
+                regex: ^[a-z0-9][-a-z0-9]*(?<!-)$
       - type: row
-        id: container-instance-image-row
         subitems:
           - type: textfield
-            id: container-instance-image-field
-            name: Container Name
+            name: User Name
             produces:
-              - variable: image
+              - variable: postgresql_server_username
+      - type: row
+        subitems:
+          - type: textfield
+            name: Password
+            produces:
+              - variable: postgresql_server_password
+      - $include: __postgresql_vm_size_selector.yaml
       - type: 'action-row'
-        id: create-container-instance
-        name: Create Container Instance
+        name: Create PostgreSQL Server
         consumes:
           - variable: resource_group_name
-          - variable: container_name
-          - variable: image
+          - variable: postgresql_server_name
+          - variable: postgresql_server_username
+          - variable: postgresql_server_password
+          - variable: postgresql_server_sku
         verify: |
-            az container show --resource-group ${resource_group_name} --name ${container_name}
-        install: az container create --resource-group ${resource_group_name} --name ${container_name} --image ${image}
-        uninstall: az container delete --resource-group ${resource_group_name} --name ${container_name}
+            az postgres flexible-server show --resource-group ${resource_group_name} --name ${postgresql_server_name}
+        install: az postgres flexible-server create --resource-group ${resource_group_name} --name ${postgresql_server_name} --admin-user ${postgresql_server_username} --admin-password ${postgresql_server_password} --sku-name ${postgresql_server_sku}  --tier Burstable
+        uninstall: az postgres flexible-server delete --resource-group ${resource_group_name} --name ${postgresql_server_name}
 
 footer:
   - type: footer
