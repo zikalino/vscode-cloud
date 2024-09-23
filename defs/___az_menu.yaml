@@ -43,7 +43,7 @@
     - name: Create App Configuration
       location: az_appconfig_create.yaml
     - name: Create App Service
-      location: az_appservice_create.yaml
+      location: az_appservice_plan_create.yaml
     - name: Create Function
       location: az_functionapp_create.yaml
     - name: Create Logic App

@@ -37,20 +37,20 @@ form:
           - type: textfield
             name: Name
             produces:
-              - variable: function_app_name
+              - variable: webapp_name
 
 
       - type: 'action-row'
         name: Create Web Application
         consumes:
           - variable: resource_group_name
-          - variable: function_app_name
+          - variable: webapp_name
           - variable: appservice_plan_name
           - variable: runtime
         verify: |
-            az webapp show --resource-group ${resource_group_name} --name ${function_app_name}
-        install: az webapp create --resource-group ${resource_group_name} --name ${function_app_name} --plan ${appservice_plan_name} --runtime ${runtime}
-        uninstall: az webapp delete --resource-group ${resource_group_name} --name ${function_app_name} --yes
+            az webapp show --resource-group ${resource_group_name} --name ${webapp_name}
+        install: az webapp create --resource-group ${resource_group_name} --name ${webapp_name} --plan ${appservice_plan_name} --runtime ${runtime}
+        uninstall: az webapp delete --resource-group ${resource_group_name} --name ${webapp_name} --yes
 
 footer:
   - type: footer
