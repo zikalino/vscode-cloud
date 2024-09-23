@@ -1,7 +1,7 @@
 type: layout-welcome
 header:
   - type: header
-    title: Azure Prerequisites Extension
+    title: Welcome to SmarterCode Cloud Extension!
     logo: icon.webp
 footer:
   - type: checkbox
@@ -15,24 +15,28 @@ left-column:
     content: Get Started
   - type: tile
     width: narrow
-    title: Install SDK and Toolchains
-    content: Before you can start using this extension, ESP-IDF and toolchains need to be installed. Press <b>Default</b> to install latest version of ESP-IDF in default folder. Alternatively press <b>Advanced</b> to customize your setup.
+    title: Install Azure Tools
+    content: Install Azure CLI and other Azure tools.
     buttons:
-      - Default|codicon-gear|xxx-action
-      - Advanced|codicon-settings|xxx-action
+      - Install|codicon-gear|xxx-action
   - type: tile
     width: narrow
-    title: Create a New Project
-    content: Once SDK and Tools are installed, you can create a new project. You can either start with Hello World project or use Example Browser to choose one of the examples.
+    title: Install OCI Tools
+    content: Install <b>oci</b> CLI and other OCI tools.
     buttons:
-      - Hello World!|codicon-gear|xxx-action
-      - Browse Examples|codicon-list-selection|xxx-action
+      - Install|codicon-gear|xxx-action
   - type: tile
     width: narrow
-    title: Connect Your Board
-    content: Press <b>Connect</b> button below to discover your board.
+    title: Install UpCloud Tools
+    content: Install <b>upctl</b> and other UpCloud tools.
     buttons:
-      - Connect|codicon-plug|xxx-action
+      - Install|codicon-gear|xxx-action
+  - type: tile
+    width: narrow
+    title: Install DigitalOcean Tools
+    content: Install <b>doctl</b> and other DigitalOcean tools.
+    buttons:
+      - Install|codicon-gear|xxx-action
 right-column:
   - type: text-block
     font: header-2

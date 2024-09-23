@@ -16,7 +16,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscode-cloud.displayInstallerWelcome",
+        "command": "vscode-cloud.displaySmarterCloudWelcome",
         "title": "Cloud: Welcome"
       },
       {

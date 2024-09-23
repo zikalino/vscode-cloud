@@ -22,8 +22,6 @@
       location: az_mysql_flexible_server_create.yaml
     - name: Create PostgreSQL
       location: az_postgres_flexible_server_create.yaml
-    - name: Create MariaDB
-      location: az_mariadb_server_create.yaml
     - name: Create SQL Database
       location: az_sql_server_create.yaml
     - name: Create Cosmos DB

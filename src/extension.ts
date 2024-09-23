@@ -20,8 +20,8 @@ export function activate (context: vscode.ExtensionContext) {
 
   mediaFolder = vscode.Uri.joinPath(extensionUri, 'media');
 
-  let disposable = vscode.commands.registerCommand('vscode-cloud.displayInstallerWelcome', () => {
-    displayInstallerWelcome();
+  let disposable = vscode.commands.registerCommand('vscode-cloud.displaySmarterCloudWelcome', () => {
+    displaySmarterCloudWelcome();
   });
 
   disposable = vscode.commands.registerCommand(
@@ -104,7 +104,7 @@ export function deactivate () {}
 
 var layoutWelcome: any = require('./layout-welcome.yaml');
 
-async function displayInstallerWelcome() {
+async function displaySmarterCloudWelcome() {
   try {
     let view = new helpers.GenericWebView(extensionContext, "Welcome!");
     view.createPanel(layoutWelcome);
