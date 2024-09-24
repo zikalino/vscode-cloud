@@ -4,6 +4,7 @@ import { marked } from 'marked';
 import * as helpers from '@zim.kalinowski/vscode-helper-toolkit';
 
 import { parseCmdGroup } from './help-parser';
+import { queryResources } from './query-resources';
 
 //import SwaggerParser from "@apidevtools/swagger-parser";
 var extensionUri: vscode.Uri;
@@ -365,13 +366,11 @@ function applyPrefix(data: any, prefix: string) {
   }
 }
 
-import { dataExamples } from "./data-examples";
-
 async function browseExamples() {
 
   let populateMsg = {
     command: 'populate',
-    data: dataExamples
+    data: await queryResources()
   };
 
   let setActionsMsg = {
@@ -539,6 +538,8 @@ Just something should go here....
 
   let view = new helpers.GenericWebView(extensionContext, "Examples");
 
+  // XXX - don't use dataExamples, query clouds instead
+
   view.MsgHandler = function (msg: any) {
     switch (msg.command) {
       case 'ready':
@@ -561,8 +562,6 @@ Just something should go here....
       default:
         console.log('XXX');
     }
-
-
   };
 
   view.createPanel(formDefinition);
