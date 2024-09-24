@@ -7,8 +7,6 @@ export async function queryResources(): Promise<any> {
   var response: any = [];
   var resourceGroups = azQueryResourceGroups();
 
-  var resources = azQueryResources();
-
   // first get all the resource groups
 
   for (var i = 0; i < resourceGroups.length; i++) {
@@ -17,6 +15,21 @@ export async function queryResources(): Promise<any> {
       "id": "get_started",
       "subitems": []
       });
+  }
+
+  // query all the resources and append them to appropriate resource groups
+  var resources = azQueryResources();
+
+  for (var i = 0; i < resources.length; i++) {
+    // find resource group to stick it into
+    for (var j = 0; j < response.length; j++) {
+      if (response[j]['name'] === resources[i]['resourceGroup']) {
+        response[j]['subitems'].push({
+          "name": resources[i]['name'],
+          "id": resources[i]['name']
+          });
+      }
+    }
   }
 
   return response;
