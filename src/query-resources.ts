@@ -13,7 +13,8 @@ export async function queryResources(): Promise<any> {
     response.push({
       "name": resourceGroups[i]['name'],
       "id": "get_started",
-      "subitems": []
+      "subitems": [],
+      "raw": resourceGroups[i]
       });
   }
 
@@ -26,7 +27,8 @@ export async function queryResources(): Promise<any> {
       if (response[j]['name'] === resources[i]['resourceGroup']) {
         response[j]['subitems'].push({
           "name": resources[i]['name'],
-          "id": resources[i]['name']
+          "id": resources[i]['name'],
+          "raw": resources[i]
           });
       }
     }
@@ -62,4 +64,3 @@ function azQueryResourceGroups() {
 
   return JSON.parse(r);
 }
-
