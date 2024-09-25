@@ -109,7 +109,7 @@ var layoutWelcome: any = require('./layout-welcome.yaml');
 async function displaySmarterCloudWelcome() {
   try {
     let view = new helpers.GenericWebView(extensionContext, "Welcome!");
-    view.createPanel(layoutWelcome);
+    view.createPanel(layoutWelcome, "media/icon.webp");
   } catch (e) {
     console.log(e);
   }
@@ -138,7 +138,7 @@ async function displayUpCtlPrerequisitesView() {
 
 async function displayPrerequisitesView(layout: string) {
   let view = new helpers.GenericWebView(extensionContext, "Installer");
-  view.createPanel(layoutSetupAz);
+  view.createPanel(layoutSetupAz, "media/icon.webp");
 
   view.MsgHandler = function (msg: any) {
     if (msg.command === 'ready') {
@@ -243,7 +243,7 @@ async function displayMenu(submenu: any) {
 
 async function loadYamlView(yml: string) {
   let view = new helpers.GenericWebView(extensionContext, "New Resource"); 
-  view.createPanel(yml);
+  view.createPanel(yml, "media/icon.webp");
 
   view.MsgHandler = function (msg: any) {
     if (msg.command === 'ready') {
@@ -425,7 +425,7 @@ async function browseExamples() {
     id: 'layout'
     };
 
-  let view = new helpers.GenericWebView(extensionContext, "Examples");
+  let view = new helpers.GenericWebView(extensionContext, "Cloud Resources");
 
   // XXX - don't use dataExamples, query clouds instead
 
@@ -453,7 +453,7 @@ async function browseExamples() {
     }
   };
 
-  view.createPanel(formDefinition);
+  view.createPanel(formDefinition, "media/icon.webp");
 }
 
 function createDetailsView(view: any, id: string) {
