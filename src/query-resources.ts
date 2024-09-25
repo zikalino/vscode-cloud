@@ -28,7 +28,8 @@ export async function queryResources(): Promise<any> {
         response[j]['subitems'].push({
           "name": resources[i]['name'],
           "id": resources[i]['name'],
-          "raw": resources[i]
+          "raw": resources[i],
+          "subitems": [{ name: "abc" + i, id: "cde" + i}, { name: "xyz" + i, id: "xyz" + i}]
           });
       }
     }
