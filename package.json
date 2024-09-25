@@ -52,8 +52,8 @@
         "title": "SC Azure: Azure API"
       },
       {
-        "command": "vscode-cloud.displayBrowseCloudResources",
-        "title": "SmarterCloud: Browse Cloud Resources"
+        "command": "vscode-cloud.displayCloudExplorer",
+        "title": "SmarterCode: Cloud Explorer"
       }
     ]
   },

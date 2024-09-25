@@ -85,10 +85,10 @@ export function activate (context: vscode.ExtensionContext) {
   );
 
   disposable = vscode.commands.registerCommand(
-    'vscode-cloud.displayBrowseCloudResources',
+    'vscode-cloud.displayCloudExplorer',
     () => {
       //parseCommands();
-      browseCloudResources();
+      displayCloudExplorer();
     }
   );
 
@@ -170,6 +170,10 @@ async function displayPrerequisitesView(layout: string) {
           view.enableElement('create-button');
         }
         view.runStepsVerification();
+      }
+    } else if (msg.command === 'action-clicked') {
+      if (msg.id === 'action-refresh') {
+        
       }
     }
   };
@@ -350,51 +354,40 @@ function applyPrefix(data: any, prefix: string) {
   }
 }
 
-var resources: any[] = [];
+var resources: any[] = []; 
 
-let setActionsMsg = {
-  command: 'actions',
-  data: [
+async function displayCloudExplorer() {
+
+  resources = [
     {
-      codicon: 'codicon-add',
-      description: 'Create Project',
-      action: 'action-oprn'
+      "name": "Azure",
+      "id": "cloud-azure",
+      "subitems": await queryResources(),
+      "raw": {}
     },
     {
-      codicon: 'codicon-refresh',
-      description: 'Open on Github',
-      action: 'action-github'
+      "name": "Digital Ocean",
+      "id": "cloud-digital-ocean",
+      "subitems": [],
+      "raw": {}
+    },
+    {
+      "name": "Oracle Cloud Infrastructure",
+      "id": "cloud-oci",
+      "subitems": [],
+      "raw": {}
+    },
+    {
+      "name": "UpCloud",
+      "id": "cloud-upcloud",
+      "subitems": [],
+      "raw": {}
     }
-  ]
-};
+  ];
 
-async function browseCloudResources() {
-
-  resources = await queryResources();
   let populateMsg = {
     command: 'populate',
-    data: [
-      {
-        "name": "Azure",
-        "id": "cloud-azure",
-        "subitems": resources
-      },
-      {
-        "name": "Digital Ocean",
-        "id": "cloud-digital-ocean",
-        "subitems": []
-      },
-      {
-        "name": "Oracle Cloud Infrastructure",
-        "id": "cloud-oci",
-        "subitems": []
-      },
-      {
-        "name": "UpCloud",
-        "id": "cloud-upcloud",
-        "subitems": []
-      }
-    ]
+    data: resources
   };
 
   let rootMarkup = `
@@ -435,17 +428,7 @@ async function browseCloudResources() {
         view.postMessage(detailsMsgRoot);
         return;
       case 'selected':
-        // XXX - here we can load html content of the example
-        if (msg.type === 'none') {
-          view.postMessage(detailsMsgRoot);
-        }
-
-        if (msg.type === 'node') {
-          view.postMessage(createDetailsView(view, msg.id));
-        }
-        if (msg.type === 'leaf') {
-          view.postMessage(createDetailsView(view, msg.id));
-        }
+        view.postMessage(createDetailsView(view, msg.id));
         return;
       default:
         console.log('XXX');
@@ -484,6 +467,31 @@ function createDetailsView(view: any, id: string) {
     };
   
     view.postMessage(detailsMsgRoot);
+
+    let setActionsMsg: any = {
+      command: 'actions',
+      data: [
+      ]
+    };
+
+    if (resource['id'].startsWith('cloud-') || resource['raw']['type'] === 'Microsoft.Resources/resourceGroups' ) {
+      setActionsMsg['data'].push(
+      {
+        codicon: 'codicon-add',
+        description: 'Create Resource',
+        action: 'action-oprn'
+      });
+
+      if (resource['id'].startsWith('cloud-') || resource['raw']['type'] === 'Microsoft.Resources/resourceGroups' ) {
+        setActionsMsg['data'].push(
+        {
+          codicon: 'codicon-refresh',
+          description: 'Refresh',
+          action: 'action-github'
+        });
+      }
+    }
+
     view.postMessage(setActionsMsg);
   }
 }
