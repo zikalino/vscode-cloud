@@ -177,7 +177,6 @@ async function displayPrerequisitesView(layout: string) {
       }
     }
   };
-
 }
 
 async function parseCommands() {
@@ -358,32 +357,7 @@ var resources: any[] = [];
 
 async function displayCloudExplorer() {
 
-  resources = [
-    {
-      "name": "Azure",
-      "id": "cloud-azure",
-      "subitems": await queryResources(),
-      "raw": {}
-    },
-    {
-      "name": "Digital Ocean",
-      "id": "cloud-digital-ocean",
-      "subitems": [],
-      "raw": {}
-    },
-    {
-      "name": "Oracle Cloud Infrastructure",
-      "id": "cloud-oci",
-      "subitems": [],
-      "raw": {}
-    },
-    {
-      "name": "UpCloud",
-      "id": "cloud-upcloud",
-      "subitems": [],
-      "raw": {}
-    }
-  ];
+  await queryAllResources();
 
   let populateMsg = {
     command: 'populate',
@@ -430,7 +404,19 @@ async function displayCloudExplorer() {
       case 'selected':
         view.postMessage(createDetailsView(view, msg.id));
         return;
-      default:
+      case 'action-clicked':
+        if (msg.id === 'action-refresh') {
+          populateMsg.data = [];
+          view.postMessage(populateMsg);
+          queryResources().then(() => {
+            populateMsg.data = resources;
+            view.postMessage(populateMsg);
+          });
+        } else if (msg.id === 'action-add') {
+          // QQQQ - display
+        }
+        return;
+     default:
         console.log('XXX');
     }
   };
@@ -479,7 +465,7 @@ function createDetailsView(view: any, id: string) {
       {
         codicon: 'codicon-add',
         description: 'Create Resource',
-        action: 'action-oprn'
+        action: 'action-add'
       });
 
       if (resource['id'].startsWith('cloud-') || resource['raw']['type'] === 'Microsoft.Resources/resourceGroups' ) {
@@ -487,7 +473,7 @@ function createDetailsView(view: any, id: string) {
         {
           codicon: 'codicon-refresh',
           description: 'Refresh',
-          action: 'action-github'
+          action: 'action-refresh'
         });
       }
     }
@@ -511,4 +497,33 @@ function findResource(id: string, resources: any[]) {
   }
 
   return null;
+}
+
+async function queryAllResources() {
+  resources = [
+    {
+      "name": "Azure",
+      "id": "cloud-azure",
+      "subitems": await queryResources(),
+      "raw": {}
+    },
+    {
+      "name": "Digital Ocean",
+      "id": "cloud-digital-ocean",
+      "subitems": [],
+      "raw": {}
+    },
+    {
+      "name": "Oracle Cloud Infrastructure",
+      "id": "cloud-oci",
+      "subitems": [],
+      "raw": {}
+    },
+    {
+      "name": "UpCloud",
+      "id": "cloud-upcloud",
+      "subitems": [],
+      "raw": {}
+    }
+  ];
 }
