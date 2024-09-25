@@ -414,6 +414,7 @@ async function displayCloudExplorer() {
           });
         } else if (msg.id === 'action-add') {
           // QQQQ - display
+          displayAzureMenu();
         }
         return;
      default:
