@@ -88,7 +88,7 @@ export function activate (context: vscode.ExtensionContext) {
     'vscode-cloud.displayBrowseCloudResources',
     () => {
       //parseCommands();
-      browseExamples();
+      browseCloudResources();
     }
   );
 
@@ -352,35 +352,50 @@ function applyPrefix(data: any, prefix: string) {
 
 var resources: any[] = [];
 
-async function browseExamples() {
+let setActionsMsg = {
+  command: 'actions',
+  data: [
+    {
+      codicon: 'codicon-add',
+      description: 'Create Project',
+      action: 'action-oprn'
+    },
+    {
+      codicon: 'codicon-refresh',
+      description: 'Open on Github',
+      action: 'action-github'
+    }
+  ]
+};
+
+async function browseCloudResources() {
 
   resources = await queryResources();
   let populateMsg = {
     command: 'populate',
-    data: resources
-  };
-
-  let setActionsMsg = {
-    command: 'actions',
     data: [
       {
-        codicon: 'codicon-folder-opened',
-        description: 'Create Project',
-        action: 'action-oprn'
+        "name": "Azure",
+        "id": "cloud-azure",
+        "subitems": resources
       },
       {
-        codicon: 'codicon-github',
-        description: 'Open on Github',
-        action: 'action-github'
+        "name": "Digital Ocean",
+        "id": "cloud-digital-ocean",
+        "subitems": []
       },
       {
-        codicon: 'codicon-comment-discussion',
-        description: 'Discuss',
-        action: 'action-discussion'
+        "name": "Oracle Cloud Infrastructure",
+        "id": "cloud-oci",
+        "subitems": []
+      },
+      {
+        "name": "UpCloud",
+        "id": "cloud-upcloud",
+        "subitems": []
       }
     ]
   };
-
 
   let rootMarkup = `
     `;
@@ -469,7 +484,7 @@ function createDetailsView(view: any, id: string) {
     };
   
     view.postMessage(detailsMsgRoot);
-    // view.postMessage(setActionsMsg);
+    view.postMessage(setActionsMsg);
   }
 }
 
