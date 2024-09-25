@@ -21,11 +21,7 @@ export function activate (context: vscode.ExtensionContext) {
 
   mediaFolder = vscode.Uri.joinPath(extensionUri, 'media');
 
-  let disposable = vscode.commands.registerCommand('vscode-cloud.displaySmarterCloudWelcome', () => {
-    displaySmarterCloudWelcome();
-  });
-
-  disposable = vscode.commands.registerCommand(
+  let disposable = vscode.commands.registerCommand(
     'vscode-cloud.displayAzPrerequisitesView',
     () => {
       displayAzPrerequisitesView();
@@ -89,7 +85,7 @@ export function activate (context: vscode.ExtensionContext) {
   );
 
   disposable = vscode.commands.registerCommand(
-    'vscode-cloud.displayCmdHelpParser',
+    'vscode-cloud.displayBrowseCloudResources',
     () => {
       //parseCommands();
       browseExamples();
@@ -102,18 +98,6 @@ export function activate (context: vscode.ExtensionContext) {
 
 // This method is called when your extension is deactivated
 export function deactivate () {}
-
-
-var layoutWelcome: any = require('./layout-welcome.yaml');
-
-async function displaySmarterCloudWelcome() {
-  try {
-    let view = new helpers.GenericWebView(extensionContext, "Welcome!");
-    view.createPanel(layoutWelcome, "media/icon.webp");
-  } catch (e) {
-    console.log(e);
-  }
-}
 
 var layoutSetupAz: any = require('./az__prerequisites.yaml');
 var layoutSetupDoCtl: any = require('./doctl__prerequisites.yaml');

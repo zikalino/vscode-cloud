@@ -16,10 +16,6 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscode-cloud.displaySmarterCloudWelcome",
-        "title": "Cloud: Welcome"
-      },
-      {
         "command": "vscode-cloud.displayAzPrerequisitesView",
         "title": "Azure: Prerequisites"
       },
@@ -56,8 +52,8 @@
         "title": "SC Azure: Azure API"
       },
       {
-        "command": "vscode-cloud.displayCmdHelpParser",
-        "title": "SC Azure: Command Help Browser"
+        "command": "vscode-cloud.displayBrowseCloudResources",
+        "title": "SmarterCloud: Browse Cloud Resources"
       }
     ]
   },

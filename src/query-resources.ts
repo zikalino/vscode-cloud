@@ -12,7 +12,7 @@ export async function queryResources(): Promise<any> {
   for (var i = 0; i < resourceGroups.length; i++) {
     response.push({
       "name": resourceGroups[i]['name'],
-      "id": "get_started",
+      "id": resourceGroups[i]['name'],
       "subitems": [],
       "raw": resourceGroups[i]
       });
@@ -29,7 +29,9 @@ export async function queryResources(): Promise<any> {
           "name": resources[i]['name'],
           "id": resources[i]['name'],
           "raw": resources[i],
-          "subitems": [{ name: "abc" + i, id: "cde" + i}, { name: "xyz" + i, id: "xyz" + i}]
+          "subitems": [{ name: "abc" + i, id: "cde" + i}, { name: "xyz" + i, id: "xyz" + i,
+            subitems: [ {name: "qqq" + i, id: "rrr" + i} ]}
+          ]
           });
       }
     }
