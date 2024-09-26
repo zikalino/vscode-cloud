@@ -353,6 +353,7 @@ function applyPrefix(data: any, prefix: string) {
   }
 }
 
+var currentCloudId = "";
 var resources: any[] = []; 
 
 async function displayCloudExplorer() {
@@ -413,8 +414,15 @@ async function displayCloudExplorer() {
             view.postMessage(populateMsg);
           });
         } else if (msg.id === 'action-add') {
-          // QQQQ - display
-          displayAzureMenu();
+          if (currentCloudId === "cloud-azure") {
+            displayAzureMenu();
+          } else if (currentCloudId === "cloud-upcloud") {
+            displayUpCtlMenu();
+          } else if (currentCloudId === "cloud-digital-ocean") {
+            displayDoCtlMenu();
+          } else if (currentCloudId === "cloud-oci") {
+            displayOciMenu();
+          }
         }
         return;
      default:
@@ -426,7 +434,7 @@ async function displayCloudExplorer() {
 }
 
 function createDetailsView(view: any, id: string) {
-  var resource = findResource(id, resources);
+  var resource = setContext(id, resources);
 
   if (resource) {
 
@@ -483,15 +491,21 @@ function createDetailsView(view: any, id: string) {
   }
 }
 
-function findResource(id: string, resources: any[]) {
+function setContext(id: string, resources: any[]) {
   for (var i = 0; i < resources.length; i++) {
     if (resources[i]['id'] === id) {
+      if (id.startsWith("cloud-")) {
+        currentCloudId = id;
+      }
       return resources[i];
     }
 
     if (resources[i]['subitems']) {
-      var found: any =  findResource(id, resources[i]['subitems']);
+      var found: any =  setContext(id, resources[i]['subitems']);
       if (found) {
+        if (resources[i]['id'].startsWith('cloud-')) {
+          currentCloudId = resources[i]['id'];
+        }
         return found;
       }
     }
