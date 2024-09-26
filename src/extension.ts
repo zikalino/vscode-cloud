@@ -1,10 +1,9 @@
 import * as vscode from 'vscode';
 import YAML from 'yaml';
-import { marked } from 'marked';
 import * as helpers from '@zim.kalinowski/vscode-helper-toolkit';
 
 import { parseCmdGroup } from './help-parser';
-import { queryResources } from './query-resources';
+import { displayCloudExplorer } from './cloud-explorer';
 
 //import SwaggerParser from "@apidevtools/swagger-parser";
 var extensionUri: vscode.Uri;
@@ -88,7 +87,7 @@ export function activate (context: vscode.ExtensionContext) {
     'vscode-cloud.displayCloudExplorer',
     () => {
       //parseCommands();
-      displayCloudExplorer();
+      displayCloudExplorer(extensionContext);
     }
   );
 
@@ -184,22 +183,22 @@ async function parseCommands() {
   loadYamlView(loadYaml(response));
 }
 
-async function displayAzureMenu() {
+export async function displayAzureMenu() {
   let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___az_menu.yaml");
   displayMenu(menu);
 }
 
-async function displayOciMenu() {
+export async function displayOciMenu() {
   let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___oci_menu.yaml");
   displayMenu(menu);
 }
 
-async function displayUpCtlMenu() {
+export async function displayUpCtlMenu() {
   let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___upctl_menu.yaml");
   displayMenu(menu);
 }
 
-async function displayDoCtlMenu() {
+export async function displayDoCtlMenu() {
   let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___doctl_menu.yaml");
   displayMenu(menu);
 }
@@ -225,7 +224,6 @@ async function displayMenu(submenu: any) {
       }
     }
   }
-
 }
 
 async function loadYamlView(yml: string) {
@@ -353,192 +351,3 @@ function applyPrefix(data: any, prefix: string) {
   }
 }
 
-var currentCloudId = "";
-var resources: any[] = []; 
-
-async function displayCloudExplorer() {
-
-  await queryAllResources();
-
-  let populateMsg = {
-    command: 'populate',
-    data: resources
-  };
-
-  let rootMarkup = `
-    `;
-
-  let nodeMarkup = `
-`;
-
-  let detailsMsgRoot = {
-    command: 'details',
-    data:
-      "<div style='padding-left: 24px; padding-right: 24px; padding-top: 4px; width=100%; text-wrap: wrap;'>" +
-      marked.parse(rootMarkup) +
-      '</div>'
-  };
-
-  let detailsMsgNode = {
-    command: 'details',
-    data:
-      "<div style='padding-left: 24px; padding-right: 24px; padding-top: 4px; width=100%;' text-wrap: wrap;>" +
-      marked.parse(nodeMarkup) +
-      '</div>'
-  };
-
-  let formDefinition = {
-    type: 'layout-tree-with-details',
-    id: 'layout'
-    };
-
-  let view = new helpers.GenericWebView(extensionContext, "Cloud Resources");
-
-  // XXX - don't use dataExamples, query clouds instead
-
-  view.MsgHandler = function (msg: any) {
-    switch (msg.command) {
-      case 'ready':
-        view.postMessage(populateMsg);
-        view.postMessage(detailsMsgRoot);
-        return;
-      case 'selected':
-        view.postMessage(createDetailsView(view, msg.id));
-        return;
-      case 'action-clicked':
-        if (msg.id === 'action-refresh') {
-          populateMsg.data = [];
-          view.postMessage(populateMsg);
-          queryResources().then(() => {
-            populateMsg.data = resources;
-            view.postMessage(populateMsg);
-          });
-        } else if (msg.id === 'action-add') {
-          if (currentCloudId === "cloud-azure") {
-            displayAzureMenu();
-          } else if (currentCloudId === "cloud-upcloud") {
-            displayUpCtlMenu();
-          } else if (currentCloudId === "cloud-digital-ocean") {
-            displayDoCtlMenu();
-          } else if (currentCloudId === "cloud-oci") {
-            displayOciMenu();
-          }
-        }
-        return;
-     default:
-        console.log('XXX');
-    }
-  };
-
-  view.createPanel(formDefinition, "media/icon.webp");
-}
-
-function createDetailsView(view: any, id: string) {
-  var resource = setContext(id, resources);
-
-  if (resource) {
-
-    var raw = JSON.stringify(resource['raw'], null, 2).split(/\r?\n/);
-
-    for (var i = 0; i < raw.length; i++) {
-      raw[i] = "    " + raw[i];
-    }
-
-    var markup =
-      "# Main\r\n" +
-      "\r\n" +
-      "# Second\r\n" +
-      "\r\n" +
-      "# Raw\r\n" +
-      "\r\n" +
-      raw.join("\r\n");
-
-    let detailsMsgRoot = {
-      command: 'details',
-      data:
-        "<div style='padding-left: 24px; padding-right: 24px; padding-top: 4px; width=100%; text-wrap: wrap;'>" +
-        marked.parse(markup) +
-        '</div>'
-    };
-  
-    view.postMessage(detailsMsgRoot);
-
-    let setActionsMsg: any = {
-      command: 'actions',
-      data: [
-      ]
-    };
-
-    if (resource['id'].startsWith('cloud-') || resource['raw']['type'] === 'Microsoft.Resources/resourceGroups' ) {
-      setActionsMsg['data'].push(
-      {
-        codicon: 'codicon-add',
-        description: 'Create Resource',
-        action: 'action-add'
-      });
-
-      if (resource['id'].startsWith('cloud-') || resource['raw']['type'] === 'Microsoft.Resources/resourceGroups' ) {
-        setActionsMsg['data'].push(
-        {
-          codicon: 'codicon-refresh',
-          description: 'Refresh',
-          action: 'action-refresh'
-        });
-      }
-    }
-
-    view.postMessage(setActionsMsg);
-  }
-}
-
-function setContext(id: string, resources: any[]) {
-  for (var i = 0; i < resources.length; i++) {
-    if (resources[i]['id'] === id) {
-      if (id.startsWith("cloud-")) {
-        currentCloudId = id;
-      }
-      return resources[i];
-    }
-
-    if (resources[i]['subitems']) {
-      var found: any =  setContext(id, resources[i]['subitems']);
-      if (found) {
-        if (resources[i]['id'].startsWith('cloud-')) {
-          currentCloudId = resources[i]['id'];
-        }
-        return found;
-      }
-    }
-  }
-
-  return null;
-}
-
-async function queryAllResources() {
-  resources = [
-    {
-      "name": "Azure",
-      "id": "cloud-azure",
-      "subitems": await queryResources(),
-      "raw": {}
-    },
-    {
-      "name": "Digital Ocean",
-      "id": "cloud-digital-ocean",
-      "subitems": [],
-      "raw": {}
-    },
-    {
-      "name": "Oracle Cloud Infrastructure",
-      "id": "cloud-oci",
-      "subitems": [],
-      "raw": {}
-    },
-    {
-      "name": "UpCloud",
-      "id": "cloud-upcloud",
-      "subitems": [],
-      "raw": {}
-    }
-  ];
-}

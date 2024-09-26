@@ -1,0 +1,264 @@
+import * as vscode from 'vscode';
+import * as helpers from '@zim.kalinowski/vscode-helper-toolkit';
+
+// XXX - get rid of this
+import { marked } from 'marked';
+import { displayAzureMenu, displayDoCtlMenu, displayOciMenu, displayUpCtlMenu } from './extension';
+
+var currentCloudId = "";
+var resources: any[] = []; 
+
+export async function displayCloudExplorer(extensionContext : vscode.ExtensionContext) {
+
+  await queryAllResources();
+
+  let populateMsg = {
+    command: 'populate',
+    data: resources
+  };
+
+  let rootMarkup = `
+    `;
+
+  let nodeMarkup = `
+`;
+
+  let detailsMsgRoot = {
+    command: 'details',
+    data:
+      "<div style='padding-left: 24px; padding-right: 24px; padding-top: 4px; width=100%; text-wrap: wrap;'>" +
+      marked.parse(rootMarkup) +
+      '</div>'
+  };
+
+  let detailsMsgNode = {
+    command: 'details',
+    data:
+      "<div style='padding-left: 24px; padding-right: 24px; padding-top: 4px; width=100%;' text-wrap: wrap;>" +
+      marked.parse(nodeMarkup) +
+      '</div>'
+  };
+
+  let formDefinition = {
+    type: 'layout-tree-with-details',
+    id: 'layout'
+    };
+
+  let view = new helpers.GenericWebView(extensionContext, "Cloud Resources");
+
+  // XXX - don't use dataExamples, query clouds instead
+
+  view.MsgHandler = function (msg: any) {
+    switch (msg.command) {
+      case 'ready':
+        view.postMessage(populateMsg);
+        view.postMessage(detailsMsgRoot);
+        return;
+      case 'selected':
+        view.postMessage(createDetailsView(view, msg.id));
+        return;
+      case 'action-clicked':
+        if (msg.id === 'action-refresh') {
+          populateMsg.data = [];
+          view.postMessage(populateMsg);
+          queryResources().then(() => {
+            populateMsg.data = resources;
+            view.postMessage(populateMsg);
+          });
+        } else if (msg.id === 'action-add') {
+          if (currentCloudId === "cloud-azure") {
+            displayAzureMenu();
+          } else if (currentCloudId === "cloud-upcloud") {
+            displayUpCtlMenu();
+          } else if (currentCloudId === "cloud-digital-ocean") {
+            displayDoCtlMenu();
+          } else if (currentCloudId === "cloud-oci") {
+            displayOciMenu();
+          }
+        }
+        return;
+     default:
+        console.log('XXX');
+    }
+  };
+
+  view.createPanel(formDefinition, "media/icon.webp");
+}
+
+function createDetailsView(view: any, id: string) {
+  var resource = setContext(id, resources);
+
+  if (resource) {
+
+    var raw = JSON.stringify(resource['raw'], null, 2).split(/\r?\n/);
+
+    for (var i = 0; i < raw.length; i++) {
+      raw[i] = "    " + raw[i];
+    }
+
+    var markup =
+      "# Main\r\n" +
+      "\r\n" +
+      "# Second\r\n" +
+      "\r\n" +
+      "# Raw\r\n" +
+      "\r\n" +
+      raw.join("\r\n");
+
+    let detailsMsgRoot = {
+      command: 'details',
+      data:
+        "<div style='padding-left: 24px; padding-right: 24px; padding-top: 4px; width=100%; text-wrap: wrap;'>" +
+        marked.parse(markup) +
+        '</div>'
+    };
+  
+    view.postMessage(detailsMsgRoot);
+
+    let setActionsMsg: any = {
+      command: 'actions',
+      data: [
+      ]
+    };
+
+    if (resource['id'].startsWith('cloud-') || resource['raw']['type'] === 'Microsoft.Resources/resourceGroups' ) {
+      setActionsMsg['data'].push(
+      {
+        codicon: 'codicon-add',
+        description: 'Create Resource',
+        action: 'action-add'
+      });
+
+      if (resource['id'].startsWith('cloud-') || resource['raw']['type'] === 'Microsoft.Resources/resourceGroups' ) {
+        setActionsMsg['data'].push(
+        {
+          codicon: 'codicon-refresh',
+          description: 'Refresh',
+          action: 'action-refresh'
+        });
+      }
+    }
+
+    view.postMessage(setActionsMsg);
+  }
+}
+
+function setContext(id: string, resources: any[]) {
+  for (var i = 0; i < resources.length; i++) {
+    if (resources[i]['id'] === id) {
+      if (id.startsWith("cloud-")) {
+        currentCloudId = id;
+      }
+      return resources[i];
+    }
+
+    if (resources[i]['subitems']) {
+      var found: any =  setContext(id, resources[i]['subitems']);
+      if (found) {
+        if (resources[i]['id'].startsWith('cloud-')) {
+          currentCloudId = resources[i]['id'];
+        }
+        return found;
+      }
+    }
+  }
+
+  return null;
+}
+
+async function queryAllResources() {
+  resources = [
+    {
+      "name": "Azure",
+      "id": "cloud-azure",
+      "subitems": await queryResources(),
+      "raw": {}
+    },
+    {
+      "name": "Digital Ocean",
+      "id": "cloud-digital-ocean",
+      "subitems": [],
+      "raw": {}
+    },
+    {
+      "name": "Oracle Cloud Infrastructure",
+      "id": "cloud-oci",
+      "subitems": [],
+      "raw": {}
+    },
+    {
+      "name": "UpCloud",
+      "id": "cloud-upcloud",
+      "subitems": [],
+      "raw": {}
+    }
+  ];
+}
+
+async function queryResources(): Promise<any> {
+
+  console.log("Query Azure Resources");
+
+  var response: any = [];
+  var resourceGroups = azQueryResourceGroups();
+
+  // first get all the resource groups
+
+  for (var i = 0; i < resourceGroups.length; i++) {
+    response.push({
+      "name": resourceGroups[i]['name'],
+      "id": resourceGroups[i]['name'],
+      "subitems": [],
+      "raw": resourceGroups[i]
+      });
+  }
+
+  // query all the resources and append them to appropriate resource groups
+  var resources = azQueryResources();
+
+  for (var i = 0; i < resources.length; i++) {
+    // find resource group to stick it into
+    for (var j = 0; j < response.length; j++) {
+      if (response[j]['name'] === resources[i]['resourceGroup']) {
+        response[j]['subitems'].push({
+          "name": resources[i]['name'],
+          "id": resources[i]['name'],
+          "raw": resources[i],
+          "subitems": [{ name: "abc" + i, id: "cde" + i}, { name: "xyz" + i, id: "xyz" + i,
+            subitems: [ {name: "qqq" + i, id: "rrr" + i} ]}
+          ]
+          });
+      }
+    }
+  }
+
+  return response;
+}
+
+function azQueryResources() {
+  var r: string = "";
+  var cmd = "az resource list";
+
+  const cp = require('child_process');
+  if (process.platform === "win32") {
+    r = cp.execSync(cmd, { shell: 'powershell' }).toString();
+  } else {
+    r = cp.execSync(cmd, { shell: '/bin/bash' }).toString();
+  }
+
+  return JSON.parse(r);
+}
+
+function azQueryResourceGroups() {
+  var r: string = "";
+  var cmd = "az group list";
+
+  const cp = require('child_process');
+  if (process.platform === "win32") {
+    r = cp.execSync(cmd, { shell: 'powershell' }).toString();
+  } else {
+    r = cp.execSync(cmd, { shell: '/bin/bash' }).toString();
+  }
+
+  return JSON.parse(r);
+}
