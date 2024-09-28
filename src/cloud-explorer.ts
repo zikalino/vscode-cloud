@@ -11,36 +11,14 @@ var resources: any[] = [];
 export function displayCloudExplorer(extensionContext : vscode.ExtensionContext) {
 
   queryAllResources().then(() => {
-    populateMsg.data = resources;
-    view.postMessage(populateMsg);
+    view.updateTreeViewItems(resources);
   });
-
-  let populateMsg = {
-    command: 'populate',
-    data: resources
-  };
 
   let rootMarkup = `
     `;
 
   let nodeMarkup = `
 `;
-
-  let detailsMsgRoot = {
-    command: 'details',
-    data:
-      "<div style='padding-left: 24px; padding-right: 24px; padding-top: 4px; width=100%; text-wrap: wrap;'>" +
-      marked.parse(rootMarkup) +
-      '</div>'
-  };
-
-  let detailsMsgNode = {
-    command: 'details',
-    data:
-      "<div style='padding-left: 24px; padding-right: 24px; padding-top: 4px; width=100%;' text-wrap: wrap;>" +
-      marked.parse(nodeMarkup) +
-      '</div>'
-  };
 
   let formDefinition = {
     type: 'layout-tree-with-details',
@@ -54,26 +32,24 @@ export function displayCloudExplorer(extensionContext : vscode.ExtensionContext)
   view.MsgHandler = function (msg: any) {
     switch (msg.command) {
       case 'ready':
-        view.postMessage(populateMsg);
-        view.postMessage(detailsMsgRoot);
+        //view.postMessage(populateMsg);
+        view.updateTreeViewItems(resources);
+        view.updateTreeViewDetails(layoutSetupAz);
         return;
       case 'selected':
-        view.postMessage(createDetailsView(view, msg.id));
+        view.updateTreeViewDetails(createDetailsView(view, msg.id));
         return;
       case 'action-clicked':
         if (msg.id === 'action-refresh') {
-          populateMsg.data = [];
-          view.postMessage(populateMsg);
+          view.updateTreeViewDetails({});
 
           if (currentCloudId === "cloud-azure") {
             azQueryResources().then(() => {
-              populateMsg.data = resources;
-              view.postMessage(populateMsg);
+              view.updateTreeViewDetails(layoutSetupAz);
             });
           } else if (currentCloudId === "cloud-upcloud") {
             upctlQueryResources().then(() => {
-              populateMsg.data = resources;
-              view.postMessage(populateMsg);
+              view.updateTreeViewDetails(layoutSetupAz);
             });
           } else if (currentCloudId === "cloud-digital-ocean") {
           } else if (currentCloudId === "cloud-oci") {
@@ -113,22 +89,7 @@ function createDetailsView(view: any, id: string) {
       raw[i] = "    " + raw[i];
     }
 
-    var markup =
-      "# Main\r\n" +
-      "\r\n" +
-      "# Second\r\n" +
-      "\r\n" +
-      "# Raw\r\n" +
-      "\r\n" +
-      raw.join("\r\n");
-
-    let detailsMsgRoot = {
-      command: 'details',
-      data: layoutSetupAz
-
-    };
-  
-    view.postMessage(detailsMsgRoot);
+    view.updateTreeViewDetails(layoutSetupAz);
 
     let setActionsMsg: any = {
       command: 'actions',
