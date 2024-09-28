@@ -8,9 +8,12 @@ import { displayAzureMenu, displayDoCtlMenu, displayOciMenu, displayUpCtlMenu } 
 var currentCloudId = "";
 var resources: any[] = []; 
 
-export async function displayCloudExplorer(extensionContext : vscode.ExtensionContext) {
+export function displayCloudExplorer(extensionContext : vscode.ExtensionContext) {
 
-  await queryAllResources();
+  queryAllResources().then(() => {
+    populateMsg.data = resources;
+    view.postMessage(populateMsg);
+  });
 
   let populateMsg = {
     command: 'populate',
@@ -61,10 +64,22 @@ export async function displayCloudExplorer(extensionContext : vscode.ExtensionCo
         if (msg.id === 'action-refresh') {
           populateMsg.data = [];
           view.postMessage(populateMsg);
-          queryResources().then(() => {
-            populateMsg.data = resources;
-            view.postMessage(populateMsg);
-          });
+
+          if (currentCloudId === "cloud-azure") {
+            azQueryResources().then(() => {
+              populateMsg.data = resources;
+              view.postMessage(populateMsg);
+            });
+          } else if (currentCloudId === "cloud-upcloud") {
+            upctlQueryResources().then(() => {
+              populateMsg.data = resources;
+              view.postMessage(populateMsg);
+            });
+          } else if (currentCloudId === "cloud-digital-ocean") {
+          } else if (currentCloudId === "cloud-oci") {
+          }
+
+
         } else if (msg.id === 'action-add') {
           if (currentCloudId === "cloud-azure") {
             displayAzureMenu();
@@ -84,6 +99,8 @@ export async function displayCloudExplorer(extensionContext : vscode.ExtensionCo
 
   view.createPanel(formDefinition, "media/icon.webp");
 }
+
+var layoutSetupAz: any = require('./az__prerequisites.yaml');
 
 function createDetailsView(view: any, id: string) {
   var resource = setContext(id, resources);
@@ -107,10 +124,8 @@ function createDetailsView(view: any, id: string) {
 
     let detailsMsgRoot = {
       command: 'details',
-      data:
-        "<div style='padding-left: 24px; padding-right: 24px; padding-top: 4px; width=100%; text-wrap: wrap;'>" +
-        marked.parse(markup) +
-        '</div>'
+      data: layoutSetupAz
+
     };
   
     view.postMessage(detailsMsgRoot);
@@ -121,7 +136,7 @@ function createDetailsView(view: any, id: string) {
       ]
     };
 
-    if (resource['id'].startsWith('cloud-') || resource['raw']['type'] === 'Microsoft.Resources/resourceGroups' ) {
+    if (resource['id'].startsWith('cloud-') || (resource['raw']['type'] && resource['raw']['type'] === 'Microsoft.Resources/resourceGroups' )) {
       setActionsMsg['data'].push(
       {
         codicon: 'codicon-add',
@@ -129,7 +144,7 @@ function createDetailsView(view: any, id: string) {
         action: 'action-add'
       });
 
-      if (resource['id'].startsWith('cloud-') || resource['raw']['type'] === 'Microsoft.Resources/resourceGroups' ) {
+      if (resource['id'].startsWith('cloud-') || (resource['raw']['type'] && resource['raw']['type'] === 'Microsoft.Resources/resourceGroups') ) {
         setActionsMsg['data'].push(
         {
           codicon: 'codicon-refresh',
@@ -171,7 +186,7 @@ async function queryAllResources() {
     {
       "name": "Azure",
       "id": "cloud-azure",
-      "subitems": await queryResources(),
+      "subitems": await azQueryResources(),
       "raw": {}
     },
     {
@@ -189,13 +204,13 @@ async function queryAllResources() {
     {
       "name": "UpCloud",
       "id": "cloud-upcloud",
-      "subitems": [],
+      "subitems": await upctlQueryResources(),
       "raw": {}
     }
   ];
 }
 
-async function queryResources(): Promise<any> {
+async function azQueryResources(): Promise<any> {
 
   console.log("Query Azure Resources");
 
@@ -214,7 +229,7 @@ async function queryResources(): Promise<any> {
   }
 
   // query all the resources and append them to appropriate resource groups
-  var resources = azQueryResources();
+  var resources = azQuerySubResources();
 
   for (var i = 0; i < resources.length; i++) {
     // find resource group to stick it into
@@ -235,7 +250,7 @@ async function queryResources(): Promise<any> {
   return response;
 }
 
-function azQueryResources() {
+function azQuerySubResources() {
   var r: string = "";
   var cmd = "az resource list";
 
@@ -252,6 +267,41 @@ function azQueryResources() {
 function azQueryResourceGroups() {
   var r: string = "";
   var cmd = "az group list";
+
+  const cp = require('child_process');
+  if (process.platform === "win32") {
+    r = cp.execSync(cmd, { shell: 'powershell' }).toString();
+  } else {
+    r = cp.execSync(cmd, { shell: '/bin/bash' }).toString();
+  }
+
+  return JSON.parse(r);
+}
+
+async function upctlQueryResources(): Promise<any> {
+
+  console.log("Query UpCloud Resources");
+
+  var response: any = [];
+  var servers = upctlQueryServers()["servers"];
+
+  // first get all the resource groups
+
+  for (var i = 0; i < servers.length; i++) {
+    response.push({
+      "name": servers[i]['title'],
+      "id": servers[i]['uuid'],
+      "subitems": [],
+      "raw": servers[i]
+      });
+  }
+
+  return response;
+}
+
+function upctlQueryServers() {
+  var r: string = "";
+  var cmd = "upctl server list -o json";
 
   const cp = require('child_process');
   if (process.platform === "win32") {
