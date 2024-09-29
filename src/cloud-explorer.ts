@@ -1,8 +1,6 @@
 import * as vscode from 'vscode';
 import * as helpers from '@zim.kalinowski/vscode-helper-toolkit';
 
-// XXX - get rid of this
-import { marked } from 'marked';
 import { displayAzureMenu, displayDoCtlMenu, displayOciMenu, displayUpCtlMenu } from './extension';
 
 var currentCloudId = "";
@@ -14,20 +12,12 @@ export function displayCloudExplorer(extensionContext : vscode.ExtensionContext)
     view.updateTreeViewItems(resources);
   });
 
-  let rootMarkup = `
-    `;
-
-  let nodeMarkup = `
-`;
-
   let formDefinition = {
     type: 'layout-tree-with-details',
     id: 'layout'
     };
 
   let view = new helpers.GenericWebView(extensionContext, "Cloud Resources");
-
-  // XXX - don't use dataExamples, query clouds instead
 
   view.MsgHandler = function (msg: any) {
     switch (msg.command) {
