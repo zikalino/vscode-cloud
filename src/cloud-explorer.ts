@@ -78,6 +78,8 @@ export function displayCloudExplorer(extensionContext : vscode.ExtensionContext)
 
 var layoutWelcome: any = require('./welcome.yaml');
 var layoutSetupAz: any = require('./az__prerequisites.yaml');
+var layoutSetupDoCtl: any = require('./doctl__prerequisites.yaml');
+var layoutSetupOci: any = require('./oci__prerequisites.yaml');
 var layoutSetupUpCloud: any = require('./upctl__prerequisites.yaml');
 
 function createDetailsView(view: any, id: string) {
@@ -95,6 +97,10 @@ function createDetailsView(view: any, id: string) {
       view.updateTreeViewDetails(layoutSetupAz);
     } else if (currentCloudId === 'cloud-upcloud') {
       view.updateTreeViewDetails(layoutSetupUpCloud);
+    } else if (currentCloudId === 'cloud-digital-ocean') {
+      view.updateTreeViewDetails(layoutSetupDoCtl);
+    } else if (currentCloudId === 'cloud-oci') {
+      view.updateTreeViewDetails(layoutSetupOci);
     } else {
       view.updateTreeViewDetails({});
     }

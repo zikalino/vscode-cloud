@@ -3,7 +3,7 @@ id: root
 header:
   - type: header
     title: Azure Prerequisites
-    logo: icon.webp
+    logo: azure.svg
 form:
   #
   # Azure CLI

@@ -3,7 +3,7 @@ id: root
 header:
   - type: header
     title: UpCloud Prerequisites
-    logo: icon.webp
+    logo: upcloud.png
 form:
   #
   # Azure CLI

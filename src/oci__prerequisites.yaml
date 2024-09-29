@@ -2,8 +2,8 @@ type: layout-form
 id: root
 header:
   - type: header
-    title: Azure Prerequisites
-    logo: icon.webp
+    title: Oracle Cloud Infrastructure
+    logo: oci.svg
 form:
   #
   # Azure CLI
