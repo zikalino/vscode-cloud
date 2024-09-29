@@ -1,0 +1,16 @@
+type: layout-form
+id: root
+header:
+  - type: header
+    title: Welcome
+    logo: icon.webp
+form:
+  - type: fieldset
+    id: fieldset_esp_idf
+    platform: win32
+    subitems:
+      - type: 'action-row'
+        id: install-git
+        name: Install Git
+        verify: git --version
+        install: winget install git

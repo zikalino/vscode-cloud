@@ -34,10 +34,10 @@ export function displayCloudExplorer(extensionContext : vscode.ExtensionContext)
       case 'ready':
         //view.postMessage(populateMsg);
         view.updateTreeViewItems(resources);
-        view.updateTreeViewDetails(layoutSetupAz);
+        view.updateTreeViewDetails(layoutWelcome);
         return;
       case 'selected':
-        view.updateTreeViewDetails(createDetailsView(view, msg.id));
+        createDetailsView(view, msg.id);
         return;
       case 'action-clicked':
         if (msg.id === 'action-refresh') {
@@ -49,7 +49,7 @@ export function displayCloudExplorer(extensionContext : vscode.ExtensionContext)
             });
           } else if (currentCloudId === "cloud-upcloud") {
             upctlQueryResources().then(() => {
-              view.updateTreeViewDetails(layoutSetupAz);
+              view.updateTreeViewDetails(layoutSetupUpCloud);
             });
           } else if (currentCloudId === "cloud-digital-ocean") {
           } else if (currentCloudId === "cloud-oci") {
@@ -76,7 +76,9 @@ export function displayCloudExplorer(extensionContext : vscode.ExtensionContext)
   view.createPanel(formDefinition, "media/icon.webp");
 }
 
+var layoutWelcome: any = require('./welcome.yaml');
 var layoutSetupAz: any = require('./az__prerequisites.yaml');
+var layoutSetupUpCloud: any = require('./upctl__prerequisites.yaml');
 
 function createDetailsView(view: any, id: string) {
   var resource = setContext(id, resources);
@@ -89,7 +91,13 @@ function createDetailsView(view: any, id: string) {
       raw[i] = "    " + raw[i];
     }
 
-    view.updateTreeViewDetails(layoutSetupAz);
+    if (currentCloudId === 'cloud-azure') {
+      view.updateTreeViewDetails(layoutSetupAz);
+    } else if (currentCloudId === 'cloud-upcloud') {
+      view.updateTreeViewDetails(layoutSetupUpCloud);
+    } else {
+      view.updateTreeViewDetails({});
+    }
 
     let setActionsMsg: any = {
       command: 'actions',
