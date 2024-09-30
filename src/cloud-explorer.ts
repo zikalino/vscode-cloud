@@ -77,22 +77,39 @@ function createDetailsView(view: any, id: string) {
 
   if (resource) {
 
-    var raw = JSON.stringify(resource['raw'], null, 2).split(/\r?\n/);
-
-    for (var i = 0; i < raw.length; i++) {
-      raw[i] = "    " + raw[i];
-    }
-
-    if (currentCloudId === 'cloud-azure') {
-      view.updateTreeViewDetails(layoutSetupAz);
-    } else if (currentCloudId === 'cloud-upcloud') {
-      view.updateTreeViewDetails(layoutSetupUpCloud);
-    } else if (currentCloudId === 'cloud-digital-ocean') {
-      view.updateTreeViewDetails(layoutSetupDoCtl);
-    } else if (currentCloudId === 'cloud-oci') {
-      view.updateTreeViewDetails(layoutSetupOci);
+    if (resource === currentCloudId) {
+      if (currentCloudId === 'cloud-azure') {
+        view.updateTreeViewDetails(layoutSetupAz);
+      } else if (currentCloudId === 'cloud-upcloud') {
+        view.updateTreeViewDetails(layoutSetupUpCloud);
+      } else if (currentCloudId === 'cloud-digital-ocean') {
+        view.updateTreeViewDetails(layoutSetupDoCtl);
+      } else if (currentCloudId === 'cloud-oci') {
+        view.updateTreeViewDetails(layoutSetupOci);
+      } else {
+        view.updateTreeViewDetails({});
+      }
     } else {
-      view.updateTreeViewDetails({});
+      var raw = JSON.stringify(resource['raw'], null, 2).split(/\r?\n/);
+
+      for (var i = 0; i < raw.length; i++) {
+        raw[i] = "    " + raw[i];
+      }
+
+      // XXX - for now
+      var layout = layoutSetupOci;
+      layout['form'] = [
+        {
+          type: 'fieldset',
+          subitems: [
+            {
+              type: 'code-block',
+              content: raw.join('/r/n')
+            }
+          ]
+        }
+      ];
+      view.updateTreeViewDetails(layout);
     }
 
     let setActionsMsg: any = {
