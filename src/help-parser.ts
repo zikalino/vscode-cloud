@@ -131,7 +131,7 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
             i++;
           }
 
-          inserted = [ "      - $include: __region_selector.yaml"
+          inserted = [ "      - $include: __az_region_selector.yaml"
                      ];
           lines.splice(j, 0, ...inserted);
           i += inserted.length;

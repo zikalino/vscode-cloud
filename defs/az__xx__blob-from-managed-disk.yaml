@@ -9,7 +9,7 @@ form:
     - $include: __az_disk_selector.yaml
   - type: fieldset
     subitems:
-    - $include: __storage_container_selector.yaml
+    - $include: __az_storage_container_selector.yaml
 
   - type: fieldset
     subitems:

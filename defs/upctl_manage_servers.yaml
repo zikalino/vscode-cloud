@@ -67,7 +67,7 @@ form:
             name: Host Name
             produces:
               - variable: host_name
-      - $include: __server_plan_selector.yaml
+      - $include: __upctl_server_plan_selector.yaml
       - type: 'action-row'
         id: create-container-instance
         name: Create Container Instance

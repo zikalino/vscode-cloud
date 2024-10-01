@@ -5,7 +5,7 @@ header:
     title: Virtual Machine
     logo: icon.webp
 form:
-  - $include: __resource_group_select_or_create.yaml
+  - $include: __az_resource_group_select_or_create.yaml
 
   - type: fieldset
     subitems:
@@ -70,10 +70,10 @@ form:
             name: Name
             produces:
               - variable: virtual_machine_name
-      - $include: __region_selector.yaml
+      - $include: __az_region_selector.yaml
         prefix: virtual_machine_
       - $include: __az_vm_size_selector.yaml
-      - $include: __subnet_selector.yaml
+      - $include: __az_subnet_selector.yaml
       - type: 'action-row'
         name: Create Virtual Machine
         consumes:

@@ -14,7 +14,7 @@ form:
       #     --location -l                 [Required] : Location. Values from: `az account list-locations`.
       #                                                You can configure the default location using `az
       #                                                configure --defaults location=<location>`.
-      - $include: __region_selector.yaml
+      - $include: __az_region_selector.yaml
       #     --name --resource-group -g -n [Required] : Name of the new resource group.
       - type: row
         subitems: 
