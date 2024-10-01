@@ -71,13 +71,14 @@ var layoutSetupAz: any = require('./az__prerequisites.yaml');
 var layoutSetupDoCtl: any = require('./doctl__prerequisites.yaml');
 var layoutSetupOci: any = require('./oci__prerequisites.yaml');
 var layoutSetupUpCloud: any = require('./upctl__prerequisites.yaml');
+var layoutEmpty: any = require('./empty.yaml');
 
 function createDetailsView(view: any, id: string) {
   var resource = setContext(id, resources);
 
   if (resource) {
 
-    if (resource === currentCloudId) {
+    if (resource['id'] === currentCloudId) {
       if (currentCloudId === 'cloud-azure') {
         view.updateTreeViewDetails(layoutSetupAz);
       } else if (currentCloudId === 'cloud-upcloud') {
@@ -97,7 +98,7 @@ function createDetailsView(view: any, id: string) {
       }
 
       // XXX - for now
-      var layout = layoutSetupOci;
+      var layout = layoutEmpty;
       layout['form'] = [
         {
           type: 'fieldset',

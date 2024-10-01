@@ -1,0 +1,6 @@
+type: layout-form
+id: root
+header:
+  - type: header
+    title: Resource
+form: []
