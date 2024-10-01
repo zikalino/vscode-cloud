@@ -60,7 +60,7 @@ form:
 
   - type: fieldset
     subitems:
-      - $include: __zone_selector.yaml
+      - $include: __upctl_zone_selector.yaml
       - type: row
         subitems:
           - type: textfield
