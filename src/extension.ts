@@ -125,18 +125,6 @@ async function displayPrerequisitesView(layout: string) {
 
   view.MsgHandler = function (msg: any) {
     if (msg.command === 'ready') {
-      // XXX - this is just temporary solution until extension is in stable state
-      if (process.platform === "win32") {
-        view.showElement('fieldset_esp_idf');
-        view.hideElement("fieldset_tinygo");
-        view.hideElement('fieldset_rust');
-        view.hideElement('fieldset_zephyr');
-      } else {
-        view.hideElement('fieldset_esp_idf');
-        view.hideElement("fieldset_tinygo");
-        view.hideElement('fieldset_rust');
-        view.showElement('fieldset_zephyr');
-      }
       view.runStepsVerification();
     } else if (msg.command === 'button-clicked') {
       //vscode.window.showInformationMessage('Button ' + msg.id + ' Clicked!');
@@ -146,33 +134,9 @@ async function displayPrerequisitesView(layout: string) {
         view.runStepsInstallation();
       }
     } else if (msg.command === 'radio-clicked') {
-      vscode.window.showInformationMessage('Radio ' + msg.id + ' Clicked!');
     } else if (msg.command === 'dropdown-clicked') {
-      if (msg.combo_id === 'sdk_type') {
-        // vscode.window.showInformationMessage('Dropdown item ' + msg.id + ' Clicked X!');
-
-        view.hideElement("fieldset_tinygo");
-        view.hideElement('fieldset_esp_idf');
-        view.hideElement('fieldset_rust');
-        view.hideElement('fieldset_zephyr');
-
-        if (msg.id === 'ESP-IDF') {
-          // XXX - show ESP-IDF version
-          view.showElement('fieldset_esp_idf');
-        } else if (msg.id === 'TinyGo') {
-          view.showElement("fieldset_tinygo");
-        } else if (msg.id === 'Zephyr') {
-          view.showElement("fieldset_zephyr");
-        } else if (msg.id === 'Rust') {
-          view.showElement("fieldset_rust");
-        } else {
-          view.enableElement('create-button');
-        }
-        view.runStepsVerification();
-      }
     } else if (msg.command === 'action-clicked') {
-      if (msg.id === 'action-refresh') {
-        
+      if (msg.id === 'action-refresh') {        
       }
     }
   };

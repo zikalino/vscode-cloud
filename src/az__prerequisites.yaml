@@ -9,7 +9,6 @@ form:
   # Azure CLI
   #
   - type: fieldset
-    id: fieldset_esp_idf
     platform: win32
     subitems:
       - type: 'action-row'
