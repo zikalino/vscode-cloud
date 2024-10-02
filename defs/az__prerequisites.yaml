@@ -11,11 +11,8 @@ form:
   - type: fieldset
     platform: win32
     subitems:
-      - type: 'action-row'
-        id: install-git
-        name: Install Git
-        verify: git --version
-        install: winget install git
+      - $include: __git_install_step.yaml
+      - $include: __gh_install_step.yaml
       - type: 'action-row'
         platform: win32
         id: install-azure-cli

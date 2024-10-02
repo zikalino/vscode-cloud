@@ -8,7 +8,7 @@ import { displayCloudExplorer } from './cloud-explorer';
 //import SwaggerParser from "@apidevtools/swagger-parser";
 var extensionUri: vscode.Uri;
 var mediaFolder: vscode.Uri;
-var extensionContext: vscode.ExtensionContext;
+export var extensionContext: vscode.ExtensionContext;
 
 const fs = require("fs");
 
@@ -98,30 +98,29 @@ export function activate (context: vscode.ExtensionContext) {
 // This method is called when your extension is deactivated
 export function deactivate () {}
 
-var layoutSetupAz: any = require('./az__prerequisites.yaml');
-var layoutSetupDoCtl: any = require('./doctl__prerequisites.yaml');
-var layoutSetupOci: any = require('./oci__prerequisites.yaml');
-var layoutSetupUpCtl: any = require('./upctl__prerequisites.yaml');
-
 async function displayAzPrerequisitesView() {
-  displayPrerequisitesView(layoutSetupAz);
+  let yml = loadYaml(extensionContext.extensionPath + "/defs/az__prerequisites.yaml");
+  displayPrerequisitesView(yml);
 }
 
 async function displayDoCtlPrerequisitesView() {
-  displayPrerequisitesView(layoutSetupDoCtl);
+  let yml = loadYaml(extensionContext.extensionPath + "/defs/doctl__prerequisites.yaml");
+  displayPrerequisitesView(yml);
 }
 
 async function displayOciPrerequisitesView() {
-  displayPrerequisitesView(layoutSetupOci);
+  let yml = loadYaml(extensionContext.extensionPath + "/defs/oci__prerequisites.yaml");
+  displayPrerequisitesView(yml);
 }
 
 async function displayUpCtlPrerequisitesView() {
-  displayPrerequisitesView(layoutSetupUpCtl);
+  let yml = loadYaml(extensionContext.extensionPath + "/defs/upctl_prerequisites.yaml");
+  displayPrerequisitesView(yml);
 }
 
 async function displayPrerequisitesView(layout: string) {
   let view = new helpers.GenericWebView(extensionContext, "Installer");
-  view.createPanel(layoutSetupAz, "media/icon.webp");
+  view.createPanel(layout, "media/icon.webp");
 
   view.MsgHandler = function (msg: any) {
     if (msg.command === 'ready') {
@@ -215,7 +214,7 @@ async function parseApi() {
 }
 
 // XXX - perhaps this should be moved to helpers
-function loadYaml(location: string) : any {
+export function loadYaml(location: string) : any {
   // extensionContext.extensionPath + "/defs/" + result + ".yaml"
   let y = fs.readFileSync(location, "utf8");
   y = YAML.parse(y);

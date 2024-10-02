@@ -3,6 +3,8 @@ import * as helpers from '@zim.kalinowski/vscode-helper-toolkit';
 
 import { displayAzureMenu, displayDoCtlMenu, displayOciMenu, displayUpCtlMenu } from './extension';
 
+import { extensionContext } from './extension';
+
 var currentCloudId = "";
 var resources: any[] = []; 
 
@@ -23,8 +25,9 @@ export function displayCloudExplorer(extensionContext : vscode.ExtensionContext)
     switch (msg.command) {
       case 'ready':
         //view.postMessage(populateMsg);
+        let yml = loadYaml(extensionContext.extensionPath + "/defs/welcome.yaml");
         view.updateTreeViewItems(resources);
-        view.updateTreeViewDetails(layoutWelcome);
+        view.updateTreeViewDetails(yml);
         return;
       case 'selected':
         createDetailsView(view, msg.id);
@@ -35,11 +38,13 @@ export function displayCloudExplorer(extensionContext : vscode.ExtensionContext)
 
           if (currentCloudId === "cloud-azure") {
             azQueryResources().then(() => {
-              view.updateTreeViewDetails(layoutSetupAz);
+              let yml = loadYaml(extensionContext.extensionPath + "/defs/az__prerequisites.yaml");
+              view.updateTreeViewDetails(yml);
             });
           } else if (currentCloudId === "cloud-upcloud") {
             upctlQueryResources().then(() => {
-              view.updateTreeViewDetails(layoutSetupUpCloud);
+              let yml = loadYaml(extensionContext.extensionPath + "/defs/upctl__prerequisites.yaml");
+              view.updateTreeViewDetails(yml);
             });
           } else if (currentCloudId === "cloud-digital-ocean") {
           } else if (currentCloudId === "cloud-oci") {
@@ -66,13 +71,7 @@ export function displayCloudExplorer(extensionContext : vscode.ExtensionContext)
   view.createPanel(formDefinition, "media/icon.webp");
 }
 
-var layoutWelcome: any = require('./welcome.yaml');
-var layoutSetupAz: any = require('./az__prerequisites.yaml');
-var layoutSetupDoCtl: any = require('./doctl__prerequisites.yaml');
-var layoutSetupOci: any = require('./oci__prerequisites.yaml');
-var layoutSetupUpCloud: any = require('./upctl__prerequisites.yaml');
-var layoutEmpty: any = require('./empty.yaml');
-
+import { loadYaml } from "./extension";
 function createDetailsView(view: any, id: string) {
   var resource = setContext(id, resources);
 
@@ -80,13 +79,17 @@ function createDetailsView(view: any, id: string) {
 
     if (resource['id'] === currentCloudId) {
       if (currentCloudId === 'cloud-azure') {
-        view.updateTreeViewDetails(layoutSetupAz);
+        let yml = loadYaml(extensionContext.extensionPath + "/defs/az__prerequisites.yaml");
+        view.updateTreeViewDetails(yml);
       } else if (currentCloudId === 'cloud-upcloud') {
-        view.updateTreeViewDetails(layoutSetupUpCloud);
+        let yml = loadYaml(extensionContext.extensionPath + "/defs/upctl__prerequisites.yaml");
+        view.updateTreeViewDetails(yml);
       } else if (currentCloudId === 'cloud-digital-ocean') {
-        view.updateTreeViewDetails(layoutSetupDoCtl);
+        let yml = loadYaml(extensionContext.extensionPath + "/defs/doctl__prerequisites.yaml");
+        view.updateTreeViewDetails(yml);
       } else if (currentCloudId === 'cloud-oci') {
-        view.updateTreeViewDetails(layoutSetupOci);
+        let yml = loadYaml(extensionContext.extensionPath + "/defs/oci__prerequisites.yaml");
+        view.updateTreeViewDetails(yml);
       } else {
         view.updateTreeViewDetails({});
       }
@@ -98,8 +101,8 @@ function createDetailsView(view: any, id: string) {
       }
 
       // XXX - for now
-      var layout = layoutEmpty;
-      layout['form'] = [
+      let yml = loadYaml(extensionContext.extensionPath + "/defs/empty.yaml");
+      yml['form'] = [
         {
           type: 'fieldset',
           subitems: [
@@ -110,7 +113,7 @@ function createDetailsView(view: any, id: string) {
           ]
         }
       ];
-      view.updateTreeViewDetails(layout);
+      view.updateTreeViewDetails(yml);
     }
 
     let setActionsMsg: any = {
