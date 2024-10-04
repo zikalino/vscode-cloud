@@ -94,11 +94,7 @@ function createDetailsView(view: any, id: string) {
         view.updateTreeViewDetails({});
       }
     } else {
-      var raw = JSON.stringify(resource['raw'], null, 2).split(/\r?\n/);
-
-      for (var i = 0; i < raw.length; i++) {
-        raw[i] = "    " + raw[i];
-      }
+      var raw = JSON.stringify(resource['raw'], null, 2);
 
       // XXX - for now
       let yml = loadYaml(extensionContext.extensionPath + "/defs/empty.yaml");
@@ -108,7 +104,7 @@ function createDetailsView(view: any, id: string) {
           subitems: [
             {
               type: 'code-block',
-              content: raw.join('/r/n')
+              content: raw
             }
           ]
         }
