@@ -7,8 +7,8 @@
 
 - type: 'action-row'
   platform: linux
-  name: Install Git
-  verify: git --version
+  name: Install GitHub CLI
+  verify: gh --version
   install: |
         sudo apt update
         sudo apt install gh
