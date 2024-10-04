@@ -7,8 +7,10 @@ header:
 form:
   - type: fieldset
     subitems:
-      - $include: __git_install_step.yaml
       - $include: __gh_install_step.yaml
+  - type: fieldset
+    subitems:
+      - $include: __gh_add_issue_comment.yaml
 
 footer:
   - type: footer
