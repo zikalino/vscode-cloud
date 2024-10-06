@@ -1,9 +1,5 @@
 type: layout-form
 id: root
-header:
-  - type: header
-    title: Azure Prerequisites
-    logo: azure.svg
 form:
   #
   # Azure CLI

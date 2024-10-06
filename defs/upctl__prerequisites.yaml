@@ -1,9 +1,5 @@
 type: layout-form
 id: root
-header:
-  - type: header
-    title: UpCloud Prerequisites
-    logo: upcloud.png
 form:
   - type: fieldset
     subitems:

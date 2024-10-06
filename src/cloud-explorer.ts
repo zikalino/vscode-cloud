@@ -168,7 +168,7 @@ async function queryAllResources() {
     {
       "name": "Azure",
       "id": "cloud-azure",
-      "icon": "azure.svg",
+      "icon": "azure.png",
       "subitems": await azQueryResources(),
       "raw": {}
     },

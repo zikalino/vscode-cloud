@@ -1,9 +1,5 @@
 type: layout-form
 id: root
-header:
-  - type: header
-    title: Digital Ocean Prerequisites
-    logo: digital-ocean.svg
 form:
   - type: fieldset
     subitems:
