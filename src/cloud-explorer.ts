@@ -10,9 +10,6 @@ var resources: any[] = [];
 
 export function displayCloudExplorer(extensionContext : vscode.ExtensionContext) {
 
-  queryAllResources().then(() => {
-    view.updateTreeViewItems(resources);
-  });
 
   let formDefinition = {
     type: 'layout-tree-with-details',
@@ -26,7 +23,10 @@ export function displayCloudExplorer(extensionContext : vscode.ExtensionContext)
       case 'ready':
         //view.postMessage(populateMsg);
         let yml = loadYaml(extensionContext.extensionPath + "/defs/welcome.yaml");
-        view.updateTreeViewItems(resources);
+
+        queryAllResources().then(() => {
+          view.updateTreeViewItems(resources);
+        });
         view.updateTreeViewDetails(yml);
         return;
       case 'selected':
@@ -168,24 +168,28 @@ async function queryAllResources() {
     {
       "name": "Azure",
       "id": "cloud-azure",
+      "icon": "azure.svg",
       "subitems": await azQueryResources(),
       "raw": {}
     },
     {
       "name": "Digital Ocean",
       "id": "cloud-digital-ocean",
+      "icon": "digital-ocean.svg",
       "subitems": [],
       "raw": {}
     },
     {
       "name": "Oracle Cloud Infrastructure",
       "id": "cloud-oci",
+      "icon": "oci.svg",
       "subitems": [],
       "raw": {}
     },
     {
       "name": "UpCloud",
       "id": "cloud-upcloud",
+      "icon": "upcloud.png",
       "subitems": await upctlQueryResources(),
       "raw": {}
     }
