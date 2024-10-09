@@ -1,21 +1,44 @@
 type: layout-form
 id: root
+header:
+  - type: header
+    title: Linode (Virtual Machine)
+    logo: icon.webp
 form:
   - type: fieldset
     subitems:
+      - type: row
+        subitems:
+          - type: textfield
+            name: Name
+            produces:
+              - variable: name
+
+      - $include: __linode_region_selector.yaml
+      - $include: __linode_type_selector.yaml
+      - type: textfield
+        name: Root Password
+        produces:
+          - variable: password
+
+  - type: fieldset
+    subitems:
       - type: 'action-row'
-        name: Install Linode CLI
-        verify: linode-cli --version
-        install: | 
-                pip3 install linode-cli
-      - type: 'action-row'
-        name: Login
-        # will fail if tries interactive login as will encounter
-        verify: echo "" | linode-cli
-        # start interactive login here
-        install: linode ; $?
+        name: Create Linode
+        consumes:
+          - variable: linode_type
+          - variable: region
+          - variable: name
+          - variable: password
+        verify: |
+            linode list --label ${name}
+        install: linode linodes create --region ${region} --type ${linode_type} --label ${name}  --root_pass ${password}
+        uninstall: xxx
+
 footer:
   - type: footer
+    id: footer
     subitems:
       - type: button
+        id: install_button
         text: Create
