@@ -16,7 +16,7 @@ export function displayCloudExplorer(extensionContext : vscode.ExtensionContext)
     id: 'layout'
     };
 
-  let view = new helpers.GenericWebView(extensionContext, "Cloud Resources");
+  let view = new helpers.GenericWebView(extensionContext, "Cloud Explorer");
 
   view.MsgHandler = function (msg: any) {
     switch (msg.command) {
