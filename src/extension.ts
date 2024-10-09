@@ -166,6 +166,16 @@ export async function displayDoCtlMenu() {
   displayMenu(menu);
 }
 
+export async function displayLinodeMenu() {
+  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___linode_menu.yaml");
+  displayMenu(menu);
+}
+
+export async function displayVultrMenu() {
+  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___vultr_menu.yaml");
+  displayMenu(menu);
+}
+
 async function displayMenu(submenu: any) {
   var selected: string[] = [];
   for (var i in submenu) {

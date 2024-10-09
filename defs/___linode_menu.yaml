@@ -1,0 +1,39 @@
+
+- name: Create Linode (Virtual Machine)
+  location: linode_linodes_create.yaml
+- name: Capture Image
+  location: linode_images_create.yaml
+- name: Create PostgreSQL Server
+  location: linode_databases_postgresql_create_.yaml
+- name: Create MySQL Server
+  location: linode_databases_mysql_create_.yaml
+- name: Create Domain
+  location: linode_domains_create_.yaml
+- name: Create Firewall
+  location: linode_firewalls_create_.yaml
+- name: Create LKE (Kubernetes)
+  location: linode_lke_create_.yaml
+- name: Create Volume
+  location: linode_volumes_create.yaml
+- name: Create VPC
+  location: linode_vpc_create.yaml
+- name: Create User
+  location: linode_users_create.yaml
+- name: Create Support Ticket
+  location: linode_tickets_create.yaml
+- name: Create Tag
+  location: linode_tags_create.yaml
+- name: Add SSH Key
+  location: linode_sshkeys_create.yaml
+- name: Create Service Transfer
+  location: linode_service_transfers_create.yaml
+- name: Create Payment Method
+  location: linode_payment_methods_create.yaml
+- name: Create Node Balancer
+  location: linode_nodebalancers_create.yaml
+- name: Create IP Address
+  location: linode_networking_ip_add.yaml
+- name: Create IP V6 Range
+  location: linode_networking_v6_range_create.yaml
+- name: Create Managed Service
+  location: linode_managed_service_create.yaml

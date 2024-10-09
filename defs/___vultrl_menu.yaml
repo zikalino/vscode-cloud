@@ -1,0 +1,45 @@
+# account        Manage accounts            - no create
+# database       Manage databases           - no create
+# gateway        Manage gateways            - no create
+# host           Manage private cloud hosts - just list
+# ip-address     Manage IP addresses        - ASSIGN / CREATE
+# kubernetes     Manage Kubernetes clusters - CREATE
+# loadbalancer   Manage load balancers      - no create
+# network        Manage networks            - CREATE
+# networkpeering Manage network peerings    - no create
+# objectstorage  Manage managed object storage services - no create
+# router         Manage routers             - CREATE
+# server         Manage servers             - CREATE
+# servergroup    Manage server groups       - CREATE
+# storage        Manage storages            - CREATE
+
+# version        Display software information
+# zone           Display zone information
+
+
+- name: Create Subaccount
+  location: upctl_account_create.yaml
+- name: Manage Databases
+  location: upctl_manage_databases.yaml
+- name: Manage Gateways
+  location: upctl_manage_gateways.yaml
+- name: Manage Private Cloud Hosts
+  location: upctl_manage_private_cloud_hosts.yaml
+- name: Manage IP Addresses
+  location: upctl_manage_ip_addresses.yaml
+- name: Manage Kubernetes Clusters
+  location: upctl_manage_kubernetes_clusters.yaml
+- name: Manage Load Balancers
+  location: upctl_manage_load_balancers.yaml
+- name: Manage Networks
+  location: upctl_manage_networks.yaml
+- name: Manage Managed Object Storage Services
+  location: upctl_manage_managed_object_storage_services.yaml
+- name: Manage Routers
+  location: upctl_manage_routers.yaml
+- name: Manage Server Groups
+  location: upctl_manage_server_groups.yaml
+- name: Manage Servers
+  location: upctl_manage_servers.yaml
+- name: Manage Storages
+  location: upctl_manage_storages.yaml

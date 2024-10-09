@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as helpers from '@zim.kalinowski/vscode-helper-toolkit';
 
-import { displayAzureMenu, displayDoCtlMenu, displayOciMenu, displayUpCtlMenu } from './extension';
+import { displayAzureMenu, displayDoCtlMenu, displayOciMenu, displayUpCtlMenu, displayLinodeMenu, displayVultrMenu } from './extension';
 
 import { extensionContext } from './extension';
 
@@ -48,9 +48,13 @@ export function displayCloudExplorer(extensionContext : vscode.ExtensionContext)
             });
           } else if (currentCloudId === "cloud-digital-ocean") {
           } else if (currentCloudId === "cloud-oci") {
+          } else if (currentCloudId === "cloud-vultr") {
+            let yml = loadYaml(extensionContext.extensionPath + "/defs/vultr__prerequisites.yaml");
+            view.updateTreeViewDetails(yml);
+          } else if (currentCloudId === "cloud-linode") {
+            let yml = loadYaml(extensionContext.extensionPath + "/defs/linode__prerequisites.yaml");
+            view.updateTreeViewDetails(yml);
           }
-
-
         } else if (msg.id === 'action-add') {
           if (currentCloudId === "cloud-azure") {
             displayAzureMenu();
@@ -60,6 +64,10 @@ export function displayCloudExplorer(extensionContext : vscode.ExtensionContext)
             displayDoCtlMenu();
           } else if (currentCloudId === "cloud-oci") {
             displayOciMenu();
+          } else if (currentCloudId === "cloud-vultr") {
+            displayVultrMenu();
+          } else if (currentCloudId === "cloud-linode") {
+            displayLinodeMenu();
           }
         }
         return;
@@ -89,6 +97,12 @@ function createDetailsView(view: any, id: string) {
         view.updateTreeViewDetails(yml);
       } else if (currentCloudId === 'cloud-oci') {
         let yml = loadYaml(extensionContext.extensionPath + "/defs/oci__prerequisites.yaml");
+        view.updateTreeViewDetails(yml);
+      } else if (currentCloudId === 'cloud-vultr') {
+        let yml = loadYaml(extensionContext.extensionPath + "/defs/vultr__prerequisites.yaml");
+        view.updateTreeViewDetails(yml);
+      } else if (currentCloudId === 'cloud-linode') {
+        let yml = loadYaml(extensionContext.extensionPath + "/defs/linode__prerequisites.yaml");
         view.updateTreeViewDetails(yml);
       } else {
         view.updateTreeViewDetails({});
@@ -180,6 +194,13 @@ async function queryAllResources() {
       "raw": {}
     },
     {
+      "name": "Linode/Akamai",
+      "id": "cloud-linode",
+      "icon": "linode.png",
+      "subitems": [],
+      "raw": {}
+    },
+    {
       "name": "Oracle Cloud Infrastructure",
       "id": "cloud-oci",
       "icon": "oci.svg",
@@ -190,6 +211,13 @@ async function queryAllResources() {
       "name": "UpCloud",
       "id": "cloud-upcloud",
       "icon": "upcloud.png",
+      "subitems": await upctlQueryResources(),
+      "raw": {}
+    },
+    {
+      "name": "Vultr",
+      "id": "cloud-vultr",
+      "icon": "vultr.png",
       "subitems": await upctlQueryResources(),
       "raw": {}
     }
