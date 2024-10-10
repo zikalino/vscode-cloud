@@ -19,3 +19,20 @@ footer:
     subitems:
       - type: button
         text: Create
+
+# linode-cli networking ip-add
+# Allocate an IP address
+# API Documentation: 
+# https://techdocs.akamai.com/linode-api/reference/post-allocate-ip
+#
+# Example Usage: 
+#   linode-cli networking ip-add \
+#     --type ipv4 \
+#     --public true \
+#     --linode_id 123
+#
+# Arguments:
+#   --linode_id (required): The ID of a Linode you have access to that this address  
+#   will be allocated to.
+#   --public (required): Whether to create a public or private IPv4 address.
+#   --type (required): The type of address you are requesting.

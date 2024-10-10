@@ -19,3 +19,18 @@ footer:
     subitems:
       - type: button
         text: Create
+
+# linode-cli sshkeys create
+# Add an SSH key
+# API Documentation:
+# https://techdocs.akamai.com/linode-api/reference/post-add-ssh-key
+#
+# Example Usage: 
+#   linode-cli sshkeys create \
+#     --label "My SSH Key" \
+#     --ssh_key "ssh-rsa AAAA_valid_public_ssh_key_123456785== user@their-computer"  
+#
+# Arguments:
+#   --label: A label for the SSH Key.
+#   --ssh_key: The public SSH Key, which is used to authenticate to the root user of 
+#   the Linodes you deploy.

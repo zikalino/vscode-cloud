@@ -19,3 +19,63 @@ footer:
     subitems:
       - type: button
         text: Create
+
+# linode-cli nodebalancers create
+# Create a NodeBalancer
+# API Documentation: 
+# https://techdocs.akamai.com/linode-api/reference/post-node-balancer
+#
+# Example Usage: 
+#   linode-cli nodebalancers create \
+#     --region us-east \
+#     --label balancer12345 \
+#     --client_conn_throttle 0
+#
+# Arguments:
+#   --region (required): The ID of the Region to create this NodeBalancer in.
+#
+#   --client_conn_throttle: Throttle connections per second.
+#   --firewall_id: The ID of the Firewall to assign to the NodeBalancer.
+#   --label: This NodeBalancer's label.
+#   --tags: An array of Tags applied to this object.
+#
+#   --configs (JSON, conflicts with children): A request object representing a       
+#   NodeBalancer Config, including Nodes.
+#     --configs.algorithm: What algorithm this NodeBalancer should use for routing   
+#     traffic to backends.
+#     --configs.check: The type of check to perform against backends to ensure they  
+#     are serving requests.
+#     --configs.check_attempts: How many times to attempt a check before considering 
+#     a backend to be down.
+#     --configs.check_body: This value must be present in the response body of the   
+#     check in order for it to pass.
+#     --configs.check_interval: How often, in seconds, to check that backends are up 
+#     and serving requests.
+#     --configs.check_passive: If true, any response from this backend with a 5xx    
+#     status code will be enough for it to be considered unhealthy and taken out of  
+#     rotation.
+#     --configs.check_path: The URL path to check on each backend.
+#     --configs.check_timeout: How long, in seconds, to wait for a check attempt     
+#     before considering it failed.
+#     --configs.cipher_suite: What ciphers to use for SSL connections served by this 
+#     NodeBalancer.
+#     --configs.nodes (JSON, conflicts with children): A NodeBalancerNode represents 
+#     a single backend serving requests for a single port of a NodeBalancer.
+#     --configs.port: The port this Config is for.
+#     --configs.protocol: The protocol this port is configured to serve.
+#     --configs.proxy_protocol: ProxyProtocol is a TCP extension that sends initial  
+#     TCP connection information such as source/destination IPs and ports to backend 
+#     devices.
+#     --configs.ssl_cert (nullable): The PEM-formatted public SSL certificate (or the
+#     combined PEM-formatted SSL certificate and Certificate Authority chain) that   
+#     should be served on this NodeBalancerConfig's port.
+#     --configs.ssl_key (nullable): The PEM-formatted private key for the SSL        
+#     certificate set in the ssl_cert field.
+#     --configs.stickiness: Controls how session stickiness is handled on this port. 
+#       --configs.nodes.address: The private IP Address where this backend can be    
+#       reached.
+#       --configs.nodes.label: The label for this node.
+#       --configs.nodes.mode: The mode this NodeBalancer should use when sending     
+#       traffic to this backend.
+#       --configs.nodes.weight: Used when picking a backend to serve a request and is
+#       not pinned to a single backend yet.

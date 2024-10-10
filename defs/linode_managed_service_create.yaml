@@ -19,3 +19,37 @@ footer:
     subitems:
       - type: button
         text: Create
+
+# linode-cli managed service-create
+# Create a managed service
+# API Documentation:
+# https://techdocs.akamai.com/linode-api/reference/post-managed-service
+#
+# Example Usage: 
+#   linode-cli managed service-create \
+#     --service_type url \
+#     --label prod-1 \
+#     --address "https://example.org" \
+#     --timeout 30 \
+#     --body "it worked" \
+#     --consultation_group on-call \
+#     --notes "The service name is \
+#       my-cool-application" \
+#     --credentials 9991
+#
+# Arguments:
+#   --address (required): The URL at which this Service is monitored.
+#   --label (required): The label for this Service.
+#   --service_type (required): How this Service is monitored.
+#   --timeout (required): How long to wait, in seconds, for a response before        
+#   considering the Service to be down.
+#
+#   --body (nullable): What to expect to find in the response body for the Service to
+#   be considered up.
+#   --consultation_group: The group of ManagedContacts who should be notified or     
+#   consulted with when an Issue is detected.
+#   --credentials: An array of ManagedCredential IDs that should be used when        
+#   attempting to resolve issues with this Service.
+#   --notes (nullable): Any information relevant to the Service that Linode special  
+#   forces should know when attempting to resolve Issues.
+#   --region: The Region in which this Service is located.

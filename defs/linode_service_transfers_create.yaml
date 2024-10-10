@@ -19,3 +19,18 @@ footer:
     subitems:
       - type: button
         text: Create
+
+# linode-cli service-transfers create
+# Request a service transfer
+# API Documentation:
+# https://techdocs.akamai.com/linode-api/reference/post-service-transfer
+#
+# Example Usage: 
+#   linode-cli service-transfers \
+#     create \
+#     --entities.linodes 111 \
+#     --entities.linodes 222
+#
+# Arguments:
+#   --entities.linodes: An array containing the IDs of each of the Linodes included  
+#   in this transfer.

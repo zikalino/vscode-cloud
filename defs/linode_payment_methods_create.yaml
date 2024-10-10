@@ -19,3 +19,30 @@ footer:
     subitems:
       - type: button
         text: Create
+
+# linode-cli payment-methods add
+# Add a payment method
+# API Documentation:
+# https://techdocs.akamai.com/linode-api/reference/post-payment-method
+#
+# Example Usage: 
+#   linode-cli payment-methods add \
+#     --type credit_card \
+#     --is_default true \
+#     --data.card_number 4111111111111111 \
+#     --data.expiry_month 11 \
+#     --data.expiry_year 2020 \
+#     --data.cvv 111
+#
+# Arguments:
+#   --is_default (required): Whether this Payment Method is the default method for   
+#   automatically processing service charges.
+#   --type (required): The type of Payment Method.
+#
+#   --data.card_number (required): Your credit card number.
+#   --data.cvv (required): CVV (Card Verification Value) of the credit card,
+#   typically found on the back of the card.
+#   --data.expiry_month (required): A value from 1-12 representing the expiration    
+#   month of your credit card.
+#   --data.expiry_year (required): A four-digit integer representing the expiration  
+#   year of your credit card.

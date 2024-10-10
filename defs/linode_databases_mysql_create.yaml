@@ -19,3 +19,38 @@ footer:
     subitems:
       - type: button
         text: Create
+
+# linode-cli databases mysql-create
+# Create a managed MySQL database
+# API Documentation:
+# https://techdocs.akamai.com/linode-api/reference/post-databases-mysql-instances    
+# 
+# Example Usage: 
+#   linode-cli databases mysql-create \
+#     --label example-db1 \
+#     --region us-east \
+#     --type g6-dedicated-2 \
+#     --cluster_size 3 \
+#     --engine mysql/8.0.26 \
+#     --encrypted false \
+#     --ssl_connection false \
+#     --replication_type semi_synch \
+#     --allow_list 203.0.113.1 \
+#     --allow_list 192.0.1.0/24
+# 
+# Arguments:
+#   --engine (required): The Managed Database engine in engine/version format.       
+#   --label (required): A unique, user-defined string referring to the Managed       
+#   Database.
+#   --region (required): The Region ID for the Managed Database. See:
+#   https://techdocs.akamai.com/linode-api/reference/get-regions
+#   --type (required): The Linode Instance type used by the Managed Database for its 
+#   nodes.
+# 
+#   --allow_list: A list of IP addresses that can access the Managed Database.       
+#   --cluster_size: The number of Linode Instance nodes deployed to the Managed      
+#   Database.
+#   --encrypted: Whether the Managed Databases is encrypted.
+#   --replication_type: The replication method used for the Managed Database.        
+#   --ssl_connection: Whether to require SSL credentials to establish a connection to
+#   the Managed Database.

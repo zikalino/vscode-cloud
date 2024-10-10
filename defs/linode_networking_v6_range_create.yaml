@@ -19,3 +19,18 @@ footer:
     subitems:
       - type: button
         text: Create
+
+# linode-cli networking v6-range-create
+# Create an IPv6 range
+# API Documentation: https://techdocs.akamai.com/linode-api/reference/post-ipv6-range
+#
+# Example Usage: 
+#   linode-cli networking v6-range-create \
+#     --linode_id 123 \
+#     --prefix_length 64
+#
+# Arguments:
+#   --prefix_length (required): The prefix length of the IPv6 range.
+#
+#   --linode_id: The ID of the Linode to assign this range to.
+#   --route_target: The IPv6 SLAAC address to assign this range to.

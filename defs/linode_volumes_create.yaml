@@ -19,3 +19,25 @@ footer:
     subitems:
       - type: button
         text: Create
+
+# linode-cli volumes create
+# Create a volume
+# API Documentation: https://techdocs.akamai.com/linode-api/reference/post-volume    
+#
+# Example Usage: 
+#   linode-cli volumes create \
+#     --label my-volume \
+#     --size 20 \
+#     --linode_id 12346 \
+#     --no-defaults
+
+# Arguments:
+#   --label (required): The Volume's label, which is also used in the filesystem_path
+#   of the resulting volume.
+#
+#   --config_id: When creating a Volume attached to a Linode, the ID of the Linode   
+#   Config to include the new Volume in.
+#   --linode_id: The Linode this volume should be attached to upon creation.
+#   --region: The Region to deploy this Volume in.
+#   --size: The initial size of this volume, in GB.
+#   --tags: An array of Tags applied to this object.

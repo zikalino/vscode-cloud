@@ -19,3 +19,33 @@ footer:
     subitems:
       - type: button
         text: Create
+
+# linode-cli firewalls create
+# Create a firewall
+# API Documentation: https://techdocs.akamai.com/linode-api/reference/post-firewalls
+#
+# Example Usage: 
+#   linode-cli firewalls create \
+#     --label example-firewall \
+#     --rules.outbound_policy ACCEPT \
+#     --rules.inbound_policy DROP \
+#     --rules.inbound '[{"protocol": "TCP", "ports": "22, 80, 8080, 443", 
+# "addresses": {"ipv4": ["192.0.2.0/24", "198.51.100.2/32"], "ipv6": 
+# ["2001:DB8::/128"]}, "action": "ACCEPT"}]' \
+#     --rules.outbound '[{"protocol": "TCP", "ports": "49152-65535", "addresses": 
+# {"ipv4": ["192.0.2.0/24", "198.51.100.2/32"],"ipv6": ["2001:DB8::/128"]}, "action":
+# "DROP", "label": "outbound-rule123", "description": "An example outbound rule 
+# description."}]'
+#
+# Arguments:
+#   --label (required): The Firewall's label, for display purposes only.
+#
+#   --tags: An array of tags applied to this object.
+#
+#   --devices.linodes: An array of Linode IDs.
+#   --devices.nodebalancers: An array containing a NodeBalancer ID.
+# 
+#   --rules.inbound_policy (required): The default behavior for inbound traffic.     
+#   --rules.outbound_policy (required): The default behavior for outbound traffic.   
+#   --rules.inbound (JSON): The inbound rules for the firewall, as a JSON array.     
+#   --rules.outbound (JSON): The outbound rules for the firewall, as a JSON array.   

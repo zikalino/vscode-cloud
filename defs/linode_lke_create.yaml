@@ -19,3 +19,59 @@ footer:
     subitems:
       - type: button
         text: Create
+
+# linode-cli lke cluster-create
+# Create a Kubernetes cluster
+# API Documentation:
+# https://techdocs.akamai.com/linode-api/reference/post-lke-cluster
+#
+# Example Usage: 
+#   linode-cli lke cluster-create \
+#     --label cluster12345 \
+#     --region us-central \
+#     --k8s_version 1.27 \
+#     --control_plane.high_availability true \
+#     --node_pools.type g6-standard-4 --node_pools.count 6 \
+#     --node_pools.type g6-standard-8 --node_pools.count 3 \
+#     --node_pools.autoscaler.enabled true \
+#     --node_pools.autoscaler.max 12 \
+#     --node_pools.autoscaler.min 3 \
+#     --tags ecomm
+#
+# Arguments:
+#   --k8s_version (required): The desired Kubernetes version for this Kubernetes     
+#   cluster in the format of <major>.<minor>, and the latest supported patch version 
+#   will be deployed.
+#   --label (required): This Kubernetes cluster's unique label for display purposes  
+#   only.
+#   --region (required): This Kubernetes cluster's location.
+#
+#   --tags: An array of tags applied to the Kubernetes cluster.
+#
+#   --control_plane.acl.addresses.ipv4: A list of individual ipv4 addresses or CIDRs 
+#   to ALLOW.
+#   --control_plane.acl.addresses.ipv6: A list of individual ipv6 addresses or CIDRs 
+#   to ALLOW.
+#   --control_plane.acl.enabled: Defines Default Policy.
+#   --control_plane.acl.revision-id: Enables clients to track events related to ACL  
+#   update requests and enforcements.
+#   --control_plane.high_availability: Enables High Availability for the Control     
+#   Plane Components of the cluster.
+#
+#   --node_pools (JSON, conflicts with children): Specifies a collection of Linodes  
+#   which will be members of a Kubernetes cluster.
+#     --node_pools.count (required): The number of nodes in the Node Pool.
+#     --node_pools.type (required): The Linode Type for all of the nodes in the Node 
+#     Pool.
+#     --node_pools.autoscaler.enabled: Whether autoscaling is enabled for this Node  
+#     Pool.
+#     --node_pools.autoscaler.max: The maximum number of nodes to autoscale to.      
+#     --node_pools.autoscaler.min: The minimum number of nodes to autoscale to.      
+#     --node_pools.disks (JSON): This Node Pool's custom disk layout.
+#     --node_pools.labels.key: The Kubernetes label key.
+#     --node_pools.labels.value: The Kubernetes label value.
+#     --node_pools.tags (JSON): An array of tags applied to this object.
+#     --node_pools.taints (JSON, conflicts with children):
+#       --node_pools.taints.effect (required): The Kubernetes taint effect.
+#       --node_pools.taints.key (required): The Kubernetes taint key.
+#       --node_pools.taints.value (required): The Kubernetes taint value.

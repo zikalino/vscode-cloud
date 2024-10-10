@@ -19,3 +19,23 @@ footer:
     subitems:
       - type: button
         text: Create
+
+# linode-cli tags create
+# Create a tag
+# API Documentation: https://techdocs.akamai.com/linode-api/reference/post-tag       
+#
+# Example Usage: 
+#   linode-cli tags create \
+#     --label 'example tag' \
+#     --linodes 123 \
+#     --linodes 456 \
+#     --volumes 9082 \
+#     --volumes 10003
+#
+# Arguments:
+#   --label (required): The new Tag.
+#
+#   --domains: A list of Domain IDs to apply the new Tag to.
+#   --linodes: A list of Linode IDs to apply the new Tag to.
+#   --nodebalancers: A list of NodeBalancer IDs to apply the new Tag to.
+#   --volumes: A list of Volume IDs to apply the new Tag to.

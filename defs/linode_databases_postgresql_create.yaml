@@ -19,3 +19,41 @@ footer:
     subitems:
       - type: button
         text: Create
+
+# linode-cli databases postgresql-create
+# Create a managed PostgreSQL database
+# API Documentation:
+# https://techdocs.akamai.com/linode-api/reference/post-databases-postgre-sql-instanc
+# es
+# 
+# Example Usage: 
+#   linode-cli databases postgresql-create \
+#     --label example-db \
+#     --region us-east \
+#     --type g6-dedicated-2 \
+#     --cluster_size 3 \
+#     --engine postgresql/13.2 \
+#     --encrypted false \
+#     --ssl_connection false \
+#     --replication_type asynch \
+#     --replication_commit_type local \
+#     --allow_list 203.0.113.1 \
+#     --allow_list 192.0.1.0/24
+# 
+# Arguments:
+#   --engine (required): The Managed Database engine in engine/version format.       
+#   --label (required): A unique, user-defined string referring to the Managed       
+#   Database.
+#   --region (required): The Region ID for the Managed Database. See:
+#   https://techdocs.akamai.com/linode-api/reference/get-regions
+#   --type (required): The Linode Instance type used by the Managed Database for its 
+#   nodes.
+# 
+#   --allow_list: A list of IP addresses that can access the Managed Database.       
+#   --cluster_size: The number of Linode Instance nodes deployed to the Managed      
+#   Database.
+#   --encrypted: Whether the Managed Databases is encrypted.
+#   --replication_commit_type: The synchronization level of the replicating server.  
+#   --replication_type: The replication method used for the Managed Database.        
+#   --ssl_connection: Whether to require SSL credentials to establish a connection to
+#   the Managed Database.

@@ -19,3 +19,38 @@ footer:
     subitems:
       - type: button
         text: Create
+
+# linode-cli tickets create
+# Open a support ticket
+# API Documentation: https://techdocs.akamai.com/linode-api/reference/post-ticket    
+#
+# Example Usage: 
+#   linode-cli tickets create \
+#     --description "I'm having trouble setting the root password on my Linode. I    
+# tried following the instructions but something is not working and I'm not sure what
+# I'm doing wrong. Can you please help me figure out how I can reset it?" \
+#     --linode_id 123 \
+#     --summary "Having trouble resetting root password on my Linode"
+#
+# Arguments:
+#   --description (required): The full details of the issue or question.
+#   --summary (required): The summary or title for this SupportTicket.
+#
+#   --database_id: The ID of the Managed Database this ticket is regarding, if       
+#   relevant.
+#   --domain_id: The ID of the Domain this ticket is regarding, if relevant.
+#   --firewall_id: The ID of the Firewall this ticket is regarding, if relevant.     
+#   --linode_id: The ID of the Linode this ticket is regarding, if relevant.
+#   --lkecluster_id: The ID of the Kubernetes cluster this ticket is regarding, if   
+#   relevant.
+#   --longviewclient_id: The ID of the Longview client this ticket is regarding, if  
+#   relevant.
+#   --managed_issue: Designates if this ticket is related to a Managed service. See: 
+#   https://www.linode.com/products/managed/
+#   --nodebalancer_id: The ID of the NodeBalancer this ticket is regarding, if       
+#   relevant.
+#   --region: The Region ID for the associated VLAN this ticket is regarding. See:   
+#   https://techdocs.akamai.com/linode-api/reference/get-regions
+#   --vlan: The label of the VLAN this ticket is regarding, if relevant.
+#   --volume_id: The ID of the Volume this ticket is regarding, if relevant.
+#   --vpc_id: The ID of the VPC this ticket is regarding, if relevant.

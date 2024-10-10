@@ -19,3 +19,20 @@ footer:
     subitems:
       - type: button
         text: Create
+
+# linode-cli users create
+# Create a user
+# API Documentation: https://techdocs.akamai.com/linode-api/reference/post-user      
+#
+# Example Usage: 
+#   linode-cli users create \
+#     --username example_user \
+#     --email example_user@linode.com \
+#     --restricted true
+#
+# Arguments:
+#   --email (required): The email address for the User.
+#   --username (required): The User's username.
+#
+#   --restricted: If true, the User must be granted access to perform actions or     
+#   access entities on this Account.

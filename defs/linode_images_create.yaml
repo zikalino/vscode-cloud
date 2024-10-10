@@ -20,3 +20,24 @@ footer:
     subitems:
       - type: button
         text: Install All
+
+# linode-cli images create
+# Create an image
+# API Documentation: https://techdocs.akamai.com/linode-api/reference/post-image
+#
+# Example Usage: 
+#   linode-cli images create \
+#     --label this_is_a_label \
+#     --description "A longer description \
+#       of the image" \
+#     --disk_id 123
+#
+# Arguments:
+#   --disk_id (required): The ID of the Linode Disk that this image will be created  
+#   from.
+#
+#   --cloud_init: Whether this image supports cloud-init. See:
+#   https://www.linode.com/docs/guides/write-files-with-cloud-init/
+#   --description: A detailed description of this image.
+#   --label: A short title of this image.
+#   --tags: Tags used for organizational purposes.
