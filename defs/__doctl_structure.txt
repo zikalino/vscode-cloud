@@ -9,6 +9,10 @@ Manage DigitalOcean Resources:
     create-deployment         Creates a deployment
     delete                    Deletes an app
     dev                       [BETA] Display commands for working with App Platform local development.
+      build       Build an app component
+      config      Displays commands for working with App Platform local development configuration settings.
+        set         Set a value in the local development configuration settings.
+        unset       Unset a value in the local development configuration settings.
     get                       Get an app
     get-deployment            Get a deployment
     list                      Lists all apps
@@ -19,84 +23,303 @@ Manage DigitalOcean Resources:
     logs                      Retrieves logs
     propose                   Proposes an app spec
     spec                      Display commands for working with app specs
+      get         Retrieve an application's spec
+      validate    Validate an application spec
     tier                      Display commands for working with app tiers
+      instance-size Display commands for working with app instance sizes
+        get         Retrieve an app instance size
+        list        List all app instance sizes
     update                    Updates an app
     update-alert-destinations Updates alert destinations
     upgrade-buildpack         Upgrades app's buildpack  
   compute         Display commands that manage infrastructure
     action             Display commands for retrieving resource action history
+      get         Retrieve details about a specific action
+      list        Retrieve a  list of all recent actions taken on your resources
+      wait        Block thread until an action completes
     cdn                Display commands that manage CDNs
+      create      Create a CDN
+      delete      Delete a CDN
+      flush       Flush the cache of a CDN
+      get         Retrieve details about a specific CDN
+      list        List CDNs that have already been created
+      update      Update the configuration for a CDN
     certificate        Display commands that manage SSL certificates and private keys
+      create      Create a new certificate
+      delete      Delete the specified certificate
+      get         Retrieve details about a certificate
+      list        Retrieve list of the account's stored certificates
     domain             Display commands that manage domains
+      create      Add a domain to your account
+      delete      Permanently delete a domain from your account
+      get         Retrieve information about a domain
+      list        List all domains on your account
+      records     Manage DNS records    
+        create      Create a DNS record
+        delete      Delete a DNS record
+        list        List the DNS records for a domain
+        update      Update a DNS record
     droplet            Manage virtual machines (Droplets)
+      1-click     Display commands that pertain to Droplet 1-click applications
+        list        Retrieve a list of Droplet 1-Click applications
+      actions     List Droplet actions
+      backups     List Droplet backups
+      create      Create a new Droplet
+      delete      Permanently delete a Droplet
+      get         Retrieve information about a Droplet
+      kernels     List available Droplet kernels
+      list        List Droplets on your account
+      neighbors   List a Droplet's neighbors on your account
+      snapshots   List all snapshots for a Droplet
+      tag         Add a tag to a Droplet
+      untag       Remove a tag from a Droplet
     droplet-action     Display Droplet action commands
+      change-kernel             Change a Droplet's kernel
+      disable-backups           Disable backups on a Droplet
+      enable-backups            Enable backups on a Droplet
+      enable-ipv6               Enable IPv6 on a Droplet
+      enable-private-networking Enable private networking on a Droplet
+      get                       Retrieve a specific Droplet action
+      password-reset            Reset the root password for a Droplet
+      power-cycle               Powercycle a Droplet
+      power-off                 Power off a Droplet
+      power-on                  Power on a Droplet
+      reboot                    Reboot a Droplet
+      rebuild                   Rebuild a Droplet
+      rename                    Rename a Droplet
+      resize                    Resize a Droplet
+      restore                   Restore a Droplet from a backup
+      shutdown                  Shut down a Droplet
+      snapshot                  Take a Droplet snapshot    
     firewall           Display commands to manage cloud firewalls
+        add-droplets    Add Droplets to a cloud firewall
+        add-rules       Add inbound or outbound rules to a cloud firewall
+        add-tags        Add tags to a cloud firewall
+        create          Create a new cloud firewall
+        delete          Permanently delete a cloud firewall
+        get             Retrieve information about a cloud firewall
+        list            List the cloud firewalls on your account
+        list-by-droplet List firewalls by Droplet
+        remove-droplets Remove Droplets from a cloud firewall
+        remove-rules    Remove inbound or outbound rules from a cloud firewall
+        remove-tags     Remove tags from a cloud firewall
+        update          Update a cloud firewall's configuration    
     image              Display commands to manage images
+        create            Create custom image
+        delete            Permanently delete an image from your account
+        get               Retrieve information about an image
+        list              List images on your account
+        list-application  List available One-Click Apps
+        list-distribution List available distribution images
+        list-user         List user-created images
+        update            Update an image's metadata    
     image-action       Display commands to perform actions on images
+        get         Retrieve the status of an image action
+        transfer    Transfer an image to another datacenter region
     load-balancer      Display commands to manage load balancers
+        add-droplets            Add Droplets to a load balancer
+        add-forwarding-rules    Add forwarding rules to a load balancer
+        create                  Create a new load balancer
+        delete                  Permanently delete a load balancer
+        get                     Retrieve a load balancer
+        list                    List load balancers
+        purge-cache             Purges CDN cache for a global load balancer
+        remove-droplets         Remove Droplets from a load balancer
+        remove-forwarding-rules Remove forwarding rules from a load balancer
+        update                  Update a load balancer's configuration
     region             Display commands to list datacenter regions
+        list        Retrieves a list of datacenter regions
     reserved-ip        Display commands to manage reserved IP addresses
+        create      Create a new reserved IP address
+        delete      Permanently delete a reserved IP address
+        get         Retrieve information about a reserved IP address
+        list        List all reserved IP addresses on your account
     reserved-ip-action Display commands to associate reserved IP addresses with Droplets
+        assign      Assign a reserved IP address to a Droplet
+        get         Retrieve the status of a reserved IP action
+        unassign    Unassign a reserved IP address from a Droplet
     size               List available Droplet sizes
+        list        List available Droplet sizes
     snapshot           Access and manage snapshots
+        delete      Delete a snapshot of a Droplet or volume
+        get         Retrieve a Droplet or volume snapshot
+        list        List Droplet and volume snapshots
     ssh                Access a Droplet using SSH
     ssh-key            Display commands to manage SSH keys on your account
+        create      Create a new SSH key on your account
+        delete      Permanently delete an SSH key from your account
+        get         Retrieve information about an SSH key on your account
+        import      Import an SSH key from your computer to your account
+        list        List all SSH keys on your account
+        update      Update an SSH key's name
     tag                Display commands to manage tags
+        apply       Apply a tag to resources
+        create      Create a tag
+        delete      Delete a tag
+        get         Retrieve information about a tag
+        list        List all tags
+        remove      Remove a tag from resources
     volume             Display commands to manage block storage volumes
+        create      Create a block storage volume
+        delete      Delete a block storage volume
+        get         Retrieve an existing block storage volume
+        list        List block storage volumes by ID
+        snapshot    Create a block storage volume snapshot
     volume-action      Display commands to perform actions on a volume
+        attach               Attach a volume to a Droplet
+        detach               Detach a volume from a Droplet
+        detach-by-droplet-id (Deprecated) Detach a volume. Use `detach` instead.
+        get                  Retrieve the status of a volume action
+        list                 Retrieve a list of actions taken on a volume
+        resize               Resize the disk of a volume
   databases       Display commands that manage databases
     backups            List database cluster backups
     configuration      View the configuration of a database cluster given its ID and Engine
     connection         Retrieve connection details for a database cluster
     create             Create a database cluster
     db                 Display commands for managing individual databases within a cluster
+        create      Create a database within a cluster
+        delete      Delete the specified database from the cluster
+        get         Retrieve the name of a database within a cluster
+        list        Retrieve a list of databases within a cluster
     delete             Delete a database cluster
     events             Display commands for listing database cluster events
+        list        List your database cluster events
     firewalls          Display commands to manage firewall rules (called`trusted sources` in the control panel) for database clusters
+        append      Add a database firewall rule to a given database
+        list        Retrieve a list of firewall rules for a given database
+        remove      Remove a firewall rule for a given database
+        replace     Replaces the firewall rules for a given database. The rules passed to the `--rules` flag replace the firewall rules previously assigned to the database,
     fork               Create a new database cluster by forking an existing database cluster.
     get                Get details for a database cluster
     get-ca             Provides the CA certificate for a DigitalOcean database
     indexes            Display commands to manage indexes for opensearch clusters
+        delete      Deletes an opensearch index by index name
+        list        Retrieve a list of indexes for a given opensearch cluster
     list               List your database clusters
     maintenance-window Display commands for scheduling automatic maintenance on your database cluster
+        get         Retrieve details about a database cluster's maintenance windows
+        install     Start installation of updates immediately
+        update      Update the maintenance window for a database cluster
     migrate            Migrate a database cluster to a new region
     options            Display available database options (regions, version, layouts, etc.) for all available database engines
     pool               Display commands for managing connection pools
+        create      Create a connection pool for a database cluster
+        delete      Delete a connection pool for a database
+        get         Retrieve information about a database connection pool
+        list        List connection pools for a database cluster
+        update      Update a connection pool for a database
     replica            Display commands to manage read-only database replicas
+        connection  Retrieve information for connecting to a read-only database replica
+        create      Create a read-only database replica
+        delete      Delete a read-only database replica
+        get         Retrieve information about a read-only database replica
+        list        Retrieve list of read-only database replicas
+        promote     Promote a read-only database replica to become a primary cluster
     resize             Resize a database cluster
     sql-mode           Display commands to configure a MySQL database cluster's SQL modes
+        get         Get a MySQL database cluster's SQL modes
+        set         Set a MySQL database cluster's SQL modes
     topics             Display commands to manage topics for kafka database clusters
+        create      Creates a topic for a given kafka database
+        delete      Deletes a kafka topic by topic name
+        get         Retrieve the configuration for a given kafka topic
+        list        Retrieve a list of topics for a given kafka database
+        partitions  Retrieve the partitions for a given kafka topic
+        update      Updates a topic for a given kafka database
     user               Display commands for managing database users
+        create      Create a database user
+        delete      Delete a database user
+        get         Retrieve details about a database user
+        list        Retrieve list of database users
+        reset       Resets a user's auth
   kubernetes      Displays commands to manage Kubernetes clusters and configurations
     1-click     Display commands that pertain to kubernetes 1-click applications
+        install     Install 1-click apps on a Kubernetes cluster
+        list        Retrieve a list of Kubernetes 1-Click applications
     cluster     Display commands for managing Kubernetes clusters
+        create                    Create a Kubernetes cluster
+        delete                    Delete Kubernetes clusters
+        delete-selective          Delete a Kubernetes cluster and selectively delete resources associated with it
+        get                       Retrieve details about a Kubernetes cluster
+        get-upgrades              Retrieve a list of available Kubernetes version upgrades
+        kubeconfig                Display commands for managing your local kubeconfig
+            remove          Remove a cluster's credentials from your local kubeconfig
+            save            Save a cluster's credentials to your local kubeconfig
+            show            Show a Kubernetes cluster's kubeconfig YAML
+        list                      Retrieve the list of Kubernetes clusters for your account
+        list-associated-resources Retrieve DigitalOcean resources associated with a Kubernetes cluster
+        node-pool                 Display commands for managing node pools
+            create       Create a new node pool for a cluster
+            delete       Delete a node pool
+            delete-node  Delete a node
+            get          Retrieve information about a cluster's node pool
+            list         List a cluster's node pools
+            replace-node Replace node with a new one
+            update       Update an existing node pool in a cluster
+        registry                  Display commands for integrating clusters with docr
+            add         Add container registry support to Kubernetes clusters
+            remove      Remove container registry support from Kubernetes clusters
+        update                    Update a Kubernetes cluster's configuration
+        upgrade                   Upgrades a cluster to a new Kubernetes version
     options     List possible option values for use inside Kubernetes commands
   monitoring      [Beta] Display commands to manage monitoring
     alert       Display commands for managing alert policies
+        create      Create an alert policy
+        delete      Delete an alert policy
+        get         Retrieve information about an alert policy
+        list        List all alert policies
+        update      Update an alert policy
     uptime      Display commands to manage uptime checks
+        alert       Display commands to manage uptime alerts
+            create      Create an uptime alert
+            delete      Delete an uptime alert
+            get         Get uptime alert
+            list        List uptime alerts
+            update      Update an uptime alert
+        create      Create an uptime check
+        delete      Delete an uptime check
+        get         Get an uptime check
+        list        List uptime checks
+        update      Update an uptime check
   projects        Manage projects and assign resources to them
     create      Create a new project
     delete      Delete the specified project
     get         Retrieve details for a specific project
     list        List existing projects
     resources   Manage resources assigned to a project
+        assign      Assign one or more resources to a project
+        get         Retrieve a resource by its URN
+        list        List resources assigned to a project
     update      Update an existing project
   registry        Display commands for working with container registries
     create              Create a private container registry
     delete              Delete a container registry
     docker-config       Generate a Docker auth configuration for a registry
     garbage-collection  Display commands for garbage collection for a container registry
+        cancel      Cancel the currently-active garbage collection for a container registry
+        get-active  Retrieve information about the currently-active garbage collection for a container registry
+        list        Retrieve information about past garbage collections for a container registry
+        start       Start garbage collection for a container registry    
     get                 Retrieve details about a container registry
     kubernetes-manifest Generate a Kubernetes secret manifest for a registry.
     login               Log in Docker to a container registry
     logout              Log out Docker from a container registry
     options             List available container registry options
     repository          Display commands for working with repositories in a container registry
+        delete-manifest Delete one or more container repository manifests by digest
+        delete-tag      Delete one or more container repository tags
+        list-manifests  List manifests for a repository in a container registry
+        list-tags       List tags for a repository in a container registry
+        list-v2         List repositories for a container registry
   serverless      Develop, test, and deploy serverless functions
     activations  Retrieve activation records
     connect      Connects local serverless support to a functions namespace
     deploy       Deploy a functions project to your functions namespace
     functions    Work with the functions in your namespace
+        get         Retrieve the metadata or code of a deployed function
+        invoke      Invokes a function
+        list        Lists the functions in your functions namespace    
     get-metadata Obtain metadata of a functions project
     init         Initialize a 'functions project' directory in your local file system
     install      Installs the serverless support
@@ -112,6 +335,11 @@ Manage DigitalOcean Resources:
     get         Retrieve a VPC network
     list        List VPC networks
     peerings    Display commands that manage VPC Peerings
+        create      Create a new VPC Peering
+        delete      Permanently delete a VPC Peering
+        get         Retrieves a VPC Peering
+        list        List VPC Peerings
+        update      Update a VPC Peering's name    
     update      Update a VPC network's configuration
 
 Configure doctl:
