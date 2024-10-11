@@ -1,0 +1,135 @@
+Manage DigitalOcean Resources:
+  1-click         Display commands that pertain to 1-click applications
+    list        Retrieve a list of 1-Click applications
+  account         Display commands that retrieve account details
+    get         Retrieve account profile details
+    ratelimit   Retrieve your API usage and the remaining quota
+  apps            Displays commands for working with apps
+    create                    Create an app
+    create-deployment         Creates a deployment
+    delete                    Deletes an app
+    dev                       [BETA] Display commands for working with App Platform local development.
+    get                       Get an app
+    get-deployment            Get a deployment
+    list                      Lists all apps
+    list-alerts               Lists alerts on an app
+    list-buildpacks           Lists buildpacks
+    list-deployments          List all deployments
+    list-regions              Lists available App Platform regions
+    logs                      Retrieves logs
+    propose                   Proposes an app spec
+    spec                      Display commands for working with app specs
+    tier                      Display commands for working with app tiers
+    update                    Updates an app
+    update-alert-destinations Updates alert destinations
+    upgrade-buildpack         Upgrades app's buildpack  
+  compute         Display commands that manage infrastructure
+    action             Display commands for retrieving resource action history
+    cdn                Display commands that manage CDNs
+    certificate        Display commands that manage SSL certificates and private keys
+    domain             Display commands that manage domains
+    droplet            Manage virtual machines (Droplets)
+    droplet-action     Display Droplet action commands
+    firewall           Display commands to manage cloud firewalls
+    image              Display commands to manage images
+    image-action       Display commands to perform actions on images
+    load-balancer      Display commands to manage load balancers
+    region             Display commands to list datacenter regions
+    reserved-ip        Display commands to manage reserved IP addresses
+    reserved-ip-action Display commands to associate reserved IP addresses with Droplets
+    size               List available Droplet sizes
+    snapshot           Access and manage snapshots
+    ssh                Access a Droplet using SSH
+    ssh-key            Display commands to manage SSH keys on your account
+    tag                Display commands to manage tags
+    volume             Display commands to manage block storage volumes
+    volume-action      Display commands to perform actions on a volume
+  databases       Display commands that manage databases
+    backups            List database cluster backups
+    configuration      View the configuration of a database cluster given its ID and Engine
+    connection         Retrieve connection details for a database cluster
+    create             Create a database cluster
+    db                 Display commands for managing individual databases within a cluster
+    delete             Delete a database cluster
+    events             Display commands for listing database cluster events
+    firewalls          Display commands to manage firewall rules (called`trusted sources` in the control panel) for database clusters
+    fork               Create a new database cluster by forking an existing database cluster.
+    get                Get details for a database cluster
+    get-ca             Provides the CA certificate for a DigitalOcean database
+    indexes            Display commands to manage indexes for opensearch clusters
+    list               List your database clusters
+    maintenance-window Display commands for scheduling automatic maintenance on your database cluster
+    migrate            Migrate a database cluster to a new region
+    options            Display available database options (regions, version, layouts, etc.) for all available database engines
+    pool               Display commands for managing connection pools
+    replica            Display commands to manage read-only database replicas
+    resize             Resize a database cluster
+    sql-mode           Display commands to configure a MySQL database cluster's SQL modes
+    topics             Display commands to manage topics for kafka database clusters
+    user               Display commands for managing database users
+  kubernetes      Displays commands to manage Kubernetes clusters and configurations
+    1-click     Display commands that pertain to kubernetes 1-click applications
+    cluster     Display commands for managing Kubernetes clusters
+    options     List possible option values for use inside Kubernetes commands
+  monitoring      [Beta] Display commands to manage monitoring
+    alert       Display commands for managing alert policies
+    uptime      Display commands to manage uptime checks
+  projects        Manage projects and assign resources to them
+    create      Create a new project
+    delete      Delete the specified project
+    get         Retrieve details for a specific project
+    list        List existing projects
+    resources   Manage resources assigned to a project
+    update      Update an existing project
+  registry        Display commands for working with container registries
+    create              Create a private container registry
+    delete              Delete a container registry
+    docker-config       Generate a Docker auth configuration for a registry
+    garbage-collection  Display commands for garbage collection for a container registry
+    get                 Retrieve details about a container registry
+    kubernetes-manifest Generate a Kubernetes secret manifest for a registry.
+    login               Log in Docker to a container registry
+    logout              Log out Docker from a container registry
+    options             List available container registry options
+    repository          Display commands for working with repositories in a container registry
+  serverless      Develop, test, and deploy serverless functions
+    activations  Retrieve activation records
+    connect      Connects local serverless support to a functions namespace
+    deploy       Deploy a functions project to your functions namespace
+    functions    Work with the functions in your namespace
+    get-metadata Obtain metadata of a functions project
+    init         Initialize a 'functions project' directory in your local file system
+    install      Installs the serverless support
+    namespaces   Manage your functions namespaces
+    status       Provide information about serverless support
+    undeploy     Removes resources from your functions namespace
+    uninstall    Removes the serverless support
+    upgrade      Upgrades serverless support to match this version of doctl
+    watch        Watch a functions project directory, deploying incrementally on change
+  vpcs            Display commands that manage VPCs
+    create      Create a new VPC network
+    delete      Permanently delete a VPC network
+    get         Retrieve a VPC network
+    list        List VPC networks
+    peerings    Display commands that manage VPC Peerings
+    update      Update a VPC network's configuration
+
+Configure doctl:
+  auth            Display commands for authenticating doctl with an account
+    init        Initialize doctl to use a specific account
+    list        List available authentication contexts
+    remove      Remove authentication contexts
+    switch      Switch between authentication contexts
+  version         Show the current version
+
+View Billing:
+  balance         Display commands for retrieving your account balance
+    get         Retrieve your account balance
+  billing-history Display commands for retrieving your billing history
+    list        Retrieve a paginated billing history for a user
+  invoice         Display commands for retrieving invoices for your account
+    csv         Downloads a CSV file of a specific invoice to you local machine
+    get         Retrieve a list of all the items on an invoice
+    list        List all of the invoices for your account
+    pdf         Downloads a PDF file of a specific invoice to your local machine
+    summary     Get a summary of an invoice
