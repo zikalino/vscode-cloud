@@ -3,10 +3,12 @@ id: root
 form:
   - type: fieldset
     subitems:
-      - $include: __gh_install_step.yaml
-  - type: fieldset
-    subitems:
-      - $include: __gh_add_issue_comment.yaml
+      - $include: __go_install_step.yaml
+      - type: 'action-row'
+        name: Install Digital Ocean CLI
+        verify: doctl version
+        install: go install github.com/digitalocean/doctl/cmd/doctl@latest
+
 
 footer:
   - type: footer
