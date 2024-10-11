@@ -3,8 +3,12 @@ id: root
 form:
   - type: fieldset
     subitems:
-      - $include: __git_install_step.yaml
-      - $include: __gh_install_step.yaml
+      - $include: __go_install_step.yaml
+      - type: 'action-row'
+        name: Install UpCloud CLI
+        verify: upctl version
+        install: go install github.com/UpCloudLtd/upcloud-cli/v3/...@latest
+
 
 footer:
   - type: footer
