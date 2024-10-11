@@ -1,0 +1,181 @@
+account                         : Manage Azure subscription information.
+acr                             : Manage private registries with Azure Container Registries.
+ad                              : Manage Microsoft Entra ID (formerly known as Azure Active
+                                    Directory, Azure AD, AAD) entities needed for Azure role-based
+                                    access control (Azure RBAC) through Microsoft Graph API.
+advisor                         : Manage Azure Advisor.
+afd                             : Manage Azure Front Door Standard/Premium.
+aks                             : Manage Azure Kubernetes Services.
+alerts-management               : Manage Azure Alerts Management Service Resource.
+ams                             : Manage Azure Media Services resources.
+apim                            : Manage Azure API Management services.
+appconfig                       : Manage App Configurations.
+appservice                      : Manage App Service plans.
+aro                             : Manage Azure Red Hat OpenShift clusters.
+artifacts                       : Manage Azure Artifacts.
+attestation      [Experimental] : Manage Microsoft Azure Attestation (MAA).
+automanage                      : Manage Automanage.
+automation                      : Manage Automation Account.
+azurestackhci    [Experimental] : Manage azurestackhci.
+backup                          : Manage Azure Backups.
+batch                           : Manage Azure Batch.
+bicep                           : Bicep CLI command group.
+billing                         : Manage Azure Billing.
+blueprint                       : Commands to manage blueprint.
+boards                          : Manage Azure Boards.
+bot                             : Manage Microsoft Azure Bot Service.
+cache                           : Commands to manage CLI objects cached using the `--defer`
+                                    argument.
+capacity                        : Manage capacity.
+cdn                             : Manage Azure Content Delivery Networks (CDNs).
+cloud                           : Manage registered Azure clouds.
+cognitiveservices               : Manage Azure Cognitive Services accounts.
+communication                   : Manage communication service with communication.
+compute-recommender             : Manage sku/zone/region recommender info for compute resources.
+config           [Experimental] : Manage Azure CLI configuration.
+confluent                       : Manage confluent organization.
+connection                      : Commands to manage Service Connector local connections which
+                                    allow local environment to connect Azure Resource. If you want
+                                    to manage connection for compute service, please run 'az
+                                    webapp/containerapp/spring connection'.
+consumption           [Preview] : Manage consumption of Azure resources.
+container                       : Manage Azure Container Instances.
+containerapp                    : Manage Azure Container Apps.
+cosmosdb                        : Manage Azure Cosmos DB database accounts.
+costmanagement                  : Costmanagement.
+databox                         : Manage data box.
+databoxedge           [Preview] : Manage device with databoxedge.
+databricks                      : Manage databricks workspaces.
+datadog                         : Manage datadog.
+datafactory                     : Manage Data Factory.
+datamigration                   : Manage Data Migration.
+dataprotection                  : Manage dataprotection.
+datashare        [Experimental] : Manage Data Share.
+deployment                      : Manage Azure Resource Manager template deployment at
+                                    subscription scope.
+deployment-scripts              : Manage deployment scripts at subscription or resource group
+                                    scope.
+desktopvirtualization           : Manage desktop virtualization.
+devcenter                       : Manage resources with devcenter.
+devops                          : Manage Azure DevOps organization level operations.
+disk                            : Manage Azure Managed Disks.
+disk-access                     : Manage disk access resources.
+disk-encryption-set             : Disk Encryption Set resource.
+dla                   [Preview] : Manage Data Lake Analytics accounts, jobs, and
+                                    catalogs.
+dls                   [Preview] : Manage Data Lake Store accounts and filesystems.
+dms                             : Manage Azure Data Migration Service (classic) instances.
+dnc                   [Preview] : Manage Delegated Network.
+edgeorder                       : Manage Edge Order.
+elastic                         : Manage Microsoft Elastic.
+eventgrid             [Preview] : Manage Azure Event Grid topics, domains, domain
+                                    topics, system topics, partner topics, event subscriptions,
+                                    system topic event subscriptions, partner topic event
+                                    subscriptions, and namespaces resources.
+eventhubs                       : Eventhubs.
+extension                       : Manage and update CLI extensions.
+feature                         : Manage resource provider features.
+functionapp                     : Manage function apps. To install the Azure Functions Core
+                                    tools see https://github.com/Azure/azure-functions-core-tools.
+gallery                         : Azure Compute Gallery.
+group                           : Manage resource groups and template deployments.
+hanainstance                    : (PREVIEW) Manage Azure SAP HANA Instance.
+hdinsight                       : Manage HDInsight resources.
+healthbot        [Experimental] : Manage bot with healthbot.
+identity                        : Managed Identities.
+image                           : Manage custom virtual machine images.
+iot                             : Manage Internet of Things (IoT) assets.
+keyvault                        : Manage KeyVault keys, secrets, and certificates.
+kusto            [Experimental] : Manage Kusto.
+lab                   [Preview] : Manage Azure DevTest Labs.
+lock                            : Manage Azure locks.
+logic                           : Manage logic.
+logicapp                        : Manage logic apps.
+logz             [Experimental] : Manage Microsoft Logz.
+maintenance                     : Manage Maintenance.
+managed-cassandra               : Azure Managed Cassandra.
+managedapp                      : Manage template solutions provided and maintained by
+                                    Independent Software Vendors (ISVs).
+managedservices                 : Manage the registration assignments and definitions in Azure.
+managementpartner               : Allows the partners to associate a Microsoft Partner
+                                    Network(MPN) ID to a user or service principal in the
+                                    customer's Azure directory.
+maps                            : Manage Azure Maps.
+mariadb                         : Manage Azure Database for MariaDB servers.
+mobile-network                  : Manage mobile network.
+monitor                         : Manage the Azure Monitor Service.
+mysql                           : Manage Azure Database for MySQL servers.
+netappfiles                     : Manage Azure NetApp Files (ANF) Resources.
+network                         : Manage Azure Network resources.
+networkcloud          [Preview] : Manage Network Cloud resources.
+nginx                           : Manage NGINX deployment resources.
+notification-hub [Experimental] : Manage notification hubs.
+offazure         [Experimental] : Manage on-premise resources for migrate.
+orbital                         : Azure Orbital Ground Station as-a-Service (GSaaS).
+peering                         : Manage peering.
+pipelines                       : Manage Azure Pipelines.
+policy                          : Manage resource policies.
+portal           [Experimental] : Manage Portal.
+postgres                        : Manage Azure Database for PostgreSQL servers.
+powerbi                         : Manage PowerBI resources.
+ppg                             : Manage Proximity Placement Groups.
+private-link                    : Private-link association CLI command group.
+provider                        : Manage resource providers.
+providerhub                     : Manage resources with ProviderHub.
+purview               [Preview] : Manage Purview.
+quota                           : Manag quota for Azure resource providers.
+redis                           : Manage dedicated Redis caches for your Azure applications.
+redisenterprise                 : Manage the redisenterprise cache.
+relay                           : Manage Azure Relay Service namespaces, WCF relays, hybrid
+                                    connections, and rules.
+repos                           : Manage Azure Repos.
+reservations          [Preview] : Azure Reservations.
+resource                        : Manage Azure resources.
+resourcemanagement              : Resourcemanagement CLI command group.
+restore-point                   : Manage restore point with res.
+role                            : Manage Azure role-based access control (Azure RBAC).
+sapmonitor                      : (PREVIEW) Manage Azure SAP Monitor.
+scvmm                           : Commands for managing Arc for SCVMM resources.
+search                          : Manage Azure Search services, admin keys and query keys.
+security                        : Manage your security posture with Microsoft Defender for
+                                    Cloud.
+servicebus                      : Servicebus.
+sf                              : Manage and administer Azure Service Fabric clusters.
+sig                             : Manage shared image gallery.
+signalr                         : Manage Azure SignalR Service.
+snapshot                        : Manage point-in-time copies of managed disks, native blobs, or
+                                    other snapshots.
+sql                             : Manage Azure SQL Databases and Data Warehouses.
+sshkey                          : Manage ssh public key with vm.
+stack                           : A deployment stack is a native Azure resource type that
+                                    enables you to perform operations on a resource collection as
+                                    an atomic unit.
+staticwebapp                    : Manage static apps.
+storage                         : Manage Azure Cloud Storage resources.
+storagesync                     : Manage Azure File Sync.
+support                         : Manage Azure support resource.
+synapse                         : Manage and operate Synapse Workspace, Spark Pool, SQL Pool.
+tag                             : Tag Management on a resource.
+term             [Experimental] : Manage marketplace agreement with
+                                    marketplaceordering.
+ts                              : Manage template specs at subscription or resource group scope.
+vm                              : Manage Linux or Windows virtual machines.
+vmss                            : Manage groupings of virtual machines in an Azure Virtual
+                                    Machine Scale Set (VMSS).
+webapp                          : Manage web apps.
+
+Commands:
+configure                       : Manage Azure CLI configuration. This command is interactive.
+feedback                        : Send feedback to the Azure CLI Team.
+find                            : I'm an AI robot, my advice is based on our Azure documentation
+                                    as well as the usage patterns of Azure CLI and Azure ARM
+                                    users. Using me improves Azure products and documentation.
+interactive           [Preview] : Start interactive mode. Installs the Interactive
+                                    extension if not installed already.
+login                           : Log in to Azure.
+logout                          : Log out to remove access to Azure subscriptions.
+rest                            : Invoke a custom request.
+survey                          : Take Azure CLI survey.
+upgrade               [Preview] : Upgrade Azure CLI and extensions.
+version                         : Show the versions of Azure CLI modules and extensions in JSON
+                                    format by default or format configured by --output.
