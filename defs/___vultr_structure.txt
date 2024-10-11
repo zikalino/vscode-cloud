@@ -1,0 +1,278 @@
+  account            Display account information
+  apps               Display applications
+	list
+  backups            Display backups
+	get         Get a backup
+	list        List all backups
+  bare-metal         Commands to manage bare metal servers
+	app         Commands to modify applications on a bare metal server
+  		change      Change a bare metal server application
+  		list        List available apps for a bare metal server
+  	bandwidth   Get a bare metal server's bandwidth usage
+  	create      Create a bare metal server
+  	delete      Delete a bare metal server
+  	get         Get a bare metal server by ID
+  	halt        Halt a bare metal server.
+  	image       Commands to manage the image on a bare metal server
+  		change      Change a bare metal server's image
+  	ipv4        List the IPv4 information of a bare metal server
+  	ipv6        Get the IPv6 information of a bare metal server
+  	list        List all bare metal servers.
+  	os          Commands to manage the operating system on a bare metal server       
+  		change      Change a bare metal server's operating system
+  		list        List the available operating systems for a bare metal server
+  	reboot      Reboot a bare metal server.
+  	reinstall   Reinstall the operating system on a bare metal server.
+  	start       Start a bare metal server.
+  	tags        Add or modify tags on the bare metal server
+  	user-data   Commands for bare metal server user data
+  	vnc         Get a bare metal server's VNC url
+	vpc2        Commands to manage VPC2s on bare metal servers
+  		attach      Attach a VPC2 network to a server
+  		detach      Detach a VPC2 network from a server
+  		list        List all VPC2 networks attached to a server
+  billing            Display billing information
+  	history     Display billing history information
+  	invoice     Display invoice information
+  block-storage      Commands to manage block storage
+  	attach      Attach a block storage to an instance
+  	create      Create a new block storage
+  	delete      Delete a block storage
+  	detach      Detach a block storage from an instance
+  	get         Retrieve a block storage
+  	label       Label a block storage
+  	list        List block storage
+  	resize      Resize a block storage
+  cdn                Commands to manage your CDN zones
+  	pull        CDN pull zone commands
+  	push        CDN push zone commands
+  completion         Generate the autocompletion script for the specified shell
+  	bash        Generate the autocompletion script for bash
+  	fish        Generate the autocompletion script for fish
+  	powershell  Generate the autocompletion script for powershell
+	zsh         Generate the autocompletion script for zsh
+  container-registry Commands to interact with container registries
+  	create      Create a container registry
+  	credentials Commands for container registry credentials
+  	delete      Delete a container registry
+  	get         Get a container registry
+  	list        List all container registries
+  	plans       List the plan names for a container registry
+  	regions     List the available regions for a container registry
+  	repository  Interact with container registry repositories
+  	update      Update a container registry
+  database           Commands to manage databases
+  	advanced-option Commands to handle PostgreSQL database advanced options
+  		list        List all available and configured advanced options for a PostgreSQL database
+  		update      Update advanced options for a PostgreSQL managed database
+  	alert           Commands to handle database alerts
+  		list        List database alerts
+  	backup          Commands to handle database backups, restores and forks
+  		fork        Fork a database from backup
+  		get         Get get latest and oldest database backup
+  		restore     Restore a database backup
+  	connection-pool Commands to handle PostgreSQL database connection pools
+  		create      Create a database connection pool
+  		delete      Delete a database connection pool
+  		get         Get a database connection pool
+  		list        List connection pools within a PostgreSQL managed database
+  		update      Update a database connection pool
+  	create          Create database
+  	db              Commands to handle database logical DBs
+  		create      Create a logical database
+  		delete      Delete a logical database
+  		list        List logical databases
+  	delete          Delete a database
+  	get             Retrieve a database
+  	list            List databases
+  	maintenance     Commands to handle database maintenance updates
+  		list        List maintenance updates for a database
+  		start       Start database maintenance update
+  	migration       Commands to handle database migrations
+  		detach      Detach a migration from a database
+  		get         Get migration status of a database
+  		start       Get migration status of a database
+  	plan            Commands to access database plans
+  		list        List database plans
+  	read-replica    Commands to handle database read replicas
+ 		create      Create a read-only replica of a database
+  		promote     Promote a read-only replica of a database
+  	update          Update a database
+  	usage           Commands to display database usage information
+  		get         Get database usage
+  	user            Commands to handle database users
+  		acl         Commands to manage database user access control (Redis only)
+  			update      Update a database user ACL
+  		create      Create a database user
+  		delete      Delete a database user
+  		get         Get a database user
+  		list        List database users
+  		update      Update a database user
+  	version         Commands to handle database version upgrades
+  		list        List all version upgrades for a database
+  		upgrade     Start a version upgrade on a database
+  dns                Commands to control DNS records
+  	domain      DNS domain commands
+  	record      Commands to mangage DNS records
+  		create      Create a DNS record
+  		delete      Delete a DNS record
+  		get         Get a DNS record
+  		list        List all DNS records
+  		update      Update DNS record
+  firewall           Commands to manage firewalls
+  	group       Commands to access firewall group functions
+  		create      Create a firewall group
+  		delete      Delete a firewall group
+  		get         Get a firewall group
+  		list        List all firewall groups
+  		update      Update a firewall group description
+  	rule        Commands to access firewall rules
+  		create      Create a firewall rule
+  		delete      Delete a firewall rule
+  		get         Get a firewall rule
+  		list        List all firewall rules
+  help               Help about any command
+  inference          Commands to manage serverless inference
+  	create      Create inference subscription
+  	delete      Delete an inference subscription
+  	get         Retrieve an inference subscription
+  	list        List inference subscriptions
+  	update      Update an inference subscription
+  	usage       Commands to display inference subscription usage information
+		get         Get inference subscription usage
+  instance           Commands to interact with instances
+  	app                   Application commands for an instance
+  	backup                List and create backup schedules for an instance
+  	bandwidth             Get bandwidth usage
+  	create                Create an instance
+  	delete                Delete an instance
+  	get                   Get info on an instance
+  	ipv4                  IPv4 instance commands
+  	ipv6                  Display instance IPv6 info
+  	iso                   Manage ISOs on an instance
+  	label                 Label an instance
+  	list                  List all instances
+  	os                    Operating system commands for an instance
+  	plan                  Plan commands for an instance
+  	reinstall             Reinstall an instance
+  	restart               Restart an instance
+  	restore               Restore instance from backup or snapshot
+  	reverse-dns           Commands to handle reverse DNS on an instance
+  		default-ipv4 Set a reverse DNS entry for an IPv4 address of an instance to the original setting
+  		delete-ipv6  Remove a reverse DNS IPv6 address entry for an instance
+  		list-ipv6    List the IPv6 reverse DNS entries for an instance
+  		set-ipv4     Set a reverse DNS IPv4 address entry for an instance
+  		set-ipv6     Set a reverse DNS IPv6 address entry for an instance
+  	start                 Start an instance
+  	stop                  Stop an instance
+  	tags                  Update tags on an instance
+  	update-firewall-group Assign a firewall group to instance
+  	user-data             Commands to manage user data on an instance
+  		get         Get the user data on an instance
+  		set         Update user data on an instance
+  	vpc                   Commands to handle vpcs on an instance
+  		attach      Attach a VPC to an instance
+  		detach      Detach a VPC from an instance
+  	vpc2                  Commands to handle vpc2s on an instance
+  		attach      Attach a VPC2 to an instance
+  		detach      Detach a VPC2 from an instance
+  		list        List all VPC2 networks attached to an instance
+  iso                Commands to manage ISOs
+  	create      Create an ISO from url
+  	delete      Delete a private ISO
+  	get         Get a private ISO by ID
+  	list        List all private ISOs available
+  	public      List all public ISOs
+  kubernetes         Commands to manage kubernetes clusters
+  	config      Get a kubernetes cluster config
+  	create      Create kubernetes cluster
+  	delete      Delete a kubernetes cluster
+  	get         Retrieve a kubernetes cluster
+  	list        List kubernetes clusters
+  	node-pool   Commands for kubernetes cluster node pools
+  	update      Update a kubernetes cluster
+  	upgrades    Commands for kubernetes version upgrades
+  	versions    List supported kubernetes versions
+  load-balancer      Commands to managed load balancers
+  	create      Create a load balancer
+  	delete      Delete a load balancer
+  	firewall    Commands to retrieve firewall rules on a load balancer
+  		get         Get a firewall rule
+  		list        List all firewall rules
+  	forwarding  Commands to manage forwarding rules on a load balancer
+  		create      Create a forwarding rule
+  		delete      Delete a forwarding rule
+  		get         Get a forwarding rule
+  		list        List all forwarding rules
+  	get         Retrieve a load balancer
+  	list        List load balancers
+  	update      Update a load balancer
+  marketplace        Display marketplace information
+	app         Commands to interact with vultr marketplace apps
+		list-variables List all user-supplied variables for a marketplace app
+  object-storage     Commands to manage object storage
+  	create          Create a new object storage
+  	delete          Delete an object storage
+  	get             Retrieve a given object storage
+  	label           Change the label for object storage
+  	list            Retrieve all active object storages
+  	list-clusters   Retrieve a list of all available object storage clusters
+  	regenerate-keys Regenerate the S3 API keys for an object storage
+  os                 Display available operating systems
+  	list        List all operating systems
+  plans              Display available plan information
+  	list        List all instance plans
+  	metal       List all bare metal plans
+  regions            Display regions information
+  	availability List available plans by region
+  	list         List regions
+  reserved-ip        Commands to interact with reserved IPs
+  	attach      Attach a reserved IP to an instance
+  	convert     Convert IP address to a reserved IP
+  	create      Create reserved IP
+  	delete      Delete a reserved ip
+  	detach      Detach a reserved IP from an instance
+  	get         Get a reserved IP
+  	list        List all reserved IPs
+  	update      Update reserved IP
+  script             Commands to interact with startup scripts
+  	create      Create a startup script
+  	delete      Delete a startup script
+  	get         Display the contents of specified script
+  	list        List all startup scripts
+  	update      Update startup script
+  snapshot           Commands to interact with snapshots
+  	create      Create a snapshot
+  	create-url  Create a snapshot from a URL
+  	delete      Delete a snapshot
+  	get         Get a snapshot
+  	list        List all snapshots
+  ssh-key            Commands to manage SSH keys
+  	create      Create an SSH key
+  	delete      Delete an SSH key
+  	get         Get an SSH key
+  	list        List all SSH keys
+  	update      Update SSH key
+  user               Commands to manage users
+  	create      Create a user
+  	delete      Delete a user
+  	get         Get a user
+  	list        List all users
+  	update      Update a user
+  version            Display the vultr-cli version
+  vpc                Commands to manage VPCs
+  	create      Create a VPC
+  	delete      Delete a VPC
+  	get         Get a VPC
+  	list        List all VPCs
+  	update      Update a VPC
+  vpc2               Commands to manage VPC2 networks
+  	create      Create a VPC2 network
+  	delete      Delete a VPC2 network
+  	get         Get info on a VPC2 network
+  	list        List all available VPC2 networks
+  	nodes       Commands to manage nodes attached to a VPC2 network
+  		attach      Attach nodes to a VPC2 network
+  		detach      Detach nodes from a VPC2 network
+  		list        List all nodes attached to a VPC2 network
+  	update      Update a VPC2 network
