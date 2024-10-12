@@ -1,0 +1,380 @@
+- account
+- account cancel                        # Cancel your account
+- account client-create                 # Create an OAuth client
+- account client-delete                 # Delete an OAuth client
+- account client-reset-secret           # Reset an OAuth client secret
+- account client-update                 # Update an OAuth client
+- account client-view                   # Get an OAuth client
+- account clients-list                  # List OAuth clients
+- account enable-managed                # Enable Linode Managed
+- account get-account-availability      # Get a region's service availability
+- account get-availability              # List available services
+- account invoice-items                 # List invoice items
+- account invoice-view                  # Get an invoice
+- account invoices-list                 # List invoices
+- account login-view                    # Get an account login
+- account logins-list                   # List user logins
+- account maintenance-list              # List maintenances
+- account notifications-list            # List notifications
+- account payment-create                # Make a payment
+- account payment-view                  # Get a payment
+- account payments-list                 # List payments
+- account promo-add                     # Add a promo credit
+- account settings                      # Get account settings
+- account settings-update               # Update account settings
+- account transfer                      # Get network usage
+- account update                        # Update your account
+- account view                          # Get your account
+
+- betas
+- betas enroll                          # Enroll in a Beta program
+- betas enrolled                        # List enrolled Beta programs
+- betas enrolled-view                   # Get an enrolled Beta program
+- betas list, ls                        # List Beta programs
+- betas view                            # Get a Beta program
+
+- child-account
+- child-account create                  # Create a proxy user token
+- child-account list, ls                # List child accounts
+- child-account view                    # Get a child account
+- databases
+- databases engine-view                 # Get a managed database engine
+- databases engines                     # List managed database engines
+- databases list, ls                    # List managed databases
+- databases mysql-backup-delete         # Delete a managed MySQL database backup
+- databases mysql-backup-restore        # Restore a managed MySQL database backup
+- databases mysql-backup-snapshot       # Create a managed MySQL database backup snapshot
+- databases mysql-backup-view           # Get a managed MySQL database backup
+- databases mysql-backups-list          # List managed MySQL database backups
+- databases mysql-create                # Create a managed MySQL database
+- databases mysql-creds-reset           # Reset managed MySQL database credentials
+- databases mysql-creds-view            # Get managed MySQL database credentials
+- databases mysql-delete                # Delete a managed MySQL database
+- databases mysql-list                  # List managed MySQL databases
+- databases mysql-patch                 # Patch a managed MySQL database
+- databases mysql-ssl-cert              # Get a managed MySQL database SSL certificate
+- databases mysql-update                # Update a managed MySQL database
+- databases mysql-view                  # Get a managed MySQL database
+- databases postgresql-backup-delete    # Delete a managed PostgreSQL database backup
+- databases postgresql-backup-restore   # Restore a managed PostgreSQL database backup
+- databases postgresql-backup-snapshot  # Create a managed PostgreSQL database backup snapshot
+- databases postgresql-backup-view      # Get a managed PostgreSQL database backup
+- databases postgresql-backups-list     # List managed PostgreSQL database backups
+- databases postgresql-create           # Create a managed PostgreSQL database
+- databases postgresql-creds-reset      # Reset managed PostgreSQL database credentials
+- databases postgresql-creds-view       # Get managed PostgreSQL database credentials
+- databases postgresql-delete           # Delete a managed PostgreSQL database
+- databases postgresql-list             # List managed PostgreSQL databases
+- databases postgresql-patch            # Patch a managed PostgreSQL database
+- databases postgresql-ssl-cert         # Get a managed PostgreSQL database SSL certificate
+- databases postgresql-update           # Update a managed PostgreSQL database
+- databases postgresql-view             # Get a managed PostgreSQL database
+- databases type-view                   # Get a managed database type
+- databases types                       # List managed database types
+- domains
+- domains clone                         # Clone a domain
+- domains create                        # Create a domain
+- domains delete, rm                    # Delete a domain
+- domains import                        # Import a domain
+- domains list, ls                      # List domains
+- domains records-create                # Create a domain record
+- domains records-delete                # Delete a domain record
+- domains records-list                  # List domain records
+- domains records-update                # Update a domain record
+- domains records-view                  # Get a domain record
+- domains update                        # Update a domain
+- domains view                          # Get a domain
+- domains zone-file                     # Get a domain zone file
+- events
+- events list, ls                       # List events
+- events mark-read                      # Mark an event as read
+- events mark-seen                      # Mark an event as seen
+- events view                           # Get an event
+- firewalls
+- firewalls create                      # Create a firewall
+- firewalls delete, rm                  # Delete a firewall
+- firewalls device-create               # Create a firewall device
+- firewalls device-delete               # Delete a firewall device
+- firewalls device-view                 # Get a firewall device
+- firewalls devices-list                # List firewall devices
+- firewalls list, ls                    # List firewalls
+- firewalls rules-list                  # List firewall rules
+- firewalls rules-update                # Update firewall rules
+- firewalls update                      # Update a firewall
+- firewalls view                        # Get a firewall
+- images
+- images create                         # Create an image
+- images delete, rm                     # Delete an image
+- images list, ls                       # List images
+- images replicate                      # Replicate an image
+- images update                         # Update an image
+- images upload                         # Upload an image
+- images view                           # Get an image
+- kernels
+- kernels list, ls                      # List kernels
+- kernels view                          # Get a kernel
+- linodes
+- linodes backup-restore                # Restore a backup                                       
+- linodes backup-view                   # Get a backup                                           
+- linodes backups-cancel                # Cancel backups                                         
+- linodes backups-enable                # Enable backups                                         
+- linodes backups-list                  # List backups                                           
+- linodes boot                          # Boot a Linode                                          
+- linodes clone                         # Clone a Linode                                         
+- linodes config-create                 # Create a config profile                                
+- linodes config-delete                 # Delete a config profile                                
+- linodes config-interface-add          # Add a configuration profile interface                  
+- linodes config-interface-delete       # Delete a configuration profile interface               
+- linodes config-interface-update       # Update a configuration profile interface               
+- linodes config-interface-view         # Get a configuration profile interface                  
+- linodes config-interfaces-list        # List configuration profile interfaces                  
+- linodes config-interfaces-ls
+- linodes config-interfaces-order       # Reorder configuration profile interfaces               
+- linodes config-update                 # Update a config profile                                
+- linodes config-view                   # Get a config profile                                   
+- linodes configs-list                  # List config profiles                                   
+- linodes create                        # Create a Linode                                        
+- linodes delete, rm                    # Delete a Linode                                        
+- linodes disk-clone                    # Clone a disk                                           
+- linodes disk-create                   # Create a disk                                          
+- linodes disk-delete                   # Delete a disk                                          
+- linodes disk-reset-password           # Reset a disk root password                             
+- linodes disk-resize                   # Resize a disk                                          
+- linodes disk-update                   # Update a disk                                          
+- linodes disk-view                     # Get a disk                                             
+- linodes disks-list                    # List disks                                             
+- linodes firewalls-list                # List a Linode's firewalls                              
+- linodes ip-add                        # Allocate an IPv4 address                               
+- linodes ip-delete                     # Delete an IPv4 address                                 
+- linodes ip-update                     # Update an IP address's RDNS for a Linode               
+- linodes ip-view                       # Get a Linode's IP address                              
+- linodes ips-list                      # Get networking information                             
+- linodes linode-reset-password         # Reset a Linode's root password                         
+- linodes list, ls                      # List Linodes                                           
+- linodes migrate                       # Initiate a DC migration/pending host migration         
+- linodes nodebalancers                 # List Linode NodeBalancers                              
+- linodes reboot                        # Reboot a Linode                                        
+- linodes rebuild                       # Rebuild a Linode                                       
+- linodes rescue                        # Boot a Linode into rescue mode                         
+- linodes resize                        # Resize a Linode                                        
+- linodes shutdown                      # Shut down a Linode                                     
+- linodes snapshot                      # Create a snapshot                                      
+- linodes transfer-view                 # Get a network transfer                                 
+- linodes type-view                     # Get a type                                             
+- linodes types                         # List types                                             
+- linodes update                        # Update a Linode                                        
+- linodes upgrade                       # Upgrade a Linode                                       
+- linodes view                          # Get a Linode                                           
+- linodes volumes                       # List a Linode's volumes                            
+- lke
+- lke api-endpoints-list                # List Kubernetes API endpoints
+- lke cluster-acl-delete                # Delete the control plane access control list
+- lke cluster-acl-update                # Update the control plane access control list
+- lke cluster-acl-view                  # Get the control plane access control list
+- lke cluster-create                    # Create a Kubernetes cluster
+- lke cluster-dashboard-url             # Get a Kubernetes cluster dashboard URL
+- lke cluster-delete                    # Delete a Kubernetes cluster
+- lke cluster-nodes-recycle             # Recycle cluster nodes
+- lke cluster-update                    # Update a Kubernetes cluster
+- lke cluster-view                      # Get a Kubernetes cluster
+- lke clusters-list                     # List Kubernetes clusters
+- lke kubeconfig-delete                 # Delete a Kubeconfig
+- lke kubeconfig-view                   # Get a Kubeconfig
+- lke node-delete                       # Delete a node
+- lke node-recycle                      # Recycle a node
+- lke node-view                         # Get a node
+- lke pool-create                       # Create a node pool
+- lke pool-delete                       # Delete a node pool
+- lke pool-recycle                      # Recycle a node pool
+- lke pool-update                       # Update a node pool
+- lke pool-view                         # Get a node pool
+- lke pools-list                        # List node pools
+- lke regenerate                        # Regenerate a Kubernetes cluster
+- lke service-token-delete              # Delete a service token
+- lke version-view                      # Get a Kubernetes version
+- lke versions-list                     # List Kubernetes versions
+- longview
+- longview create                       # Create a Longview client
+- longview delete, rm                   # Delete a Longview client
+- longview list, ls                     # List Longview clients
+- longview plan-update                  # Update a Longview plan
+- longview plan-view                    # Get a Longview plan
+- longview subscription-view            # Get a Longview subscription
+- longview subscriptions-list           # List Longview subscriptions
+- longview update                       # Update a Longview client
+- longview view                         # Get a Longview client
+- managed
+- managed contact-create                        # Create a managed contact
+- managed contact-delete                        # Delete a managed contact
+- managed contact-update                        # Update a managed contact
+- managed contact-view                          # Get a managed contact
+- managed contacts-list                         # List managed contacts
+- managed credential-create                     # Create a managed credential
+- managed credential-revoke                     # Delete a managed credential
+- managed credential-sshkey-view                # Get a managed SSH key
+- managed credential-update                     # Update a managed credential
+- managed credential-update-username-password   # Update a managed credential's username and password
+- managed credential-view                       # Get a managed credential
+- managed credentials-list                      # List managed credentials
+- managed issue-view                            # Get a managed issue
+- managed issues-list                           # List managed issues
+- managed linode-setting-update                 # Update a Linode's managed settings
+- managed linode-setting-view                   # Get a Linode's managed settings
+- managed linode-settings-list                  # List managed Linode settings
+- managed service-create                        # Create a managed service
+- managed service-delete                        # Delete a managed service
+- managed service-disable                       # Disable a managed service
+- managed service-enable                        # Enable a managed service
+- managed service-update                        # Update a managed service
+- managed service-view                          # Get a managed service
+- managed services-list                         # List managed services
+- managed stats-list                            # List managed stats
+- network-transfer
+- network-transfer prices                       # List network transfer prices
+- networking
+- networking ip-add                             # Allocate an IP address
+- networking ip-assign                          # Assign IP addresses
+- networking ip-share                           # Share IP addresses
+- networking ip-update                          # Update an IP address's RDNS
+- networking ip-view                            # Get an IP address
+- networking ips-list                           # List IP addresses
+- networking v6-pools                           # List IPv6 pools
+- networking v6-range-create                    # Create an IPv6 range
+- networking v6-range-delete                    # Delete an IPv6 range
+- networking v6-range-view                      # Get an IPv6 range
+- networking v6-ranges                          # List IPv6 ranges
+- nodebalancers
+- nodebalancers config-create                   # Create a config
+- nodebalancers config-delete                   # Delete a config
+- nodebalancers config-rebuild                  # Rebuild a config
+- nodebalancers config-update                   # Update a config
+- nodebalancers config-view                     # Get a config
+- nodebalancers configs-list                    # List configs
+- nodebalancers create                          # Create a NodeBalancer
+- nodebalancers delete, rm                      # Delete a NodeBalancer
+- nodebalancers firewalls                       # List node balancer firewalls
+- nodebalancers list, ls                        # List NodeBalancers
+- nodebalancers node-create                     # Create a node
+- nodebalancers node-delete                     # Delete a node balancer's node
+- nodebalancers node-update                     # Update a node
+- nodebalancers node-view                       # Get a node balancer's node
+- nodebalancers nodes-list                      # List nodes
+- nodebalancers update                          # Update a NodeBalancer
+- nodebalancers view                            # Get a NodeBalancer
+- object-storage
+- object-storage cancel                         # Cancel Object Storage
+- object-storage clusters-list                  # List clusters
+- object-storage clusters-view                  # Get a cluster
+- object-storage keys-create                    # Create an Object Storage key
+- object-storage keys-delete                    # Revoke an Object Storage key
+- object-storage keys-list                      # List Object Storage keys
+- object-storage keys-update                    # Update an Object Storage key
+- object-storage keys-view                      # Get an Object Storage key
+- object-storage ssl-delete                     # Delete an Object Storage TLS/SSL certificate
+- object-storage ssl-upload                     # Upload an Object Storage TLS/SSL certificate
+- object-storage ssl-view                       # Get an Object Storage TLS/SSL certificate
+- payment-methods
+- payment-methods add                           # Add a payment method
+- payment-methods default                       # Set a default payment method
+- payment-methods delete, rm                    # Delete a payment method
+- payment-methods list, ls                      # List payment methods
+- payment-methods view                          # Get a payment method
+- phone
+- phone delete                                  # Delete a phone number
+- phone sms-code-send                           # Send a phone number verification code
+- phone verify                                  # Verify a phone number
+- placement
+- placement assign-linode                       # Assign a placement group
+- placement group-create                        # Create placement group
+- placement group-delete, group-rm              # Delete a placement group
+- placement group-update                        # Update a placement group
+- placement group-view                          # Get a placement group
+- placement groups-list, groups-ls              # List placement groups
+- placement unassign-linode                     # Unassign a placement group
+- profile
+- profile app-delete                            # Revoke app access
+- profile app-view                              # Get an authorized app
+- profile apps-list                             # List authorized apps
+- profile device-revoke                         # Revoke a trusted device
+- profile device-view                           # Get a trusted device
+- profile devices-list                          # List trusted devices
+- profile login-view                            # Get a profile's login
+- profile logins-list                           # List logins
+- profile tfa-confirm                           # Enable two factor authentication
+- profile tfa-disable                           # Disable two factor authentication
+- profile tfa-enable                            # Create a two factor secret
+- profile token-create                          # Create a personal access token
+- profile token-delete                          # Revoke a personal access token
+- profile token-update                          # Update a personal access token
+- profile token-view                            # Get a personal access token
+- profile tokens-list                           # List personal access tokens
+- profile update                                # Update a profile
+- profile view                                  # Get a profile
+- regions
+- regions list, ls                              # List regions
+- regions list-avail                            # List regions' availability
+- regions view                                  # Get a region
+- regions view-avail                            # Get a region's availability
+- security-questions
+- security-questions list, ls                   # List security questions
+- service-transfers
+- service-transfers accept                      # Accept a service transfer
+- service-transfers cancel                      # Cancel a service transfer
+- service-transfers create                      # Request a service transfer
+- service-transfers list, ls                    # List service transfers
+- service-transfers view                        # Get a service transfer request
+- sshkeys
+- sshkeys  create                               # Add an SSH key
+- sshkeys delete, rm                            # Delete an SSH key
+- sshkeys list, ls                              # List SSH keys
+- sshkeys update                                # Update an SSH key
+- sshkeys view                                  # Get an SSH key
+- stackscripts
+- stackscripts create                           # Create a StackScript
+- stackscripts delete, rm                       # Delete a StackScript
+- stackscripts list, ls                         # List StackScripts
+- stackscripts update                           # Update a StackScript
+- stackscripts view                             # Get a StackScript
+- tags
+- tags create                                   # Create a tag
+- tags delete, rm                               # Delete a tag
+- tags list, ls                                 # List tags
+- tickets
+- tickets close                                 # Close a support ticket
+- tickets create                                # Open a support ticket
+- tickets list, ls                              # List support tickets
+- tickets replies                               # List replies
+- tickets reply                                 # Create a reply
+- tickets view                                  # Get a support ticket
+- users
+- users create                                  # Create a user
+- users delete, rm                              # Delete a user
+- users list, ls                                # List users
+- users update                                  # Update a user
+- users view                                    # Get a user
+- vlans
+- vlans list, ls                                # List VLANs
+- volumes
+- volumes attach                                # Attach a volume
+- volumes clone                                 # Clone a volume
+- volumes create                                # Create a volume
+- volumes delete, rm                            # Delete a volume
+- volumes detach                                # Detach a volume
+- volumes list, ls                              # List volumes
+- volumes resize                                # Resize a volume
+- volumes types                                 # List volume types
+- volumes update                                # Update a volume
+- volumes view                                  # Get a volume
+- vpcs
+- vpcs create                                   # Create a VPC
+- vpcs delete                                   # Delete a VPC
+- vpcs ips-all-list, ips-all-ls                 # List VPC IP addresses
+- vpcs ips-list, ips-ls                         # List a VPC's IP addresses
+- vpcs list, ls                                 # List VPCs
+- vpcs subnet-create                            # Create a VPC subnet
+- vpcs subnet-delete                            # Delete a VPC subnet
+- vpcs subnet-update                            # Update a VPC subnet
+- vpcs subnet-view                              # Get a VPC subnet
+- vpcs subnets-list, subnets-ls                 # List VPC subnets
+- vpcs update                                   # Update a VPC
+- vpcs view                                     # Get a VPC
