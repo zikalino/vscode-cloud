@@ -1,32 +1,377 @@
 account
+  cancel                     Cancel your account
+  client-create              Create an OAuth client
+  client-delete              Delete an OAuth client
+  client-reset-secret        Reset an OAuth client secret
+  client-update              Update an OAuth client
+  client-view                Get an OAuth client
+  clients-list               List OAuth clients
+  enable-managed             Enable Linode Managed
+  get-account-availability   Get a region's service availability
+  get-availability           List available services
+  invoice-items              List invoice items
+  invoice-view               Get an invoice
+  invoices-list              List invoices
+  login-view                 Get an account login
+  logins-list                List user logins
+  maintenance-list           List maintenances
+  notifications-list         List notifications
+  payment-create             Make a payment
+  payment-view               Get a payment
+  payments-list              List payments
+  promo-add                  Add a promo credit
+  settings                   Get account settings
+  settings-update            Update account settings
+  transfer                   Get network usage
+  update                     Update your account
+  view                       Get your account
 betas
+  enroll          Enroll in a Beta program
+  enrolled        List enrolled Beta programs
+  enrolled-view   Get an enrolled Beta program
+  list, ls        List Beta programs
+  view            Get a Beta program
 child-account
+  create     Create a proxy user token
+  list, ls   List child accounts
+  view       Get a child account
 databases
+  engine-view                  Get a managed database engine
+  engines                      List managed database engines
+  list, ls                     List managed databases
+  mysql-backup-delete          Delete a managed MySQL database backup
+  mysql-backup-restore         Restore a managed MySQL database backup
+  mysql-backup-snapshot        Create a managed MySQL database backup snapshot
+  mysql-backup-view            Get a managed MySQL database backup
+  mysql-backups-list           List managed MySQL database backups
+  mysql-create                 Create a managed MySQL database
+  mysql-creds-reset            Reset managed MySQL database credentials
+  mysql-creds-view             Get managed MySQL database credentials
+  mysql-delete                 Delete a managed MySQL database
+  mysql-list                   List managed MySQL databases
+  mysql-patch                  Patch a managed MySQL database
+  mysql-ssl-cert               Get a managed MySQL database SSL certificate
+  mysql-update                 Update a managed MySQL database
+  mysql-view                   Get a managed MySQL database
+  postgresql-backup-delete     Delete a managed PostgreSQL database backup
+  postgresql-backup-restore    Restore a managed PostgreSQL database backup
+  postgresql-backup-snapshot   Create a managed PostgreSQL database backup snapshot
+  postgresql-backup-view       Get a managed PostgreSQL database backup
+  postgresql-backups-list      List managed PostgreSQL database backups
+  postgresql-create            Create a managed PostgreSQL database
+  postgresql-creds-reset       Reset managed PostgreSQL database credentials
+  postgresql-creds-view        Get managed PostgreSQL database credentials
+  postgresql-delete            Delete a managed PostgreSQL database
+  postgresql-list              List managed PostgreSQL databases
+  postgresql-patch             Patch a managed PostgreSQL database
+  postgresql-ssl-cert          Get a managed PostgreSQL database SSL certificate
+  postgresql-update            Update a managed PostgreSQL database
+  postgresql-view              Get a managed PostgreSQL database
+  type-view                    Get a managed database type
+  types                        List managed database types
 domains
+  clone            Clone a domain
+  create           Create a domain
+  delete, rm       Delete a domain
+  import           Import a domain
+  list, ls         List domains
+  records-create   Create a domain record
+  records-delete   Delete a domain record
+  records-list     List domain records
+  records-update   Update a domain record
+  records-view     Get a domain record
+  update           Update a domain
+  view             Get a domain
+  zone-file        Get a domain zone file
 events
+  list, ls    List events
+  mark-read   Mark an event as read
+  mark-seen   Mark an event as seen
+  view        Get an event
 firewalls
+  create          Create a firewall
+  delete, rm      Delete a firewall
+  device-create   Create a firewall device
+  device-delete   Delete a firewall device
+  device-view     Get a firewall device
+  devices-list    List firewall devices
+  list, ls        List firewalls
+  rules-list      List firewall rules
+  rules-update    Update firewall rules
+  update          Update a firewall
+  view            Get a firewall
 images
+  create       Create an image
+  delete, rm   Delete an image
+  list, ls     List images
+  replicate    Replicate an image
+  update       Update an image
+  upload       Upload an image
+  view         Get an image
 kernels
+  list, ls   List kernels
+  view       Get a kernel
 linodes
+  backup-restore                                 Restore a backup                                       
+  backup-view                                    Get a backup                                           
+  backups-cancel                                 Cancel backups                                         
+  backups-enable                                 Enable backups                                         
+  backups-list                                   List backups                                           
+  boot                                           Boot a Linode                                          
+  clone                                          Clone a Linode                                         
+  config-create                                  Create a config profile                                
+  config-delete                                  Delete a config profile                                
+  config-interface-add                           Add a configuration profile interface                  
+  config-interface-delete                        Delete a configuration profile interface               
+  config-interface-update                        Update a configuration profile interface               
+  config-interface-view                          Get a configuration profile interface                  
+  config-interfaces-list, config-interfaces-ls   List configuration profile interfaces                  
+  config-interfaces-order                        Reorder configuration profile interfaces               
+  config-update                                  Update a config profile                                
+  config-view                                    Get a config profile                                   
+  configs-list                                   List config profiles                                   
+  create                                         Create a Linode                                        
+  delete, rm                                     Delete a Linode                                        
+  disk-clone                                     Clone a disk                                           
+  disk-create                                    Create a disk                                          
+  disk-delete                                    Delete a disk                                          
+  disk-reset-password                            Reset a disk root password                             
+  disk-resize                                    Resize a disk                                          
+  disk-update                                    Update a disk                                          
+  disk-view                                      Get a disk                                             
+  disks-list                                     List disks                                             
+  firewalls-list                                 List a Linode's firewalls                              
+  ip-add                                         Allocate an IPv4 address                               
+  ip-delete                                      Delete an IPv4 address                                 
+  ip-update                                      Update an IP address's RDNS for a Linode               
+  ip-view                                        Get a Linode's IP address                              
+  ips-list                                       Get networking information                             
+  linode-reset-password                          Reset a Linode's root password                         
+  list, ls                                       List Linodes                                           
+  migrate                                        Initiate a DC migration/pending host migration         
+  nodebalancers                                  List Linode NodeBalancers                              
+  reboot                                         Reboot a Linode                                        
+  rebuild                                        Rebuild a Linode                                       
+  rescue                                         Boot a Linode into rescue mode                         
+  resize                                         Resize a Linode                                        
+  shutdown                                       Shut down a Linode                                     
+  snapshot                                       Create a snapshot                                      
+  transfer-view                                  Get a network transfer                                 
+  type-view                                      Get a type                                             
+  types                                          List types                                             
+  update                                         Update a Linode                                        
+  upgrade                                        Upgrade a Linode                                       
+  view                                           Get a Linode                                           
+  volumes                                        List a Linode's volumes                            
 lke
+  api-endpoints-list      List Kubernetes API endpoints
+  cluster-acl-delete      Delete the control plane access control list
+  cluster-acl-update      Update the control plane access control list
+  cluster-acl-view        Get the control plane access control list
+  cluster-create          Create a Kubernetes cluster
+  cluster-dashboard-url   Get a Kubernetes cluster dashboard URL
+  cluster-delete          Delete a Kubernetes cluster
+  cluster-nodes-recycle   Recycle cluster nodes
+  cluster-update          Update a Kubernetes cluster
+  cluster-view            Get a Kubernetes cluster
+  clusters-list           List Kubernetes clusters
+  kubeconfig-delete       Delete a Kubeconfig
+  kubeconfig-view         Get a Kubeconfig
+  node-delete             Delete a node
+  node-recycle            Recycle a node
+  node-view               Get a node
+  pool-create             Create a node pool
+  pool-delete             Delete a node pool
+  pool-recycle            Recycle a node pool
+  pool-update             Update a node pool
+  pool-view               Get a node pool
+  pools-list              List node pools
+  regenerate              Regenerate a Kubernetes cluster
+  service-token-delete    Delete a service token
+  version-view            Get a Kubernetes version
+  versions-list           List Kubernetes versions
 longview
+  create               Create a Longview client
+  delete, rm           Delete a Longview client
+  list, ls             List Longview clients
+  plan-update          Update a Longview plan
+  plan-view            Get a Longview plan
+  subscription-view    Get a Longview subscription
+  subscriptions-list   List Longview subscriptions
+  update               Update a Longview client
+  view                 Get a Longview client
 managed
+  contact-create                        Create a managed contact
+  contact-delete                        Delete a managed contact
+  contact-update                        Update a managed contact
+  contact-view                          Get a managed contact
+  contacts-list                         List managed contacts
+  credential-create                     Create a managed credential
+  credential-revoke                     Delete a managed credential
+  credential-sshkey-view                Get a managed SSH key
+  credential-update                     Update a managed credential
+  credential-update-username-password   Update a managed credential's username and password
+  credential-view                       Get a managed credential
+  credentials-list                      List managed credentials
+  issue-view                            Get a managed issue
+  issues-list                           List managed issues
+  linode-setting-update                 Update a Linode's managed settings
+  linode-setting-view                   Get a Linode's managed settings
+  linode-settings-list                  List managed Linode settings
+  service-create                        Create a managed service
+  service-delete                        Delete a managed service
+  service-disable                       Disable a managed service
+  service-enable                        Enable a managed service
+  service-update                        Update a managed service
+  service-view                          Get a managed service
+  services-list                         List managed services
+  stats-list                            List managed stats
 network-transfer
+  prices   List network transfer prices
 networking
+  ip-add            Allocate an IP address
+  ip-assign         Assign IP addresses
+  ip-share          Share IP addresses
+  ip-update         Update an IP address's RDNS
+  ip-view           Get an IP address
+  ips-list          List IP addresses
+  v6-pools          List IPv6 pools
+  v6-range-create   Create an IPv6 range
+  v6-range-delete   Delete an IPv6 range
+  v6-range-view     Get an IPv6 range
+  v6-ranges         List IPv6 ranges
 nodebalancers
+  config-create    Create a config
+  config-delete    Delete a config
+  config-rebuild   Rebuild a config
+  config-update    Update a config
+  config-view      Get a config
+  configs-list     List configs
+  create           Create a NodeBalancer
+  delete, rm       Delete a NodeBalancer
+  firewalls        List node balancer firewalls
+  list, ls         List NodeBalancers
+  node-create      Create a node
+  node-delete      Delete a node balancer's node
+  node-update      Update a node
+  node-view        Get a node balancer's node
+  nodes-list       List nodes
+  update           Update a NodeBalancer
+  view             Get a NodeBalancer
 object-storage
+  cancel          Cancel Object Storage
+  clusters-list   List clusters
+  clusters-view   Get a cluster
+  keys-create     Create an Object Storage key
+  keys-delete     Revoke an Object Storage key
+  keys-list       List Object Storage keys
+  keys-update     Update an Object Storage key
+  keys-view       Get an Object Storage key
+  ssl-delete      Delete an Object Storage TLS/SSL certificate
+  ssl-upload      Upload an Object Storage TLS/SSL certificate
+  ssl-view        Get an Object Storage TLS/SSL certificate
 payment-methods
+  add          Add a payment method
+  default      Set a default payment method
+  delete, rm   Delete a payment method
+  list, ls     List payment methods
+  view         Get a payment method
 phone
+  delete          Delete a phone number
+  sms-code-send   Send a phone number verification code
+  verify          Verify a phone number
 placement
+  assign-linode            Assign a placement group
+  group-create             Create placement group
+  group-delete, group-rm   Delete a placement group
+  group-update             Update a placement group
+  group-view               Get a placement group
+  groups-list, groups-ls   List placement groups
+  unassign-linode          Unassign a placement group
 profile
+  app-delete      Revoke app access
+  app-view        Get an authorized app
+  apps-list       List authorized apps
+  device-revoke   Revoke a trusted device
+  device-view     Get a trusted device
+  devices-list    List trusted devices
+  login-view      Get a profile's login
+  logins-list     List logins
+  tfa-confirm     Enable two factor authentication
+  tfa-disable     Disable two factor authentication
+  tfa-enable      Create a two factor secret
+  token-create    Create a personal access token
+  token-delete    Revoke a personal access token
+  token-update    Update a personal access token
+  token-view      Get a personal access token
+  tokens-list     List personal access tokens
+  update          Update a profile
+  view            Get a profile
 regions
+  list, ls     List regions
+  list-avail   List regions' availability
+  view         Get a region
+  view-avail   Get a region's availability
 security-questions
+  list, ls   List security questions
 service-transfers
+  accept     Accept a service transfer
+  cancel     Cancel a service transfer
+  create     Request a service transfer
+  list, ls   List service transfers
+  view       Get a service transfer request
 sshkeys
+  create       Add an SSH key
+  delete, rm   Delete an SSH key
+  list, ls     List SSH keys
+  update       Update an SSH key
+  view         Get an SSH key
 stackscripts
+  create       Create a StackScript
+  delete, rm   Delete a StackScript
+  list, ls     List StackScripts
+  update       Update a StackScript
+  view         Get a StackScript
 tags
+  create       Create a tag
+  delete, rm   Delete a tag
+  list, ls     List tags
 tickets
+  close      Close a support ticket
+  create     Open a support ticket
+  list, ls   List support tickets
+  replies    List replies
+  reply      Create a reply
+  view       Get a support ticket
 users
+  create       Create a user
+  delete, rm   Delete a user
+  list, ls     List users
+  update       Update a user
+  view         Get a user
 vlans
+  list, ls   List VLANs
 volumes
+  attach       Attach a volume
+  clone        Clone a volume
+  create       Create a volume
+  delete, rm   Delete a volume
+  detach       Detach a volume
+  list, ls     List volumes
+  resize       Resize a volume
+  types        List volume types
+  update       Update a volume
+  view         Get a volume
 vpcs
+  create                     Create a VPC
+  delete                     Delete a VPC
+  ips-all-list, ips-all-ls   List VPC IP addresses
+  ips-list, ips-ls           List a VPC's IP addresses
+  list, ls                   List VPCs
+  subnet-create              Create a VPC subnet
+  subnet-delete              Delete a VPC subnet
+  subnet-update              Update a VPC subnet
+  subnet-view                Get a VPC subnet
+  subnets-list, subnets-ls   List VPC subnets
+  update                     Update a VPC
+  view                       Get a VPC
