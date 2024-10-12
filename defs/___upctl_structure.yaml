@@ -2,6 +2,7 @@
 - account delete                    # Delete a sub-account
 - account list                      # List sub-accounts
 - account permissions               # Manage permissions
+- account permissions list          # List permissions
 - account show                      # Show account
 - completion                        # Generate the autocompletion script for the specified shell
 - completion bash                   # Generate the autocompletion script for bash
@@ -11,10 +12,14 @@
 - database                          # Manage databases
 - database delete                   # Delete a database
 - database index                    # Manage database indices
+- database index delete             # Delete an index from the specified database.
+- database index list               # List current indices of the specified databases
 - database list                     # List current databases
 - database plans                    # List available plans for given database type
 - database properties               # List available properties for given database type
 - database session                  # Manage database sessions
+- database session cancel           # Terminate client session or cancel running query for a database
+- database session list             # List current sessions to specified database
 - database show                     # Show database details
 - database start                    # Start on a managed database
 - database stop                     # Stop a managed database
@@ -38,6 +43,10 @@
 - kubernetes list                   # List current Kubernetes clusters
 - kubernetes modify                 # Modifiy an existing cluster
 - kubernetes nodegroup              # Manage cluster node-groups
+- kubernetes nodegroup create       # Create a new node group into the specified cluster.
+- kubernetes nodegroup delete       # Delete the node group from the cluster.
+- kubernetes nodegroup scale        # Scale the number of nodes in the node group.
+- kubernetes nodegroup show         # Show node group details
 - kubernetes plans                  # List available cluster plans
 - kubernetes show                   # Show Kubernetes cluster details
 - kubernetes versions               # List available versions for Kubernetes clusters
@@ -72,26 +81,34 @@
 - server delete                     # Delete a server
 - server eject                      # Eject a CD-ROM from the server
 - server firewall                   # Manage server firewall rules. Enabling or disabling the firewall is done in server modify.
+- server firewall create            # Create a new firewall rule
+- server firewall delete            # Removes a firewall rule from a server. Firewall rules must be removed individually. The positions of remaining firewall rules will be adjusted after a rule is removed.
+- server firewall show              # Show server firewall details.
 - server list                       # List current servers
 - server load                       # Load a CD-ROM into the server
 - server modify                     # Modifies the configuration of an existing server
 - server network-interface          # Manage network interface
+- server network-interface create   # Create a network interface
+- server network-interface delete   # Delete a network interface
+- server network-interface modify   # Modify a network interface
 - server plans                      # List server plans
 - server restart                    # Restart a server
 - server show                       # Show server details
 - server start                      # Start a server
 - server stop                       # Stop a server
 - server storage                    # Manage server storages
-
+- server storage attach             # Attach a storage as a device to a server
+- server storage detach             # Detaches a storage resource from a server
 - servergroup                       # Manage server groups
 - servergroup create                # Create a server group
 - servergroup delete                # Delete a server group
 - servergroup list                  # List current server groups
 - servergroup modify                # Modify a server group
 - servergroup show                  # Show server group details
-
 - storage                           # Manage storages
 - storage backup                    # Manage backups
+- storage backup create             # Create backup of a storage
+- storage backup restore            # Restore backup of a storage
 - storage clone                     # Clone a storage
 - storage create                    # Create a storage
 - storage delete                    # Delete a storage
