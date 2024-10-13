@@ -53,6 +53,48 @@ export async function parseCmdGroup(cmd: string): Promise<string> {
   return response;
 }
 
+export function parseAllCommands(cmd: string, d: any): Promise<any> {
+
+  var lines = getHelp(cmd);
+
+  var i = 0;
+  var subgroups: string[] = [];
+  var commands: string[] = [];
+  var response: string = "";
+
+  i = 0;
+  while (true) {
+    i = parseCmdGroup_FindNextSection(lines, i);
+    if (i < 0) {
+      break;
+    }
+
+    if (lines[i].endsWith("Subgroups:")) {
+      subgroups = parseCmdGroup_GetSubgroupsOrCommands(lines, ++i);
+      for (var idx in subgroups) {
+        let s = subgroups[idx];
+        d[cmd + " " + s] = true;
+        console.log("- " + cmd + " " + s);
+        parseAllCommands(cmd + " " + s, d);
+      }
+    } else if (lines[i].endsWith("Commands:")) {
+      commands = parseCmdGroup_GetSubgroupsOrCommands(lines, ++i);
+      //console.log(JSON.stringify(commands));
+      for (var idx in commands) {
+        let s = commands[idx];
+        console.log("- " + cmd + " " + s);
+        d[cmd + " "+ s] = false;
+      }
+    } else {
+      // we are not interested in this one -- skip
+      i++;
+    }
+  }
+
+  return d;
+}
+
+
 export async function parseCmdHelp(cmd: string): Promise<string> {
 
   console.log("Parse Cmd Help");
@@ -279,7 +321,7 @@ function parseCmdGroup_FindNextSection(lines: string[], idx: number) {
 function parseCmdGroup_GetSubgroupsOrCommands(lines: string[], idx: number) {
   var items: string[] = [];
   while (idx < lines.length && lines[idx].startsWith("    ")) {
-    var s = lines[idx].split(":");
+    var s = lines[idx].split(": ");
 
     if (s.length >= 2) {
       // XXX - simplify it
