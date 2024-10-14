@@ -1,0 +1,36 @@
+# Server Managementbb
+- cloudcli server attach          # Connect to the server via SSH
+- cloudcli server clone           # Clone a server
+- cloudcli server configure       # Change server configuration
+- cloudcli server create          # Create a server
+- cloudcli server description     # Get or set server description
+- cloudcli server disk            # List/manage server disks
+- cloudcli server history         # List server actions history
+- cloudcli server info            # Get server overview/information
+- cloudcli server list            # List servers
+- cloudcli server network         # List/manage server networks
+- cloudcli server options         # List server options
+- cloudcli server passwordreset   # Reset server/s password
+- cloudcli server poweroff        # Power Off server/s
+- cloudcli server poweron         # Power On server/s
+- cloudcli server reboot          # Reboot server/s
+- cloudcli server rename          # Rename server
+- cloudcli server reports         # Get server monthly usage reports
+- cloudcli server resume          # Resume server/s
+- cloudcli server snapshot        # List/manage server snapshots
+- cloudcli server sshkey          # Add an SSH public key to the server authorized keys
+- cloudcli server statistics      # Get server statistics
+- cloudcli server suspend         # Suspend server/s
+- cloudcli server tags            # List/manage server tags
+- cloudcli server terminate       # Terminate server/s
+# Task queue management
+- cloudcli queue detail           # Get details of tasks
+- cloudcli queue list             # List all tasks in queue
+# Network management
+- cloudcli network create         # Create a network
+- cloudcli network delete         # Delete a network (must delete all subnets first)
+- cloudcli network list           # List networks
+- cloudcli network subnet_create  # Create a network subnet
+- cloudcli network subnet_delete  # Delete a network subnet
+- cloudcli network subnet_edit    # Edit a network subnet, all values which are different then existing values will be updated
+- cloudcli network subnet_list    # List network subnets
