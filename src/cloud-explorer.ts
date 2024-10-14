@@ -104,6 +104,9 @@ function createDetailsView(view: any, id: string) {
       } else if (currentCloudId === 'cloud-linode') {
         let yml = loadYaml(extensionContext.extensionPath + "/defs/linode__prerequisites.yaml");
         view.updateTreeViewDetails(yml);
+      } else if (currentCloudId === 'cloud-kamatera') {
+        let yml = loadYaml(extensionContext.extensionPath + "/defs/kamatera__prerequisites.yaml");
+        view.updateTreeViewDetails(yml);
       } else {
         view.updateTreeViewDetails({});
       }
@@ -190,6 +193,13 @@ async function queryAllResources() {
       "name": "Digital Ocean",
       "id": "cloud-digital-ocean",
       "icon": "digital-ocean.svg",
+      "subitems": [],
+      "raw": {}
+    },
+    {
+      "name": "Kamatera",
+      "id": "cloud-kamatera",
+      "icon": "kamatera.png",
       "subitems": [],
       "raw": {}
     },
