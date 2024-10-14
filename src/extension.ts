@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import YAML from 'yaml';
 import * as helpers from '@zim.kalinowski/vscode-helper-toolkit';
 
-import { parseAllCommands, parseCmdGroup } from './help-parser';
+import { extractAllCommands, parseCmdGroup } from './help-parser';
 import { displayCloudExplorer } from './cloud-explorer';
 
 //import SwaggerParser from "@apidevtools/swagger-parser";
@@ -150,7 +150,7 @@ export async function displayAzureMenu() {
   //let response = await parseCmdGroup("az");
   //loadYamlView(loadYaml(response));
   let d: any = {}
-  let response = await parseAllCommands("az", d);
+  let response = await extractAllCommands("oci", d);
   console.log(response.keys());
   //let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___az_menu.yaml");
   //displayMenu(menu);

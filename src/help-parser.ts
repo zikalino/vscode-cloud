@@ -11,7 +11,7 @@ import * as vscode from 'vscode';
 // TODO: Move resource group to the top
 // TODO: Tooltips for checkboxes are wrong
 // TODO: No footer
-// TODO: Split it from extension?
+// TODO: Split it from extension?extractAllCommandsOci
 
 export async function parseCmdGroup(cmd: string): Promise<string> {
 
@@ -53,14 +53,17 @@ export async function parseCmdGroup(cmd: string): Promise<string> {
   return response;
 }
 
-export function parseAllCommands(cmd: string, d: any): Promise<any> {
+export async function extractAllCommands(cmd: string, d: any): Promise<any> {
+
+  if (cmd === 'oci') {
+    return await extractAllCommandsOci(cmd, d);
+  }
 
   var lines = getHelp(cmd);
-
+ 
   var i = 0;
   var subgroups: string[] = [];
   var commands: string[] = [];
-  var response: string = "";
 
   i = 0;
   while (true) {
@@ -75,7 +78,7 @@ export function parseAllCommands(cmd: string, d: any): Promise<any> {
         let s = subgroups[idx];
         d[cmd + " " + s] = true;
         console.log("- " + cmd + " " + s);
-        parseAllCommands(cmd + " " + s, d);
+        await extractAllCommands(cmd + " " + s, d);
       }
     } else if (lines[i].endsWith("Commands:")) {
       commands = parseCmdGroup_GetSubgroupsOrCommands(lines, ++i);
@@ -91,6 +94,63 @@ export function parseAllCommands(cmd: string, d: any): Promise<any> {
     }
   }
 
+  return d;
+}
+
+export async function extractAllCommandsOci(cmd: string, d: any): Promise<any> {
+  var lines = getHelp(cmd);
+
+  if (cmd.split(" ").length === 1) { 
+    let parsingCommands: boolean = false;
+    for (let idx = 0; idx < lines.length; idx++) {
+      if (!parsingCommands) {
+        if (lines[idx] === 'Commands:') {
+          parsingCommands = true;
+        }
+      }
+      else {
+        if (lines[idx].startsWith("    ") && !lines[idx].startsWith("     ")) {
+          // command entry starts with exactly 4 spaces
+          let s = lines[idx].trim().split(/\s+/);
+          let subcmd = s[0];
+          s.shift();
+          let description = s.join(" ");
+          console.log(cmd + " " + subcmd + " ---- " + description);
+          d[cmd + " " + subcmd] = true;
+          await extractAllCommandsOci(cmd + " " + subcmd, d);
+        }
+      }
+    }
+  } else if (cmd.split(" ").length === 2) {
+    // parsing second level
+    let parsingCommands: boolean = false;
+    let stack: string[] = [];
+    for (let idx = 0; idx < lines.length; idx++) {
+      if (!parsingCommands) {
+        if (lines[idx] === 'Available Commands') {
+          parsingCommands = true;
+        }
+      } else {
+        let s = lines[idx].split("*");
+        if (s.length === 2) {
+          // we have subcommand here
+          let level = s[0].length / 2;
+          if (level === stack.length) {
+            stack.push(s[1].trim());
+          } else if (level === stack.length - 1) {
+            stack[level] = s[1].trim();
+          } else {
+            while (stack.length - 1 > level) {
+              stack.pop();
+            }
+            stack[level] = s[1].trim();
+          }
+          console.log(cmd + " " + stack.join(" "));
+          d[cmd + " " + stack.join(" ")] = true;
+        }
+      }
+    }
+  }
   return d;
 }
 
