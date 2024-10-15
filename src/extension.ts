@@ -332,7 +332,10 @@ async function displayRawMenu(yamlDefinition: string) {
     placeHolder: 'Select...'
   });
 
-  // XXX = either generate or run from file?
+  if (result) {
+    let response = await parseCmdGroup(result);
+    loadYamlView(loadYaml(response));
+  }
 }
 
 async function displayMenu(submenu: any) {
