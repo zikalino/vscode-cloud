@@ -400,7 +400,7 @@ function loadIncludes(data: any) {
     if (Array.isArray(data)) {
       for (let i = data.length - 1; i >= 0; i--) {
 
-        if ((typeof data[i] === 'object') && ('$include' in data[i])) {
+        if ((data[i] !== null) && (typeof data[i] === 'object') && ('$include' in data[i])) {
           var prefix = undefined;
           if ('prefix' in data[i]) {
             prefix = data[i]['prefix'];
@@ -442,7 +442,7 @@ function loadIncludes(data: any) {
       }
     }
     else {
-      if ('@include' in data) {
+      if ((data !== null) && ('@include' in data)) {
         // XXX - load this include
         var included = loadYaml(extensionContext.extensionPath + "/defs/" + data['location']);
         data.clear();
