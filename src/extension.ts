@@ -56,13 +56,6 @@ export function activate (context: vscode.ExtensionContext) {
   );
 
   disposable = vscode.commands.registerCommand(
-    'vscode-cloud.displayOciMenu',
-    () => {
-      displayOciMenu();
-    }
-  );
-
-  disposable = vscode.commands.registerCommand(
     'vscode-cloud.displayDoCtlMenu',
     () => {
       displayDoCtlMenu();
@@ -70,9 +63,72 @@ export function activate (context: vscode.ExtensionContext) {
   );
 
   disposable = vscode.commands.registerCommand(
+    'vscode-cloud.displayKamateraMenu',
+    () => {
+      displayDoCtlMenu();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-cloud.displayOciMenu',
+    () => {
+      displayOciMenu();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
     'vscode-cloud.displayUpCtlMenu',
     () => {
       displayUpCtlMenu();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-cloud.displayVultrMenu',
+    () => {
+      displayVultrMenu();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-cloud.displayRawAzureMenu',
+    () => {
+      displayRawAzureMenu();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-cloud.displayRawDoCtlMenu',
+    () => {
+      displayRawDoCtlMenu();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-cloud.displayRawKamateraMenu',
+    () => {
+      displayRawKamateraMenu();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-cloud.displayRawOciMenu',
+    () => {
+      displayRawOciMenu();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-cloud.displayRawUpCtlMenu',
+    () => {
+      displayRawUpCtlMenu();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-cloud.displayRawVultrMenu',
+    () => {
+      displayRawVultrMenu();
     }
   );
 
@@ -156,6 +212,21 @@ export async function displayAzureMenu() {
   //displayMenu(menu);
 }
 
+export async function displayDoCtlMenu() {
+  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___doctl_menu.yaml");
+  displayMenu(menu);
+}
+
+export async function displayKamateraMenu() {
+  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___kamatera_menu.yaml");
+  displayMenu(menu);
+}
+
+export async function displayLinodeMenu() {
+  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___linode_menu.yaml");
+  displayMenu(menu);
+}
+
 export async function displayOciMenu() {
   let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___oci_menu.yaml");
   displayMenu(menu);
@@ -166,17 +237,42 @@ export async function displayUpCtlMenu() {
   displayMenu(menu);
 }
 
-export async function displayDoCtlMenu() {
+export async function displayVultrMenu() {
+  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___vultr_menu.yaml");
+  displayMenu(menu);
+}
+
+export async function displayRawAzureMenu() {
+  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___az_menu.yaml");
+  displayMenu(menu);
+}
+
+export async function displayRawDoCtlMenu() {
   let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___doctl_menu.yaml");
   displayMenu(menu);
 }
 
-export async function displayLinodeMenu() {
+export async function displayRawKamateraMenu() {
+  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___kamatera_menu.yaml");
+  displayMenu(menu);
+}
+
+export async function displayRawLinodeMenu() {
   let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___linode_menu.yaml");
   displayMenu(menu);
 }
 
-export async function displayVultrMenu() {
+export async function displayRawOciMenu() {
+  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___oci_menu.yaml");
+  displayMenu(menu);
+}
+
+export async function displayRawUpCtlMenu() {
+  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___upctl_menu.yaml");
+  displayMenu(menu);
+}
+
+export async function displayRawVultrMenu() {
   let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___vultr_menu.yaml");
   displayMenu(menu);
 }

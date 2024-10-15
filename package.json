@@ -36,16 +36,56 @@
         "title": "Azure: Create Resources"
       },
       {
+        "command": "vscode-cloud.displayDoCtlMenu",
+        "title": "Digital Ocean: Create Resources"
+      },
+      {
+        "command": "vscode-cloud.displayKamateraMenu",
+        "title": "Kamatera: Create Resources"
+      },
+      {
+        "command": "vscode-cloud.displayLinodeMenu",
+        "title": "Linode: Create Resources"
+      },
+      {
         "command": "vscode-cloud.displayOciMenu",
         "title": "OCI: Create Resources"
       },
       {
-        "command": "vscode-cloud.displayDoCtlMenu",
-        "title": "DigitalOcean: Create Resources"
-      },
-      {
         "command": "vscode-cloud.displayUpCtlMenu",
         "title": "UpCloud: Create Resources"
+      },
+      {
+        "command": "vscode-cloud.displayVultrMenu",
+        "title": "Vultr: Create Resources"
+      },
+      {
+        "command": "vscode-cloud.displayRawAzureMenu",
+        "title": "Azure: Raw Commands"
+      },
+      {
+        "command": "vscode-cloud.displayRawDoCtlMenu",
+        "title": "Digital Ocean: Raw Commands"
+      },
+      {
+        "command": "vscode-cloud.displayRawKamateraMenu",
+        "title": "Kamatera: Raw Commands"
+      },
+      {
+        "command": "vscode-cloud.displayRawLinodeMenu",
+        "title": "Linode: Raw Commands"
+      },
+      {
+        "command": "vscode-cloud.displayRawOciMenu",
+        "title": "OCI: Raw Commands"
+      },
+      {
+        "command": "vscode-cloud.displayRawUpCtlMenu",
+        "title": "UpCloud: Raw Commands"
+      },
+      {
+        "command": "vscode-cloud.displayRawVultrMenu",
+        "title": "Vultr: Create Raw Commands"
       },
       {
         "command": "vscode-cloud.displayAzureApiBrowser",
