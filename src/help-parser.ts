@@ -160,172 +160,104 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
   console.log("Parse Cmd Help");
 
   var lines = getHelp(cmd);
-  var i = 0;
-  var cmd_title = "";
+
+  var options: any[] = extractOptions(lines);
+
+  var cmd_title = "cmd";
   var variables: any[] = [];
-  for (i = 0; i < lines.length; i++) {
+  for (var i = 0; i < lines.length; i++) {
     lines[i] = "# " + lines[i];
   }
 
   // here we can process all the lines and add all the necessary stuff
+  lines.splice(lines.length, 0, "type: layout-form",
+    "header: ",
+    "  - type: header",
+    "    title: " + cmd,
+    "    logo: icon.webp",
+    "form:",
+    "  - type: fieldset",
+    "    subitems:");
 
-  i = 0;
-  while (true) {
-    i = parseCmdHelp_FindNextSection(lines, i);
-    if (i < 0) {
-      break;
-    }
+  for (var optIdx = 0; optIdx < options.length; optIdx++) {
+    // store variable
+    var name = options[optIdx]['name'];
+    var description = options[optIdx]['description'];
+    variables.push({
+      name: name.replaceAll("-", "_"),
+      argument: "--" + options[optIdx]['description']
+    });
 
-    if (lines[i].endsWith("Command")) {
-      // XXX - for now do nothing, but extract command description and name
-      i++;
-      cmd_title = lines[i].split(":")[1].trim();
-      continue;
-    } else if (lines[i].endsWith("Global Arguments")) {
-      // remove global arguments
-      j = parseCmdHelp_FindNextSection(lines, i + 1);
-      lines.splice(i, j - i);
-      continue;
-    } else if (lines[i].endsWith("Examples")) {
-      // examples should stay as they are now
-      i++;
-      continue;
-    } else if (lines[i].endsWith("Arguments")) {
+    var inserted: string[] = [];
 
-      if (lines[i] === "# Arguments") {
-        lines.splice(i, 0, "type: layout-form",
-                              "header: ",
-                              "  - type: header",
-                              "    title: " + cmd_title,
-                              "    logo: icon.webp",
-                              "form:",
-                              "  - type: fieldset",
-                              "    subitems:");
-        i += 8;
+    if (name === 'location') {
+
+      inserted = [ "      - $include: __az_region_selector.yaml" ];
+      lines.splice(lines.length, 0, ...inserted);
+    } else if (name === 'tags') {
+
+      inserted = [ "      - $include: __az_tags_list.yaml" ];
+      lines.splice(lines.length, 0, ...inserted);
+    } else {
+
+      var descriptionEscaped = description;
+      if (description.includes(":")) {
+        if (description.includes('"')) {
+          descriptionEscaped = description.replaceAll('"', '\\"');
+        }
+        descriptionEscaped = '"' + descriptionEscaped + '"';
       }
 
-      i++;
+      var insert: string[] = [];
+      if (description.includes("Allowed values: ")) {
+        let tmp = description.split("Allowed values: ")[1] + " ";
+        tmp = tmp.split(". ")[0];
+        let values = tmp.split(", ");
+        if (values.includes("true") && values.includes("false") && values.length === 2) {
 
-      // XXX - go through all arguments
-      while (i < lines.length) {
-        var j = i;
-        // XXX - get argument name & other things
-        var description = lines[j].split(":")[1].trim();
-        var name = lines[j].split("--")[1].split(" ")[0];
-        j++;
-        while (j < lines.length && lines[j].startsWith("#       ")) {
-          description += " " + lines[j].slice(1).trim();
-          j++;
-        }
+          insert.push("      - type: row",
+                      "        subitems: ",
+                      "          - type: checkbox",
+                      "            name: " + name,
+                      "            description: " + descriptionEscaped,
+                      "            produces: ",
+                      "              - variable: " + name.replaceAll("-", "_")
+          );
 
-        // store variable
-        variables.push({
-          name: name.replaceAll("-", "_"),
-          argument: "--" + name
-        });
-
-        var inserted: string[] = [];
-
-        if (name === 'location') {
-          while (i < j) {
-            // insert indented comment
-            lines[i] = "      " + lines[i];
-            i++;
-          }
-
-          inserted = [ "      - $include: __az_region_selector.yaml"
-                     ];
-          lines.splice(j, 0, ...inserted);
-          i += inserted.length;
-        } else if (name === 'tags') {
-          while (i < j) {
-            // insert indented comment
-            lines[i] = "      " + lines[i];
-            i++;
-          }
-
-          inserted = [ "      - $include: __az_tags_list.yaml"
-                     ];
-          lines.splice(j, 0, ...inserted);
-          i += inserted.length;
+          lines.splice(lines.length, 0, ...insert);
         } else {
+          insert.push("      - type: row",
+                      "        subitems: ",
+                      "          - type: combo",
+                      "            name: " + name,
+                      "            description: " + descriptionEscaped,
+                      "            items:");
 
-          while (i < j) {
-            // insert indented comment
-            lines[i] = "      " + lines[i];
-            i++;
+          for (var vi = 0; vi < values.length; vi++) {
+            insert.push("              - " + values[vi]);
           }
 
-          var descriptionEscaped = description;
-          if (description.includes(":")) {
-            if (description.includes('"')) {
-              descriptionEscaped = description.replaceAll('"', '\\"');
-            }
-            descriptionEscaped = '"' + descriptionEscaped + '"';
-          }
+          insert.push("            produces: ",
+                      "              - variable: " + name.replaceAll("-", "_"));
 
-          var insert: string[] = [];
-          if (description.includes("Allowed values: ")) {
-            let tmp = description.split("Allowed values: ")[1] + " ";
-            tmp = tmp.split(". ")[0];
-            let values = tmp.split(", ");
-            if (values.includes("true") && values.includes("false") && values.length === 2) {
-
-              insert.push("      - type: row",
+          lines.splice(lines.length, 0, ...insert);
+        }
+      } else {
+        // insert argument information
+        lines.splice(lines.length, 0, "      - type: row",
                           "        subitems: ",
-                          "          - type: checkbox",
+                          "          - type: textfield",
                           "            name: " + name,
                           "            description: " + descriptionEscaped,
                           "            produces: ",
-                          "              - variable: " + name.replaceAll("-", "_")
-              );
-
-              lines.splice(j, 0, ...insert);
-              i += insert.length;
-            } else {
-              insert.push("      - type: row",
-                          "        subitems: ",
-                          "          - type: combo",
-                          "            name: " + name,
-                          "            description: " + descriptionEscaped,
-                          "            items:");
-
-              for (var vi = 0; vi < values.length; vi++) {
-                insert.push("              - " + values[vi]);
-              }
-
-              insert.push("            produces: ",
                           "              - variable: " + name.replaceAll("-", "_"));
-
-              lines.splice(j, 0, ...insert);
-              i += insert.length;
-            }
-          } else {
-            // insert argument information
-            lines.splice(j, 0, "      - type: row",
-                              "        subitems: ",
-                              "          - type: textfield",
-                              "            name: " + name,
-                              "            description: " + descriptionEscaped,
-                              "            produces: ",
-                              "              - variable: " + name.replaceAll("-", "_"));
-            i += 7;
-          }
-        }        
-        if (i >= lines.length || !lines[i].startsWith("#     --")) {
-          break;
-        }
       }
-    } else {
-      // unknown section just skip
-      i++;
-      continue;
-    }
+    }        
   }
 
   // include action
   var action = [ "      - type: 'action-row'",
-                 "        name: " + cmd_title,
+                 "        name: " + cmd,
                  "        consumes:" ];
 
   for (var vi = 0; vi < variables.length; vi++ ) {
@@ -356,6 +288,39 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
   };
 
   return filename;
+}
+
+function extractOptions(lines: string[]): any[] {
+  
+  var i = 0;
+  var response: any[] = [];
+
+  while (i < lines.length) {
+    if (lines[i] === "Arguments") {
+      i++;
+      break;
+    }
+    i++;
+  }
+
+  while (i < lines.length) {
+      var j = i;
+      // XXX - get argument name & other things
+      var description = lines[j].split(":")[1].trim();
+      var name = lines[j].split("--")[1].split(" ")[0];
+      j++;
+      while (j < lines.length && lines[j].startsWith("      ")) {
+        description += " " + lines[j].slice(1).trim();
+        j++;
+      }
+      response.push({'name': name, 'description': description});
+      i = j;
+    if (i >= lines.length || !lines[i].startsWith("    --")) {
+      break;
+    }
+  }
+
+  return response;
 }
 
 function parseCmdHelp_FindNextSection(lines: string[], idx: number) {
