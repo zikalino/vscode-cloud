@@ -1,7 +1,7 @@
 {
   "name": "vscode-cloud",
-  "displayName": "Azure Prerequisites",
-  "description": "ESP Toolchain Installer",
+  "displayName": "Cloud Explorer",
+  "description": "Cloud Explorer",
   "version": "0.0.1",
   "repository": "https://github.com/zikalino/vscode-cloud",
   "publisher": "zikalinox",
@@ -21,7 +21,15 @@
       },
       {
         "command": "vscode-cloud.displayDoCtlPrerequisitesView",
-        "title": "DigitalOcean: Prerequisites"
+        "title": "Digital Ocean: Prerequisites"
+      },
+      {
+        "command": "vscode-cloud.displayKamateraPrerequisitesView",
+        "title": "Kamatera: Prerequisites"
+      },
+      {
+        "command": "vscode-cloud.displayLinodePrerequisitesView",
+        "title": "Linode: Prerequisites"
       },
       {
         "command": "vscode-cloud.displayOciPrerequisitesView",
@@ -30,6 +38,10 @@
       {
         "command": "vscode-cloud.displayUpCtlPrerequisitesView",
         "title": "UpCloud: Prerequisites"
+      },
+      {
+        "command": "vscode-cloud.displayVultrPrerequisitesView",
+        "title": "Vultr: Prerequisites"
       },
       {
         "command": "vscode-cloud.displayAzureMenu",

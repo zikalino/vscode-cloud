@@ -35,6 +35,20 @@ export function activate (context: vscode.ExtensionContext) {
   );
 
   disposable = vscode.commands.registerCommand(
+    'vscode-cloud.displayKamateraPrerequisitesView',
+    () => {
+      displayKamateraPrerequisitesView();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-cloud.displayLinodePrerequisitesView',
+    () => {
+      displayLinodePrerequisitesView();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
     'vscode-cloud.displayOciPrerequisitesView',
     () => {
       displayOciPrerequisitesView();
@@ -45,6 +59,13 @@ export function activate (context: vscode.ExtensionContext) {
     'vscode-cloud.displayUpCtlPrerequisitesView',
     () => {
       displayUpCtlPrerequisitesView();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-cloud.displayVultrPrerequisitesView',
+    () => {
+      displayVultrPrerequisitesView();
     }
   );
 
@@ -178,6 +199,16 @@ async function displayDoCtlPrerequisitesView() {
   displayPrerequisitesView(yml);
 }
 
+async function displayKamateraPrerequisitesView() {
+  let yml = loadYaml(extensionContext.extensionPath + "/defs/kamatera__prerequisites.yaml");
+  displayPrerequisitesView(yml);
+}
+
+async function displayLinodePrerequisitesView() {
+  let yml = loadYaml(extensionContext.extensionPath + "/defs/linode__prerequisites.yaml");
+  displayPrerequisitesView(yml);
+}
+
 async function displayOciPrerequisitesView() {
   let yml = loadYaml(extensionContext.extensionPath + "/defs/oci__prerequisites.yaml");
   displayPrerequisitesView(yml);
@@ -185,6 +216,11 @@ async function displayOciPrerequisitesView() {
 
 async function displayUpCtlPrerequisitesView() {
   let yml = loadYaml(extensionContext.extensionPath + "/defs/upctl_prerequisites.yaml");
+  displayPrerequisitesView(yml);
+}
+
+async function displayVultrPrerequisitesView() {
+  let yml = loadYaml(extensionContext.extensionPath + "/defs/vultr__prerequisites.yaml");
   displayPrerequisitesView(yml);
 }
 
