@@ -257,14 +257,16 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
 
   // include action
   var action = [ "      - type: 'action-row'",
-                 "        name: " + cmd,
-                 "        consumes:" ];
+                 "        name: " + cmd ];
 
-  for (var vi = 0; vi < variables.length; vi++ ) {
-    action.push("          - variable: " + variables[vi].name,
-                "            parameter: " + variables[vi].argument
-    );
-    // XXX - here we need to add all required, required-if, etc.
+  if (variables.length > 0) {
+    action.push("        consumes:");
+    for (var vi = 0; vi < variables.length; vi++ ) {
+      action.push("          - variable: " + variables[vi].name,
+                  "            parameter: " + variables[vi].argument
+      );
+      // XXX - here we need to add all required, required-if, etc.
+    }
   }
 
   // push the rest of stuff
