@@ -185,7 +185,7 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
     var description = options[optIdx]['description'];
     variables.push({
       name: name.replaceAll("-", "_"),
-      argument: "--" + options[optIdx]['description']
+      argument: "--" + name
     });
 
     var inserted: string[] = [];
@@ -340,6 +340,9 @@ function extractOptions(lines: string[], cli: string): any[] {
     // first find argument name delimiter
     var description = lines[i].split(optionNamesSeparator)[1].trim();
     var name = lines[i].split("--")[1].split(optionNamesSeparator)[0].trim();
+    if (name.includes(" ")) {
+      name = name.split(" ")[0];
+    }
     
     i++;
     while (i < lines.length && lines[i].startsWith("  ") && !lines[i].includes(" --")) {
