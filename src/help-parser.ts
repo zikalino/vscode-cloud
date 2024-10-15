@@ -161,7 +161,7 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
 
   var lines = getHelp(cmd);
 
-  var options: any[] = extractOptions(lines);
+  var options: any[] = extractOptions(lines, cmd.split(' ')[0]);
 
   var cmd_title = "cmd";
   var variables: any[] = [];
@@ -290,16 +290,37 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
   return filename;
 }
 
-function extractOptions(lines: string[]): any[] {
+function extractOptions(lines: string[], cli: string): any[] {
   
   var i = 0;
   var response: any[] = [];
 
+  var optionsSectionSeparator: string = "";
+  var optionNamesSeparator: string = "";
+
+  if (cli === 'az') {
+    optionsSectionSeparator = "Arguments";
+    optionNamesSeparator = ":";
+  } else if (cli === 'linode') {
+    optionsSectionSeparator = "Arguments:";
+    optionNamesSeparator = ":";
+  } else if (cli === 'doctl') {
+    optionsSectionSeparator = "Flags:";
+    optionNamesSeparator = "  ";
+  } else if (cli === 'oci') {
+
+  } else if (cli === 'vultr-cli') {
+    optionsSectionSeparator = "Flags:";
+    optionNamesSeparator = "  ";
+  } else if (cli === 'cloudcli') {
+
+  } else if (cli === 'upctl') {
+    optionsSectionSeparator = "Options:";
+    optionNamesSeparator = "  ";
+  }
+
   while (i < lines.length) {
-    // Arguments      - az
-    // Arguments:     - linode
-    // Flags:         - digital ocean
-    if (lines[i] === "Arguments" || lines[i] === "Arguments:" || lines[i] === "Flags:") {
+    if (lines[i] === optionsSectionSeparator) {
       i++;
       break;
     }
@@ -317,15 +338,8 @@ function extractOptions(lines: string[]): any[] {
     }
 
     // first find argument name delimiter
-    var description = "";
-    var name = "";
-    if (lines[i].includes(":")) {
-      description = lines[i].split(":")[1].trim();
-      name = lines[i].split("--")[1].split(":")[0].trim();
-    } else {
-      description = lines[i].split("  ")[1].trim();
-      name = lines[i].split("--")[1].split("  ")[0].trim();
-    }
+    var description = lines[i].split(optionNamesSeparator)[1].trim();
+    var name = lines[i].split("--")[1].split(optionNamesSeparator)[0].trim();
     
     i++;
     while (i < lines.length && lines[i].startsWith("  ") && !lines[i].includes(" --")) {

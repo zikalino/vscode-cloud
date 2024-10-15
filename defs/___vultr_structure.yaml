@@ -1,278 +1,278 @@
-- vultr account                                   # Display account information
-- vultr apps                                      # Display applications
-- vultr apps list
-- vultr backups                                   # Display backups
-- vultr backups get                               # Get a backup
-- vultr backups list                              # List all backups
-- vultr bare-metal                                # Commands to manage bare metal servers
-- vultr bare-metal app                            # Commands to modify applications on a bare metal server
-- vultr bare-metal app change                     # Change a bare metal server application
-- vultr bare-metal app list                       # List available apps for a bare metal server
-- vultr bare-metal bandwidth                      # Get a bare metal server's bandwidth usage
-- vultr bare-metal create                         # Create a bare metal server
-- vultr bare-metal delete                         # Delete a bare metal server
-- vultr bare-metal get                            # Get a bare metal server by ID
-- vultr bare-metal halt                           # Halt a bare metal server.
-- vultr bare-metal image                          # Commands to manage the image on a bare metal server
-- vultr bare-metal image change                   # Change a bare metal server's image
-- vultr bare-metal ipv4                           # List the IPv4 information of a bare metal server
-- vultr bare-metal ipv6                           # Get the IPv6 information of a bare metal server
-- vultr bare-metal list                           # List all bare metal servers.
-- vultr bare-metal os                             # Commands to manage the operating system on a bare metal server       
-- vultr bare-metal os change                      # Change a bare metal server's operating system
-- vultr bare-metal os list                        # List the available operating systems for a bare metal server
-- vultr bare-metal reboot                         # Reboot a bare metal server.
-- vultr bare-metal reinstall                      # Reinstall the operating system on a bare metal server.
-- vultr bare-metal start                          # Start a bare metal server.
-- vultr bare-metal tags                           # Add or modify tags on the bare metal server
-- vultr bare-metal user-data                      # Commands for bare metal server user data
-- vultr bare-metal vnc                            # Get a bare metal server's VNC url
-- vultr bare-metal vpc2                           # Commands to manage VPC2s on bare metal servers
-- vultr bare-metal vpc2 attach                    # Attach a VPC2 network to a server
-- vultr bare-metal vpc2 detach                    # Detach a VPC2 network from a server
-- vultr bare-metal vpc2 list                      # List all VPC2 networks attached to a server
-- vultr billing                                   # Display billing information
-- vultr billing history                           # Display billing history information
-- vultr billing invoice                           # Display invoice information
-- vultr block-storage                             # Commands to manage block storage
-- vultr block-storage attach                      # Attach a block storage to an instance
-- vultr block-storage create                      # Create a new block storage
-- vultr block-storage delete                      # Delete a block storage
-- vultr block-storage detach                      # Detach a block storage from an instance
-- vultr block-storage get                         # Retrieve a block storage
-- vultr block-storage label                       # Label a block storage
-- vultr block-storage list                        # List block storage
-- vultr block-storage resize                      # Resize a block storage
-- vultr cdn                                       # Commands to manage your CDN zones
-- vultr cdn pull                                  # CDN pull zone commands
-- vultr cdn push                                  # CDN push zone commands
-- vultr completion                                # Generate the autocompletion script for the specified shell
-- vultr completion bash                           # Generate the autocompletion script for bash
-- vultr completion fish                           # Generate the autocompletion script for fish
-- vultr completion powershell                     # Generate the autocompletion script for powershell
-- vultr completion zsh                            # Generate the autocompletion script for zsh
-- vultr container-registry                        # Commands to interact with container registries
-- vultr container-registry create                 # Create a container registry
-- vultr container-registry credentials            # Commands for container registry credentials
-- vultr container-registry delete                 # Delete a container registry
-- vultr container-registry get                    # Get a container registry
-- vultr container-registry list                   # List all container registries
-- vultr container-registry plans                  # List the plan names for a container registry
-- vultr container-registry regions                # List the available regions for a container registry
-- vultr container-registry repository             # Interact with container registry repositories
-- vultr container-registry update                 # Update a container registry
-- vultr database                                  # Commands to manage databases
-- vultr database advanced-option                  # Commands to handle PostgreSQL database advanced options
-- vultr database advanced-option list             # List all available and configured advanced options for a PostgreSQL database
-- vultr database advanced-option update           # Update advanced options for a PostgreSQL managed database
-- vultr database alert                            # Commands to handle database alerts
-- vultr database alert list                       # List database alerts
-- vultr database backup                           # Commands to handle database backups, restores and forks
-- vultr database backup fork                      # Fork a database from backup
-- vultr database backup get                       # Get get latest and oldest database backup
-- vultr database backup restore                   # Restore a database backup
-- vultr database connection-pool                  # Commands to handle PostgreSQL database connection pools
-- vultr database connection-pool create           # Create a database connection pool
-- vultr database connection-pool delete           # Delete a database connection pool
-- vultr database connection-pool get              # Get a database connection pool
-- vultr database connection-pool list             # List connection pools within a PostgreSQL managed database
-- vultr database connection-pool update           # Update a database connection pool
-- vultr database create                           # Create database
-- vultr database db                               # Commands to handle database logical DBs
-- vultr database db create                        # Create a logical database
-- vultr database db delete                        # Delete a logical database
-- vultr database db list                          # List logical databases
-- vultr database delete                           # Delete a database
-- vultr database get                              # Retrieve a database
-- vultr database list                             # List databases
-- vultr database maintenance                      # Commands to handle database maintenance updates
-- vultr database maintenance list                 # List maintenance updates for a database
-- vultr database maintenance start                # Start database maintenance update
-- vultr database migration                        # Commands to handle database migrations
-- vultr database migration detach                 # Detach a migration from a database
-- vultr database migration get                    # Get migration status of a database
-- vultr database migration start                  # Get migration status of a database
-- vultr database plan                             # Commands to access database plans
-- vultr database plan list                        # List database plans
-- vultr database read-replica                     # Commands to handle database read replicas
-- vultr database read-replica create              # Create a read-only replica of a database
-- vultr database read-replica promote             # Promote a read-only replica of a database
-- vultr database update                           # Update a database
-- vultr database usage                            # Commands to display database usage information
-- vultr database usage get                        # Get database usage
-- vultr database user                             # Commands to handle database users
-- vultr database user acl                         # Commands to manage database user access control (Redis only)
-- vultr database user acl update                  # Update a database user ACL
-- vultr database user create                      # Create a database user
-- vultr database user delete                      # Delete a database user
-- vultr database user get                         # Get a database user
-- vultr database user list                        # List database users
-- vultr database user update                      # Update a database user
-- vultr database version                          # Commands to handle database version upgrades
-- vultr database version list                     # List all version upgrades for a database
-- vultr database version upgrade                  # Start a version upgrade on a database
-- vultr dns                                       # Commands to control DNS records
-- vultr dns domain                                # DNS domain commands
-- vultr dns record                                # Commands to mangage DNS records
-- vultr dns record create                         # Create a DNS record
-- vultr dns record delete                         # Delete a DNS record
-- vultr dns record get                            # Get a DNS record
-- vultr dns record list                           # List all DNS records
-- vultr dns record update                         # Update DNS record
-- vultr firewall                                  # Commands to manage firewalls
-- vultr firewall group                            # Commands to access firewall group functions
-- vultr firewall group create                     # Create a firewall group
-- vultr firewall group delete                     # Delete a firewall group
-- vultr firewall group get                        # Get a firewall group
-- vultr firewall group list                       # List all firewall groups
-- vultr firewall group update                     # Update a firewall group description
-- vultr firewall rule                             # Commands to access firewall rules
-- vultr firewall rule create                      # Create a firewall rule
-- vultr firewall rule delete                      # Delete a firewall rule
-- vultr firewall rule get                         # Get a firewall rule
-- vultr firewall rule list                        # List all firewall rules
-- vultr help                                      # Help about any command
-- vultr inference                                 # Commands to manage serverless inference
-- vultr inference create                          # Create inference subscription
-- vultr inference delete                          # Delete an inference subscription
-- vultr inference get                             # Retrieve an inference subscription
-- vultr inference list                            # List inference subscriptions
-- vultr inference update                          # Update an inference subscription
-- vultr inference usage                           # Commands to display inference subscription usage information
-- vultr inference usage get                       # Get inference subscription usage
-- vultr instance                                  # Commands to interact with instances
-- vultr instance app                              # Application commands for an instance
-- vultr instance backup                           # List and create backup schedules for an instance
-- vultr instance bandwidth                        # Get bandwidth usage
-- vultr instance create                           # Create an instance
-- vultr instance delete                           # Delete an instance
-- vultr instance get                              # Get info on an instance
-- vultr instance ipv4                             # IPv4 instance commands
-- vultr instance ipv6                             # Display instance IPv6 info
-- vultr instance iso                              # Manage ISOs on an instance
-- vultr instance label                            # Label an instance
-- vultr instance list                             # List all instances
-- vultr instance os                               # Operating system commands for an instance
-- vultr instance plan                             # Plan commands for an instance
-- vultr instance reinstall                        # Reinstall an instance
-- vultr instance restart                          # Restart an instance
-- vultr instance restore                          # Restore instance from backup or snapshot
-- vultr instance reverse-dns                      # Commands to handle reverse DNS on an instance
-- vultr instance reverse-dns default-ipv4         # Set a reverse DNS entry for an IPv4 address of an instance to the original setting
-- vultr instance reverse-dns delete-ipv6          # Remove a reverse DNS IPv6 address entry for an instance
-- vultr instance reverse-dns list-ipv6            # List the IPv6 reverse DNS entries for an instance
-- vultr instance reverse-dns set-ipv4             # Set a reverse DNS IPv4 address entry for an instance
-- vultr instance reverse-dns set-ipv6             # Set a reverse DNS IPv6 address entry for an instance
-- vultr instance start                            # Start an instance
-- vultr instance stop                             # Stop an instance
-- vultr instance tags                             # Update tags on an instance
-- vultr instance update-firewall-group            # Assign a firewall group to instance
-- vultr instance user-data                        # Commands to manage user data on an instance
-- vultr instance user-data get                    # Get the user data on an instance
-- vultr instance user-data set                    # Update user data on an instance
-- vultr instance vpc                              # Commands to handle vpcs on an instance
-- vultr instance vpc attach                       # Attach a VPC to an instance
-- vultr instance vpc detach                       # Detach a VPC from an instance
-- vultr instance vpc2                             # Commands to handle vpc2s on an instance
-- vultr instance vpc2 attach                      # Attach a VPC2 to an instance
-- vultr instance vpc2 detach                      # Detach a VPC2 from an instance
-- vultr instance vpc2 list                        # List all VPC2 networks attached to an instance
-- vultr iso                                       # Commands to manage ISOs
-- vultr iso create                                # Create an ISO from url
-- vultr iso delete                                # Delete a private ISO
-- vultr iso get                                   # Get a private ISO by ID
-- vultr iso list                                  # List all private ISOs available
-- vultr iso public                                # List all public ISOs
-- vultr kubernetes                                # Commands to manage kubernetes clusters
-- vultr kubernetes config                         # Get a kubernetes cluster config
-- vultr kubernetes create                         # Create kubernetes cluster
-- vultr kubernetes delete                         # Delete a kubernetes cluster
-- vultr kubernetes get                            # Retrieve a kubernetes cluster
-- vultr kubernetes list                           # List kubernetes clusters
-- vultr kubernetes node-pool                      # Commands for kubernetes cluster node pools
-- vultr kubernetes update                         # Update a kubernetes cluster
-- vultr kubernetes upgrades                       # Commands for kubernetes version upgrades
-- vultr kubernetes versions                       # List supported kubernetes versions
-- vultr load-balancer                             # Commands to managed load balancers
-- vultr load-balancer create                      # Create a load balancer
-- vultr load-balancer delete                      # Delete a load balancer
-- vultr load-balancer firewall                    # Commands to retrieve firewall rules on a load balancer
-- vultr load-balancer firewall get                # Get a firewall rule
-- vultr load-balancer firewall list               # List all firewall rules
-- vultr load-balancer forwarding                  # Commands to manage forwarding rules on a load balancer
-- vultr load-balancer forwarding create           # Create a forwarding rule
-- vultr load-balancer forwarding delete           # Delete a forwarding rule
-- vultr load-balancer forwarding get              # Get a forwarding rule
-- vultr load-balancer forwarding list             # List all forwarding rules
-- vultr load-balancer get                         # Retrieve a load balancer
-- vultr load-balancer list                        # List load balancers
-- vultr load-balancer update                      # Update a load balancer
-- vultr marketplace                               # Display marketplace information
-- vultr marketplace app                           # Commands to interact with vultr marketplace apps
-- vultr marketplace app list-variables            # List all user-supplied variables for a marketplace app
-- vultr object-storage                            # Commands to manage object storage
-- vultr object-storage create                     # Create a new object storage
-- vultr object-storage delete                     # Delete an object storage
-- vultr object-storage get                        # Retrieve a given object storage
-- vultr object-storage label                      # Change the label for object storage
-- vultr object-storage list                       # Retrieve all active object storages
-- vultr object-storage list-clusters              # Retrieve a list of all available object storage clusters
-- vultr object-storage regenerate-keys            # Regenerate the S3 API keys for an object storage
-- vultr os                                        # Display available operating systems
-- vultr os list                                   # List all operating systems
-- vultr plans                                     # Display available plan information
-- vultr plans list                                # List all instance plans
-- vultr plans metal                               # List all bare metal plans
-- vultr regions                                   # Display regions information
-- vultr regions availability                      # List available plans by region
-- vultr regions list                              # List regions
-- vultr reserved-ip                               # Commands to interact with reserved IPs
-- vultr reserved-ip attach                        # Attach a reserved IP to an instance
-- vultr reserved-ip convert                       # Convert IP address to a reserved IP
-- vultr reserved-ip create                        # Create reserved IP
-- vultr reserved-ip delete                        # Delete a reserved ip
-- vultr reserved-ip detach                        # Detach a reserved IP from an instance
-- vultr reserved-ip get                           # Get a reserved IP
-- vultr reserved-ip list                          # List all reserved IPs
-- vultr reserved-ip update                        # Update reserved IP
-- vultr script                                    # Commands to interact with startup scripts
-- vultr script create                             # Create a startup script
-- vultr script delete                             # Delete a startup script
-- vultr script get                                # Display the contents of specified script
-- vultr script list                               # List all startup scripts
-- vultr script update                             # Update startup script
-- vultr snapshot                                  # Commands to interact with snapshots
-- vultr snapshot create                           # Create a snapshot
-- vultr snapshot create-url                       # Create a snapshot from a URL
-- vultr snapshot delete                           # Delete a snapshot
-- vultr snapshot get                              # Get a snapshot
-- vultr snapshot list                             # List all snapshots
-- vultr ssh-key                                   # Commands to manage SSH keys
-- vultr ssh-key create                            # Create an SSH key
-- vultr ssh-key delete                            # Delete an SSH key
-- vultr ssh-key get                               # Get an SSH key
-- vultr ssh-key list                              # List all SSH keys
-- vultr ssh-key update                            # Update SSH key
-- vultr user                                      # Commands to manage users
-- vultr user create                               # Create a user
-- vultr user delete                               # Delete a user
-- vultr user get                                  # Get a user
-- vultr user list                                 # List all users
-- vultr user update                               # Update a user
-- vultr version                                   # Display the vultr-cli version
-- vultr vpc                                       # Commands to manage VPCs
-- vultr vpc create                                # Create a VPC
-- vultr vpc delete                                # Delete a VPC
-- vultr vpc get                                   # Get a VPC
-- vultr vpc list                                  # List all VPCs
-- vultr vpc update                                # Update a VPC
-- vultr vpc2                                      # Commands to manage VPC2 networks
-- vultr vpc2 create                               # Create a VPC2 network
-- vultr vpc2 delete                               # Delete a VPC2 network
-- vultr vpc2 get                                  # Get info on a VPC2 network
-- vultr vpc2 list                                 # List all available VPC2 networks
-- vultr vpc2 nodes                                # Commands to manage nodes attached to a VPC2 network
-- vultr vpc2 nodes attach                         # Attach nodes to a VPC2 network
-- vultr vpc2 nodes detach                         # Detach nodes from a VPC2 network
-- vultr vpc2 nodes list                           # List all nodes attached to a VPC2 network
-- vultr vpc2 update                               # Update a VPC2 network
+- vultr-cli account                                   # Display account information
+- vultr-cli apps                                      # Display applications
+- vultr-cli apps list
+- vultr-cli backups                                   # Display backups
+- vultr-cli backups get                               # Get a backup
+- vultr-cli backups list                              # List all backups
+- vultr-cli bare-metal                                # Commands to manage bare metal servers
+- vultr-cli bare-metal app                            # Commands to modify applications on a bare metal server
+- vultr-cli bare-metal app change                     # Change a bare metal server application
+- vultr-cli bare-metal app list                       # List available apps for a bare metal server
+- vultr-cli bare-metal bandwidth                      # Get a bare metal server's bandwidth usage
+- vultr-cli bare-metal create                         # Create a bare metal server
+- vultr-cli bare-metal delete                         # Delete a bare metal server
+- vultr-cli bare-metal get                            # Get a bare metal server by ID
+- vultr-cli bare-metal halt                           # Halt a bare metal server.
+- vultr-cli bare-metal image                          # Commands to manage the image on a bare metal server
+- vultr-cli bare-metal image change                   # Change a bare metal server's image
+- vultr-cli bare-metal ipv4                           # List the IPv4 information of a bare metal server
+- vultr-cli bare-metal ipv6                           # Get the IPv6 information of a bare metal server
+- vultr-cli bare-metal list                           # List all bare metal servers.
+- vultr-cli bare-metal os                             # Commands to manage the operating system on a bare metal server       
+- vultr-cli bare-metal os change                      # Change a bare metal server's operating system
+- vultr-cli bare-metal os list                        # List the available operating systems for a bare metal server
+- vultr-cli bare-metal reboot                         # Reboot a bare metal server.
+- vultr-cli bare-metal reinstall                      # Reinstall the operating system on a bare metal server.
+- vultr-cli bare-metal start                          # Start a bare metal server.
+- vultr-cli bare-metal tags                           # Add or modify tags on the bare metal server
+- vultr-cli bare-metal user-data                      # Commands for bare metal server user data
+- vultr-cli bare-metal vnc                            # Get a bare metal server's VNC url
+- vultr-cli bare-metal vpc2                           # Commands to manage VPC2s on bare metal servers
+- vultr-cli bare-metal vpc2 attach                    # Attach a VPC2 network to a server
+- vultr-cli bare-metal vpc2 detach                    # Detach a VPC2 network from a server
+- vultr-cli bare-metal vpc2 list                      # List all VPC2 networks attached to a server
+- vultr-cli billing                                   # Display billing information
+- vultr-cli billing history                           # Display billing history information
+- vultr-cli billing invoice                           # Display invoice information
+- vultr-cli block-storage                             # Commands to manage block storage
+- vultr-cli block-storage attach                      # Attach a block storage to an instance
+- vultr-cli block-storage create                      # Create a new block storage
+- vultr-cli block-storage delete                      # Delete a block storage
+- vultr-cli block-storage detach                      # Detach a block storage from an instance
+- vultr-cli block-storage get                         # Retrieve a block storage
+- vultr-cli block-storage label                       # Label a block storage
+- vultr-cli block-storage list                        # List block storage
+- vultr-cli block-storage resize                      # Resize a block storage
+- vultr-cli cdn                                       # Commands to manage your CDN zones
+- vultr-cli cdn pull                                  # CDN pull zone commands
+- vultr-cli cdn push                                  # CDN push zone commands
+- vultr-cli completion                                # Generate the autocompletion script for the specified shell
+- vultr-cli completion bash                           # Generate the autocompletion script for bash
+- vultr-cli completion fish                           # Generate the autocompletion script for fish
+- vultr-cli completion powershell                     # Generate the autocompletion script for powershell
+- vultr-cli completion zsh                            # Generate the autocompletion script for zsh
+- vultr-cli container-registry                        # Commands to interact with container registries
+- vultr-cli container-registry create                 # Create a container registry
+- vultr-cli container-registry credentials            # Commands for container registry credentials
+- vultr-cli container-registry delete                 # Delete a container registry
+- vultr-cli container-registry get                    # Get a container registry
+- vultr-cli container-registry list                   # List all container registries
+- vultr-cli container-registry plans                  # List the plan names for a container registry
+- vultr-cli container-registry regions                # List the available regions for a container registry
+- vultr-cli container-registry repository             # Interact with container registry repositories
+- vultr-cli container-registry update                 # Update a container registry
+- vultr-cli database                                  # Commands to manage databases
+- vultr-cli database advanced-option                  # Commands to handle PostgreSQL database advanced options
+- vultr-cli database advanced-option list             # List all available and configured advanced options for a PostgreSQL database
+- vultr-cli database advanced-option update           # Update advanced options for a PostgreSQL managed database
+- vultr-cli database alert                            # Commands to handle database alerts
+- vultr-cli database alert list                       # List database alerts
+- vultr-cli database backup                           # Commands to handle database backups, restores and forks
+- vultr-cli database backup fork                      # Fork a database from backup
+- vultr-cli database backup get                       # Get get latest and oldest database backup
+- vultr-cli database backup restore                   # Restore a database backup
+- vultr-cli database connection-pool                  # Commands to handle PostgreSQL database connection pools
+- vultr-cli database connection-pool create           # Create a database connection pool
+- vultr-cli database connection-pool delete           # Delete a database connection pool
+- vultr-cli database connection-pool get              # Get a database connection pool
+- vultr-cli database connection-pool list             # List connection pools within a PostgreSQL managed database
+- vultr-cli database connection-pool update           # Update a database connection pool
+- vultr-cli database create                           # Create database
+- vultr-cli database db                               # Commands to handle database logical DBs
+- vultr-cli database db create                        # Create a logical database
+- vultr-cli database db delete                        # Delete a logical database
+- vultr-cli database db list                          # List logical databases
+- vultr-cli database delete                           # Delete a database
+- vultr-cli database get                              # Retrieve a database
+- vultr-cli database list                             # List databases
+- vultr-cli database maintenance                      # Commands to handle database maintenance updates
+- vultr-cli database maintenance list                 # List maintenance updates for a database
+- vultr-cli database maintenance start                # Start database maintenance update
+- vultr-cli database migration                        # Commands to handle database migrations
+- vultr-cli database migration detach                 # Detach a migration from a database
+- vultr-cli database migration get                    # Get migration status of a database
+- vultr-cli database migration start                  # Get migration status of a database
+- vultr-cli database plan                             # Commands to access database plans
+- vultr-cli database plan list                        # List database plans
+- vultr-cli database read-replica                     # Commands to handle database read replicas
+- vultr-cli database read-replica create              # Create a read-only replica of a database
+- vultr-cli database read-replica promote             # Promote a read-only replica of a database
+- vultr-cli database update                           # Update a database
+- vultr-cli database usage                            # Commands to display database usage information
+- vultr-cli database usage get                        # Get database usage
+- vultr-cli database user                             # Commands to handle database users
+- vultr-cli database user acl                         # Commands to manage database user access control (Redis only)
+- vultr-cli database user acl update                  # Update a database user ACL
+- vultr-cli database user create                      # Create a database user
+- vultr-cli database user delete                      # Delete a database user
+- vultr-cli database user get                         # Get a database user
+- vultr-cli database user list                        # List database users
+- vultr-cli database user update                      # Update a database user
+- vultr-cli database version                          # Commands to handle database version upgrades
+- vultr-cli database version list                     # List all version upgrades for a database
+- vultr-cli database version upgrade                  # Start a version upgrade on a database
+- vultr-cli dns                                       # Commands to control DNS records
+- vultr-cli dns domain                                # DNS domain commands
+- vultr-cli dns record                                # Commands to mangage DNS records
+- vultr-cli dns record create                         # Create a DNS record
+- vultr-cli dns record delete                         # Delete a DNS record
+- vultr-cli dns record get                            # Get a DNS record
+- vultr-cli dns record list                           # List all DNS records
+- vultr-cli dns record update                         # Update DNS record
+- vultr-cli firewall                                  # Commands to manage firewalls
+- vultr-cli firewall group                            # Commands to access firewall group functions
+- vultr-cli firewall group create                     # Create a firewall group
+- vultr-cli firewall group delete                     # Delete a firewall group
+- vultr-cli firewall group get                        # Get a firewall group
+- vultr-cli firewall group list                       # List all firewall groups
+- vultr-cli firewall group update                     # Update a firewall group description
+- vultr-cli firewall rule                             # Commands to access firewall rules
+- vultr-cli firewall rule create                      # Create a firewall rule
+- vultr-cli firewall rule delete                      # Delete a firewall rule
+- vultr-cli firewall rule get                         # Get a firewall rule
+- vultr-cli firewall rule list                        # List all firewall rules
+- vultr-cli help                                      # Help about any command
+- vultr-cli inference                                 # Commands to manage serverless inference
+- vultr-cli inference create                          # Create inference subscription
+- vultr-cli inference delete                          # Delete an inference subscription
+- vultr-cli inference get                             # Retrieve an inference subscription
+- vultr-cli inference list                            # List inference subscriptions
+- vultr-cli inference update                          # Update an inference subscription
+- vultr-cli inference usage                           # Commands to display inference subscription usage information
+- vultr-cli inference usage get                       # Get inference subscription usage
+- vultr-cli instance                                  # Commands to interact with instances
+- vultr-cli instance app                              # Application commands for an instance
+- vultr-cli instance backup                           # List and create backup schedules for an instance
+- vultr-cli instance bandwidth                        # Get bandwidth usage
+- vultr-cli instance create                           # Create an instance
+- vultr-cli instance delete                           # Delete an instance
+- vultr-cli instance get                              # Get info on an instance
+- vultr-cli instance ipv4                             # IPv4 instance commands
+- vultr-cli instance ipv6                             # Display instance IPv6 info
+- vultr-cli instance iso                              # Manage ISOs on an instance
+- vultr-cli instance label                            # Label an instance
+- vultr-cli instance list                             # List all instances
+- vultr-cli instance os                               # Operating system commands for an instance
+- vultr-cli instance plan                             # Plan commands for an instance
+- vultr-cli instance reinstall                        # Reinstall an instance
+- vultr-cli instance restart                          # Restart an instance
+- vultr-cli instance restore                          # Restore instance from backup or snapshot
+- vultr-cli instance reverse-dns                      # Commands to handle reverse DNS on an instance
+- vultr-cli instance reverse-dns default-ipv4         # Set a reverse DNS entry for an IPv4 address of an instance to the original setting
+- vultr-cli instance reverse-dns delete-ipv6          # Remove a reverse DNS IPv6 address entry for an instance
+- vultr-cli instance reverse-dns list-ipv6            # List the IPv6 reverse DNS entries for an instance
+- vultr-cli instance reverse-dns set-ipv4             # Set a reverse DNS IPv4 address entry for an instance
+- vultr-cli instance reverse-dns set-ipv6             # Set a reverse DNS IPv6 address entry for an instance
+- vultr-cli instance start                            # Start an instance
+- vultr-cli instance stop                             # Stop an instance
+- vultr-cli instance tags                             # Update tags on an instance
+- vultr-cli instance update-firewall-group            # Assign a firewall group to instance
+- vultr-cli instance user-data                        # Commands to manage user data on an instance
+- vultr-cli instance user-data get                    # Get the user data on an instance
+- vultr-cli instance user-data set                    # Update user data on an instance
+- vultr-cli instance vpc                              # Commands to handle vpcs on an instance
+- vultr-cli instance vpc attach                       # Attach a VPC to an instance
+- vultr-cli instance vpc detach                       # Detach a VPC from an instance
+- vultr-cli instance vpc2                             # Commands to handle vpc2s on an instance
+- vultr-cli instance vpc2 attach                      # Attach a VPC2 to an instance
+- vultr-cli instance vpc2 detach                      # Detach a VPC2 from an instance
+- vultr-cli instance vpc2 list                        # List all VPC2 networks attached to an instance
+- vultr-cli iso                                       # Commands to manage ISOs
+- vultr-cli iso create                                # Create an ISO from url
+- vultr-cli iso delete                                # Delete a private ISO
+- vultr-cli iso get                                   # Get a private ISO by ID
+- vultr-cli iso list                                  # List all private ISOs available
+- vultr-cli iso public                                # List all public ISOs
+- vultr-cli kubernetes                                # Commands to manage kubernetes clusters
+- vultr-cli kubernetes config                         # Get a kubernetes cluster config
+- vultr-cli kubernetes create                         # Create kubernetes cluster
+- vultr-cli kubernetes delete                         # Delete a kubernetes cluster
+- vultr-cli kubernetes get                            # Retrieve a kubernetes cluster
+- vultr-cli kubernetes list                           # List kubernetes clusters
+- vultr-cli kubernetes node-pool                      # Commands for kubernetes cluster node pools
+- vultr-cli kubernetes update                         # Update a kubernetes cluster
+- vultr-cli kubernetes upgrades                       # Commands for kubernetes version upgrades
+- vultr-cli kubernetes versions                       # List supported kubernetes versions
+- vultr-cli load-balancer                             # Commands to managed load balancers
+- vultr-cli load-balancer create                      # Create a load balancer
+- vultr-cli load-balancer delete                      # Delete a load balancer
+- vultr-cli load-balancer firewall                    # Commands to retrieve firewall rules on a load balancer
+- vultr-cli load-balancer firewall get                # Get a firewall rule
+- vultr-cli load-balancer firewall list               # List all firewall rules
+- vultr-cli load-balancer forwarding                  # Commands to manage forwarding rules on a load balancer
+- vultr-cli load-balancer forwarding create           # Create a forwarding rule
+- vultr-cli load-balancer forwarding delete           # Delete a forwarding rule
+- vultr-cli load-balancer forwarding get              # Get a forwarding rule
+- vultr-cli load-balancer forwarding list             # List all forwarding rules
+- vultr-cli load-balancer get                         # Retrieve a load balancer
+- vultr-cli load-balancer list                        # List load balancers
+- vultr-cli load-balancer update                      # Update a load balancer
+- vultr-cli marketplace                               # Display marketplace information
+- vultr-cli marketplace app                           # Commands to interact with vultr marketplace apps
+- vultr-cli marketplace app list-variables            # List all user-supplied variables for a marketplace app
+- vultr-cli object-storage                            # Commands to manage object storage
+- vultr-cli object-storage create                     # Create a new object storage
+- vultr-cli object-storage delete                     # Delete an object storage
+- vultr-cli object-storage get                        # Retrieve a given object storage
+- vultr-cli object-storage label                      # Change the label for object storage
+- vultr-cli object-storage list                       # Retrieve all active object storages
+- vultr-cli object-storage list-clusters              # Retrieve a list of all available object storage clusters
+- vultr-cli object-storage regenerate-keys            # Regenerate the S3 API keys for an object storage
+- vultr-cli os                                        # Display available operating systems
+- vultr-cli os list                                   # List all operating systems
+- vultr-cli plans                                     # Display available plan information
+- vultr-cli plans list                                # List all instance plans
+- vultr-cli plans metal                               # List all bare metal plans
+- vultr-cli regions                                   # Display regions information
+- vultr-cli regions availability                      # List available plans by region
+- vultr-cli regions list                              # List regions
+- vultr-cli reserved-ip                               # Commands to interact with reserved IPs
+- vultr-cli reserved-ip attach                        # Attach a reserved IP to an instance
+- vultr-cli reserved-ip convert                       # Convert IP address to a reserved IP
+- vultr-cli reserved-ip create                        # Create reserved IP
+- vultr-cli reserved-ip delete                        # Delete a reserved ip
+- vultr-cli reserved-ip detach                        # Detach a reserved IP from an instance
+- vultr-cli reserved-ip get                           # Get a reserved IP
+- vultr-cli reserved-ip list                          # List all reserved IPs
+- vultr-cli reserved-ip update                        # Update reserved IP
+- vultr-cli script                                    # Commands to interact with startup scripts
+- vultr-cli script create                             # Create a startup script
+- vultr-cli script delete                             # Delete a startup script
+- vultr-cli script get                                # Display the contents of specified script
+- vultr-cli script list                               # List all startup scripts
+- vultr-cli script update                             # Update startup script
+- vultr-cli snapshot                                  # Commands to interact with snapshots
+- vultr-cli snapshot create                           # Create a snapshot
+- vultr-cli snapshot create-url                       # Create a snapshot from a URL
+- vultr-cli snapshot delete                           # Delete a snapshot
+- vultr-cli snapshot get                              # Get a snapshot
+- vultr-cli snapshot list                             # List all snapshots
+- vultr-cli ssh-key                                   # Commands to manage SSH keys
+- vultr-cli ssh-key create                            # Create an SSH key
+- vultr-cli ssh-key delete                            # Delete an SSH key
+- vultr-cli ssh-key get                               # Get an SSH key
+- vultr-cli ssh-key list                              # List all SSH keys
+- vultr-cli ssh-key update                            # Update SSH key
+- vultr-cli user                                      # Commands to manage users
+- vultr-cli user create                               # Create a user
+- vultr-cli user delete                               # Delete a user
+- vultr-cli user get                                  # Get a user
+- vultr-cli user list                                 # List all users
+- vultr-cli user update                               # Update a user
+- vultr-cli version                                   # Display the vultr-cli version
+- vultr-cli vpc                                       # Commands to manage VPCs
+- vultr-cli vpc create                                # Create a VPC
+- vultr-cli vpc delete                                # Delete a VPC
+- vultr-cli vpc get                                   # Get a VPC
+- vultr-cli vpc list                                  # List all VPCs
+- vultr-cli vpc update                                # Update a VPC
+- vultr-cli vpc2                                      # Commands to manage VPC2 networks
+- vultr-cli vpc2 create                               # Create a VPC2 network
+- vultr-cli vpc2 delete                               # Delete a VPC2 network
+- vultr-cli vpc2 get                                  # Get info on a VPC2 network
+- vultr-cli vpc2 list                                 # List all available VPC2 networks
+- vultr-cli vpc2 nodes                                # Commands to manage nodes attached to a VPC2 network
+- vultr-cli vpc2 nodes attach                         # Attach nodes to a VPC2 network
+- vultr-cli vpc2 nodes detach                         # Detach nodes from a VPC2 network
+- vultr-cli vpc2 nodes list                           # List all nodes attached to a VPC2 network
+- vultr-cli vpc2 update                               # Update a VPC2 network
