@@ -296,7 +296,9 @@ function extractOptions(lines: string[]): any[] {
   var response: any[] = [];
 
   while (i < lines.length) {
-    if (lines[i] === "Arguments") {
+    // Arguments      - az
+    // Arguments:     - linode
+    if (lines[i] === "Arguments" || lines[i] === "Arguments:") {
       i++;
       break;
     }
@@ -304,20 +306,23 @@ function extractOptions(lines: string[]): any[] {
   }
 
   while (i < lines.length) {
-      var j = i;
-      // XXX - get argument name & other things
-      var description = lines[j].split(":")[1].trim();
-      var name = lines[j].split("--")[1].split(" ")[0];
-      j++;
-      while (j < lines.length && lines[j].startsWith("      ")) {
-        description += " " + lines[j].slice(1).trim();
-        j++;
-      }
-      response.push({'name': name, 'description': description});
-      i = j;
-    if (i >= lines.length || !lines[i].startsWith("    --")) {
+    if (lines[i] === '') {
+      i++;
+      continue;
+    }
+
+    if (!lines[i].includes(" --")) {
       break;
     }
+
+    var description = lines[i].split(":")[1].trim();
+    var name = lines[i].split("--")[1].split(":")[0].trim();
+    i++;
+    while (i < lines.length && lines[i].startsWith("  ") && !lines[i].includes(" --")) {
+      description += " " + lines[i].slice(1).trim();
+      i++;
+    }
+    response.push({'name': name, 'description': description});
   }
 
   return response;
