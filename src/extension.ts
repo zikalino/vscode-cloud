@@ -243,8 +243,7 @@ export async function displayVultrMenu() {
 }
 
 export async function displayRawAzureMenu() {
-  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___az_menu.yaml");
-  displayMenu(menu);
+  displayRawMenu("defs/___az_structure.yaml");
 }
 
 export async function displayRawDoCtlMenu() {
@@ -253,28 +252,38 @@ export async function displayRawDoCtlMenu() {
 }
 
 export async function displayRawKamateraMenu() {
-  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___kamatera_menu.yaml");
-  displayMenu(menu);
+  displayRawMenu("defs/___kamatera_structure.yaml");
 }
 
 export async function displayRawLinodeMenu() {
-  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___linode_menu.yaml");
-  displayMenu(menu);
+  displayRawMenu("defs/___linode_structure.yaml");
 }
 
 export async function displayRawOciMenu() {
-  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___oci_menu.yaml");
-  displayMenu(menu);
+  displayRawMenu("defs/___oci_structure.yaml");
 }
 
 export async function displayRawUpCtlMenu() {
-  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___upctl_menu.yaml");
-  displayMenu(menu);
+  displayRawMenu("defs/___upctl_structure.yaml");
 }
 
 export async function displayRawVultrMenu() {
-  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___vultr_menu.yaml");
-  displayMenu(menu);
+  displayRawMenu("defs/___vultr_structure.yaml");
+}
+
+async function displayRawMenu(yamlDefinition: string) {
+  let def: any = loadYaml(extensionContext.extensionPath + "/" + yamlDefinition);
+
+  var selected: string[] = [];
+  for (var i in def) {
+    selected.push(def[i]);
+  }
+
+  const result = await vscode.window.showQuickPick(selected, {
+    placeHolder: 'Select...'
+  });
+
+  // XXX = either generate or run from file?
 }
 
 async function displayMenu(submenu: any) {
