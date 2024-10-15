@@ -247,8 +247,7 @@ export async function displayRawAzureMenu() {
 }
 
 export async function displayRawDoCtlMenu() {
-  let menu: any = loadYaml(extensionContext.extensionPath + "/defs/___doctl_menu.yaml");
-  displayMenu(menu);
+  displayRawMenu("defs/___doctl_structure.yaml");
 }
 
 export async function displayRawKamateraMenu() {

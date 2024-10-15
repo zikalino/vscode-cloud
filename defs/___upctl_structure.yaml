@@ -1,122 +1,122 @@
-- account                           # Manage accounts
-- account delete                    # Delete a sub-account
-- account list                      # List sub-accounts
-- account permissions               # Manage permissions
-- account permissions list          # List permissions
-- account show                      # Show account
-- completion                        # Generate the autocompletion script for the specified shell
-- completion bash                   # Generate the autocompletion script for bash
-- completion fish                   # Generate the autocompletion script for fish
-- completion powershell             # Generate the autocompletion script for powershell
-- completion zsh                    # Generate the autocompletion script for zsh
-- database                          # Manage databases
-- database delete                   # Delete a database
-- database index                    # Manage database indices
-- database index delete             # Delete an index from the specified database.
-- database index list               # List current indices of the specified databases
-- database list                     # List current databases
-- database plans                    # List available plans for given database type
-- database properties               # List available properties for given database type
-- database session                  # Manage database sessions
-- database session cancel           # Terminate client session or cancel running query for a database
-- database session list             # List current sessions to specified database
-- database show                     # Show database details
-- database start                    # Start on a managed database
-- database stop                     # Stop a managed database
-- database types                    # List available database types
-- gateway                           # Manage gateways
-- gateway delete                    # Delete a gateway
-- gateway list                      # List gateways
-- gateway plans                     # List gateway plans
-- host                              # Manage private cloud hosts
-- host list                         # List private cloud hosts
-- ip-address                        # Manage IP addresses
-- ip-address assign                 # Assign or create an IP address
-- ip-address list                   # List IP addresses
-- ip-address modify                 # Modify an IP address
-- ip-address remove                 # Remove an IP address
-- ip-address show                   # Show current IP address
-- kubernetes                        # Manage Kubernetes clusters
-- kubernetes config                 # Output Kubernetes cluster kubeconfig
-- kubernetes create                 # Create a Kubernetes cluster
-- kubernetes delete                 # Delete a Kubernetes cluster
-- kubernetes list                   # List current Kubernetes clusters
-- kubernetes modify                 # Modifiy an existing cluster
-- kubernetes nodegroup              # Manage cluster node-groups
-- kubernetes nodegroup create       # Create a new node group into the specified cluster.
-- kubernetes nodegroup delete       # Delete the node group from the cluster.
-- kubernetes nodegroup scale        # Scale the number of nodes in the node group.
-- kubernetes nodegroup show         # Show node group details
-- kubernetes plans                  # List available cluster plans
-- kubernetes show                   # Show Kubernetes cluster details
-- kubernetes versions               # List available versions for Kubernetes clusters
-- loadbalancer                      # Manage load balancers
-- loadbalancer delete               # Delete a load balancer
-- loadbalancer list                 # List current load balancers
-- loadbalancer plans                # List available load balancer plans
-- loadbalancer show                 # Show load balancer details
-- network                           # Manage networks
-- network create                    # Create a network
-- network delete                    # Delete a network
-- network list                      # List networks, by default private networks only
-- network modify                    # Modify a network
-- network show                      # Show network details
-- networkpeering                    # Manage network peerings
-- networkpeering delete             # Delete a network peering
-- networkpeering disable            # Disable a network peering
-- networkpeering list               # List network peerings
-- objectstorage                     # Manage managed object storage services
-- objectstorage delete              # Delete a Managed object storage service
-- objectstorage list                # List current Managed object storage services
-- objectstorage regions             # List objectstorage regions
-- objectstorage show                # Show Managed object storage service details
-- router                            # Manage routers
-- router create                     # Create a router
-- router delete                     # Delete a router
-- router list                       # List routers
-- router modify                     # Modify a router
-- router show                       # Show current router
-- server                            # Manage servers
-- server create                     # Create a new server
-- server delete                     # Delete a server
-- server eject                      # Eject a CD-ROM from the server
-- server firewall                   # Manage server firewall rules. Enabling or disabling the firewall is done in server modify.
-- server firewall create            # Create a new firewall rule
-- server firewall delete            # Removes a firewall rule from a server. Firewall rules must be removed individually. The positions of remaining firewall rules will be adjusted after a rule is removed.
-- server firewall show              # Show server firewall details.
-- server list                       # List current servers
-- server load                       # Load a CD-ROM into the server
-- server modify                     # Modifies the configuration of an existing server
-- server network-interface          # Manage network interface
-- server network-interface create   # Create a network interface
-- server network-interface delete   # Delete a network interface
-- server network-interface modify   # Modify a network interface
-- server plans                      # List server plans
-- server restart                    # Restart a server
-- server show                       # Show server details
-- server start                      # Start a server
-- server stop                       # Stop a server
-- server storage                    # Manage server storages
-- server storage attach             # Attach a storage as a device to a server
-- server storage detach             # Detaches a storage resource from a server
-- servergroup                       # Manage server groups
-- servergroup create                # Create a server group
-- servergroup delete                # Delete a server group
-- servergroup list                  # List current server groups
-- servergroup modify                # Modify a server group
-- servergroup show                  # Show server group details
-- storage                           # Manage storages
-- storage backup                    # Manage backups
-- storage backup create             # Create backup of a storage
-- storage backup restore            # Restore backup of a storage
-- storage clone                     # Clone a storage
-- storage create                    # Create a storage
-- storage delete                    # Delete a storage
-- storage import                    # Import a storage from external or local source
-- storage list                      # List current storages
-- storage modify                    # Modify a storage
-- storage show                      # Show storage details
-- storage templatise                # Templatise a storage
-- version                           # Display software information
-- zone                              # Display zone information
-- zone list                         # List available zones
+- upctl account                           # Manage accounts
+- upctl account delete                    # Delete a sub-account
+- upctl account list                      # List sub-accounts
+- upctl account permissions               # Manage permissions
+- upctl account permissions list          # List permissions
+- upctl account show                      # Show account
+- upctl completion                        # Generate the autocompletion script for the specified shell
+- upctl completion bash                   # Generate the autocompletion script for bash
+- upctl completion fish                   # Generate the autocompletion script for fish
+- upctl completion powershell             # Generate the autocompletion script for powershell
+- upctl completion zsh                    # Generate the autocompletion script for zsh
+- upctl database                          # Manage databases
+- upctl database delete                   # Delete a database
+- upctl database index                    # Manage database indices
+- upctl database index delete             # Delete an index from the specified database.
+- upctl database index list               # List current indices of the specified databases
+- upctl database list                     # List current databases
+- upctl database plans                    # List available plans for given database type
+- upctl database properties               # List available properties for given database type
+- upctl database session                  # Manage database sessions
+- upctl database session cancel           # Terminate client session or cancel running query for a database
+- upctl database session list             # List current sessions to specified database
+- upctl database show                     # Show database details
+- upctl database start                    # Start on a managed database
+- upctl database stop                     # Stop a managed database
+- upctl database types                    # List available database types
+- upctl gateway                           # Manage gateways
+- upctl gateway delete                    # Delete a gateway
+- upctl gateway list                      # List gateways
+- upctl gateway plans                     # List gateway plans
+- upctl host                              # Manage private cloud hosts
+- upctl host list                         # List private cloud hosts
+- upctl ip-address                        # Manage IP addresses
+- upctl ip-address assign                 # Assign or create an IP address
+- upctl ip-address list                   # List IP addresses
+- upctl ip-address modify                 # Modify an IP address
+- upctl ip-address remove                 # Remove an IP address
+- upctl ip-address show                   # Show current IP address
+- upctl kubernetes                        # Manage Kubernetes clusters
+- upctl kubernetes config                 # Output Kubernetes cluster kubeconfig
+- upctl kubernetes create                 # Create a Kubernetes cluster
+- upctl kubernetes delete                 # Delete a Kubernetes cluster
+- upctl kubernetes list                   # List current Kubernetes clusters
+- upctl kubernetes modify                 # Modifiy an existing cluster
+- upctl kubernetes nodegroup              # Manage cluster node-groups
+- upctl kubernetes nodegroup create       # Create a new node group into the specified cluster.
+- upctl kubernetes nodegroup delete       # Delete the node group from the cluster.
+- upctl kubernetes nodegroup scale        # Scale the number of nodes in the node group.
+- upctl kubernetes nodegroup show         # Show node group details
+- upctl kubernetes plans                  # List available cluster plans
+- upctl kubernetes show                   # Show Kubernetes cluster details
+- upctl kubernetes versions               # List available versions for Kubernetes clusters
+- upctl loadbalancer                      # Manage load balancers
+- upctl loadbalancer delete               # Delete a load balancer
+- upctl loadbalancer list                 # List current load balancers
+- upctl loadbalancer plans                # List available load balancer plans
+- upctl loadbalancer show                 # Show load balancer details
+- upctl network                           # Manage networks
+- upctl network create                    # Create a network
+- upctl network delete                    # Delete a network
+- upctl network list                      # List networks, by default private networks only
+- upctl network modify                    # Modify a network
+- upctl network show                      # Show network details
+- upctl networkpeering                    # Manage network peerings
+- upctl networkpeering delete             # Delete a network peering
+- upctl networkpeering disable            # Disable a network peering
+- upctl networkpeering list               # List network peerings
+- upctl objectstorage                     # Manage managed object storage services
+- upctl objectstorage delete              # Delete a Managed object storage service
+- upctl objectstorage list                # List current Managed object storage services
+- upctl objectstorage regions             # List objectstorage regions
+- upctl objectstorage show                # Show Managed object storage service details
+- upctl router                            # Manage routers
+- upctl router create                     # Create a router
+- upctl router delete                     # Delete a router
+- upctl router list                       # List routers
+- upctl router modify                     # Modify a router
+- upctl router show                       # Show current router
+- upctl server                            # Manage servers
+- upctl server create                     # Create a new server
+- upctl server delete                     # Delete a server
+- upctl server eject                      # Eject a CD-ROM from the server
+- upctl server firewall                   # Manage server firewall rules. Enabling or disabling the firewall is done in server modify.
+- upctl server firewall create            # Create a new firewall rule
+- upctl server firewall delete            # Removes a firewall rule from a server. Firewall rules must be removed individually. The positions of remaining firewall rules will be adjusted after a rule is removed.
+- upctl server firewall show              # Show server firewall details.
+- upctl server list                       # List current servers
+- upctl server load                       # Load a CD-ROM into the server
+- upctl server modify                     # Modifies the configuration of an existing server
+- upctl server network-interface          # Manage network interface
+- upctl server network-interface create   # Create a network interface
+- upctl server network-interface delete   # Delete a network interface
+- upctl server network-interface modify   # Modify a network interface
+- upctl server plans                      # List server plans
+- upctl server restart                    # Restart a server
+- upctl server show                       # Show server details
+- upctl server start                      # Start a server
+- upctl server stop                       # Stop a server
+- upctl server storage                    # Manage server storages
+- upctl server storage attach             # Attach a storage as a device to a server
+- upctl server storage detach             # Detaches a storage resource from a server
+- upctl servergroup                       # Manage server groups
+- upctl servergroup create                # Create a server group
+- upctl servergroup delete                # Delete a server group
+- upctl servergroup list                  # List current server groups
+- upctl servergroup modify                # Modify a server group
+- upctl servergroup show                  # Show server group details
+- upctl storage                           # Manage storages
+- upctl storage backup                    # Manage backups
+- upctl storage backup create             # Create backup of a storage
+- upctl storage backup restore            # Restore backup of a storage
+- upctl storage clone                     # Clone a storage
+- upctl storage create                    # Create a storage
+- upctl storage delete                    # Delete a storage
+- upctl storage import                    # Import a storage from external or local source
+- upctl storage list                      # List current storages
+- upctl storage modify                    # Modify a storage
+- upctl storage show                      # Show storage details
+- upctl storage templatise                # Templatise a storage
+- upctl version                           # Display software information
+- upctl zone                              # Display zone information
+- upctl zone list                         # List available zones

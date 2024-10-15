@@ -1,363 +1,363 @@
 #  Manage DigitalOcean Resources:
-- 1-click                        # Display commands that pertain to 1-click applications
-- 1-click list                   # Retrieve a list of 1-Click applications
-- account                        # Display commands that retrieve account details
-- account get                    # Retrieve account profile details
-- account ratelimit              # Retrieve your API usage and the remaining quota
-- apps                           # Displays commands for working with apps
-- apps create                    # Create an app
-- apps create-deployment         # Creates a deployment
-- apps delete                    # Deletes an app
-- apps dev                       # [BETA] Display commands for working with App Platform local development.
-- apps dev build                 # Build an app component
-- apps dev config                # Displays commands for working with App Platform local development configuration settings.
-- apps dev config set            # Set a value in the local development configuration settings.
-- apps dev config unset          # Unset a value in the local development configuration settings.
-- apps get                       # Get an app
-- apps get-deployment            # Get a deployment
-- apps list                      # Lists all apps
-- apps list-alerts               # Lists alerts on an app
-- apps list-buildpacks           # Lists buildpacks
-- apps list-deployments          # List all deployments
-- apps list-regions              # Lists available App Platform regions
-- apps logs                      # Retrieves logs
-- apps propose                   # Proposes an app spec
-- apps spec                      # Display commands for working with app specs
-- apps spec get                  # Retrieve an application's spec
-- apps spec validate             # Validate an application spec
-- apps tier                      # Display commands for working with app tiers
-- apps tier instance-size        # Display commands for working with app instance sizes
-- apps tier instance-size get    # Retrieve an app instance size
-- apps tier instance-size list   # List all app instance sizes
-- apps update                    # Updates an app
-- apps update-alert-destinations # Updates alert destinations
-- apps upgrade-buildpack         # Upgrades app's buildpack  
-- compute                        # Display commands that manage infrastructure
-- compute action                 # Display commands for retrieving resource action history
-- compute action get             # Retrieve details about a specific action
-- compute action list            # Retrieve a  list of all recent actions taken on your resources
-- compute action wait            # Block thread until an action completes
-- compute cdn                    # Display commands that manage CDNs
-- compute cdn create             # Create a CDN
-- compute cdn delete             # Delete a CDN
-- compute cdn flush              # Flush the cache of a CDN
-- compute cdn get                # Retrieve details about a specific CDN
-- compute cdn list               # List CDNs that have already been created
-- compute cdn update             # Update the configuration for a CDN
-- compute certificate            # Display commands that manage SSL certificates and private keys
-- compute certificate create     # Create a new certificate
-- compute certificate delete     # Delete the specified certificate
-- compute certificate get        # Retrieve details about a certificate
-- compute certificate list       # Retrieve list of the account's stored certificates
-- compute domain                 # Display commands that manage domains
-- compute domain create          # Add a domain to your account
-- compute domain delete          # Permanently delete a domain from your account
-- compute domain get             # Retrieve information about a domain
-- compute domain list            # List all domains on your account
-- compute domain records         # Manage DNS records
-- compute domain records create  # Create a DNS record
-- compute domain records delete  # Delete a DNS record
-- compute domain records list    # List the DNS records for a domain
-- compute domain records update  # Update a DNS record
-- compute droplet                # Manage virtual machines (Droplets)
-- compute droplet 1-click        # Display commands that pertain to Droplet 1-click applications
-- compute droplet 1-click list   # Retrieve a list of Droplet 1-Click applications
-- compute droplet actions        # List Droplet actions
-- compute droplet backups        # List Droplet backups
-- compute droplet create         # Create a new Droplet
-- compute droplet delete         # Permanently delete a Droplet
-- compute droplet get            # Retrieve information about a Droplet
-- compute droplet kernels        # List available Droplet kernels
-- compute droplet list           # List Droplets on your account
-- compute droplet neighbors      # List a Droplet's neighbors on your account
-- compute droplet snapshots      # List all snapshots for a Droplet
-- compute droplet tag            # Add a tag to a Droplet
-- compute droplet untag          # Remove a tag from a Droplet
-- compute droplet-action                           # Display Droplet action commands
-- compute droplet-action change-kernel             # Change a Droplet's kernel
-- compute droplet-action disable-backups           # Disable backups on a Droplet
-- compute droplet-action enable-backups            # Enable backups on a Droplet
-- compute droplet-action enable-ipv6               # Enable IPv6 on a Droplet
-- compute droplet-action enable-private-networking # Enable private networking on a Droplet
-- compute droplet-action get                       # Retrieve a specific Droplet action
-- compute droplet-action password-reset            # Reset the root password for a Droplet
-- compute droplet-action power-cycle               # Powercycle a Droplet
-- compute droplet-action power-off                 # Power off a Droplet
-- compute droplet-action power-on                  # Power on a Droplet
-- compute droplet-action reboot                    # Reboot a Droplet
-- compute droplet-action rebuild                   # Rebuild a Droplet
-- compute droplet-action rename                    # Rename a Droplet
-- compute droplet-action resize                    # Resize a Droplet
-- compute droplet-action restore                   # Restore a Droplet from a backup
-- compute droplet-action shutdown                  # Shut down a Droplet
-- compute droplet-action snapshot                  # Take a Droplet snapshot
-- compute firewall                                 # Display commands to manage cloud firewalls
-- compute firewall add-droplets                    # Add Droplets to a cloud firewall
-- compute firewall add-rules                       # Add inbound or outbound rules to a cloud firewall
-- compute firewall add-tags                        # Add tags to a cloud firewall
-- compute firewall create                          # Create a new cloud firewall
-- compute firewall delete                          # Permanently delete a cloud firewall
-- compute firewall get                             # Retrieve information about a cloud firewall
-- compute firewall list                            # List the cloud firewalls on your account
-- compute firewall list-by-droplet                 # List firewalls by Droplet
-- compute firewall remove-droplets                 # Remove Droplets from a cloud firewall
-- compute firewall remove-rules                    # Remove inbound or outbound rules from a cloud firewall
-- compute firewall remove-tags                     # Remove tags from a cloud firewall
-- compute firewall update                          # Update a cloud firewall's configuration
-- compute image                                    # Display commands to manage images
-- compute image create                             # Create custom image
-- compute image delete                             # Permanently delete an image from your account
-- compute image get                                # Retrieve information about an image
-- compute image list                               # List images on your account
-- compute image list-application                   # List available One-Click Apps
-- compute image list-distribution                  # List available distribution images
-- compute image list-user                          # List user-created images
-- compute image update                             # Update an image's metadata
-- compute image-action                             # Display commands to perform actions on images
-- compute image-action get                         # Retrieve the status of an image action
-- compute image-action transfer                    # Transfer an image to another datacenter region
-- compute load-balancer                            # Display commands to manage load balancers
-- compute load-balancer add-droplets               # Add Droplets to a load balancer
-- compute load-balancer add-forwarding-rules       # Add forwarding rules to a load balancer
-- compute load-balancer create                     # Create a new load balancer
-- compute load-balancer delete                     # Permanently delete a load balancer
-- compute load-balancer get                        # Retrieve a load balancer
-- compute load-balancer list                       # List load balancers
-- compute load-balancer purge-cache                # Purges CDN cache for a global load balancer
-- compute load-balancer remove-droplets            # Remove Droplets from a load balancer
-- compute load-balancer remove-forwarding-rules    # Remove forwarding rules from a load balancer
-- compute load-balancer update                     # Update a load balancer's configuration
-- compute region                                   # Display commands to list datacenter regions
-- compute region list                              # Retrieves a list of datacenter regions
-- compute reserved-ip                              # Display commands to manage reserved IP addresses
-- compute reserved-ip create                       # Create a new reserved IP address
-- compute reserved-ip delete                       # Permanently delete a reserved IP address
-- compute reserved-ip get                          # Retrieve information about a reserved IP address
-- compute reserved-ip list                         # List all reserved IP addresses on your account
-- compute reserved-ip-action                       # Display commands to associate reserved IP addresses with Droplets
-- compute reserved-ip-action assign                # Assign a reserved IP address to a Droplet
-- compute reserved-ip-action get                   # Retrieve the status of a reserved IP action
-- compute reserved-ip-action unassign              # Unassign a reserved IP address from a Droplet
-- compute size                                     # List available Droplet sizes
-- compute size list                                # List available Droplet sizes
-- compute snapshot                                 # Access and manage snapshots
-- compute snapshot delete                          # Delete a snapshot of a Droplet or volume
-- compute snapshot get                             # Retrieve a Droplet or volume snapshot
-- compute snapshot list                            # List Droplet and volume snapshots
-- compute ssh                                      # Access a Droplet using SSH
-- compute ssh-key                                  # Display commands to manage SSH keys on your account
-- compute ssh-key create                           # Create a new SSH key on your account
-- compute ssh-key delete                           # Permanently delete an SSH key from your account
-- compute ssh-key get                              # Retrieve information about an SSH key on your account
-- compute ssh-key import                           # Import an SSH key from your computer to your account
-- compute ssh-key list                             # List all SSH keys on your account
-- compute ssh-key update                           # Update an SSH key's name
-- compute tag                                      # Display commands to manage tags
-- compute tag apply                                # Apply a tag to resources
-- compute tag create                               # Create a tag
-- compute tag delete                               # Delete a tag
-- compute tag get                                  # Retrieve information about a tag
-- compute tag list                                 # List all tags
-- compute tag remove                               # Remove a tag from resources
-- compute volume                                   # Display commands to manage block storage volumes
-- compute volume create                            # Create a block storage volume
-- compute volume delete                            # Delete a block storage volume
-- compute volume get                               # Retrieve an existing block storage volume
-- compute volume list                              # List block storage volumes by ID
-- compute volume snapshot                          # Create a block storage volume snapshot
-- compute volume-action                            # Display commands to perform actions on a volume
-- compute volume-action attach                     # Attach a volume to a Droplet
-- compute volume-action detach                     # Detach a volume from a Droplet
-- compute volume-action detach-by-droplet-id       # (Deprecated) Detach a volume. Use `detach` instead.
-- compute volume-action get                        # Retrieve the status of a volume action
-- compute volume-action list                       # Retrieve a list of actions taken on a volume
-- compute volume-action resize                     # Resize the disk of a volume
-- databases                                        # Display commands that manage databases
-- databases backups                                # List database cluster backups
-- databases configuration                          # View the configuration of a database cluster given itsH ID and Engine
-- databases connection                             # Retrieve connection details for a database cluster
-- databases create                                 # Create a database cluster
-- databases db                                     # Display commands for managing individual databases within a cluster
-- databases db create                              # Create a database within a cluster
-- databases db delete                              # Delete the specified database from the cluster
-- databases db get                                 # Retrieve the name of a database within a cluster
-- databases db list                                # Retrieve a list of databases within a cluster
-- databases delete                                 # Delete a database cluster
-- databases events                                 # Display commands for listing database cluster events
-- databases events list                            # List your database cluster events
-- databases firewalls                              # Display commands to manage firewall rules (called`trusted sources` in the control panel) for database clusters
-- databases firewalls append                       # Add a database firewall rule to a given database
-- databases firewalls list                         # Retrieve a list of firewall rules for a given database
-- databases firewalls remove                       # Remove a firewall rule for a given database
-- databases firewalls replace                      # Replaces the firewall rules for a given database. The rules passed to the `--rules` flag replace the firewall rules previously assigned to the database,
-- databases fork                                   # Create a new database cluster by forking an existing database cluster.
-- databases get                                    # Get details for a database cluster
-- databases get-ca                                 # Provides the CA certificate for a DigitalOcean database
-- databases indexes                                # Display commands to manage indexes for opensearch clusters
-- databases indexes delete                         # Deletes an opensearch index by index name
-- databases indexes list                           # Retrieve a list of indexes for a given opensearch cluster
-- databases list                                   # List your database clusters
-- databases maintenance-window                     # Display commands for scheduling automatic maintenance on your database cluster
-- databases maintenance-window get                 # Retrieve details about a database cluster's maintenance windows
-- databases maintenance-window install             # Start installation of updates immediately
-- databases maintenance-window update              # Update the maintenance window for a database cluster
-- databases migrate                                # Migrate a database cluster to a new region
-- databases options                                # Display available database options (regions, version, layouts, etc.) for all available database engines
-- databases pool                                   # Display commands for managing connection pools
-- databases pool create                            # Create a connection pool for a database cluster
-- databases pool delete                            # Delete a connection pool for a database
-- databases pool get                               # Retrieve information about a database connection pool
-- databases pool list                              # List connection pools for a database cluster
-- databases pool update                            # Update a connection pool for a database
-- databases replica                                # Display commands to manage read-only database replicas
-- databases replica connection                     # Retrieve information for connecting to a read-only database replica
-- databases replica create                         # Create a read-only database replica
-- databases replica delete                         # Delete a read-only database replica
-- databases replica get                            # Retrieve information about a read-only database replica
-- databases replica list                           # Retrieve list of read-only database replicas
-- databases replica promote                        # Promote a read-only database replica to become a primary cluster
-- databases resize                                 # Resize a database cluster
-- databases sql-mode                               # Display commands to configure a MySQL database cluster's SQL modes
-- databases sql-mode get                           # Get a MySQL database cluster's SQL modes
-- databases sql-mode set                           # Set a MySQL database cluster's SQL modes
-- databases topics                                 # Display commands to manage topics for kafka database clusters
-- databases topics create                          # Creates a topic for a given kafka database
-- databases topics delete                          # Deletes a kafka topic by topic name
-- databases topics get                             # Retrieve the configuration for a given kafka topic
-- databases topics list                            # Retrieve a list of topics for a given kafka database
-- databases topics partitions                      # Retrieve the partitions for a given kafka topic
-- databases topics update                          # Updates a topic for a given kafka database
-- databases user                                   # Display commands for managing database users
-- databases user create                            # Create a database user
-- databases user delete                            # Delete a database user
-- databases user get                               # Retrieve details about a database user
-- databases user list                              # Retrieve list of database users
-- databases user reset                             # Resets a user's auth
-- kubernetes                                       # Displays commands to manage Kubernetes clusters and configurations
-- kubernetes 1-click                               # Display commands that pertain to kubernetes 1-click applications
-- kubernetes 1-click install                       # Install 1-click apps on a Kubernetes cluster
-- kubernetes 1-click list                          # Retrieve a list of Kubernetes 1-Click applications
-- kubernetes cluster                               # Display commands for managing Kubernetes clusters
-- kubernetes cluster create                        # Create a Kubernetes cluster
-- kubernetes cluster delete                        # Delete Kubernetes clusters
-- kubernetes cluster delete-selective              # Delete a Kubernetes cluster and selectively delete resources associated with it
-- kubernetes cluster get                           # Retrieve details about a Kubernetes cluster
-- kubernetes cluster get-upgrades                  # Retrieve a list of available Kubernetes version upgrades
-- kubernetes cluster kubeconfig                    # Display commands for managing your local kubeconfig
-- kubernetes cluster kubeconfig remove             # Remove a cluster's credentials from your local kubeconfig
-- kubernetes cluster kubeconfig save               # Save a cluster's credentials to your local kubeconfig
-- kubernetes cluster kubeconfig show               # Show a Kubernetes cluster's kubeconfig YAML
-- kubernetes cluster list                          # Retrieve the list of Kubernetes clusters for your account
-- kubernetes cluster list-associated-resources     # Retrieve DigitalOcean resources associated with a Kubernetes cluster
-- kubernetes cluster node-pool                     # Display commands for managing node pools
-- kubernetes cluster node-pool create              # Create a new node pool for a cluster
-- kubernetes cluster node-pool delete              # Delete a node pool
-- kubernetes cluster node-pool delete-node         # Delete a node
-- kubernetes cluster node-pool get                 # Retrieve information about a cluster's node pool
-- kubernetes cluster node-pool list                # List a cluster's node pools
-- kubernetes cluster node-pool replace-node        # Replace node with a new one
-- kubernetes cluster node-pool update              # Update an existing node pool in a cluster
-- kubernetes cluster registry                      # Display commands for integrating clusters with docr
-- kubernetes cluster registry add                  # Add container registry support to Kubernetes clusters
-- kubernetes cluster registry remove               # Remove container registry support from Kubernetes clusters
-- kubernetes cluster update                        # Update a Kubernetes cluster's configuration
-- kubernetes cluster upgrade                       # Upgrades a cluster to a new Kubernetes version
-- kubernetes options                               # List possible option values for use inside Kubernetes commands
-- monitoring                                       # [Beta] Display commands to manage monitoring
-- monitoring alert                                 # Display commands for managing alert policies
-- monitoring alert create                          # Create an alert policy
-- monitoring alert delete                          # Delete an alert policy
-- monitoring alert get                             # Retrieve information about an alert policy
-- monitoring alert list                            # List all alert policies
-- monitoring alert update                          # Update an alert policy
-- monitoring uptime                                # Display commands to manage uptime checks
-- monitoring uptime alert                          # Display commands to manage uptime alerts
-- monitoring uptime alert create                   # Create an uptime alert
-- monitoring uptime alert delete                   # Delete an uptime alert
-- monitoring uptime alert get                      # Get uptime alert
-- monitoring uptime alert list                     # List uptime alerts
-- monitoring uptime alert update                   # Update an uptime alert
-- monitoring uptime create                         # Create an uptime check
-- monitoring uptime delete                         # Delete an uptime check
-- monitoring uptime get                            # Get an uptime check
-- monitoring uptime list                           # List uptime checks
-- monitoring uptime update                         # Update an uptime check
-- projects                                         # Manage projects and assign resources to them
-- projects create                                  # Create a new project
-- projects delete                                  # Delete the specified project
-- projects get                                     # Retrieve details for a specific project
-- projects list                                    # List existing projects
-- projects resources                               # Manage resources assigned to a project
-- projects resources assign                        # Assign one or more resources to a project
-- projects resources get                           # Retrieve a resource by its URN
-- projects resources list                          # List resources assigned to a project
-- projects update                                  # Update an existing project
-- registry                                         # Display commands for working with container registries
-- registry create                                  # Create a private container registry
-- registry delete                                  # Delete a container registry
-- registry docker-config                           # Generate a Docker auth configuration for a registry
-- registry garbage-collection                      # Display commands for garbage collection for a container registry
-- registry garbage-collection cancel               # Cancel the currently-active garbage collection for a container registry
-- registry garbage-collection get-active           # Retrieve information about the currently-active garbage collection for a container registry
-- registry garbage-collection list                 # Retrieve information about past garbage collections for a container registry
-- registry garbage-collection start                # Start garbage collection for a container registry
-- registry get                                     # Retrieve details about a container registry
-- registry kubernetes-manifest                     # Generate a Kubernetes secret manifest for a registry.
-- registry login                                   # Log in Docker to a container registry
-- registry logout                                  # Log out Docker from a container registry
-- registry options                                 # List available container registry options
-- registry repository                              # Display commands for working with repositories in a container registry
-- registry repository delete-manifest              # Delete one or more container repository manifests by digest
-- registry repository delete-tag                   # Delete one or more container repository tags
-- registry repository list-manifests               # List manifests for a repository in a container registry
-- registry repository list-tags                    # List tags for a repository in a container registry
-- registry repository list-v2                      # List repositories for a container registry
-- serverless                                       # Develop, test, and deploy serverless functions
-- serverless activations                           # Retrieve activation records
-- serverless connect                               # Connects local serverless support to a functions namespace
-- serverless deploy                                # Deploy a functions project to your functions namespace
-- serverless functions                             # Work with the functions in your namespace
-- serverless functions get                         # Retrieve the metadata or code of a deployed function
-- serverless functions invoke                      # Invokes a function
-- serverless functions list                        # Lists the functions in your functions namespace
-- serverless get-metadata                          # Obtain metadata of a functions project
-- serverless init                                  # Initialize a 'functions project' directory in your local file system
-- serverless install                               # Installs the serverless support
-- serverless namespaces                            # Manage your functions namespaces
-- serverless status                                # Provide information about serverless support
-- serverless undeploy                              # Removes resources from your functions namespace
-- serverless uninstall                             # Removes the serverless support
-- serverless upgrade                               # Upgrades serverless support to match this version of doctl
-- serverless watch                                 # Watch a functions project directory, deploying incrementally on change
-- vpcs                                             # Display commands that manage VPCs
-- vpcs create                                      # Create a new VPC network
-- vpcs delete                                      # Permanently delete a VPC network
-- vpcs get                                         # Retrieve a VPC network
-- vpcs list                                        # List VPC networks
-- vpcs peerings                                    # Display commands that manage VPC Peerings
-- vpcs peerings create                             # Create a new VPC Peering
-- vpcs peerings delete                             # Permanently delete a VPC Peering
-- vpcs peerings get                                # Retrieves a VPC Peering
-- vpcs peerings list                               # List VPC Peerings
-- vpcs peerings update                             # Update a VPC Peering's name 
-- vpcs update                                      # Update a VPC network's configuration
+- doctl 1-click                        # Display commands that pertain to 1-click applications
+- doctl 1-click list                   # Retrieve a list of 1-Click applications
+- doctl account                        # Display commands that retrieve account details
+- doctl account get                    # Retrieve account profile details
+- doctl account ratelimit              # Retrieve your API usage and the remaining quota
+- doctl apps                           # Displays commands for working with apps
+- doctl apps create                    # Create an app
+- doctl apps create-deployment         # Creates a deployment
+- doctl apps delete                    # Deletes an app
+- doctl apps dev                       # [BETA] Display commands for working with App Platform local development.
+- doctl apps dev build                 # Build an app component
+- doctl apps dev config                # Displays commands for working with App Platform local development configuration settings.
+- doctl apps dev config set            # Set a value in the local development configuration settings.
+- doctl apps dev config unset          # Unset a value in the local development configuration settings.
+- doctl apps get                       # Get an app
+- doctl apps get-deployment            # Get a deployment
+- doctl apps list                      # Lists all apps
+- doctl apps list-alerts               # Lists alerts on an app
+- doctl apps list-buildpacks           # Lists buildpacks
+- doctl apps list-deployments          # List all deployments
+- doctl apps list-regions              # Lists available App Platform regions
+- doctl apps logs                      # Retrieves logs
+- doctl apps propose                   # Proposes an app spec
+- doctl apps spec                      # Display commands for working with app specs
+- doctl apps spec get                  # Retrieve an application's spec
+- doctl apps spec validate             # Validate an application spec
+- doctl apps tier                      # Display commands for working with app tiers
+- doctl apps tier instance-size        # Display commands for working with app instance sizes
+- doctl apps tier instance-size get    # Retrieve an app instance size
+- doctl apps tier instance-size list   # List all app instance sizes
+- doctl apps update                    # Updates an app
+- doctl apps update-alert-destinations # Updates alert destinations
+- doctl apps upgrade-buildpack         # Upgrades app's buildpack  
+- doctl compute                        # Display commands that manage infrastructure
+- doctl compute action                 # Display commands for retrieving resource action history
+- doctl compute action get             # Retrieve details about a specific action
+- doctl compute action list            # Retrieve a  list of all recent actions taken on your resources
+- doctl compute action wait            # Block thread until an action completes
+- doctl compute cdn                    # Display commands that manage CDNs
+- doctl compute cdn create             # Create a CDN
+- doctl compute cdn delete             # Delete a CDN
+- doctl compute cdn flush              # Flush the cache of a CDN
+- doctl compute cdn get                # Retrieve details about a specific CDN
+- doctl compute cdn list               # List CDNs that have already been created
+- doctl compute cdn update             # Update the configuration for a CDN
+- doctl compute certificate            # Display commands that manage SSL certificates and private keys
+- doctl compute certificate create     # Create a new certificate
+- doctl compute certificate delete     # Delete the specified certificate
+- doctl compute certificate get        # Retrieve details about a certificate
+- doctl compute certificate list       # Retrieve list of the account's stored certificates
+- doctl compute domain                 # Display commands that manage domains
+- doctl compute domain create          # Add a domain to your account
+- doctl compute domain delete          # Permanently delete a domain from your account
+- doctl compute domain get             # Retrieve information about a domain
+- doctl compute domain list            # List all domains on your account
+- doctl compute domain records         # Manage DNS records
+- doctl compute domain records create  # Create a DNS record
+- doctl compute domain records delete  # Delete a DNS record
+- doctl compute domain records list    # List the DNS records for a domain
+- doctl compute domain records update  # Update a DNS record
+- doctl compute droplet                # Manage virtual machines (Droplets)
+- doctl compute droplet 1-click        # Display commands that pertain to Droplet 1-click applications
+- doctl compute droplet 1-click list   # Retrieve a list of Droplet 1-Click applications
+- doctl compute droplet actions        # List Droplet actions
+- doctl compute droplet backups        # List Droplet backups
+- doctl compute droplet create         # Create a new Droplet
+- doctl compute droplet delete         # Permanently delete a Droplet
+- doctl compute droplet get            # Retrieve information about a Droplet
+- doctl compute droplet kernels        # List available Droplet kernels
+- doctl compute droplet list           # List Droplets on your account
+- doctl compute droplet neighbors      # List a Droplet's neighbors on your account
+- doctl compute droplet snapshots      # List all snapshots for a Droplet
+- doctl compute droplet tag            # Add a tag to a Droplet
+- doctl compute droplet untag          # Remove a tag from a Droplet
+- doctl compute droplet-action                           # Display Droplet action commands
+- doctl compute droplet-action change-kernel             # Change a Droplet's kernel
+- doctl compute droplet-action disable-backups           # Disable backups on a Droplet
+- doctl compute droplet-action enable-backups            # Enable backups on a Droplet
+- doctl compute droplet-action enable-ipv6               # Enable IPv6 on a Droplet
+- doctl compute droplet-action enable-private-networking # Enable private networking on a Droplet
+- doctl compute droplet-action get                       # Retrieve a specific Droplet action
+- doctl compute droplet-action password-reset            # Reset the root password for a Droplet
+- doctl compute droplet-action power-cycle               # Powercycle a Droplet
+- doctl compute droplet-action power-off                 # Power off a Droplet
+- doctl compute droplet-action power-on                  # Power on a Droplet
+- doctl compute droplet-action reboot                    # Reboot a Droplet
+- doctl compute droplet-action rebuild                   # Rebuild a Droplet
+- doctl compute droplet-action rename                    # Rename a Droplet
+- doctl compute droplet-action resize                    # Resize a Droplet
+- doctl compute droplet-action restore                   # Restore a Droplet from a backup
+- doctl compute droplet-action shutdown                  # Shut down a Droplet
+- doctl compute droplet-action snapshot                  # Take a Droplet snapshot
+- doctl compute firewall                                 # Display commands to manage cloud firewalls
+- doctl compute firewall add-droplets                    # Add Droplets to a cloud firewall
+- doctl compute firewall add-rules                       # Add inbound or outbound rules to a cloud firewall
+- doctl compute firewall add-tags                        # Add tags to a cloud firewall
+- doctl compute firewall create                          # Create a new cloud firewall
+- doctl compute firewall delete                          # Permanently delete a cloud firewall
+- doctl compute firewall get                             # Retrieve information about a cloud firewall
+- doctl compute firewall list                            # List the cloud firewalls on your account
+- doctl compute firewall list-by-droplet                 # List firewalls by Droplet
+- doctl compute firewall remove-droplets                 # Remove Droplets from a cloud firewall
+- doctl compute firewall remove-rules                    # Remove inbound or outbound rules from a cloud firewall
+- doctl compute firewall remove-tags                     # Remove tags from a cloud firewall
+- doctl compute firewall update                          # Update a cloud firewall's configuration
+- doctl compute image                                    # Display commands to manage images
+- doctl compute image create                             # Create custom image
+- doctl compute image delete                             # Permanently delete an image from your account
+- doctl compute image get                                # Retrieve information about an image
+- doctl compute image list                               # List images on your account
+- doctl compute image list-application                   # List available One-Click Apps
+- doctl compute image list-distribution                  # List available distribution images
+- doctl compute image list-user                          # List user-created images
+- doctl compute image update                             # Update an image's metadata
+- doctl compute image-action                             # Display commands to perform actions on images
+- doctl compute image-action get                         # Retrieve the status of an image action
+- doctl compute image-action transfer                    # Transfer an image to another datacenter region
+- doctl compute load-balancer                            # Display commands to manage load balancers
+- doctl compute load-balancer add-droplets               # Add Droplets to a load balancer
+- doctl compute load-balancer add-forwarding-rules       # Add forwarding rules to a load balancer
+- doctl compute load-balancer create                     # Create a new load balancer
+- doctl compute load-balancer delete                     # Permanently delete a load balancer
+- doctl compute load-balancer get                        # Retrieve a load balancer
+- doctl compute load-balancer list                       # List load balancers
+- doctl compute load-balancer purge-cache                # Purges CDN cache for a global load balancer
+- doctl compute load-balancer remove-droplets            # Remove Droplets from a load balancer
+- doctl compute load-balancer remove-forwarding-rules    # Remove forwarding rules from a load balancer
+- doctl compute load-balancer update                     # Update a load balancer's configuration
+- doctl compute region                                   # Display commands to list datacenter regions
+- doctl compute region list                              # Retrieves a list of datacenter regions
+- doctl compute reserved-ip                              # Display commands to manage reserved IP addresses
+- doctl compute reserved-ip create                       # Create a new reserved IP address
+- doctl compute reserved-ip delete                       # Permanently delete a reserved IP address
+- doctl compute reserved-ip get                          # Retrieve information about a reserved IP address
+- doctl compute reserved-ip list                         # List all reserved IP addresses on your account
+- doctl compute reserved-ip-action                       # Display commands to associate reserved IP addresses with Droplets
+- doctl compute reserved-ip-action assign                # Assign a reserved IP address to a Droplet
+- doctl compute reserved-ip-action get                   # Retrieve the status of a reserved IP action
+- doctl compute reserved-ip-action unassign              # Unassign a reserved IP address from a Droplet
+- doctl compute size                                     # List available Droplet sizes
+- doctl compute size list                                # List available Droplet sizes
+- doctl compute snapshot                                 # Access and manage snapshots
+- doctl compute snapshot delete                          # Delete a snapshot of a Droplet or volume
+- doctl compute snapshot get                             # Retrieve a Droplet or volume snapshot
+- doctl compute snapshot list                            # List Droplet and volume snapshots
+- doctl compute ssh                                      # Access a Droplet using SSH
+- doctl compute ssh-key                                  # Display commands to manage SSH keys on your account
+- doctl compute ssh-key create                           # Create a new SSH key on your account
+- doctl compute ssh-key delete                           # Permanently delete an SSH key from your account
+- doctl compute ssh-key get                              # Retrieve information about an SSH key on your account
+- doctl compute ssh-key import                           # Import an SSH key from your computer to your account
+- doctl compute ssh-key list                             # List all SSH keys on your account
+- doctl compute ssh-key update                           # Update an SSH key's name
+- doctl compute tag                                      # Display commands to manage tags
+- doctl compute tag apply                                # Apply a tag to resources
+- doctl compute tag create                               # Create a tag
+- doctl compute tag delete                               # Delete a tag
+- doctl compute tag get                                  # Retrieve information about a tag
+- doctl compute tag list                                 # List all tags
+- doctl compute tag remove                               # Remove a tag from resources
+- doctl compute volume                                   # Display commands to manage block storage volumes
+- doctl compute volume create                            # Create a block storage volume
+- doctl compute volume delete                            # Delete a block storage volume
+- doctl compute volume get                               # Retrieve an existing block storage volume
+- doctl compute volume list                              # List block storage volumes by ID
+- doctl compute volume snapshot                          # Create a block storage volume snapshot
+- doctl compute volume-action                            # Display commands to perform actions on a volume
+- doctl compute volume-action attach                     # Attach a volume to a Droplet
+- doctl compute volume-action detach                     # Detach a volume from a Droplet
+- doctl compute volume-action detach-by-droplet-id       # (Deprecated) Detach a volume. Use `detach` instead.
+- doctl compute volume-action get                        # Retrieve the status of a volume action
+- doctl compute volume-action list                       # Retrieve a list of actions taken on a volume
+- doctl compute volume-action resize                     # Resize the disk of a volume
+- doctl databases                                        # Display commands that manage databases
+- doctl databases backups                                # List database cluster backups
+- doctl databases configuration                          # View the configuration of a database cluster given itsH ID and Engine
+- doctl databases connection                             # Retrieve connection details for a database cluster
+- doctl databases create                                 # Create a database cluster
+- doctl databases db                                     # Display commands for managing individual databases within a cluster
+- doctl databases db create                              # Create a database within a cluster
+- doctl databases db delete                              # Delete the specified database from the cluster
+- doctl databases db get                                 # Retrieve the name of a database within a cluster
+- doctl databases db list                                # Retrieve a list of databases within a cluster
+- doctl databases delete                                 # Delete a database cluster
+- doctl databases events                                 # Display commands for listing database cluster events
+- doctl databases events list                            # List your database cluster events
+- doctl databases firewalls                              # Display commands to manage firewall rules (called`trusted sources` in the control panel) for database clusters
+- doctl databases firewalls append                       # Add a database firewall rule to a given database
+- doctl databases firewalls list                         # Retrieve a list of firewall rules for a given database
+- doctl databases firewalls remove                       # Remove a firewall rule for a given database
+- doctl databases firewalls replace                      # Replaces the firewall rules for a given database. The rules passed to the `--rules` flag replace the firewall rules previously assigned to the database,
+- doctl databases fork                                   # Create a new database cluster by forking an existing database cluster.
+- doctl databases get                                    # Get details for a database cluster
+- doctl databases get-ca                                 # Provides the CA certificate for a DigitalOcean database
+- doctl databases indexes                                # Display commands to manage indexes for opensearch clusters
+- doctl databases indexes delete                         # Deletes an opensearch index by index name
+- doctl databases indexes list                           # Retrieve a list of indexes for a given opensearch cluster
+- doctl databases list                                   # List your database clusters
+- doctl databases maintenance-window                     # Display commands for scheduling automatic maintenance on your database cluster
+- doctl databases maintenance-window get                 # Retrieve details about a database cluster's maintenance windows
+- doctl databases maintenance-window install             # Start installation of updates immediately
+- doctl databases maintenance-window update              # Update the maintenance window for a database cluster
+- doctl databases migrate                                # Migrate a database cluster to a new region
+- doctl databases options                                # Display available database options (regions, version, layouts, etc.) for all available database engines
+- doctl databases pool                                   # Display commands for managing connection pools
+- doctl databases pool create                            # Create a connection pool for a database cluster
+- doctl databases pool delete                            # Delete a connection pool for a database
+- doctl databases pool get                               # Retrieve information about a database connection pool
+- doctl databases pool list                              # List connection pools for a database cluster
+- doctl databases pool update                            # Update a connection pool for a database
+- doctl databases replica                                # Display commands to manage read-only database replicas
+- doctl databases replica connection                     # Retrieve information for connecting to a read-only database replica
+- doctl databases replica create                         # Create a read-only database replica
+- doctl databases replica delete                         # Delete a read-only database replica
+- doctl databases replica get                            # Retrieve information about a read-only database replica
+- doctl databases replica list                           # Retrieve list of read-only database replicas
+- doctl databases replica promote                        # Promote a read-only database replica to become a primary cluster
+- doctl databases resize                                 # Resize a database cluster
+- doctl databases sql-mode                               # Display commands to configure a MySQL database cluster's SQL modes
+- doctl databases sql-mode get                           # Get a MySQL database cluster's SQL modes
+- doctl databases sql-mode set                           # Set a MySQL database cluster's SQL modes
+- doctl databases topics                                 # Display commands to manage topics for kafka database clusters
+- doctl databases topics create                          # Creates a topic for a given kafka database
+- doctl databases topics delete                          # Deletes a kafka topic by topic name
+- doctl databases topics get                             # Retrieve the configuration for a given kafka topic
+- doctl databases topics list                            # Retrieve a list of topics for a given kafka database
+- doctl databases topics partitions                      # Retrieve the partitions for a given kafka topic
+- doctl databases topics update                          # Updates a topic for a given kafka database
+- doctl databases user                                   # Display commands for managing database users
+- doctl databases user create                            # Create a database user
+- doctl databases user delete                            # Delete a database user
+- doctl databases user get                               # Retrieve details about a database user
+- doctl databases user list                              # Retrieve list of database users
+- doctl databases user reset                             # Resets a user's auth
+- doctl kubernetes                                       # Displays commands to manage Kubernetes clusters and configurations
+- doctl kubernetes 1-click                               # Display commands that pertain to kubernetes 1-click applications
+- doctl kubernetes 1-click install                       # Install 1-click apps on a Kubernetes cluster
+- doctl kubernetes 1-click list                          # Retrieve a list of Kubernetes 1-Click applications
+- doctl kubernetes cluster                               # Display commands for managing Kubernetes clusters
+- doctl kubernetes cluster create                        # Create a Kubernetes cluster
+- doctl kubernetes cluster delete                        # Delete Kubernetes clusters
+- doctl kubernetes cluster delete-selective              # Delete a Kubernetes cluster and selectively delete resources associated with it
+- doctl kubernetes cluster get                           # Retrieve details about a Kubernetes cluster
+- doctl kubernetes cluster get-upgrades                  # Retrieve a list of available Kubernetes version upgrades
+- doctl kubernetes cluster kubeconfig                    # Display commands for managing your local kubeconfig
+- doctl kubernetes cluster kubeconfig remove             # Remove a cluster's credentials from your local kubeconfig
+- doctl kubernetes cluster kubeconfig save               # Save a cluster's credentials to your local kubeconfig
+- doctl kubernetes cluster kubeconfig show               # Show a Kubernetes cluster's kubeconfig YAML
+- doctl kubernetes cluster list                          # Retrieve the list of Kubernetes clusters for your account
+- doctl kubernetes cluster list-associated-resources     # Retrieve DigitalOcean resources associated with a Kubernetes cluster
+- doctl kubernetes cluster node-pool                     # Display commands for managing node pools
+- doctl kubernetes cluster node-pool create              # Create a new node pool for a cluster
+- doctl kubernetes cluster node-pool delete              # Delete a node pool
+- doctl kubernetes cluster node-pool delete-node         # Delete a node
+- doctl kubernetes cluster node-pool get                 # Retrieve information about a cluster's node pool
+- doctl kubernetes cluster node-pool list                # List a cluster's node pools
+- doctl kubernetes cluster node-pool replace-node        # Replace node with a new one
+- doctl kubernetes cluster node-pool update              # Update an existing node pool in a cluster
+- doctl kubernetes cluster registry                      # Display commands for integrating clusters with docr
+- doctl kubernetes cluster registry add                  # Add container registry support to Kubernetes clusters
+- doctl kubernetes cluster registry remove               # Remove container registry support from Kubernetes clusters
+- doctl kubernetes cluster update                        # Update a Kubernetes cluster's configuration
+- doctl kubernetes cluster upgrade                       # Upgrades a cluster to a new Kubernetes version
+- doctl kubernetes options                               # List possible option values for use inside Kubernetes commands
+- doctl monitoring                                       # [Beta] Display commands to manage monitoring
+- doctl monitoring alert                                 # Display commands for managing alert policies
+- doctl monitoring alert create                          # Create an alert policy
+- doctl monitoring alert delete                          # Delete an alert policy
+- doctl monitoring alert get                             # Retrieve information about an alert policy
+- doctl monitoring alert list                            # List all alert policies
+- doctl monitoring alert update                          # Update an alert policy
+- doctl monitoring uptime                                # Display commands to manage uptime checks
+- doctl monitoring uptime alert                          # Display commands to manage uptime alerts
+- doctl monitoring uptime alert create                   # Create an uptime alert
+- doctl monitoring uptime alert delete                   # Delete an uptime alert
+- doctl monitoring uptime alert get                      # Get uptime alert
+- doctl monitoring uptime alert list                     # List uptime alerts
+- doctl monitoring uptime alert update                   # Update an uptime alert
+- doctl monitoring uptime create                         # Create an uptime check
+- doctl monitoring uptime delete                         # Delete an uptime check
+- doctl monitoring uptime get                            # Get an uptime check
+- doctl monitoring uptime list                           # List uptime checks
+- doctl monitoring uptime update                         # Update an uptime check
+- doctl projects                                         # Manage projects and assign resources to them
+- doctl projects create                                  # Create a new project
+- doctl projects delete                                  # Delete the specified project
+- doctl projects get                                     # Retrieve details for a specific project
+- doctl projects list                                    # List existing projects
+- doctl projects resources                               # Manage resources assigned to a project
+- doctl projects resources assign                        # Assign one or more resources to a project
+- doctl projects resources get                           # Retrieve a resource by its URN
+- doctl projects resources list                          # List resources assigned to a project
+- doctl projects update                                  # Update an existing project
+- doctl registry                                         # Display commands for working with container registries
+- doctl registry create                                  # Create a private container registry
+- doctl registry delete                                  # Delete a container registry
+- doctl registry docker-config                           # Generate a Docker auth configuration for a registry
+- doctl registry garbage-collection                      # Display commands for garbage collection for a container registry
+- doctl registry garbage-collection cancel               # Cancel the currently-active garbage collection for a container registry
+- doctl registry garbage-collection get-active           # Retrieve information about the currently-active garbage collection for a container registry
+- doctl registry garbage-collection list                 # Retrieve information about past garbage collections for a container registry
+- doctl registry garbage-collection start                # Start garbage collection for a container registry
+- doctl registry get                                     # Retrieve details about a container registry
+- doctl registry kubernetes-manifest                     # Generate a Kubernetes secret manifest for a registry.
+- doctl registry login                                   # Log in Docker to a container registry
+- doctl registry logout                                  # Log out Docker from a container registry
+- doctl registry options                                 # List available container registry options
+- doctl registry repository                              # Display commands for working with repositories in a container registry
+- doctl registry repository delete-manifest              # Delete one or more container repository manifests by digest
+- doctl registry repository delete-tag                   # Delete one or more container repository tags
+- doctl registry repository list-manifests               # List manifests for a repository in a container registry
+- doctl registry repository list-tags                    # List tags for a repository in a container registry
+- doctl registry repository list-v2                      # List repositories for a container registry
+- doctl serverless                                       # Develop, test, and deploy serverless functions
+- doctl serverless activations                           # Retrieve activation records
+- doctl serverless connect                               # Connects local serverless support to a functions namespace
+- doctl serverless deploy                                # Deploy a functions project to your functions namespace
+- doctl serverless functions                             # Work with the functions in your namespace
+- doctl serverless functions get                         # Retrieve the metadata or code of a deployed function
+- doctl serverless functions invoke                      # Invokes a function
+- doctl serverless functions list                        # Lists the functions in your functions namespace
+- doctl serverless get-metadata                          # Obtain metadata of a functions project
+- doctl serverless init                                  # Initialize a 'functions project' directory in your local file system
+- doctl serverless install                               # Installs the serverless support
+- doctl serverless namespaces                            # Manage your functions namespaces
+- doctl serverless status                                # Provide information about serverless support
+- doctl serverless undeploy                              # Removes resources from your functions namespace
+- doctl serverless uninstall                             # Removes the serverless support
+- doctl serverless upgrade                               # Upgrades serverless support to match this version of doctl
+- doctl serverless watch                                 # Watch a functions project directory, deploying incrementally on change
+- doctl vpcs                                             # Display commands that manage VPCs
+- doctl vpcs create                                      # Create a new VPC network
+- doctl vpcs delete                                      # Permanently delete a VPC network
+- doctl vpcs get                                         # Retrieve a VPC network
+- doctl vpcs list                                        # List VPC networks
+- doctl vpcs peerings                                    # Display commands that manage VPC Peerings
+- doctl vpcs peerings create                             # Create a new VPC Peering
+- doctl vpcs peerings delete                             # Permanently delete a VPC Peering
+- doctl vpcs peerings get                                # Retrieves a VPC Peering
+- doctl vpcs peerings list                               # List VPC Peerings
+- doctl vpcs peerings update                             # Update a VPC Peering's name 
+- doctl vpcs update                                      # Update a VPC network's configuration
 
 # Configure doctl:
-- auth                                             # Display commands for authenticating doctl with an account
-- auth init                                        # Initialize doctl to use a specific account
-- auth list                                        # List available authentication contexts
-- auth remove                                      # Remove authentication contexts
-- auth switch                                      # Switch between authentication contexts
-- version                                          # Show the current version
+- doctl auth                                             # Display commands for authenticating doctl with an account
+- doctl auth init                                        # Initialize doctl to use a specific account
+- doctl auth list                                        # List available authentication contexts
+- doctl auth remove                                      # Remove authentication contexts
+- doctl auth switch                                      # Switch between authentication contexts
+- doctl version                                          # Show the current version
  
 # View Billing:
-- balance                                          # Display commands for retrieving your account balance
-- balance get                                      # Retrieve your account balance
-- billing-history                                  # Display commands for retrieving your billing history
-- billing-history list                             # Retrieve a paginated billing history for a user
-- invoice                                          # Display commands for retrieving invoices for your account
-- invoice csv                                      # Downloads a CSV file of a specific invoice to you local machine
-- invoice get                                      # Retrieve a list of all the items on an invoice
-- invoice list                                     # List all of the invoices for your account
-- invoice pdf                                      # Downloads a PDF file of a specific invoice to your local machine
-- invoice summary                                  # Get a summary of an invoice
+- doctl balance                                          # Display commands for retrieving your account balance
+- doctl balance get                                      # Retrieve your account balance
+- doctl billing-history                                  # Display commands for retrieving your billing history
+- doctl billing-history list                             # Retrieve a paginated billing history for a user
+- doctl invoice                                          # Display commands for retrieving invoices for your account
+- doctl invoice csv                                      # Downloads a CSV file of a specific invoice to you local machine
+- doctl invoice get                                      # Retrieve a list of all the items on an invoice
+- doctl invoice list                                     # List all of the invoices for your account
+- doctl invoice pdf                                      # Downloads a PDF file of a specific invoice to your local machine
+- doctl invoice summary                                  # Get a summary of an invoice
