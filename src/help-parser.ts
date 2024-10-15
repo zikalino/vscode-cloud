@@ -298,7 +298,8 @@ function extractOptions(lines: string[]): any[] {
   while (i < lines.length) {
     // Arguments      - az
     // Arguments:     - linode
-    if (lines[i] === "Arguments" || lines[i] === "Arguments:") {
+    // Flags:         - digital ocean
+    if (lines[i] === "Arguments" || lines[i] === "Arguments:" || lines[i] === "Flags:") {
       i++;
       break;
     }
@@ -315,8 +316,17 @@ function extractOptions(lines: string[]): any[] {
       break;
     }
 
-    var description = lines[i].split(":")[1].trim();
-    var name = lines[i].split("--")[1].split(":")[0].trim();
+    // first find argument name delimiter
+    var description = "";
+    var name = "";
+    if (lines[i].includes(":")) {
+      description = lines[i].split(":")[1].trim();
+      name = lines[i].split("--")[1].split(":")[0].trim();
+    } else {
+      description = lines[i].split("  ")[1].trim();
+      name = lines[i].split("--")[1].split("  ")[0].trim();
+    }
+    
     i++;
     while (i < lines.length && lines[i].startsWith("  ") && !lines[i].includes(" --")) {
       description += " " + lines[i].slice(1).trim();
