@@ -70,6 +70,13 @@ export function activate (context: vscode.ExtensionContext) {
   );
 
   disposable = vscode.commands.registerCommand(
+    'vscode-cloud.displayLinodeMenu',
+    () => {
+      displayLinodeMenu();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
     'vscode-cloud.displayOciMenu',
     () => {
       displayOciMenu();
@@ -108,6 +115,13 @@ export function activate (context: vscode.ExtensionContext) {
     'vscode-cloud.displayRawKamateraMenu',
     () => {
       displayRawKamateraMenu();
+    }
+  );
+
+  disposable = vscode.commands.registerCommand(
+    'vscode-cloud.displayRawLinodeMenu',
+    () => {
+      displayRawLinodeMenu();
     }
   );
 

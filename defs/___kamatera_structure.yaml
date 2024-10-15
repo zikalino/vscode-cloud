@@ -1,4 +1,4 @@
-# Server Managementbb
+# Server Management
 - cloudcli server attach          # Connect to the server via SSH
 - cloudcli server clone           # Clone a server
 - cloudcli server configure       # Change server configuration
