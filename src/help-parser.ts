@@ -244,7 +244,7 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
             i++;
           }
 
-          inserted = [ "      - $include: __tags_list.yaml"
+          inserted = [ "      - $include: __az_tags_list.yaml"
                      ];
           lines.splice(j, 0, ...inserted);
           i += inserted.length;

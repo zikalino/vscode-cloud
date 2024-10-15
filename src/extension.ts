@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import YAML from 'yaml';
 import * as helpers from '@zim.kalinowski/vscode-helper-toolkit';
 
-import { extractAllCommands, parseCmdGroup } from './help-parser';
+import { extractAllCommands, parseCmdGroup, parseCmdHelp } from './help-parser';
 import { displayCloudExplorer } from './cloud-explorer';
 
 //import SwaggerParser from "@apidevtools/swagger-parser";
@@ -333,7 +333,7 @@ async function displayRawMenu(yamlDefinition: string) {
   });
 
   if (result) {
-    let response = await parseCmdGroup(result);
+    let response = await parseCmdHelp(result);
     loadYamlView(loadYaml(response));
   }
 }
