@@ -339,18 +339,18 @@ function extractOptions(lines: string[], cli: string): any[] {
 
 
     // firts get description from after the separator, don't use split, as the same pattern may be used later
-    var description = lines[i].trim().substring(lines[i].trim().indexOf(optionNamesSeparator) + 1).trim();
+    var separatorIdx = lines[i].trim().search(optionNamesSeparator);
+    var description = lines[i].trim().substring(separatorIdx + 1).trim();
 
-    // then get all the option names
-    var names = lines[i].split(description)[0].trim().split(", ");
-    var name = names[names.length - 1].replace("--", "");
+    // vultr uses comma as delimiter of parameter names, this is not necessary, so we can replace with space
+    var names = lines[i].split(description)[0].trim().replace(", ", " ");
+    var name = "";
 
     var required: boolean = defaultRequired;
     var type = "default";
     var values: string[] = [];
-    if (name.includes(" ")) {
-      var s = name.split(" ");
-      name = s[0];
+    if (names.includes(" ")) {
+      var s = names.split(" ");
       // XXX - vultr --- default type is boolean
       // XXX - doctl --- default may be boolean, but may have reference to region or ID
       // XXX - doctl --- sometimes ID can be comma separated list
@@ -358,7 +358,22 @@ function extractOptions(lines: string[], cli: string): any[] {
       // XXX - az    --- has Allowed values: NVMe, SCSI. ---> enum
       // XXX - az    --- has Allowed values: true, false.---> bool
 
-      for (var j = 1; j < s.length; j++) {
+      for (var j = 0; j < s.length; j++) {
+        // check if we are dealing with parameter name
+        var next: string = "";
+        if (s[j].startsWith("--")) {
+          next = s[j].split("--")[1];
+        } else if (s[j].startsWith("-")) {
+          next = s[j].split("-")[1];
+        }
+        if (next.length > 0) {
+          if (next.length > name.length) {
+            name = next;
+          }
+          continue;
+        }
+
+        // then check if we are dealing with: type, required, etc...
         switch (s[j]) {
           case "(required)":
             // linode
