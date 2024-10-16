@@ -299,6 +299,7 @@ function extractOptions(lines: string[], cli: string): any[] {
 
   var optionsSectionSeparator: string = "";
   var optionNamesSeparator:any = "";
+  var defaultRequired: boolean = false; 
 
   if (cli === 'az') {
     optionsSectionSeparator = "Arguments";
@@ -314,6 +315,7 @@ function extractOptions(lines: string[], cli: string): any[] {
   } else if (cli === 'vultr-cli') {
     optionsSectionSeparator = "Flags:";
     optionNamesSeparator = /\s\s+/;
+    defaultRequired = true;
   } else if (cli === 'cloudcli') {
 
   } else if (cli === 'upctl') {
@@ -344,8 +346,51 @@ function extractOptions(lines: string[], cli: string): any[] {
     var names = parts[0].split(", ");
     var name = names[names.length - 1].replace("--", "");
     var description = parts[1].trim();
+    var required: boolean = defaultRequired;
+    var type = "default";
     if (name.includes(" ")) {
-      name = name.split(" ")[0];
+      var s = name.split(" ");
+      name = s[0];
+      // XXX - vultr --- default type is boolean
+      // XXX - doctl --- default may be boolean, but may have reference to region or ID
+      // XXX - doctl --- sometimes ID can be comma separated list
+      // XXX - az    --- has: Values from: `az account list-locations` ---> enum with query
+      // XXX - az    --- has Allowed values: NVMe, SCSI. ---> enum
+      // XXX - az    --- has Allowed values: true, false.---> bool
+
+      for (var i = 1; i < s.length; i++) {
+        switch (s[1]) {
+          case "(required)":
+            // linode
+            required = true; 
+            break;
+          case "[Required]":
+            // az
+            required = true;
+            break;
+          case "(JSON)":
+            // linode
+            type = "json";
+            break;
+          case "string":
+            // upctl, doctl, vultr
+            type = "string";
+            break;
+            case "int":
+              // upctl, doctl, vultr
+              type = "int";
+              break;
+            case "ID":
+              // doctl
+              type = "enum";
+              // XXX - extract from description
+              break;
+            case "strings":
+              // vultr
+              // XXX - in case of vultr --- comma separated strings
+              break;
+          }
+      }
     }
     
     i++;
@@ -353,7 +398,14 @@ function extractOptions(lines: string[], cli: string): any[] {
       description += " " + lines[i].slice(1).trim();
       i++;
     }
-    response.push({'name': name, 'description': description});
+
+    // vultr-cli
+    if (description.includes("(optional) ")) {
+      required = false;
+      description = description.replace("(optional) ", "");
+    }
+
+    response.push({'name': name, 'description': description, 'required': required, 'type': type });
   }
 
   return response;
