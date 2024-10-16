@@ -183,6 +183,11 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
     // store variable
     var name = options[optIdx]['name'];
     var description = options[optIdx]['description'];
+    var type = options[optIdx]['type'];
+    var values = options[optIdx]['values'];
+    if (!values) {
+      values = [];
+    }
     variables.push({
       name: name.replaceAll("-", "_"),
       argument: "--" + name
@@ -209,12 +214,8 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
       }
 
       var insert: string[] = [];
-      if (description.includes("Allowed values: ")) {
-        let tmp = description.split("Allowed values: ")[1] + " ";
-        tmp = tmp.split(". ")[0];
-        let values = tmp.split(", ");
-        if (values.includes("true") && values.includes("false") && values.length === 2) {
-
+      if (type === 'enum' || type === 'boolean') {
+        if (type === 'boolean') {
           insert.push("      - type: row",
                       "        subitems: ",
                       "          - type: checkbox",
@@ -341,13 +342,17 @@ function extractOptions(lines: string[], cli: string): any[] {
       break;
     }
 
-    // first find argument name delimiter
-    var parts = lines[i].trim().split(optionNamesSeparator);
-    var names = parts[0].split(", ");
+
+    // firts get description from after the separator, don't use split, as the same pattern may be used later
+    var description = lines[i].trim().substring(lines[i].trim().indexOf(optionNamesSeparator) + 1).trim();
+
+    // then get all the option names
+    var names = lines[i].split(description)[0].trim().split(", ");
     var name = names[names.length - 1].replace("--", "");
-    var description = parts[1].trim();
+
     var required: boolean = defaultRequired;
     var type = "default";
+    var values: string[] = [];
     if (name.includes(" ")) {
       var s = name.split(" ");
       name = s[0];
@@ -358,8 +363,8 @@ function extractOptions(lines: string[], cli: string): any[] {
       // XXX - az    --- has Allowed values: NVMe, SCSI. ---> enum
       // XXX - az    --- has Allowed values: true, false.---> bool
 
-      for (var i = 1; i < s.length; i++) {
-        switch (s[1]) {
+      for (var j = 1; j < s.length; j++) {
+        switch (s[j]) {
           case "(required)":
             // linode
             required = true; 
@@ -394,7 +399,7 @@ function extractOptions(lines: string[], cli: string): any[] {
     }
     
     i++;
-    while (i < lines.length && lines[i].startsWith("  ") && !lines[i].includes(" --")) {
+    while (i < lines.length && lines[i].startsWith("  ") && !lines[i].trim().startsWith('-')) {
       description += " " + lines[i].slice(1).trim();
       i++;
     }
@@ -404,8 +409,28 @@ function extractOptions(lines: string[], cli: string): any[] {
       required = false;
       description = description.replace("(optional) ", "");
     }
+    if (description.includes("Allowed values: ")) {
+      // az only
+      let tmp = description.split("Allowed values: ")[1] + " ";
+      tmp = tmp.split(". ")[0];
+      values = tmp.split(", ");
+      if (values.includes("true") && values.includes("false") && values.length === 2) {
+        type = "boolean";
+      } else {
+        type = "enum";
+      }
+    }
 
-    response.push({'name': name, 'description': description, 'required': required, 'type': type });
+    // help shouldn't be displayed
+    if (name === 'help') {
+      continue;
+    }
+
+    response.push({'name': name,
+                   'description': description,
+                   'required': required,
+                   'type': type,
+                   'values': values });
   }
 
   return response;
