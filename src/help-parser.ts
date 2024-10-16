@@ -271,12 +271,7 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
   }
 
   // push the rest of stuff
-  action.push(
-                 "        verify: |",
-                 "            az vm show --resource-group ${resource_group_name} --name ${virtual_machine_name}",
-                 "        install: " + cmd + " --resource-group ${resource_group_name} --name ${virtual_machine_name} --location ${virtual_machine_region}",
-                 "        uninstall: az vm delete --resource-group ${resource_group_name} --name ${virtual_machine_name} --yes"
-  );
+  action.push("        install: " + cmd);
 
   lines.splice(lines.length, 0, ...action);
 
