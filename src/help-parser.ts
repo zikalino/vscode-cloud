@@ -298,7 +298,7 @@ function extractOptions(lines: string[], cli: string): any[] {
   var response: any[] = [];
 
   var optionsSectionSeparator: string = "";
-  var optionNamesSeparator: string = "";
+  var optionNamesSeparator:any = "";
 
   if (cli === 'az') {
     optionsSectionSeparator = "Arguments";
@@ -313,12 +313,12 @@ function extractOptions(lines: string[], cli: string): any[] {
 
   } else if (cli === 'vultr-cli') {
     optionsSectionSeparator = "Flags:";
-    optionNamesSeparator = "  ";
+    optionNamesSeparator = /\s\s+/;
   } else if (cli === 'cloudcli') {
 
   } else if (cli === 'upctl') {
     optionsSectionSeparator = "Options:";
-    optionNamesSeparator = "  ";
+    optionNamesSeparator = /\s\s+/;
   }
 
   while (i < lines.length) {
@@ -340,8 +340,10 @@ function extractOptions(lines: string[], cli: string): any[] {
     }
 
     // first find argument name delimiter
-    var description = lines[i].split(optionNamesSeparator)[1].trim();
-    var name = lines[i].split("--")[1].split(optionNamesSeparator)[0].trim();
+    var parts = lines[i].trim().split(optionNamesSeparator);
+    var names = parts[0].split(", ");
+    var name = names[names.length - 1].replace("--", "");
+    var description = parts[1].trim();
     if (name.includes(" ")) {
       name = name.split(" ")[0];
     }
