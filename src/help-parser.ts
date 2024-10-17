@@ -185,6 +185,7 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
     var description = options[optIdx]['description'];
     var type = options[optIdx]['type'];
     var values = options[optIdx]['values'];
+    var required = options[optIdx]['required'];
     if (!values) {
       values = [];
     }
@@ -213,13 +214,14 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
         descriptionEscaped = '"' + descriptionEscaped + '"';
       }
 
+      var requiredString = required ? " (required)" : "";
       var insert: string[] = [];
       if (type === 'enum' || type === 'boolean') {
         if (type === 'boolean') {
           insert.push("      - type: row",
                       "        subitems: ",
                       "          - type: checkbox",
-                      "            name: " + name,
+                      "            name: " + name + requiredString,
                       "            description: " + descriptionEscaped,
                       "            produces: ",
                       "              - variable: " + name.replaceAll("-", "_")
@@ -230,7 +232,7 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
           insert.push("      - type: row",
                       "        subitems: ",
                       "          - type: combo",
-                      "            name: " + name,
+                      "            name: " + name + requiredString,
                       "            description: " + descriptionEscaped,
                       "            items:");
 
@@ -248,7 +250,7 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
         lines.splice(lines.length, 0, "      - type: row",
                           "        subitems: ",
                           "          - type: textfield",
-                          "            name: " + name,
+                          "            name: " + name + requiredString,
                           "            description: " + descriptionEscaped,
                           "            produces: ",
                           "              - variable: " + name.replaceAll("-", "_"));
@@ -291,7 +293,8 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
 function extractOptions(lines: string[], cli: string): any[] {
   
   var i = 0;
-  var response: any[] = [];
+  var optionsRequired: any[] = [];
+  var optionsOptional: any[] = [];
 
   var optionsSectionSeparator: string = "";
   var optionNamesSeparator:any = "";
@@ -355,8 +358,6 @@ function extractOptions(lines: string[], cli: string): any[] {
       // XXX - doctl --- default may be boolean, but may have reference to region or ID
       // XXX - doctl --- sometimes ID can be comma separated list
       // XXX - az    --- has: Values from: `az account list-locations` ---> enum with query
-      // XXX - az    --- has Allowed values: NVMe, SCSI. ---> enum
-      // XXX - az    --- has Allowed values: true, false.---> bool
 
       for (var j = 0; j < s.length; j++) {
         // check if we are dealing with parameter name
@@ -419,9 +420,22 @@ function extractOptions(lines: string[], cli: string): any[] {
       required = false;
       description = description.replace("(optional) ", "");
     }
+
+    // this is for az
     if (description.includes("Allowed values: ")) {
       // az only
       let tmp = description.split("Allowed values: ")[1] + " ";
+      tmp = tmp.split(". ")[0];
+      values = tmp.split(", ");
+      if (values.includes("true") && values.includes("false") && values.length === 2) {
+        type = "boolean";
+      } else {
+        type = "enum";
+      }
+    }
+    // this is for vultr
+    if (description.includes("Possible values: ")) {
+      let tmp = description.split("Possible values: ")[1] + " ";
       tmp = tmp.split(". ")[0];
       values = tmp.split(", ");
       if (values.includes("true") && values.includes("false") && values.length === 2) {
@@ -436,14 +450,22 @@ function extractOptions(lines: string[], cli: string): any[] {
       continue;
     }
 
-    response.push({'name': name,
-                   'description': description,
-                   'required': required,
-                   'type': type,
-                   'values': values });
+    if (required) {
+      optionsRequired.push({'name': name,
+                            'description': description,
+                            'required': required,
+                            'type': type,
+                            'values': values });
+    } else {
+      optionsOptional.push({'name': name,
+                            'description': description,
+                            'required': required,
+                            'type': type,
+                            'values': values });
+    }
   }
 
-  return response;
+  return [...optionsRequired, ...optionsOptional];
 }
 
 function parseCmdHelp_FindNextSection(lines: string[], idx: number) {
