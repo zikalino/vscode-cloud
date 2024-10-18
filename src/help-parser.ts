@@ -186,6 +186,7 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
     var type = options[optIdx]['type'];
     var values = options[optIdx]['values'];
     var required = options[optIdx]['required'];
+    var query =  options[optIdx]['query'];
     if (!values) {
       values = [];
     }
@@ -196,7 +197,10 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
 
     var inserted: string[] = [];
 
-    if (name === 'location') {
+    if (query != "") {
+      inserted = [ "      - $include: __" + query + ".yaml" ];
+      lines.splice(lines.length, 0, ...inserted);
+    } else if (name === 'location') {
 
       inserted = [ "      - $include: __az_region_selector.yaml" ];
       lines.splice(lines.length, 0, ...inserted);
@@ -351,6 +355,7 @@ function extractOptions(lines: string[], cli: string): any[] {
 
     var required: boolean = defaultRequired;
     var type = "default";
+    var query = "";
     var values: string[] = [];
 
     var s = names.split(" ");
@@ -440,6 +445,15 @@ function extractOptions(lines: string[], cli: string): any[] {
       }
     }
 
+    // Extract: Run `upctl zone list` to list all....
+    // Run\s*`(.*)`
+    const match = description.match(/Run\s*`(.*)`/);
+    if (match) {
+      let command = 
+      type = "enum";
+      query = match[1].trim().replaceAll(" ", "_") + "_selector";
+    }
+
     // help shouldn't be displayed
     if (name === 'help') {
       continue;
@@ -450,12 +464,14 @@ function extractOptions(lines: string[], cli: string): any[] {
                             'description': description,
                             'required': required,
                             'type': type,
+                            'query': query,
                             'values': values });
     } else {
       optionsOptional.push({'name': name,
                             'description': description,
                             'required': required,
                             'type': type,
+                            'query': query,
                             'values': values });
     }
   }
