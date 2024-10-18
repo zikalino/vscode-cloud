@@ -422,22 +422,15 @@ function extractOptions(lines: string[], cli: string): any[] {
     }
 
     // this is for az
-    if (description.includes("Allowed values: ")) {
-      // az only
-      let tmp = description.split("Allowed values: ")[1] + " ";
-      tmp = tmp.split(". ")[0];
-      values = tmp.split(", ");
-      if (values.includes("true") && values.includes("false") && values.length === 2) {
-        type = "boolean";
-      } else {
-        type = "enum";
-      }
-    }
+    values = extractEnum(description, "Allowed values: ");
+
     // this is for vultr
-    if (description.includes("Possible values: ")) {
-      let tmp = description.split("Possible values: ")[1] + " ";
-      tmp = tmp.split(". ")[0];
-      values = tmp.split(", ");
+    values = extractEnum(description, "Possible values: ");
+
+    // doctl
+    values = extractEnum(description, "Possible values are: ");
+
+    if (values.length > 0) {
       if (values.includes("true") && values.includes("false") && values.length === 2) {
         type = "boolean";
       } else {
@@ -526,4 +519,22 @@ function getHelp(cmd: string) {
   }
 
   return r.split(/\r?\n/);
+}
+
+function extractEnum(description: string, marker: string) : string[] {
+    if (description.includes(marker)) {
+      let tmp = description.split(marker)[1] + " ";
+      tmp = tmp.split(". ")[0];
+      let values = tmp.split(/,\s|\sand\s/);
+
+      for (let i = 0; i < values.length; i++) {
+        let v = values[i].trim();
+
+        // ^\s*'(.*)'\s*$|^\s*"(.*)"\s*$|^\s*`(.*)`\s*$
+        v = v.replace(/^\s*'(.*)'\s*$|^\s*"(.*)"\s*$|^\s*`(.*)`\s*$/, "$1$2$3");
+        values[i] = v;
+      }
+      return values;
+    }
+    return [];
 }
