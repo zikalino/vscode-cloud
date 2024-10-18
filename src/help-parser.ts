@@ -352,61 +352,60 @@ function extractOptions(lines: string[], cli: string): any[] {
     var required: boolean = defaultRequired;
     var type = "default";
     var values: string[] = [];
-    if (names.includes(" ")) {
-      var s = names.split(" ");
-      // XXX - vultr --- default type is boolean
-      // XXX - doctl --- default may be boolean, but may have reference to region or ID
-      // XXX - doctl --- sometimes ID can be comma separated list
-      // XXX - az    --- has: Values from: `az account list-locations` ---> enum with query
 
-      for (var j = 0; j < s.length; j++) {
-        // check if we are dealing with parameter name
-        var next: string = "";
-        if (s[j].startsWith("--")) {
-          next = s[j].split("--")[1];
-        } else if (s[j].startsWith("-")) {
-          next = s[j].split("-")[1];
-        }
-        if (next.length > 0) {
-          if (next.length > name.length) {
-            name = next;
-          }
-          continue;
-        }
+    var s = names.split(" ");
+    // XXX - vultr --- default type is boolean
+    // XXX - doctl --- default may be boolean, but may have reference to region or ID
+    // XXX - doctl --- sometimes ID can be comma separated list
+    // XXX - az    --- has: Values from: `az account list-locations` ---> enum with query
 
-        // then check if we are dealing with: type, required, etc...
-        switch (s[j]) {
-          case "(required)":
-            // linode
-            required = true; 
-            break;
-          case "[Required]":
-            // az
-            required = true;
-            break;
-          case "(JSON)":
-            // linode
-            type = "json";
-            break;
-          case "string":
-            // upctl, doctl, vultr
-            type = "string";
-            break;
-            case "int":
-              // upctl, doctl, vultr
-              type = "int";
-              break;
-            case "ID":
-              // doctl
-              type = "enum";
-              // XXX - extract from description
-              break;
-            case "strings":
-              // vultr
-              // XXX - in case of vultr --- comma separated strings
-              break;
-          }
+    for (var j = 0; j < s.length; j++) {
+      // check if we are dealing with parameter name
+      var next: string = "";
+      if (s[j].startsWith("--")) {
+        next = s[j].split("--")[1];
+      } else if (s[j].startsWith("-")) {
+        next = s[j].split("-")[1];
       }
+      if (next.length > 0) {
+        if (next.length > name.length) {
+          name = next;
+        }
+        continue;
+      }
+
+      // then check if we are dealing with: type, required, etc...
+      switch (s[j]) {
+        case "(required)":
+          // linode
+          required = true; 
+          break;
+        case "[Required]":
+          // az
+          required = true;
+          break;
+        case "(JSON)":
+          // linode
+          type = "json";
+          break;
+        case "string":
+          // upctl, doctl, vultr
+          type = "string";
+          break;
+          case "int":
+            // upctl, doctl, vultr
+            type = "int";
+            break;
+          case "ID":
+            // doctl
+            type = "enum";
+            // XXX - extract from description
+            break;
+          case "strings":
+            // vultr
+            // XXX - in case of vultr --- comma separated strings
+            break;
+        }
     }
     
     i++;
@@ -429,6 +428,9 @@ function extractOptions(lines: string[], cli: string): any[] {
 
     // doctl
     values = extractEnum(description, "Possible values are: ");
+
+    // upctl
+    values = extractEnum(description, "Available: ");
 
     if (values.length > 0) {
       if (values.includes("true") && values.includes("false") && values.length === 2) {
@@ -524,7 +526,7 @@ function getHelp(cmd: string) {
 function extractEnum(description: string, marker: string) : string[] {
     if (description.includes(marker)) {
       let tmp = description.split(marker)[1] + " ";
-      tmp = tmp.split(". ")[0];
+      tmp = tmp.split(/\.\s|$/)[0];
       let values = tmp.split(/,\s|\sand\s/);
 
       for (let i = 0; i < values.length; i++) {
