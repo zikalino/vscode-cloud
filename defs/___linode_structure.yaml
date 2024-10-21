@@ -74,7 +74,7 @@
 - linode domains
 - linode domains clone                         # Clone a domain
 - linode domains create                        # Create a domain
-- linode domains delete, rm                    # Delete a domain
+- linode domains delete                    # Delete a domain
 - linode domains import                        # Import a domain
 - linode domains list                      # List domains
 - linode domains records-create                # Create a domain record
@@ -92,7 +92,7 @@
 - linode events view                           # Get an event
 - linode firewalls
 - linode firewalls create                      # Create a firewall
-- linode firewalls delete, rm                  # Delete a firewall
+- linode firewalls delete                  # Delete a firewall
 - linode firewalls device-create               # Create a firewall device
 - linode firewalls device-delete               # Delete a firewall device
 - linode firewalls device-view                 # Get a firewall device
@@ -104,7 +104,7 @@
 - linode firewalls view                        # Get a firewall
 - linode images
 - linode images create                         # Create an image
-- linode images delete, rm                     # Delete an image
+- linode images delete                     # Delete an image
 - linode images list                       # List images
 - linode images replicate                      # Replicate an image
 - linode images update                         # Update an image
@@ -134,7 +134,7 @@
 - linode linodes config-view                   # Get a config profile                                   
 - linode linodes configs-list                  # List config profiles                                   
 - linode linodes create                        # Create a Linode                                        
-- linode linodes delete, rm                    # Delete a Linode                                        
+- linode linodes delete                    # Delete a Linode                                        
 - linode linodes disk-clone                    # Clone a disk                                           
 - linode linodes disk-create                   # Create a disk                                          
 - linode linodes disk-delete                   # Delete a disk                                          
@@ -195,7 +195,7 @@
 - linode lke versions-list                     # List Kubernetes versions
 - linode longview
 - linode longview create                       # Create a Longview client
-- linode longview delete, rm                   # Delete a Longview client
+- linode longview delete                   # Delete a Longview client
 - linode longview list                     # List Longview clients
 - linode longview plan-update                  # Update a Longview plan
 - linode longview plan-view                    # Get a Longview plan
@@ -251,7 +251,7 @@
 - linode nodebalancers config-view                     # Get a config
 - linode nodebalancers configs-list                    # List configs
 - linode nodebalancers create                          # Create a NodeBalancer
-- linode nodebalancers delete, rm                      # Delete a NodeBalancer
+- linode nodebalancers delete                      # Delete a NodeBalancer
 - linode nodebalancers firewalls                       # List node balancer firewalls
 - linode nodebalancers list                        # List NodeBalancers
 - linode nodebalancers node-create                     # Create a node
@@ -276,7 +276,7 @@
 - linode payment-methods
 - linode payment-methods add                           # Add a payment method
 - linode payment-methods default                       # Set a default payment method
-- linode payment-methods delete, rm                    # Delete a payment method
+- linode payment-methods delete                    # Delete a payment method
 - linode payment-methods list                      # List payment methods
 - linode payment-methods view                          # Get a payment method
 - linode phone
@@ -289,7 +289,7 @@
 - linode placement group-delete, group-rm              # Delete a placement group
 - linode placement group-update                        # Update a placement group
 - linode placement group-view                          # Get a placement group
-- linode placement groups-list, groups-ls              # List placement groups
+- linode placement groups-list                         # List placement groups
 - linode placement unassign-linode                     # Unassign a placement group
 - linode profile
 - linode profile app-delete                            # Revoke app access
@@ -325,19 +325,19 @@
 - linode service-transfers view                        # Get a service transfer request
 - linode sshkeys
 - linode sshkeys  create                               # Add an SSH key
-- linode sshkeys delete, rm                            # Delete an SSH key
+- linode sshkeys delete                            # Delete an SSH key
 - linode sshkeys list                              # List SSH keys
 - linode sshkeys update                                # Update an SSH key
 - linode sshkeys view                                  # Get an SSH key
 - linode stackscripts
 - linode stackscripts create                           # Create a StackScript
-- linode stackscripts delete, rm                       # Delete a StackScript
+- linode stackscripts delete                       # Delete a StackScript
 - linode stackscripts list                         # List StackScripts
 - linode stackscripts update                           # Update a StackScript
 - linode stackscripts view                             # Get a StackScript
 - linode tags
 - linode tags create                                   # Create a tag
-- linode tags delete, rm                               # Delete a tag
+- linode tags delete                               # Delete a tag
 - linode tags list                                 # List tags
 - linode tickets
 - linode tickets close                                 # Close a support ticket
@@ -348,7 +348,7 @@
 - linode tickets view                                  # Get a support ticket
 - linode users
 - linode users create                                  # Create a user
-- linode users delete, rm                              # Delete a user
+- linode users delete                              # Delete a user
 - linode users list                                # List users
 - linode users update                                  # Update a user
 - linode users view                                    # Get a user
@@ -358,7 +358,7 @@
 - linode volumes attach                                # Attach a volume
 - linode volumes clone                                 # Clone a volume
 - linode volumes create                                # Create a volume
-- linode volumes delete, rm                            # Delete a volume
+- linode volumes delete                            # Delete a volume
 - linode volumes detach                                # Detach a volume
 - linode volumes list                              # List volumes
 - linode volumes resize                                # Resize a volume
@@ -368,13 +368,13 @@
 - linode vpcs
 - linode vpcs create                                   # Create a VPC
 - linode vpcs delete                                   # Delete a VPC
-- linode vpcs ips-all-list, ips-all-ls                 # List VPC IP addresses
-- linode vpcs ips-list, ips-ls                         # List a VPC's IP addresses
-- linode vpcs list                                 # List VPCs
+- linode vpcs ips-all-list                             # List VPC IP addresses
+- linode vpcs ips-list                                 # List a VPC's IP addresses
+- linode vpcs list                                     # List VPCs
 - linode vpcs subnet-create                            # Create a VPC subnet
 - linode vpcs subnet-delete                            # Delete a VPC subnet
 - linode vpcs subnet-update                            # Update a VPC subnet
 - linode vpcs subnet-view                              # Get a VPC subnet
-- linode vpcs subnets-list, subnets-ls                 # List VPC subnets
+- linode vpcs subnets-list                             # List VPC subnets
 - linode vpcs update                                   # Update a VPC
 - linode vpcs view                                     # Get a VPC
