@@ -197,7 +197,7 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
 
     var inserted: string[] = [];
 
-    if (query != "") {
+    if (query !== "") {
       inserted = [ "      - $include: __" + query + ".yaml" ];
       lines.splice(lines.length, 0, ...inserted);
     } else if (name === 'location') {
@@ -262,10 +262,11 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
     }        
   }
 
-  // include action
+  //
+  // Create action row
+  //
   var action = [ "      - type: 'action-row'",
                  "        name: " + cmd ];
-
   if (variables.length > 0) {
     action.push("        consumes:");
     for (var vi = 0; vi < variables.length; vi++ ) {
@@ -275,11 +276,22 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
       // XXX - here we need to add all required, required-if, etc.
     }
   }
-
   // push the rest of stuff
   action.push("        install: " + cmd);
 
+  // request output to be stored in "output" variable
+  action.push("        produces:");
+  action.push("          - variable: output");
+
   lines.splice(lines.length, 0, ...action);
+
+  //
+  // Add output field to display results
+  //
+  var output = [ "      - type: 'output-row'",
+                 "        data: output",
+                 "        content: ..."];
+                 lines.splice(lines.length, 0, ...output);
 
   var r = lines.join("\r\n");
   var filename = "";
@@ -426,16 +438,24 @@ function extractOptions(lines: string[], cli: string): any[] {
     }
 
     // this is for az
-    values = extractEnum(description, "Allowed values: ");
+    if (values.length === 0) {
+      values = extractEnum(description, "Allowed values: ");
+    }
 
     // this is for vultr
-    values = extractEnum(description, "Possible values: ");
+    if (values.length === 0) {
+      values = extractEnum(description, "Possible values: ");
+    }
 
     // doctl
-    values = extractEnum(description, "Possible values are: ");
+    if (values.length === 0) {
+      values = extractEnum(description, "Possible values are: ");
+    }
 
     // upctl
-    values = extractEnum(description, "Available: ");
+    if (values.length === 0) {
+      values = extractEnum(description, "Available: ");
+    }
 
     if (values.length > 0) {
       if (values.includes("true") && values.includes("false") && values.length === 2) {
@@ -447,7 +467,16 @@ function extractOptions(lines: string[], cli: string): any[] {
 
     // Extract: Run `upctl zone list` to list all....
     // Run\s*`(.*)`
-    const match = description.match(/Run\s*`(.*)`/);
+    var match = description.match(/Run\s*`(.*)`/);
+    if (match) {
+      let command = 
+      type = "enum";
+      query = match[1].trim().replaceAll(" ", "_") + "_selector";
+    }
+
+    // Extract: Run `upctl zone list` to list all....
+    // Values from\s*`(.*)`
+    match = description.match(/Run\s*`(.*)`/);
     if (match) {
       let command = 
       type = "enum";
