@@ -266,6 +266,7 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
   // Create action row
   //
   var action = [ "      - type: 'action-row'",
+                 "        expandable: false",
                  "        name: " + cmd ];
   if (variables.length > 0) {
     action.push("        consumes:");
