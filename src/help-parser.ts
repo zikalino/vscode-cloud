@@ -363,7 +363,7 @@ function extractOptions(lines: string[], cli: string): any[] {
     var description = lines[i].trim().substring(separatorIdx + 1).trim();
 
     // vultr uses comma as delimiter of parameter names, this is not necessary, so we can replace with space
-    var names = lines[i].split(description)[0].trim().replace(", ", " ");
+    var names = lines[i].trim().substring(0, separatorIdx).trim().replace(", ", " ");
     var name = "";
 
     var required: boolean = defaultRequired;
