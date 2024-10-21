@@ -30,17 +30,17 @@
 - linode betas enroll                          # Enroll in a Beta program
 - linode betas enrolled                        # List enrolled Beta programs
 - linode betas enrolled-view                   # Get an enrolled Beta program
-- linode betas list, ls                        # List Beta programs
+- linode betas list                        # List Beta programs
 - linode betas view                            # Get a Beta program
 
 - linode child-account
 - linode child-account create                  # Create a proxy user token
-- linode child-account list, ls                # List child accounts
+- linode child-account list                # List child accounts
 - linode child-account view                    # Get a child account
 - linode databases
 - linode databases engine-view                 # Get a managed database engine
 - linode databases engines                     # List managed database engines
-- linode databases list, ls                    # List managed databases
+- linode databases list                    # List managed databases
 - linode databases mysql-backup-delete         # Delete a managed MySQL database backup
 - linode databases mysql-backup-restore        # Restore a managed MySQL database backup
 - linode databases mysql-backup-snapshot       # Create a managed MySQL database backup snapshot
@@ -76,7 +76,7 @@
 - linode domains create                        # Create a domain
 - linode domains delete, rm                    # Delete a domain
 - linode domains import                        # Import a domain
-- linode domains list, ls                      # List domains
+- linode domains list                      # List domains
 - linode domains records-create                # Create a domain record
 - linode domains records-delete                # Delete a domain record
 - linode domains records-list                  # List domain records
@@ -86,7 +86,7 @@
 - linode domains view                          # Get a domain
 - linode domains zone-file                     # Get a domain zone file
 - linode events
-- linode events list, ls                       # List events
+- linode events list                       # List events
 - linode events mark-read                      # Mark an event as read
 - linode events mark-seen                      # Mark an event as seen
 - linode events view                           # Get an event
@@ -97,7 +97,7 @@
 - linode firewalls device-delete               # Delete a firewall device
 - linode firewalls device-view                 # Get a firewall device
 - linode firewalls devices-list                # List firewall devices
-- linode firewalls list, ls                    # List firewalls
+- linode firewalls list                    # List firewalls
 - linode firewalls rules-list                  # List firewall rules
 - linode firewalls rules-update                # Update firewall rules
 - linode firewalls update                      # Update a firewall
@@ -105,13 +105,13 @@
 - linode images
 - linode images create                         # Create an image
 - linode images delete, rm                     # Delete an image
-- linode images list, ls                       # List images
+- linode images list                       # List images
 - linode images replicate                      # Replicate an image
 - linode images update                         # Update an image
 - linode images upload                         # Upload an image
 - linode images view                           # Get an image
 - linode kernels
-- linode kernels list, ls                      # List kernels
+- linode kernels list                      # List kernels
 - linode kernels view                          # Get a kernel
 - linode linodes
 - linode linodes backup-restore                # Restore a backup                                       
@@ -150,7 +150,7 @@
 - linode linodes ip-view                       # Get a Linode's IP address                              
 - linode linodes ips-list                      # Get networking information                             
 - linode linodes linode-reset-password         # Reset a Linode's root password                         
-- linode linodes list, ls                      # List Linodes                                           
+- linode linodes list                      # List Linodes                                           
 - linode linodes migrate                       # Initiate a DC migration/pending host migration         
 - linode linodes nodebalancers                 # List Linode NodeBalancers                              
 - linode linodes reboot                        # Reboot a Linode                                        
@@ -196,7 +196,7 @@
 - linode longview
 - linode longview create                       # Create a Longview client
 - linode longview delete, rm                   # Delete a Longview client
-- linode longview list, ls                     # List Longview clients
+- linode longview list                     # List Longview clients
 - linode longview plan-update                  # Update a Longview plan
 - linode longview plan-view                    # Get a Longview plan
 - linode longview subscription-view            # Get a Longview subscription
@@ -253,7 +253,7 @@
 - linode nodebalancers create                          # Create a NodeBalancer
 - linode nodebalancers delete, rm                      # Delete a NodeBalancer
 - linode nodebalancers firewalls                       # List node balancer firewalls
-- linode nodebalancers list, ls                        # List NodeBalancers
+- linode nodebalancers list                        # List NodeBalancers
 - linode nodebalancers node-create                     # Create a node
 - linode nodebalancers node-delete                     # Delete a node balancer's node
 - linode nodebalancers node-update                     # Update a node
@@ -277,7 +277,7 @@
 - linode payment-methods add                           # Add a payment method
 - linode payment-methods default                       # Set a default payment method
 - linode payment-methods delete, rm                    # Delete a payment method
-- linode payment-methods list, ls                      # List payment methods
+- linode payment-methods list                      # List payment methods
 - linode payment-methods view                          # Get a payment method
 - linode phone
 - linode phone delete                                  # Delete a phone number
@@ -311,56 +311,56 @@
 - linode profile update                                # Update a profile
 - linode profile view                                  # Get a profile
 - linode regions
-- linode regions list, ls                              # List regions
+- linode regions list                              # List regions
 - linode regions list-avail                            # List regions' availability
 - linode regions view                                  # Get a region
 - linode regions view-avail                            # Get a region's availability
 - linode security-questions
-- linode security-questions list, ls                   # List security questions
+- linode security-questions list                   # List security questions
 - linode service-transfers
 - linode service-transfers accept                      # Accept a service transfer
 - linode service-transfers cancel                      # Cancel a service transfer
 - linode service-transfers create                      # Request a service transfer
-- linode service-transfers list, ls                    # List service transfers
+- linode service-transfers list                    # List service transfers
 - linode service-transfers view                        # Get a service transfer request
 - linode sshkeys
 - linode sshkeys  create                               # Add an SSH key
 - linode sshkeys delete, rm                            # Delete an SSH key
-- linode sshkeys list, ls                              # List SSH keys
+- linode sshkeys list                              # List SSH keys
 - linode sshkeys update                                # Update an SSH key
 - linode sshkeys view                                  # Get an SSH key
 - linode stackscripts
 - linode stackscripts create                           # Create a StackScript
 - linode stackscripts delete, rm                       # Delete a StackScript
-- linode stackscripts list, ls                         # List StackScripts
+- linode stackscripts list                         # List StackScripts
 - linode stackscripts update                           # Update a StackScript
 - linode stackscripts view                             # Get a StackScript
 - linode tags
 - linode tags create                                   # Create a tag
 - linode tags delete, rm                               # Delete a tag
-- linode tags list, ls                                 # List tags
+- linode tags list                                 # List tags
 - linode tickets
 - linode tickets close                                 # Close a support ticket
 - linode tickets create                                # Open a support ticket
-- linode tickets list, ls                              # List support tickets
+- linode tickets list                              # List support tickets
 - linode tickets replies                               # List replies
 - linode tickets reply                                 # Create a reply
 - linode tickets view                                  # Get a support ticket
 - linode users
 - linode users create                                  # Create a user
 - linode users delete, rm                              # Delete a user
-- linode users list, ls                                # List users
+- linode users list                                # List users
 - linode users update                                  # Update a user
 - linode users view                                    # Get a user
 - linode vlans
-- linode vlans list, ls                                # List VLANs
+- linode vlans list                                # List VLANs
 - linode volumes
 - linode volumes attach                                # Attach a volume
 - linode volumes clone                                 # Clone a volume
 - linode volumes create                                # Create a volume
 - linode volumes delete, rm                            # Delete a volume
 - linode volumes detach                                # Detach a volume
-- linode volumes list, ls                              # List volumes
+- linode volumes list                              # List volumes
 - linode volumes resize                                # Resize a volume
 - linode volumes types                                 # List volume types
 - linode volumes update                                # Update a volume
@@ -370,7 +370,7 @@
 - linode vpcs delete                                   # Delete a VPC
 - linode vpcs ips-all-list, ips-all-ls                 # List VPC IP addresses
 - linode vpcs ips-list, ips-ls                         # List a VPC's IP addresses
-- linode vpcs list, ls                                 # List VPCs
+- linode vpcs list                                 # List VPCs
 - linode vpcs subnet-create                            # Create a VPC subnet
 - linode vpcs subnet-delete                            # Delete a VPC subnet
 - linode vpcs subnet-update                            # Update a VPC subnet
