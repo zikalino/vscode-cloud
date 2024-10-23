@@ -1,12 +1,12 @@
 - type: row
   subitems:
     - type: combo
-      name: Select Linode
+      name: Select Beta
       items: []
       source:
         cmd: |
-          linode linodes list --json
+          linode betas list --json
         path-id: $.[*].id
         path-name: $.[*].label
       produces:
-        - variable: linodes_id
+        - variable: betas_id

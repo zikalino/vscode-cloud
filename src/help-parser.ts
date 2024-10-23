@@ -380,8 +380,24 @@ function extractOptions(lines: string[], cmd: string): any[] {
 
   if (match !== null) {
     var parts = cmd.split(" ");
-    parts[parts.length - 1] = "list";
-    var varName = parts[1] + "_id";
+
+    // if last part is xxx-get, xxx-show, xxx-view, xxx-delete, xxx-sth -- split it into 2 parts
+    var endParts = parts[parts.length - 1].split("-");
+    if (endParts.length > 1) {
+      endParts.pop();
+      parts[parts.length - 1] = endParts.join("-");
+      parts.push("list");
+    } else {
+      parts[parts.length - 1] = "list";
+    }
+
+    // construct var name
+    var varName = "";
+    for (var partIdx = 1; partIdx < parts.length - 1; partIdx++) {
+      varName += parts[partIdx] + "_";
+    }
+    varName += "id";
+
     var selectorName = parts.join("_") + "_selector";
 
     optionsRequired.push({'name': "<" + varName + ">",
