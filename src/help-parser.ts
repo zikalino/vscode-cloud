@@ -161,7 +161,7 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
 
   var lines = getHelp(cmd);
 
-  var options: any[] = extractOptions(lines, cmd.split(' ')[0]);
+  var options: any[] = extractOptions(lines, cmd);
 
   var cmd_title = "cmd";
   var variables: any[] = [];
@@ -190,10 +190,17 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
     if (!values) {
       values = [];
     }
-    variables.push({
-      name: name.replaceAll("-", "_"),
-      argument: "--" + name
-    });
+    if (name.startsWith("<") && name.endsWith(">")) {
+      variables.push({
+        name: name.slice(1, -1).replaceAll("-", "_"),
+        argument: "*"
+      });
+    } else {
+      variables.push({
+        name: name.replaceAll("-", "_"),
+        argument: "--" + name
+      });
+    }
 
     var inserted: string[] = [];
 
@@ -268,17 +275,23 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
   var action = [ "      - type: 'action-row'",
                  "        expandable: false",
                  "        name: " + cmd ];
+  var positional = "";
   if (variables.length > 0) {
     action.push("        consumes:");
     for (var vi = 0; vi < variables.length; vi++ ) {
-      action.push("          - variable: " + variables[vi].name,
-                  "            parameter: " + variables[vi].argument
-      );
+      if (variables[vi].argument !== "*") {
+        action.push("          - variable: " + variables[vi].name,
+                    "            parameter: " + variables[vi].argument
+        );
+      } else {
+        action.push("          - variable: " + variables[vi].name)
+        positional += " ${" + variables[vi].name + "}"; 
+      }
       // XXX - here we need to add all required, required-if, etc.
     }
   }
   // push the rest of stuff
-  action.push("        install: " + cmd);
+  action.push("        install: " + cmd + positional);
 
   // request output to be stored in "output" variable
   action.push("        produces:");
@@ -307,13 +320,15 @@ export async function parseCmdHelp(cmd: string): Promise<string> {
   return filename;
 }
 
-function extractOptions(lines: string[], cli: string): any[] {
+function extractOptions(lines: string[], cmd: string): any[] {
   
+  var cli: string = cmd.split(' ')[0];
   var i = 0;
   var optionsRequired: any[] = [];
   var optionsOptional: any[] = [];
 
   var optionsSectionSeparator: string = "";
+  var usageSectionSeparator: string = "";
   var optionNamesSeparator:any = "";
   var defaultRequired: boolean = false; 
 
@@ -323,9 +338,11 @@ function extractOptions(lines: string[], cli: string): any[] {
   } else if (cli === 'linode') {
     optionsSectionSeparator = "Arguments:";
     optionNamesSeparator = ":";
+    usageSectionSeparator = "Example Usage:"
   } else if (cli === 'doctl') {
     optionsSectionSeparator = "Flags:";
     optionNamesSeparator = "  ";
+    usageSectionSeparator = "Usage:"
   } else if (cli === 'oci') {
 
   } else if (cli === 'vultr-cli') {
@@ -337,8 +354,41 @@ function extractOptions(lines: string[], cli: string): any[] {
   } else if (cli === 'upctl') {
     optionsSectionSeparator = "Options:";
     optionNamesSeparator = /\s\s+/;
+    usageSectionSeparator = "Usage:"
   }
 
+  //
+  // process "usage"
+  // 
+  while (i < lines.length) {
+    if (lines[i] === usageSectionSeparator) {
+      i++;
+      break;
+    }
+    i++;
+  }
+
+  // XXX - for now just assume usage is current line
+  var match = lines[i].match(/<.*>/);
+  if (match) {
+    var parts = cmd.split(" ");
+    parts[parts.length - 1] = "list";
+    var varName = parts[1] + "_id";
+    var selectorName = parts.join("_") + "_selector";
+
+    optionsRequired.push({'name': "<" + varName + ">",
+      'description': varName,
+      'required': true,
+      'type': 'enum',
+      'query': selectorName,
+      'values': null });
+
+  }
+
+  //
+  // process options
+  // 
+  i = 0;
   while (i < lines.length) {
     if (lines[i] === optionsSectionSeparator) {
       i++;
@@ -346,6 +396,7 @@ function extractOptions(lines: string[], cli: string): any[] {
     }
     i++;
   }
+
 
   while (i < lines.length) {
     if (lines[i] === '') {
