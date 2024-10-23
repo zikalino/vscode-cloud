@@ -359,18 +359,26 @@ function extractOptions(lines: string[], cmd: string): any[] {
 
   //
   // process "usage"
-  // 
-  while (i < lines.length) {
-    if (lines[i] === usageSectionSeparator) {
+  //
+
+  var match: RegExpMatchArray | null = null;
+  // in case of linode, first line is usage
+  if (cli !== "linode") { 
+    while (i < lines.length) {
+      if (lines[i] === usageSectionSeparator) {
+        i++;
+        break;
+      }
       i++;
-      break;
     }
-    i++;
+    match = lines[i].match(/<.*>/);
+  } else {
+    match = lines[i].match(/\[.*\]/);
   }
 
   // XXX - for now just assume usage is current line
-  var match = lines[i].match(/<.*>/);
-  if (match) {
+
+  if (match !== null) {
     var parts = cmd.split(" ");
     parts[parts.length - 1] = "list";
     var varName = parts[1] + "_id";
