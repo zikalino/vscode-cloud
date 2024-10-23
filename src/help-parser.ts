@@ -410,20 +410,31 @@ function extractOptions(lines: string[], cli: string): any[] {
           // upctl, doctl, vultr
           type = "string";
           break;
-          case "int":
-            // upctl, doctl, vultr
-            type = "int";
-            break;
-          case "ID":
-            // doctl
-            type = "enum";
-            // XXX - extract from description
-            break;
-          case "strings":
-            // vultr
-            // XXX - in case of vultr --- comma separated strings
-            break;
-        }
+        case "int":
+          // upctl, doctl, vultr
+          type = "int";
+          break;
+        case "ID":
+          // doctl
+          type = "enum";
+          // XXX - extract from description
+          break;
+        case "strings":
+          // vultr
+          // XXX - in case of vultr --- comma separated strings
+          type = "strings";
+          break;
+        case "stringArray":
+          // upctl
+          // XXX - check separator
+          type = "strings";
+          break;
+        case "stringSlice":
+          // upctl
+          // XXX - check separator
+          type = "strings";
+          break;
+      }
     }
     
     i++;
@@ -487,6 +498,10 @@ function extractOptions(lines: string[], cli: string): any[] {
     // help shouldn't be displayed
     if (name === 'help') {
       continue;
+    }
+
+    if (cli === 'upctl' && type === 'default') {
+      type = "boolean";
     }
 
     if (required) {
