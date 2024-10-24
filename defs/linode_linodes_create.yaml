@@ -14,7 +14,7 @@ form:
             produces:
               - variable: name
 
-      - $include: __linode_region_selector.yaml
+      - $include: __linode_regions_list_selector.yaml
       - $include: __linode_type_selector.yaml
       - type: textfield
         name: Root Password
@@ -27,7 +27,7 @@ form:
         name: Create Linode
         consumes:
           - variable: linode_type
-          - variable: region
+          - variable: regions_id
           - variable: name
           - variable: password
         verify: |
