@@ -1,12 +1,12 @@
 - type: row
   subitems:
     - type: combo
-      name: Select Image
+      name: Select Event
       items: []
       source:
         cmd: |
-          linode images list --json
+          linode events list --json
         path-id: $.[*].id
-        path-name: $.[*].label
+        path-name: $.[*].id
       produces:
-        - variable: images_id
+        - variable: events_id

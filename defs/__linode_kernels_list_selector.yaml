@@ -1,12 +1,12 @@
 - type: row
   subitems:
     - type: combo
-      name: Select Image
+      name: Select Linode Kernel
       items: []
       source:
         cmd: |
-          linode images list --json
+          linode kernels list --json
         path-id: $.[*].id
         path-name: $.[*].label
       produces:
-        - variable: images_id
+        - variable: kernels_id
